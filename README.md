@@ -9,12 +9,10 @@ install perl and libraries
 
 input
 ------------
-FewRel corpus (Han, X., Zhu, H. et al., 2018)
-○ - 56000 sentences, <0.5GB
-● Sorokin corpus (Sorokin, D. and Gurevych, I., 2017)
-○ - 856217 sentences, >7 GB
-● T-REx corpus (Elsahar, H., Vougiouklis, P. et al., 2018)
-○ - 6200000 sentences, ~1 TB
+Three annotated corpus
+* FewRel corpus (Han, X., Zhu, H. et al., 2018) - 56000 sentences, <0.5GB
+* Sorokin corpus (Sorokin, D. and Gurevych, I., 2017)  - 856217 sentences, >7 GB
+* T-REx corpus (Elsahar, H., Vougiouklis, P. et al., 2018) -- 6200000 sentences, ~1 TB
 ```
 
 ```snapshot
