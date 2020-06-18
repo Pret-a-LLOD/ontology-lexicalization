@@ -10,7 +10,6 @@ install perl and libraries
 
 input
 ------------
-Three annotated corpus
 * DBpedia abstract texts
 * DBpedia knowledge graph
 ```
@@ -20,7 +19,8 @@ Three annotated corpus
 ```
 output
 ------------
-Lemon Lexicon
+intermediate output is n-grams and corresponding RDF graph patterns
+ongoing: building a Lemon Lexicon 
 
 
 ## Author
