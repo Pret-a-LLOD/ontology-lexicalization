@@ -1,5 +1,5 @@
 
-ontology-lexicalization
+corpus based ontology lexicalization
 ================================
 The system extracts property lexicalization patterns from a set of annotated (i.e. DBpedia/Wikidata annotated) Corpora and to To extract RDF graph patterns corresponding to an ngram and develops a Lemon Lexicon. 
 The program is developed using perl and java.
