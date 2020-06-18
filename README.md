@@ -12,11 +12,7 @@ input
 ------------
 * DBpedia abstract texts
 * DBpedia knowledge graph
-```
 
-``
-
-```
 output
 ------------
 * intermediate output is n-grams and corresponding RDF graph patterns
