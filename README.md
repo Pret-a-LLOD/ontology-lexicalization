@@ -19,8 +19,8 @@ input
 ```
 output
 ------------
-intermediate output is n-grams and corresponding RDF graph patterns
-ongoing: building a Lemon Lexicon 
+* intermediate output is n-grams and corresponding RDF graph patterns
+* ongoing: building a Lemon Lexicon 
 
 
 ## Author
