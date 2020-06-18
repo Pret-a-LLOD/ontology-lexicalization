@@ -24,6 +24,6 @@ Lemon Lexicon
 
 
 ## Author
-* **Mohammad Fazleh Elahi**
 * **Dr. Basil Ell**
+* **Mohammad Fazleh Elahi**
 * **Dr. Philipp Cimiano**
