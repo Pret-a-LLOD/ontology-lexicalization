@@ -18,6 +18,9 @@ output
 * intermediate output is n-grams and corresponding RDF graph patterns
 * ongoing: building a Lemon Lexicon 
 
+Installation
+------------
+the codes are under refactoring and organizing phase. Therefore, only partial code is available here.
 
 ## Author
 * **Dr. Basil Ell**
