@@ -22,7 +22,14 @@ Installation
 ------------
 the codes are under refactoring and organizing phase. Therefore, only partial code is available here.
 
+Run
+------------
+perl convert-part1.pl 119 
+
+Notes
+------------
+The codes are now under major refactoring, therefore, only partial code is available here.  
+
 ## Author
-* **Dr. Basil Ell**
+* **Basil Ell**
 * **Mohammad Fazleh Elahi**
-* **Dr. Philipp Cimiano**
