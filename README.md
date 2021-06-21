@@ -1,20 +1,32 @@
-# How to build the application:
-'''
-    gradle build
-'''
+# Text Text ..
+description description ...
+### Install ontolex  on your machine
+Install docker (https://docs.docker.com/engine/install/)
+1. Download the image of ontolex. 
+```
+docker pull elahi/ontolex
+```
+2. Run the image as a container.
+```
+docker run -p 8001:8080 -t elahi/ontolex
+```
 
-# How to run he built application
-'''
-    java -jar build/libs/rest-service-0.0.1-SNAPSHOT.jar
-'''
+### Text Text ..
+```
+curl -H "Accept: application/json" -H "Content-type: application/json"  --data-binary @config.json -X POST  http://localhost:8001/response
+``
+
+### Input
+```
+     
+ ```
+
+Please use the following citation:
+```
+```
+  
 
 
-# building docker container
-'''
-    docker build -t teanga_dummy_service_java .
-'''
 
-# running docker container on port 8001 in localhost
-'''
-    docker run -p 8001:8080 -t teanga_dummy_service
-'''
+
+---

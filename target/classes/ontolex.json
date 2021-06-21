@@ -1,0 +1,89 @@
+[{
+        "@id": "http://dbpedia.org/ontology/birthPlace"
+    }, {
+        "@id": "http://dbpedia.org/resource/Sweden"
+    }, {
+        "@id": "http://lemon-model.net/lemon#LexicalEntry"
+    }, {
+        "@id": "http://lemon-model.net/lemon#LexicalSense"
+    }, {
+        "@id": "http://lemon-model.net/lemon#Lexicon"
+    }, {
+        "@id": "http://localhost:8080/#lexicon_en",
+        "@type": ["http://lemon-model.net/lemon#Lexicon"],
+        "http://lemon-model.net/lemon#language": [{
+                "@value": "en"
+            }],
+        "http://lemon-model.net/lemon#entry": [{
+                "@id": "http://localhost:8080/#swedish"
+            }, {
+                "@id": "http://localhost:8080/#swedish_res"
+            }]
+    }, {
+        "@id": "http://localhost:8080/#swedish",
+        "@type": ["http://lemon-model.net/lemon#LexicalEntry"],
+        "http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech": [{
+                "@id": "http://www.lexinfo.net/ontology/2.0/lexinfo#adjective"
+            }],
+        "http://lemon-model.net/lemon#canonicalForm": [{
+                "@id": "http://localhost:8080/#swedish_lemma"
+            }],
+        "http://lemon-model.net/lemon#synBehavior": [{
+                "@id": "http://localhost:8080/#swedish_attrFrame"
+            }, {
+                "@id": "http://localhost:8080/#swedish_predFrame"
+            }],
+        "http://lemon-model.net/lemon#sense": [{
+                "@id": "http://localhost:8080/#swedish_sense"
+            }]
+    }, {
+        "@id": "http://localhost:8080/#swedish_AttrSynArg"
+    }, {
+        "@id": "http://localhost:8080/#swedish_PredSynArg"
+    }, {
+        "@id": "http://localhost:8080/#swedish_attrFrame",
+        "@type": ["http://www.lexinfo.net/ontology/2.0/lexinfo#AdjectiveAttributiveFrame"],
+        "http://www.lexinfo.net/ontology/2.0/lexinfo#attributiveArg": [{
+                "@id": "http://localhost:8080/#swedish_AttrSynArg"
+            }]
+    }, {
+        "@id": "http://localhost:8080/#swedish_lemma",
+        "http://lemon-model.net/lemon#writtenRep": [{
+                "@value": "Swedish",
+                "@language": "en"
+            }]
+    }, {
+        "@id": "http://localhost:8080/#swedish_predFrame",
+        "@type": ["http://www.lexinfo.net/ontology/2.0/lexinfo#AdjectivePredicateFrame"],
+        "http://www.lexinfo.net/ontology/2.0/lexinfo#copulativeSubject": [{
+                "@id": "http://localhost:8080/#swedish_PredSynArg"
+            }]
+    }, {
+        "@id": "http://localhost:8080/#swedish_res",
+        "@type": ["http://www.w3.org/2002/07/owl#Restriction"],
+        "http://www.w3.org/2002/07/owl#onProperty": [{
+                "@id": "http://dbpedia.org/ontology/birthPlace"
+            }],
+        "http://www.w3.org/2002/07/owl#hasValue": [{
+                "@id": "http://dbpedia.org/resource/Sweden"
+            }]
+    }, {
+        "@id": "http://localhost:8080/#swedish_sense",
+        "@type": ["http://lemon-model.net/lemon#LexicalSense"],
+        "http://lemon-model.net/lemon#reference": [{
+                "@id": "http://localhost:8080/#swedish_res"
+            }],
+        "http://lemon-model.net/lemon#isA": [{
+                "@id": "http://localhost:8080/#swedish_AttrSynArg"
+            }, {
+                "@id": "http://localhost:8080/#swedish_PredSynArg"
+            }]
+    }, {
+        "@id": "http://www.lexinfo.net/ontology/2.0/lexinfo#AdjectiveAttributiveFrame"
+    }, {
+        "@id": "http://www.lexinfo.net/ontology/2.0/lexinfo#AdjectivePredicateFrame"
+    }, {
+        "@id": "http://www.lexinfo.net/ontology/2.0/lexinfo#adjective"
+    }, {
+        "@id": "http://www.w3.org/2002/07/owl#Restriction"
+    }]
