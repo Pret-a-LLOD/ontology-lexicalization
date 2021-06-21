@@ -1,0 +1,33 @@
+openapi: 3.0.0
+info:
+  title: random value and schemas generator API
+  description: the teanga dummy API example which generates random outputs
+  version: 1.0.0-oas3
+paths:
+  '/response':
+    post:
+      description: Given corpus and knowledge graph provide ontology lexicalization in lemon format 
+      operationId: ontolex
+      requestBody:
+        description: corpus and knowledge graph
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Configuration'
+      responses:
+        '200':
+          description: return ontology lexicalization in lemon format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseTransfer'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+    
