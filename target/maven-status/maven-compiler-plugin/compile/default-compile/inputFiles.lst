@@ -1,0 +1,17 @@
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/utils/CsvConstants.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/restservice/ResponseTransfer.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/analyzer/Lemmatizer.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/restservice/RestServiceApplication.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/analyzer/TextAnalyzer.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/config/Constants.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/result/Interface.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/result/FileUtils.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/utils/CsvFile.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/restservice/PerlQuery.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/result/Result.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/config/Configuration.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/utils/PairCheck.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/restservice/SchemaController.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/result/CheckPosTag.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/result/PredictionRules.java
+/home/elahi/a-teanga/ontology-lexicalization/src/main/java/com/example/analyzer/PosAnalyzer.java

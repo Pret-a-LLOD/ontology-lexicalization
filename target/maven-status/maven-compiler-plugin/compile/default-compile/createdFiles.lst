@@ -1,0 +1,17 @@
+com/example/result/FileUtils.class
+com/example/restservice/PerlQuery.class
+com/example/result/Interface.class
+com/example/utils/PairCheck.class
+com/example/analyzer/Lemmatizer.class
+com/example/result/CheckPosTag.class
+com/example/result/Result.class
+com/example/result/PredictionRules.class
+com/example/analyzer/TextAnalyzer.class
+com/example/utils/CsvConstants.class
+com/example/restservice/ResponseTransfer.class
+com/example/restservice/RestServiceApplication.class
+com/example/restservice/SchemaController.class
+com/example/config/Constants.class
+com/example/config/Configuration.class
+com/example/utils/CsvFile.class
+com/example/analyzer/PosAnalyzer.class
