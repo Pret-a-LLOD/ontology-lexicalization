@@ -17,8 +17,9 @@ import java.io.IOException;
 public class PerlQuery {
 
     //private static String location = "/home/elahi/a-teanga/dummy_teanga_service_java/";
-    private static String location = "perl/";
-    private static String scriptName = "HelloWorld.pl";
+    private static String location = "code-v3/";
+    private static String scriptName = "experiment.pl";
+    //private static String scriptName = "HelloWorld.pl";
 
 
     private static String resultString = null;
@@ -28,7 +29,7 @@ public class PerlQuery {
     }
 
     public static String Test() {
-        String[] aCmdArgs = {"perl", location + "experiment.pl"};
+        String[] aCmdArgs = {"perl", location + scriptName};
         Runtime oRuntime = Runtime.getRuntime();
         Process oProcess = null;
 
@@ -51,7 +52,7 @@ public class PerlQuery {
             System.out.flush();
 
             /* print final result of process */
-            System.err.println("Exit status=" + oProcess.exitValue());
+            System.err.println("The process not finished!!!"+ "Exit status=" + oProcess.exitValue());
             return str;
 
         } catch (Exception e) {

@@ -1,0 +1,445 @@
+reduced number of instances for class http://dbpedia.org/ontology/Protein from 2140 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Fern from 62 to 10
+reduced number of instances for class http://dbpedia.org/ontology/FormulaOneTeam from 129 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SpaceShuttle from 19 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Year from 1824 to 10
+reduced number of instances for class http://dbpedia.org/ontology/HollywoodCartoon from 346 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Skyscraper from 10 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Weapon from 6756 to 10
+reduced number of instances for class http://dbpedia.org/ontology/RadioHost from 396 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BeautyQueen from 2488 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Automobile from 7080 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Station from 46009 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Website from 5229 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Winery from 374 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Mountain from 23977 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Galaxy from 1840 to 10
+reduced number of instances for class http://dbpedia.org/ontology/AnatomicalStructure from 1589 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Company from 61704 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Town from 72463 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Religious from 2602 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MotorsportSeason from 3863 to 10
+reduced number of instances for class http://dbpedia.org/ontology/NationalFootballLeagueSeason from 3637 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Film from 135258 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SpeedwayLeague from 30 to 10
+reduced number of instances for class http://dbpedia.org/ontology/WorldHeritageSite from 883 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Book from 42252 to 10
+reduced number of instances for class http://dbpedia.org/ontology/TelevisionHost from 82 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Lake from 1106 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Artwork from 8095 to 10
+reduced number of instances for class http://dbpedia.org/ontology/WaterRide from 87 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SpaceStation from 36 to 10
+reduced number of instances for class http://dbpedia.org/ontology/RailwayStation from 1870 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Fish from 4947 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MilitaryUnit from 22173 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Motorcycle from 1224 to 10
+reduced number of instances for class http://dbpedia.org/ontology/AmusementParkAttraction from 620 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Curler from 1952 to 10
+reduced number of instances for class http://dbpedia.org/ontology/PoloLeague from 38 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Glacier from 1577 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BeachVolleyballPlayer from 241 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Battery from 19 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Cinema from 151 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MotorcycleRacingLeague from 20 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SpeedwayRider from 788 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Convention from 3321 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Fashion from 324 to 10
+reduced number of instances for class http://dbpedia.org/ontology/PublicTransitSystem from 3507 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MusicalArtist from 60113 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Moss from 209 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SoccerClub from 24407 to 10
+reduced number of instances for class http://dbpedia.org/ontology/VolleyballLeague from 243 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ArtistDiscography from 4465 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Congressman from 2769 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Device from 1548 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SiteOfSpecialScientificInterest from 2197 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SpaceMission from 3031 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Vein from 239 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Economist from 1553 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ProgrammingLanguage from 1036 to 10
+reduced number of instances for class http://dbpedia.org/ontology/NetballPlayer from 447 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Historian from 879 to 10
+reduced number of instances for class http://dbpedia.org/ontology/FormulaOneRacer from 783 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Journalist from 1697 to 10
+reduced number of instances for class http://dbpedia.org/ontology/River from 26071 to 10
+reduced number of instances for class http://dbpedia.org/ontology/HandballLeague from 63 to 10
+reduced number of instances for class http://dbpedia.org/ontology/RadioProgram from 1534 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Sea from 102 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Brewery from 374 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Airline from 4178 to 10
+reduced number of instances for class http://dbpedia.org/ontology/RugbyClub from 2485 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SpeedwayTeam from 122 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Enzyme from 4887 to 10
+reduced number of instances for class http://dbpedia.org/ontology/FigureSkater from 3836 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Lymph from 76 to 10
+reduced number of instances for class http://dbpedia.org/ontology/CyclingTeam from 792 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Olympics from 105 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Disease from 8532 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ComicStrip from 344 to 10
+reduced number of instances for class http://dbpedia.org/ontology/VolleyballCoach from 117 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Governor from 1741 to 10
+reduced number of instances for class http://dbpedia.org/ontology/TennisLeague from 29 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Outbreak from 470 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Priest from 474 to 10
+reduced number of instances for class http://dbpedia.org/ontology/HandballPlayer from 4288 to 10
+reduced number of instances for class http://dbpedia.org/ontology/WrestlingEvent from 1371 to 10
+reduced number of instances for class http://www.w3.org/2002/07/owl#Thing from 480699 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MilitaryPerson from 34306 to 10
+reduced number of instances for class http://dbpedia.org/ontology/OlympicEvent from 6524 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Mammal from 633 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Election from 19566 to 10
+reduced number of instances for class http://dbpedia.org/ontology/PowerStation from 2498 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Volcano from 807 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Beverage from 616 to 10
+reduced number of instances for class http://dbpedia.org/ontology/GaelicGamesPlayer from 4075 to 10
+reduced number of instances for class http://dbpedia.org/ontology/RoadJunction from 249 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SupremeCourtOfTheUnitedStatesCase from 3270 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Athlete from 83202 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Person from 249593 to 10
+reduced number of instances for class http://dbpedia.org/ontology/RugbyLeague from 731 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Royalty from 16824 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Canal from 544 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Comedian from 1515 to 10
+reduced number of instances for class http://dbpedia.org/ontology/City from 20650 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Publisher from 2117 to 10
+reduced number of instances for class http://dbpedia.org/ontology/AdministrativeRegion from 47012 to 10
+reduced number of instances for class http://dbpedia.org/ontology/NationalCollegiateAthleticAssociationAthlete from 121 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Medician from 1257 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Entomologist from 467 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Legislature from 2407 to 10
+reduced number of instances for class http://dbpedia.org/ontology/FootballLeagueSeason from 15105 to 10
+reduced number of instances for class http://dbpedia.org/ontology/AmericanFootballLeague from 116 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Fungus from 9315 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Theatre from 801 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Actor from 3630 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Museum from 8035 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Bone from 334 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Organisation from 27274 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ChristianPatriarch from 43 to 10
+reduced number of instances for class http://dbpedia.org/ontology/HorseTrainer from 268 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Bay from 34 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SportsEvent from 1653 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MountainPass from 1225 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Magazine from 6145 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ComedyGroup from 105 to 10
+reduced number of instances for class http://dbpedia.org/ontology/LaunchPad from 100 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Album from 141586 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BasketballLeague from 511 to 10
+reduced number of instances for class http://dbpedia.org/ontology/AustralianRulesFootballPlayer from 13601 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Tunnel from 132 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Rower from 262 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Musical from 1592 to 10
+reduced number of instances for class http://dbpedia.org/ontology/GovernmentAgency from 7961 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Eukaryote from 974 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Conifer from 43 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Surname from 188 to 10
+reduced number of instances for class http://dbpedia.org/ontology/GivenName from 238 to 10
+reduced number of instances for class http://dbpedia.org/ontology/CombinationDrug from 394 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Language from 8493 to 10
+reduced number of instances for class http://dbpedia.org/ontology/LacrosseLeague from 65 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MusicFestival from 383 to 10
+reduced number of instances for class http://dbpedia.org/ontology/PoliticalParty from 10484 to 10
+reduced number of instances for class http://dbpedia.org/ontology/College from 317 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Venue from 14582 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Castle from 2247 to 10
+reduced number of instances for class http://dbpedia.org/ontology/IceHockeyPlayer from 17285 to 10
+reduced number of instances for class http://dbpedia.org/ontology/FieldHockeyLeague from 93 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MemberOfParliament from 1001 to 10
+reduced number of instances for class http://dbpedia.org/ontology/AmericanFootballPlayer from 24580 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Novel from 15 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SnookerWorldRanking from 34 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Nerve from 323 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Skier from 3138 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Single from 112 to 10
+reduced number of instances for class http://dbpedia.org/ontology/GolfCourse from 347 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Village from 218335 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Band from 37483 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Holiday from 1361 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Politician from 152627 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BroadcastNetwork from 1072 to 10
+reduced number of instances for class http://dbpedia.org/ontology/RugbyPlayer from 21183 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Writer from 36733 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Photographer from 452 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Vaccine from 52 to 10
+reduced number of instances for class http://dbpedia.org/ontology/School from 36184 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Rocket from 301 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ChemicalCompound from 11643 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Artery from 329 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SolarEclipse from 370 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BaseballPlayer from 24261 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Award from 9677 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Saint from 4375 to 10
+reduced number of instances for class http://dbpedia.org/ontology/AmateurBoxer from 537 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Island from 7993 to 10
+reduced number of instances for class http://dbpedia.org/ontology/PokerPlayer from 717 to 10
+reduced number of instances for class http://dbpedia.org/ontology/AcademicConference from 90 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ClassicalMusicComposition from 667 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SquashPlayer from 763 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Hotel from 1514 to 10
+reduced number of instances for class http://dbpedia.org/ontology/NCAATeamSeason from 27149 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Painter from 2264 to 10
+reduced number of instances for class http://dbpedia.org/ontology/CollegeCoach from 10054 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SoccerManager from 24719 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BiologicalDatabase from 411 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Continent from 30 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Chef from 763 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ComicsCharacter from 3514 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Play from 2681 to 10
+reduced number of instances for class http://dbpedia.org/ontology/LacrossePlayer from 446 to 10
+reduced number of instances for class http://dbpedia.org/ontology/AdultActor from 794 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Stadium from 293 to 10
+reduced number of instances for class http://dbpedia.org/ontology/LawFirm from 528 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Engineer from 863 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Ligament from 181 to 10
+reduced number of instances for class http://dbpedia.org/ontology/EthnicGroup from 6016 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Senator from 481 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Comic from 2614 to 10
+reduced number of instances for class http://dbpedia.org/ontology/CricketTeam from 936 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BodyOfWater from 12599 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Cyclist from 13621 to 10
+reduced number of instances for class http://dbpedia.org/ontology/TelevisionStation from 8925 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Reptile from 385 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Newspaper from 8212 to 10
+reduced number of instances for class http://dbpedia.org/ontology/AnimangaCharacter from 16 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Cave from 728 to 10
+reduced number of instances for class http://dbpedia.org/ontology/TopLevelDomain from 372 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Amphibian from 164 to 10
+reduced number of instances for class http://dbpedia.org/ontology/VoiceActor from 445 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Model from 1945 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Bird from 102 to 10
+reduced number of instances for class http://dbpedia.org/ontology/WineRegion from 565 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Animal from 5704 to 10
+reduced number of instances for class http://dbpedia.org/ontology/HockeyTeam from 2645 to 10
+reduced number of instances for class http://dbpedia.org/ontology/CityDistrict from 8906 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Colour from 244 to 10
+reduced number of instances for class http://dbpedia.org/ontology/TennisTournament from 7697 to 10
+reduced number of instances for class http://dbpedia.org/ontology/NascarDriver from 1264 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Scientist from 36067 to 10
+reduced number of instances for class http://dbpedia.org/ontology/AustralianFootballTeam from 674 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Constellation from 88 to 10
+reduced number of instances for class http://dbpedia.org/ontology/PopulatedPlace from 630 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Mineral from 1578 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Skater from 2003 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Lighthouse from 2267 to 10
+reduced number of instances for class http://dbpedia.org/ontology/WrittenWork from 1875 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Garden from 253 to 10
+reduced number of instances for class http://dbpedia.org/ontology/RailwayTunnel from 246 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Arachnid from 2813 to 10
+reduced number of instances for class http://dbpedia.org/ontology/AcademicJournal from 8566 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MilitaryConflict from 16346 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ConcentrationCamp from 142 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BadmintonPlayer from 2627 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BusinessPerson from 729 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ChristianBishop from 7221 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Drug from 6883 to 10
+reduced number of instances for class http://dbpedia.org/ontology/CricketGround from 233 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Event from 4677 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BasketballPlayer from 17330 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Ship from 35042 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ArchitecturalStructure from 158 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SkiArea from 661 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Song from 65986 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SportsTeamMember from 800 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Country from 3998 to 10
+reduced number of instances for class http://dbpedia.org/ontology/AmericanFootballTeam from 40 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Ambassador from 320 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Noble from 6687 to 10
+reduced number of instances for class http://dbpedia.org/ontology/RecordLabel from 3729 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Train from 1893 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SportsTeam from 2581 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Artist from 21803 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Chancellor from 52 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Racecourse from 323 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Canoeist from 498 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MotorcycleRider from 1322 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Prison from 1531 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Bodybuilder from 290 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Horse from 5000 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MythologicalFigure from 716 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Monument from 1314 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BaseballLeague from 383 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Philosopher from 2555 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ResearchProject from 32 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SnookerChamp from 42 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Wrestler from 3384 to 10
+reduced number of instances for class http://dbpedia.org/ontology/IceHockeyLeague from 332 to 10
+reduced number of instances for class http://dbpedia.org/ontology/RadioStation from 21105 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ComicsCreator from 3228 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Building from 57305 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ReligiousBuilding from 7795 to 10
+reduced number of instances for class http://dbpedia.org/ontology/TelevisionShow from 48212 to 10
+reduced number of instances for class http://dbpedia.org/ontology/WomensTennisAssociationTournament from 1095 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Locomotive from 4042 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Criminal from 4019 to 10
+reduced number of instances for class http://dbpedia.org/ontology/RacingDriver from 3126 to 10
+reduced number of instances for class http://dbpedia.org/ontology/GrandPrix from 1557 to 10
+reduced number of instances for class http://dbpedia.org/ontology/GolfLeague from 41 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Boxer from 5055 to 10
+reduced number of instances for class http://dbpedia.org/ontology/FictionalCharacter from 6009 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Planet from 4370 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MedicalSpecialty from 39 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ClassicalMusicArtist from 299 to 10
+reduced number of instances for class http://dbpedia.org/ontology/FootballMatch from 4609 to 10
+reduced number of instances for class http://dbpedia.org/ontology/VolleyballPlayer from 4430 to 10
+reduced number of instances for class http://dbpedia.org/ontology/RailwayLine from 5831 to 10
+reduced number of instances for class http://dbpedia.org/ontology/HistoricBuilding from 11753 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Baronet from 120 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Sport from 389 to 10
+reduced number of instances for class http://dbpedia.org/ontology/EurovisionSongContestEntry from 1083 to 10
+reduced number of instances for class http://dbpedia.org/ontology/HistoricPlace from 34509 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SoapCharacter from 2547 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Crater from 2088 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Library from 1536 to 10
+reduced number of instances for class http://dbpedia.org/ontology/FormerMunicipality from 755 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Pope from 385 to 10
+reduced number of instances for class http://dbpedia.org/ontology/GolfPlayer from 3723 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Grape from 457 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Park from 6061 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SoccerLeague from 2346 to 10
+reduced number of instances for class http://dbpedia.org/ontology/PlayboyPlaymate from 246 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SoccerPlayer from 151627 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Swimmer from 8485 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Star from 4465 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Brain from 532 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Earthquake from 954 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Muscle from 287 to 10
+reduced number of instances for class http://dbpedia.org/ontology/HorseRider from 24 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MonoclonalAntibody from 396 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Road from 25805 to 10
+reduced number of instances for class http://dbpedia.org/ontology/TennisPlayer from 7682 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Presenter from 140 to 10
+reduced number of instances for class http://dbpedia.org/ontology/TradeUnion from 2041 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Anime from 1487 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SoccerTournament from 10212 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Judge from 51 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MilitaryStructure from 5899 to 10
+reduced number of instances for class http://dbpedia.org/ontology/GolfTournament from 2222 to 10
+reduced number of instances for class http://dbpedia.org/ontology/InformationAppliance from 1708 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Airport from 15093 to 10
+reduced number of instances for class http://dbpedia.org/ontology/HumanGene from 12405 to 10
+reduced number of instances for class http://dbpedia.org/ontology/CyclingRace from 1144 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Settlement from 189349 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Mayor from 1582 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Poet from 260 to 10
+reduced number of instances for class http://dbpedia.org/ontology/TelevisionEpisode from 9769 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BusCompany from 1675 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Archaea from 258 to 10
+reduced number of instances for class http://dbpedia.org/ontology/FashionDesigner from 816 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Species from 5610 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Plant from 12452 to 10
+reduced number of instances for class http://dbpedia.org/ontology/NationalFootballLeagueEvent from 10 to 10
+reduced number of instances for class http://dbpedia.org/ontology/AutomobileEngine from 601 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ShoppingMall from 2986 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MusicGenre from 1349 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ChessPlayer from 2537 to 10
+reduced number of instances for class http://dbpedia.org/ontology/TableTennisPlayer from 730 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Cleric from 6892 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Gymnast from 2676 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Food from 6069 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ProtectedArea from 11795 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Guitarist from 125 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Cardinal from 1451 to 10
+reduced number of instances for class http://dbpedia.org/ontology/EducationalInstitution from 510 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Embryology from 185 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BasketballTeam from 2599 to 10
+reduced number of instances for class http://dbpedia.org/ontology/TelevisionSeason from 6948 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Insect from 108397 to 10
+reduced number of instances for class http://dbpedia.org/ontology/PrimeMinister from 935 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MixedMartialArtsEvent from 1024 to 10
+reduced number of instances for class http://dbpedia.org/ontology/YearInSpaceflight from 66 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Astronaut from 648 to 10
+reduced number of instances for class http://dbpedia.org/ontology/CultivatedVariety from 2203 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SoftballLeague from 36 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SnookerPlayer from 551 to 10
+reduced number of instances for class http://dbpedia.org/ontology/WaterwayTunnel from 25 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Game from 1745 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Manga from 3744 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Aircraft from 12119 to 10
+reduced number of instances for class http://dbpedia.org/ontology/CanadianFootballTeam from 279 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Architect from 3605 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Place from 5503 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Poem from 360 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SportsLeague from 585 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Bridge from 5092 to 10
+reduced number of instances for class http://dbpedia.org/ontology/RoadTunnel from 369 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BaseballSeason from 251 to 10
+reduced number of instances for class http://dbpedia.org/ontology/HandballTeam from 481 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Bank from 3723 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Diocese from 3649 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Cheese from 299 to 10
+reduced number of instances for class http://dbpedia.org/ontology/BaseballTeam from 37 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Cricketer from 25998 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Currency from 414 to 10
+reduced number of instances for class http://dbpedia.org/ontology/DartsPlayer from 881 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Crustacean from 2836 to 10
+reduced number of instances for class http://dbpedia.org/ontology/RollerCoaster from 813 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SumoWrestler from 531 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Software from 12333 to 10
+reduced number of instances for class http://dbpedia.org/ontology/ScreenWriter from 704 to 10
+reduced number of instances for class http://dbpedia.org/ontology/MartialArtist from 4332 to 10
+reduced number of instances for class http://dbpedia.org/ontology/FilmFestival from 639 to 10
+reduced number of instances for class http://dbpedia.org/ontology/SoccerClubSeason from 14619 to 10
+reduced number of instances for class http://dbpedia.org/ontology/GreenAlga from 153 to 10
+reduced number of instances for class http://dbpedia.org/ontology/University from 23616 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Dam from 6009 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Mollusca from 20348 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Bacteria from 2832 to 10
+reduced number of instances for class http://dbpedia.org/ontology/HorseRace from 3049 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Restaurant from 1417 to 10
+reduced number of instances for class http://dbpedia.org/ontology/President from 1624 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Archbishop from 842 to 10
+reduced number of instances for class http://dbpedia.org/ontology/VideoGame from 23105 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Jockey from 797 to 10
+reduced number of instances for class http://dbpedia.org/ontology/Hospital from 5407 to 10
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Year> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Winery> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Artwork> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Glacier> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Fashion> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/SiteOfSpecialScientificInterest> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Brewery> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Enzyme> pos <obj>.
+STEP 2 - unexpected class URI namespace <http://www.w3.org/2002/07/owl#Thing>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/PowerStation> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Mammal> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/SupremeCourtOfTheUnitedStatesCase> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/ClubMoss> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Fungus> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Conifer> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Surname> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/CombinationDrug> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/MusicFestival> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/SnookerWorldRanking> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/ChemicalCompound> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/SolarEclipse> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/ClassicalMusicComposition> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/AcademicConference> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Painter> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/BiologicalDatabase> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Ginkgo> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Gnetophytes> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Reptile> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Arachnid> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Skater> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/AcademicJournal> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/SkiArea> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Canoeist> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/WomensTennisAssociationTournament> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/BoxingLeague> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Crater> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Cycad> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/FormerMunicipality> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Star> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/MonoclonalAntibody> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/TradeUnion> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Species> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Poet> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/CultivatedVariety> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/YearInSpaceflight> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Game> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/WaterwayTunnel> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Poem> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Place> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/BaseballSeason> pos <obj>.
+STEP 2 - empty file for class <http://dbpedia.org/ontology/Software> pos <obj>.
+STEP 4 - unexpected class URI namespace <http://www.w3.org/2002/07/owl#Thing>.
