@@ -17,13 +17,15 @@ import java.io.IOException;
 public class PerlQuery {
 
     //private static String location = "/home/elahi/a-teanga/dummy_teanga_service_java/";
-    private static String location = "code-v3/";
-    private static String scriptName = "experiment.pl";
+    private static String location = null;
+    private static String scriptName = null;
     //private static String scriptName = "HelloWorld.pl";
 
     private static String resultString = null;
 
-    public PerlQuery() {
+    public PerlQuery(String location,String scriptName ) {
+        this.location=location;
+        this.scriptName=scriptName;
         if (Test()) {
             this.resultString = "working perl1";
         } else {

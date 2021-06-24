@@ -50,9 +50,69 @@ import main.PredictionRules;
  * @author elahi
  */
 public class ProcessCsv implements NullInterestingness, PredictionRules {
+    
+    public  ProcessCsv(String baseDir) throws Exception {
+        String resourceDir = baseDir+"processData/";
 
-    private  String baseDir = "results-v4/";
-    private  String resourceDir = baseDir+"";
+        Set<String> posTag = new HashSet<String>();
+        posTag.add("JJ");
+        posTag.add("NN");
+        posTag.add("VB");
+        String txt = "txt";
+
+        Logger LOGGER = Logger.getLogger(CreateTXT.class.getName());
+        String outputDir = resourceDir;
+        Lemmatizer lemmatizer = new Lemmatizer();
+        //String  txtDir =  "src/main/resources/data" + "/" + "txt" +  "/"  ;
+        //String  txtDir =  "src/main/resources/data" + "/" + "txt" +  "/"  ;
+        String txtDir = resourceDir + "/" + txt + "/";
+        //txtDir = "/var/www/html/ontologyLexicalization/data/";
+
+        FileFolderUtils.createDirectory(txtDir);
+
+        List<String> predictKBGivenLInguistic = new ArrayList<String>(Arrays.asList(
+                predict_l_for_s_given_po,
+                predict_localized_l_for_s_given_po,
+                predict_l_for_s_given_p,
+                predict_localized_l_for_s_given_p,
+                predict_l_for_s_given_o,
+                predict_l_for_o_given_sp,
+                predict_localized_l_for_o_given_sp,
+                predict_l_for_o_given_s,
+                predict_l_for_o_given_p,
+                predict_localized_l_for_o_given_p,
+                predict_p_for_s_given_l,
+                predict_o_for_s_given_l,
+                predict_p_for_o_given_l,
+                predict_po_for_s_given_l,
+                predict_s_for_o_given_l,
+                predict_po_for_s_given_localized_l,
+                predict_p_for_s_given_localized_l,
+                predict_p_for_o_given_localized_l,
+                predict_sp_for_o_given_localized_l,
+                predict_sp_for_o_given_l
+        ));
+
+        List<String> interestingness = new ArrayList<String>();
+        interestingness.add(AllConf);
+        interestingness.add(Coherence);
+        interestingness.add(Cosine);
+        interestingness.add(Kulczynski);
+        interestingness.add(IR);
+        interestingness.add(MaxConf);
+        for (String prediction : predictKBGivenLInguistic) {
+            //String inputDir = baseDir + prediction + "/" ;
+            String inputDir = baseDir + "/";
+            for (String inter : interestingness) {
+                outputDir = resourceDir + "/" + prediction + "/" + inter + "/";
+                FileFolderUtils.createDirectory(outputDir);
+                this.generate(inputDir, outputDir, prediction, inter, LOGGER, ".csv");
+                //System.out.println(outputDir);
+                //CreateTXT.resultStrTxt(posTag,outputDir,txtDir, prediction, lemmatizer, inter);
+            }
+        }
+
+    }
 
     public void generate(String rawFileDir, String outputDir, String prediction, String givenInterestingness, Logger givenLOGGER, String fileType) throws Exception {
         List<File> files = FileFolderUtils.getSpecificFiles(rawFileDir, prediction + "-", ".csv");
@@ -212,66 +272,6 @@ public class ProcessCsv implements NullInterestingness, PredictionRules {
     }
 
 
-    public  ProcessCsv() throws Exception {
-
-        Set<String> posTag = new HashSet<String>();
-        posTag.add("JJ");
-        posTag.add("NN");
-        posTag.add("VB");
-        String txt = "txt";
-
-        Logger LOGGER = Logger.getLogger(CreateTXT.class.getName());
-        String outputDir = resourceDir;
-        Lemmatizer lemmatizer = new Lemmatizer();
-        //String  txtDir =  "src/main/resources/data" + "/" + "txt" +  "/"  ;
-        //String  txtDir =  "src/main/resources/data" + "/" + "txt" +  "/"  ;
-        String txtDir = resourceDir + "/" + txt + "/";
-        //txtDir = "/var/www/html/ontologyLexicalization/data/";
-
-        FileFolderUtils.createDirectory(txtDir);
-
-        List<String> predictKBGivenLInguistic = new ArrayList<String>(Arrays.asList(
-                predict_l_for_s_given_po,
-                predict_localized_l_for_s_given_po,
-                predict_l_for_s_given_p,
-                predict_localized_l_for_s_given_p,
-                predict_l_for_s_given_o,
-                predict_l_for_o_given_sp,
-                predict_localized_l_for_o_given_sp,
-                predict_l_for_o_given_s,
-                predict_l_for_o_given_p,
-                predict_localized_l_for_o_given_p,
-                predict_p_for_s_given_l,
-                predict_o_for_s_given_l,
-                predict_p_for_o_given_l,
-                predict_po_for_s_given_l,
-                predict_s_for_o_given_l,
-                predict_po_for_s_given_localized_l,
-                predict_p_for_s_given_localized_l,
-                predict_p_for_o_given_localized_l,
-                predict_sp_for_o_given_localized_l,
-                predict_sp_for_o_given_l
-        ));
-
-        List<String> interestingness = new ArrayList<String>();
-        interestingness.add(AllConf);
-        interestingness.add(Coherence);
-        interestingness.add(Cosine);
-        interestingness.add(Kulczynski);
-        interestingness.add(IR);
-        interestingness.add(MaxConf);
-        for (String prediction : predictKBGivenLInguistic) {
-            //String inputDir = baseDir + prediction + "/" ;
-            String inputDir = baseDir + "/";
-            for (String inter : interestingness) {
-                outputDir = resourceDir + "/" + prediction + "/" + inter + "/";
-                FileFolderUtils.createDirectory(outputDir);
-                this.generate(inputDir, outputDir, prediction, inter, LOGGER, ".csv");
-                //System.out.println(outputDir);
-                //CreateTXT.resultStrTxt(posTag,outputDir,txtDir, prediction, lemmatizer, inter);
-            }
-        }
-
-    }
+    
 
 }
