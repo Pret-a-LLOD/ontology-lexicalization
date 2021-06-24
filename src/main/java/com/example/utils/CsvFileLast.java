@@ -3,12 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utils;
+package com.example.utils;
 
-import com.example.analyzer.PosAnalyzer;
-import static com.example.analyzer.TextAnalyzer.OBJECT;
-import main.CsvConstants;
-import static utils.FileFolderUtils.getFileSizeMegaBytes;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
@@ -38,7 +34,7 @@ import java.util.logging.Logger;
  *
  * @author elahi
  */
-public class CsvFile implements CsvConstants {
+public class CsvFileLast implements CsvConstants {
 
     private File filename = null;
     public String[] qaldHeader = null;
@@ -48,12 +44,12 @@ public class CsvFile implements CsvConstants {
     private List<String[]> rows = new ArrayList<String[]>();
     private static Logger LOGGER = null;
 
-    public CsvFile(File filename, Logger LOGGER) {
+    public CsvFileLast(File filename, Logger LOGGER) {
         this.filename = filename;
         this.LOGGER = LOGGER;
     }
 
-    public CsvFile(File filename) {
+    public CsvFileLast(File filename) {
         this.filename = filename;
 
     }

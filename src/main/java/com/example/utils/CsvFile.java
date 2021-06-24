@@ -5,6 +5,10 @@
  */
 package com.example.utils;
 
+import com.example.analyzer.PosAnalyzer;
+import static com.example.analyzer.TextAnalyzer.OBJECT;
+import com.example.process.*;
+import static com.example.utils.FileFolderUtils.getFileSizeMegaBytes;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;

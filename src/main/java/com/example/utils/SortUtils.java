@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utils;
+package com.example.utils;
 
 import static com.example.analyzer.TextAnalyzer.ENGLISH_STOPWORDS;
 import java.io.IOException;

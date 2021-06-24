@@ -1,4 +1,4 @@
-package main;
+package com.example.process;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,10 +16,7 @@ package main;
  * and open the template in the editor.
  */
 import com.example.analyzer.Lemmatizer;
-import utils.CsvFile;
-import utils.FileFolderUtils;
-import utils.PropertyCSV;
-import utils.StopWordRemoval;
+import com.example.utils.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,14 +33,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import main.CreateTXT;
-import main.Lexicon;
-import main.LineInfo;
-import main.NullInterestingness;
-import static main.NullInterestingness.AllConf;
-import static main.NullInterestingness.OBJECT;
-import static main.NullInterestingness.PREDICATE;
-import main.PredictionRules;
+import com.example.process.*;
 
 /**
  *

@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package com.example.process;
 
 import com.example.analyzer.PosAnalyzer;
 import com.example.analyzer.TextAnalyzer;
 import static com.example.analyzer.TextAnalyzer.POS_TAGGER_WORDS;
-import utils.Pair;
-import utils.PropertyCSV;
+import com.example.utils.Pair;
+import com.example.utils.PropertyCSV;
 import com.google.common.collect.Sets;
 import java.util.LinkedHashSet;
 import java.util.List;

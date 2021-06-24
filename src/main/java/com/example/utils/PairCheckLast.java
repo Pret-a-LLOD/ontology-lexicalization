@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utils;
+package com.example.utils;
 
 /**
  *
  * @author elahi
  */
-public class PairCheck {
+public class PairCheckLast {
     private Boolean key=null;
      private String value=null;
      
-     public PairCheck(Boolean key,String value){
+     public PairCheckLast(Boolean key,String value){
            this.key=key;
            this.value=value;
          

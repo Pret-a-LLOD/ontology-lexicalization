@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package com.example.process;
 
 import com.example.analyzer.PosAnalyzer;
 import static com.example.analyzer.TextAnalyzer.OBJECT;
-import main.PredictionRules;
-import utils.FileFolderUtils;
+import  com.example.process.*;
+import com.example.utils.FileFolderUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.File;

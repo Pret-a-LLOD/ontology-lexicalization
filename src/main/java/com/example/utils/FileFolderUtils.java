@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utils;
+package com.example.utils;
 
 import com.example.analyzer.TextAnalyzer;
 import com.fasterxml.jackson.core.type.TypeReference;
