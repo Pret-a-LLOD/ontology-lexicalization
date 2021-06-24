@@ -16,17 +16,10 @@ import java.io.IOException;
  */
 public class PerlQuery {
 
-    //private static String location = "/home/elahi/a-teanga/dummy_teanga_service_java/";
-    private static String location = null;
-    private static String scriptName = null;
-    //private static String scriptName = "HelloWorld.pl";
-
     private static String resultString = null;
 
-    public PerlQuery(String location,String scriptName ) {
-        this.location=location;
-        this.scriptName=scriptName;
-        if (Test()) {
+    public PerlQuery(String location, String scriptName) {
+        if (runPerl(location,scriptName)) {
             this.resultString = "working perl1";
         } else {
             this.resultString = "not working!!";
@@ -34,13 +27,7 @@ public class PerlQuery {
 
     }
 
-    public static Boolean Test() {
-        
-        /*final String command = "/bin/tar -xvf " + zipFile + " " + filesString;
-        logger.info("Start unzipping: {}    into the folder {}", command, folder.getPath());
-        final Runtime r = Runtime.getRuntime();
-        final Process p = r.exec(command, null, folder);
-        final int returnCode = p.waitFor();*/
+    public static Boolean runPerl(String location,String scriptName) {
 
         try {
 
@@ -72,37 +59,6 @@ public class PerlQuery {
 
         return true;
 
-        /*String[] aCmdArgs = {"perl", location + scriptName};
-        Runtime oRuntime = Runtime.getRuntime();
-        Process oProcess = null;
-
-        try {
-            oProcess = oRuntime.exec(aCmdArgs);
-            int value=oProcess.waitFor();
-            System.out.println("value::"+value);
-            return true;
-        } catch (Exception e) {
-            System.err.println( "error executing " + aCmdArgs[0]+" "+e.getMessage());
-            return false;
-        }*/
-
- /* try {
-            String str = "";
-            BufferedReader is = new BufferedReader(new InputStreamReader(oProcess.getInputStream()));
-            String sLine;
-            while ((sLine = is.readLine()) != null) {
-                System.out.println(sLine);
-                str += sLine;
-            }
-            System.out.flush();
-
-            System.err.println("The process not finished!!!"+ "Exit status=" + oProcess.exitValue()+" "+str);
-            return str;
-
-        } catch (Exception e) {
-            return "readin failure executing!! "+ e.getMessage();
-
-        }*/
     }
 
     public static String getResultString() {

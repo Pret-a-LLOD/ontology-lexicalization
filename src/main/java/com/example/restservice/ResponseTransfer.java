@@ -16,7 +16,7 @@ import  main.*;
  */
 public class ResponseTransfer {
     private  String baseDir = "results-v4/";
-    private static String location = "code-v3/";
+    private static String location = "perl/";
     private static String scriptName = "experiment.pl";
 
     
@@ -27,9 +27,9 @@ public class ResponseTransfer {
         //this.lexicalEntries.put(Constants.dummylexicalEntry,Constants.dummyLemon);
         //this.lexicalEntries.put(Constants.dummylexicalEntry2,Constants.dummyLemon2);
         //this.lexicalEntries.put(Constants.dummylexicalEntry3,Constants.dummyLemon3);
-        // PerlQuery PerlQuery=new PerlQuery(location,scriptName);
-         //String testString=PerlQuery.getResultString();
-         //this.lexicalEntries.put(testString,testString);
+         PerlQuery PerlQuery=new PerlQuery(location,scriptName);
+          String testString=PerlQuery.getResultString();
+          this.lexicalEntries.put(testString,testString);
         try {
             ProcessCsv process = new ProcessCsv(baseDir);
             System.out.println("Processing files are ended!!!");
