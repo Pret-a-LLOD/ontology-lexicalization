@@ -18,6 +18,7 @@ public class ResponseTransfer {
     private  String baseDir = "results-v4/";
     private static String location = "perl/";
     private static String scriptName = "experiment.pl";
+    private static String processData="processData/";
 
     
     private Map<String,String> lexicalEntries=new TreeMap<String,String>();
@@ -27,11 +28,12 @@ public class ResponseTransfer {
         //this.lexicalEntries.put(Constants.dummylexicalEntry,Constants.dummyLemon);
         //this.lexicalEntries.put(Constants.dummylexicalEntry2,Constants.dummyLemon2);
         //this.lexicalEntries.put(Constants.dummylexicalEntry3,Constants.dummyLemon3);
-         PerlQuery PerlQuery=new PerlQuery(location,scriptName);
+          /*PerlQuery PerlQuery=new PerlQuery(location,scriptName);
           String testString=PerlQuery.getResultString();
-          this.lexicalEntries.put(testString,testString);
+          this.lexicalEntries.put(testString,testString);*/
         try {
-            ProcessCsv process = new ProcessCsv(baseDir);
+            String resourceDir = baseDir+processData;
+            ProcessCsv process = new ProcessCsv(baseDir,resourceDir);
             System.out.println("Processing files are ended!!!");
         } catch (Exception ex) {
           System.out.println("file process does not work!!!"+ex.getMessage());

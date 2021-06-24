@@ -51,9 +51,7 @@ import main.PredictionRules;
  */
 public class ProcessCsv implements NullInterestingness, PredictionRules {
     
-    public  ProcessCsv(String baseDir) throws Exception {
-        String resourceDir = baseDir+"processData/";
-
+    public  ProcessCsv(String baseDir,String resourceDir) throws Exception {
         Set<String> posTag = new HashSet<String>();
         posTag.add("JJ");
         posTag.add("NN");
