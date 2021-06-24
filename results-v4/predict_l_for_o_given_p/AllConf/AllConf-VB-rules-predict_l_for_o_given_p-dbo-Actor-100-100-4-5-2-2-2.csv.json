@@ -1,0 +1,78 @@
+[ {
+  "id" : 8,
+  "pattern" : "appeared",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "AllConf=0.0333333333333333", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{AllConf=0.0333333333333333 condAB=0.0333333333333333 condBA=0.333333333333333 supA=60.0 supAB=2.0 supB=6.0}", "posTag=VB", "interestingness=AllConf", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=VBD", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'He appeared' in l_e" ]
+  }
+}, {
+  "id" : 12,
+  "pattern" : "best_known",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/guestso", "AllConf=0.181818181818182", "triple=e http://dbpedia.org/property/guests o", "class=Actor", "{AllConf=0.181818181818182 condAB=0.666666666666667 condBA=0.181818181818182 supA=3.0 supAB=2.0 supB=11.0}", "posTag=VB", "interestingness=AllConf", "subject=e", "predicate=http://dbpedia.org/property/guests", "object=o", "fullPosTag=RB_VBN", "string=dbo:Actor in c_e and exists s : (s& dbp:guests& e) in G $> 'best known for' in l_e" ]
+  }
+}, {
+  "id" : 14,
+  "pattern" : "born",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/relativeo", "AllConf=0.0377358490566038", "triple=e http://dbpedia.org/ontology/relative o", "class=Actor", "{AllConf=0.0377358490566038 condAB=1.0 condBA=0.0377358490566038 supA=2.0 supAB=2.0 supB=53.0}", "posTag=VB", "interestingness=AllConf", "subject=e", "predicate=http://dbpedia.org/ontology/relative", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and exists s : (s& dbo:relative& e) in G $> 'born' in l_e" ]
+  }
+}, {
+  "id" : 24,
+  "pattern" : "credited",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "AllConf=0.05", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{AllConf=0.05 condAB=0.05 condBA=0.6 supA=60.0 supAB=3.0 supB=5.0}", "posTag=VB", "interestingness=AllConf", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'credited' in l_e" ]
+  }
+}, {
+  "id" : 28,
+  "pattern" : "died",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "AllConf=0.0833333333333333", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{AllConf=0.0833333333333333 condAB=0.0833333333333333 condBA=0.555555555555556 supA=60.0 supAB=5.0 supB=9.0}", "posTag=VB", "interestingness=AllConf", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=VBD", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'died in' in l_e" ]
+  }
+}, {
+  "id" : 48,
+  "pattern" : "known",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/relativeo", "AllConf=0.117647058823529", "triple=e http://dbpedia.org/ontology/relative o", "class=Actor", "{AllConf=0.117647058823529 condAB=1.0 condBA=0.117647058823529 supA=2.0 supAB=2.0 supB=17.0}", "posTag=VB", "interestingness=AllConf", "subject=e", "predicate=http://dbpedia.org/ontology/relative", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and exists s : (s& dbo:relative& e) in G $> 'known for' in l_e" ]
+  }
+}, {
+  "id" : 51,
+  "pattern" : "made",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "AllConf=0.05", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{AllConf=0.05 condAB=0.05 condBA=0.5 supA=60.0 supAB=3.0 supB=6.0}", "posTag=VB", "interestingness=AllConf", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'made' in l_e" ]
+  }
+}, {
+  "id" : 53,
+  "pattern" : "married",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/spouseo", "AllConf=0.222222222222222", "triple=e http://dbpedia.org/property/spouse o", "class=Actor", "{AllConf=0.222222222222222 condAB=0.666666666666667 condBA=0.222222222222222 supA=3.0 supAB=2.0 supB=9.0}", "posTag=VB", "interestingness=AllConf", "subject=e", "predicate=http://dbpedia.org/property/spouse", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and exists s : (s& dbp:spouse& e) in G $> 'married' in l_e" ]
+  }
+}, {
+  "id" : 55,
+  "pattern" : "performed",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "AllConf=0.05", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{AllConf=0.05 condAB=0.05 condBA=0.6 supA=60.0 supAB=3.0 supB=5.0}", "posTag=VB", "interestingness=AllConf", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'performed' in l_e" ]
+  }
+}, {
+  "id" : 56,
+  "pattern" : "played",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "AllConf=0.116666666666667", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{AllConf=0.116666666666667 condAB=0.116666666666667 condBA=0.583333333333333 supA=60.0 supAB=7.0 supB=12.0}", "posTag=VB", "interestingness=AllConf", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'played' in l_e" ]
+  }
+}, {
+  "id" : 57,
+  "pattern" : "playing",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "AllConf=0.0666666666666667", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{AllConf=0.0666666666666667 condAB=0.0666666666666667 condBA=0.5 supA=60.0 supAB=4.0 supB=8.0}", "posTag=VB", "interestingness=AllConf", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=VBG", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'for playing' in l_e" ]
+  }
+} ]

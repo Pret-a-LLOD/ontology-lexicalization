@@ -1,0 +1,36 @@
+[ {
+  "id" : 15,
+  "pattern" : "british",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.575757575757576", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.575757575757576 condAB=0.266666666666667 condBA=0.727272727272727 supA=60.0 supAB=16.0 supB=22.0}", "posTag=JJ", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'a British' in l_e" ]
+  }
+}, {
+  "id" : 40,
+  "pattern" : "french",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.692307692307692", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.692307692307692 condAB=0.166666666666667 condBA=0.666666666666667 supA=60.0 supAB=10.0 supB=15.0}", "posTag=JJ", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'a French' in l_e" ]
+  }
+}, {
+  "id" : 44,
+  "pattern" : "japanese",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.784615384615385", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.784615384615385 condAB=0.0666666666666667 condBA=0.444444444444444 supA=60.0 supAB=4.0 supB=9.0}", "posTag=JJ", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'a Japanese' in l_e" ]
+  }
+}, {
+  "id" : 62,
+  "pattern" : "several",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.873015873015873", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.873015873015873 condAB=0.0333333333333333 condBA=0.4 supA=60.0 supAB=2.0 supB=5.0}", "posTag=JJ", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'several' in l_e" ]
+  }
+}, {
+  "id" : 64,
+  "pattern" : "silent",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.901639344262295", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.901639344262295 condAB=0.0666666666666667 condBA=0.8 supA=60.0 supAB=4.0 supB=5.0}", "posTag=JJ", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'silent' in l_e" ]
+  }
+} ]

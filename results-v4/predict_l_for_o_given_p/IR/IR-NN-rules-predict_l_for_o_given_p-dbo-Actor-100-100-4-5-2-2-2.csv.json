@@ -1,0 +1,442 @@
+[ {
+  "id" : 1,
+  "pattern" : "1968",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.916666666666667", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.916666666666667 condAB=0.0833333333333333 condBA=1.0 supA=60.0 supAB=5.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=CD", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> '1968' in l_e" ]
+  }
+}, {
+  "id" : 2,
+  "pattern" : "1982",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.887096774193548", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.887096774193548 condAB=0.05 condBA=0.6 supA=60.0 supAB=3.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=CD", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> '1982' in l_e" ]
+  }
+}, {
+  "id" : 3,
+  "pattern" : "1989",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.84375", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.84375 condAB=0.0333333333333333 condBA=0.333333333333333 supA=60.0 supAB=2.0 supB=6.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=CD", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> '1989' in l_e" ]
+  }
+}, {
+  "id" : 4,
+  "pattern" : "actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/guestso", "IR=0.929824561403509", "triple=e http://dbpedia.org/property/guests o", "class=Actor", "{IR=0.929824561403509 condAB=0.666666666666667 condBA=0.0357142857142857 supA=3.0 supAB=2.0 supB=56.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/property/guests", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists s : (s& dbp:guests& e) in G $> 'actor' in l_e" ]
+  }
+}, {
+  "id" : 5,
+  "pattern" : "actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/guestso", "IR=0.916666666666667", "triple=e http://dbpedia.org/property/guests o", "class=Actor", "{IR=0.916666666666667 condAB=0.666666666666667 condBA=0.0425531914893617 supA=3.0 supAB=2.0 supB=47.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/property/guests", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists s : (s& dbp:guests& e) in G $> 'actress' in l_e" ]
+  }
+}, {
+  "id" : 6,
+  "pattern" : "also",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.565217391304348", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.565217391304348 condAB=0.2 condBA=0.571428571428571 supA=60.0 supAB=12.0 supB=21.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=RB", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'also' in l_e" ]
+  }
+}, {
+  "id" : 7,
+  "pattern" : "appearances",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.873015873015873", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.873015873015873 condAB=0.0333333333333333 condBA=0.4 supA=60.0 supAB=2.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNS", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'appearances' in l_e" ]
+  }
+}, {
+  "id" : 9,
+  "pattern" : "april",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.769230769230769", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.769230769230769 condAB=0.0833333333333333 condBA=0.5 supA=60.0 supAB=5.0 supB=10.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'April' in l_e" ]
+  }
+}, {
+  "id" : 10,
+  "pattern" : "august",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.870967741935484", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.870967741935484 condAB=0.0666666666666667 condBA=0.666666666666667 supA=60.0 supAB=4.0 supB=6.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'August' in l_e" ]
+  }
+}, {
+  "id" : 11,
+  "pattern" : "best",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/guestso", "IR=0.733333333333333", "triple=e http://dbpedia.org/property/guests o", "class=Actor", "{IR=0.733333333333333 condAB=0.666666666666667 condBA=0.142857142857143 supA=3.0 supAB=2.0 supB=14.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/property/guests", "object=o", "fullPosTag=RB", "string=dbo:Actor in c_e and exists s : (s& dbp:guests& e) in G $> 'best' in l_e" ]
+  }
+}, {
+  "id" : 13,
+  "pattern" : "best_known_playing",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.873015873015873", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.873015873015873 condAB=0.0333333333333333 condBA=0.4 supA=60.0 supAB=2.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=RB_VBN_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'best known for playing' in l_e" ]
+  }
+}, {
+  "id" : 16,
+  "pattern" : "british_actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.873015873015873", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.873015873015873 condAB=0.0333333333333333 condBA=0.4 supA=60.0 supAB=2.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'was a British actor' in l_e" ]
+  }
+}, {
+  "id" : 17,
+  "pattern" : "british_actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.887096774193548", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.887096774193548 condAB=0.05 condBA=0.6 supA=60.0 supAB=3.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'British actress' in l_e" ]
+  }
+}, {
+  "id" : 18,
+  "pattern" : "british_stage",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.852459016393443", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.852459016393443 condAB=0.116666666666667 condBA=0.875 supA=60.0 supAB=7.0 supB=8.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'a British stage and' in l_e" ]
+  }
+}, {
+  "id" : 19,
+  "pattern" : "british_stage_film",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.852459016393443", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.852459016393443 condAB=0.116666666666667 condBA=0.875 supA=60.0 supAB=7.0 supB=8.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'British stage and film' in l_e" ]
+  }
+}, {
+  "id" : 20,
+  "pattern" : "british_stage_film_actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.885245901639344", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.885245901639344 condAB=0.0833333333333333 condBA=0.833333333333333 supA=60.0 supAB=5.0 supB=6.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN_NN_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'British stage and film actress' in l_e" ]
+  }
+}, {
+  "id" : 21,
+  "pattern" : "career",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.84375", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.84375 condAB=0.0333333333333333 condBA=0.333333333333333 supA=60.0 supAB=2.0 supB=6.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'career' in l_e" ]
+  }
+}, {
+  "id" : 22,
+  "pattern" : "city",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.901639344262295", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.901639344262295 condAB=0.0666666666666667 condBA=0.8 supA=60.0 supAB=4.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'City' in l_e" ]
+  }
+}, {
+  "id" : 23,
+  "pattern" : "comedian",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.887096774193548", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.887096774193548 condAB=0.05 condBA=0.6 supA=60.0 supAB=3.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'comedian' in l_e" ]
+  }
+}, {
+  "id" : 25,
+  "pattern" : "credits",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.873015873015873", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.873015873015873 condAB=0.0333333333333333 condBA=0.4 supA=60.0 supAB=2.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNS", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'credits' in l_e" ]
+  }
+}, {
+  "id" : 26,
+  "pattern" : "dancer",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.887096774193548", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.887096774193548 condAB=0.05 condBA=0.6 supA=60.0 supAB=3.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'dancer' in l_e" ]
+  }
+}, {
+  "id" : 27,
+  "pattern" : "december",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.769230769230769", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.769230769230769 condAB=0.0833333333333333 condBA=0.5 supA=60.0 supAB=5.0 supB=10.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'December' in l_e" ]
+  }
+}, {
+  "id" : 29,
+  "pattern" : "director",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.784615384615385", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.784615384615385 condAB=0.0666666666666667 condBA=0.444444444444444 supA=60.0 supAB=4.0 supB=9.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'director' in l_e" ]
+  }
+}, {
+  "id" : 30,
+  "pattern" : "drama",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.887096774193548", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.887096774193548 condAB=0.05 condBA=0.6 supA=60.0 supAB=3.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'drama' in l_e" ]
+  }
+}, {
+  "id" : 31,
+  "pattern" : "english",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.6", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.6 condAB=0.133333333333333 condBA=0.444444444444444 supA=60.0 supAB=8.0 supB=18.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'an English' in l_e" ]
+  }
+}, {
+  "id" : 32,
+  "pattern" : "english_actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.887096774193548", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.887096774193548 condAB=0.05 condBA=0.6 supA=60.0 supAB=3.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'was an English actor' in l_e" ]
+  }
+}, {
+  "id" : 33,
+  "pattern" : "english_actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.857142857142857", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.857142857142857 condAB=0.05 condBA=0.5 supA=60.0 supAB=3.0 supB=6.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'is an English actress' in l_e" ]
+  }
+}, {
+  "id" : 34,
+  "pattern" : "february",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.873015873015873", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.873015873015873 condAB=0.0333333333333333 condBA=0.4 supA=60.0 supAB=2.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'February' in l_e" ]
+  }
+}, {
+  "id" : 35,
+  "pattern" : "film",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.901639344262295", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.901639344262295 condAB=0.0666666666666667 condBA=0.8 supA=60.0 supAB=4.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'film and' in l_e" ]
+  }
+}, {
+  "id" : 36,
+  "pattern" : "film_actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.80952380952381", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.80952380952381 condAB=0.1 condBA=0.666666666666667 supA=60.0 supAB=6.0 supB=9.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'film actor' in l_e" ]
+  }
+}, {
+  "id" : 37,
+  "pattern" : "film_actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.82258064516129", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.82258064516129 condAB=0.116666666666667 condBA=0.777777777777778 supA=60.0 supAB=7.0 supB=9.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'film actress' in l_e" ]
+  }
+}, {
+  "id" : 38,
+  "pattern" : "films",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.636363636363636", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.636363636363636 condAB=0.2 condBA=0.666666666666667 supA=60.0 supAB=12.0 supB=18.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNS", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'films' in l_e" ]
+  }
+}, {
+  "id" : 39,
+  "pattern" : "first",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.870967741935484", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.870967741935484 condAB=0.0666666666666667 condBA=0.666666666666667 supA=60.0 supAB=4.0 supB=6.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=RB", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'first' in l_e" ]
+  }
+}, {
+  "id" : 41,
+  "pattern" : "french_actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.887096774193548", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.887096774193548 condAB=0.05 condBA=0.6 supA=60.0 supAB=3.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'was a French actor' in l_e" ]
+  }
+}, {
+  "id" : 42,
+  "pattern" : "french_actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.887096774193548", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.887096774193548 condAB=0.05 condBA=0.6 supA=60.0 supAB=3.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'French actress' in l_e" ]
+  }
+}, {
+  "id" : 43,
+  "pattern" : "january",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/relativeo", "IR=0.857142857142857", "triple=e http://dbpedia.org/ontology/relative o", "class=Actor", "{IR=0.857142857142857 condAB=1.0 condBA=0.142857142857143 supA=2.0 supAB=2.0 supB=14.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/relative", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:relative& e) in G $> 'January' in l_e" ]
+  }
+}, {
+  "id" : 45,
+  "pattern" : "japanese_actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.873015873015873", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.873015873015873 condAB=0.0333333333333333 condBA=0.4 supA=60.0 supAB=2.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'Japanese actor' in l_e" ]
+  }
+}, {
+  "id" : 46,
+  "pattern" : "july",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.84375", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.84375 condAB=0.0333333333333333 condBA=0.333333333333333 supA=60.0 supAB=2.0 supB=6.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'July' in l_e" ]
+  }
+}, {
+  "id" : 47,
+  "pattern" : "june",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.80952380952381", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.80952380952381 condAB=0.1 condBA=0.666666666666667 supA=60.0 supAB=6.0 supB=9.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'June' in l_e" ]
+  }
+}, {
+  "id" : 49,
+  "pattern" : "known_playing",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.841269841269841", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.841269841269841 condAB=0.0666666666666667 condBA=0.571428571428571 supA=60.0 supAB=4.0 supB=7.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'known for playing' in l_e" ]
+  }
+}, {
+  "id" : 50,
+  "pattern" : "london",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.676470588235294", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.676470588235294 condAB=0.1 condBA=0.428571428571429 supA=60.0 supAB=6.0 supB=14.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'London' in l_e" ]
+  }
+}, {
+  "id" : 52,
+  "pattern" : "march",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.738461538461538", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.738461538461538 condAB=0.116666666666667 condBA=0.583333333333333 supA=60.0 supAB=7.0 supB=12.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'March' in l_e" ]
+  }
+}, {
+  "id" : 54,
+  "pattern" : "october",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.841269841269841", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.841269841269841 condAB=0.0666666666666667 condBA=0.571428571428571 supA=60.0 supAB=4.0 supB=7.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'October' in l_e" ]
+  }
+}, {
+  "id" : 58,
+  "pattern" : "role",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/relativeo", "IR=0.875", "triple=e http://dbpedia.org/ontology/relative o", "class=Actor", "{IR=0.875 condAB=1.0 condBA=0.125 supA=2.0 supAB=2.0 supB=16.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/relative", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists s : (s& dbo:relative& e) in G $> 'role' in l_e" ]
+  }
+}, {
+  "id" : 59,
+  "pattern" : "roles",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.73015873015873", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.73015873015873 condAB=0.183333333333333 condBA=0.785714285714286 supA=60.0 supAB=11.0 supB=14.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNS", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'roles' in l_e" ]
+  }
+}, {
+  "id" : 60,
+  "pattern" : "september",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.841269841269841", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.841269841269841 condAB=0.0666666666666667 condBA=0.571428571428571 supA=60.0 supAB=4.0 supB=7.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'September' in l_e" ]
+  }
+}, {
+  "id" : 61,
+  "pattern" : "series",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.75", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.75 condAB=0.133333333333333 condBA=0.666666666666667 supA=60.0 supAB=8.0 supB=12.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'series' in l_e" ]
+  }
+}, {
+  "id" : 63,
+  "pattern" : "shows",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.9", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.9 condAB=0.1 condBA=1.0 supA=60.0 supAB=6.0 supB=6.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNS", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'shows' in l_e" ]
+  }
+}, {
+  "id" : 65,
+  "pattern" : "since",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.885245901639344", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.885245901639344 condAB=0.0833333333333333 condBA=0.833333333333333 supA=60.0 supAB=5.0 supB=6.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=IN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'since' in l_e" ]
+  }
+}, {
+  "id" : 66,
+  "pattern" : "stage",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/spouseo", "IR=0.851851851851852", "triple=e http://dbpedia.org/property/spouse o", "class=Actor", "{IR=0.851851851851852 condAB=0.666666666666667 condBA=0.0769230769230769 supA=3.0 supAB=2.0 supB=26.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/property/spouse", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists s : (s& dbp:spouse& e) in G $> 'stage' in l_e" ]
+  }
+}, {
+  "id" : 67,
+  "pattern" : "stage_film",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.777777777777778", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.777777777777778 condAB=0.133333333333333 condBA=0.727272727272727 supA=60.0 supAB=8.0 supB=11.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'stage and film' in l_e" ]
+  }
+}, {
+  "id" : 68,
+  "pattern" : "stage_film_actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.838709677419355", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.838709677419355 condAB=0.1 condBA=0.75 supA=60.0 supAB=6.0 supB=8.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN_NN_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'stage and film actress' in l_e" ]
+  }
+}, {
+  "id" : 69,
+  "pattern" : "states",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/spouseo", "IR=0.333333333333333", "triple=e http://dbpedia.org/property/spouse o", "class=Actor", "{IR=0.333333333333333 condAB=0.666666666666667 condBA=0.4 supA=3.0 supAB=2.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/property/spouse", "object=o", "fullPosTag=NNPS", "string=dbo:Actor in c_e and exists s : (s& dbp:spouse& e) in G $> 'States' in l_e" ]
+  }
+}, {
+  "id" : 70,
+  "pattern" : "sweden",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.857142857142857", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.857142857142857 condAB=0.05 condBA=0.5 supA=60.0 supAB=3.0 supB=6.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'Sweden' in l_e" ]
+  }
+}, {
+  "id" : 71,
+  "pattern" : "swedish",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.594202898550725", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.594202898550725 condAB=0.166666666666667 condBA=0.526315789473684 supA=60.0 supAB=10.0 supB=19.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'a Swedish' in l_e" ]
+  }
+}, {
+  "id" : 72,
+  "pattern" : "swedish_actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.873015873015873", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.873015873015873 condAB=0.0333333333333333 condBA=0.4 supA=60.0 supAB=2.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'Swedish actor' in l_e" ]
+  }
+}, {
+  "id" : 73,
+  "pattern" : "swedish_actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.901639344262295", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.901639344262295 condAB=0.0666666666666667 condBA=0.8 supA=60.0 supAB=4.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'is a Swedish actress' in l_e" ]
+  }
+}, {
+  "id" : 74,
+  "pattern" : "swedish_film",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.887096774193548", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.887096774193548 condAB=0.05 condBA=0.6 supA=60.0 supAB=3.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'Swedish film' in l_e" ]
+  }
+}, {
+  "id" : 75,
+  "pattern" : "television",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.852459016393443", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.852459016393443 condAB=0.116666666666667 condBA=0.875 supA=60.0 supAB=7.0 supB=8.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'and television' in l_e" ]
+  }
+}, {
+  "id" : 76,
+  "pattern" : "theatre",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.873015873015873", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.873015873015873 condAB=0.0333333333333333 condBA=0.4 supA=60.0 supAB=2.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'Theatre in' in l_e" ]
+  }
+}, {
+  "id" : 77,
+  "pattern" : "united",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/spouseo", "IR=0.333333333333333", "triple=e http://dbpedia.org/property/spouse o", "class=Actor", "{IR=0.333333333333333 condAB=0.666666666666667 condBA=0.4 supA=3.0 supAB=2.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/property/spouse", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbp:spouse& e) in G $> 'United' in l_e" ]
+  }
+}, {
+  "id" : 78,
+  "pattern" : "united_states",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/spouseo", "IR=0.333333333333333", "triple=e http://dbpedia.org/property/spouse o", "class=Actor", "{IR=0.333333333333333 condAB=0.666666666666667 condBA=0.4 supA=3.0 supAB=2.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/property/spouse", "object=o", "fullPosTag=NNP_NNPS", "string=dbo:Actor in c_e and exists s : (s& dbp:spouse& e) in G $> 'the United States' in l_e" ]
+  }
+}, {
+  "id" : 79,
+  "pattern" : "west",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "IR=0.887096774193548", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{IR=0.887096774193548 condAB=0.05 condBA=0.6 supA=60.0 supAB=3.0 supB=5.0}", "posTag=NN", "interestingness=IR", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists s : (s& dbo:starring& e) in G $> 'West' in l_e" ]
+  }
+} ]

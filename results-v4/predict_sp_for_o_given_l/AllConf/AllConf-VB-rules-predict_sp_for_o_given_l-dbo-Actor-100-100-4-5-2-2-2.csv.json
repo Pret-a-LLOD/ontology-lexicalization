@@ -1,0 +1,22 @@
+[ {
+  "id" : 3,
+  "pattern" : "best_known",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=http://dbpedia.org/resource/Vulkon_Entertainment http://dbpedia.org/property/guestso", "AllConf=0.181818181818182", "triple=http://dbpedia.org/resource/Vulkon_Entertainment http://dbpedia.org/property/guests o", "class=Actor", "{AllConf=0.181818181818182 condAB=0.181818181818182 condBA=1.0 supA=11.0 supAB=2.0 supB=2.0}", "posTag=VB", "interestingness=AllConf", "subject=http://dbpedia.org/resource/Vulkon_Entertainment", "predicate=http://dbpedia.org/property/guests", "object=o", "fullPosTag=RB_VBN", "string=dbo:Actor in c_e and 'best known for' in l_e $> (dbr:Vulkon_Entertainment& dbp:guests& e) in G" ]
+  }
+}, {
+  "id" : 4,
+  "pattern" : "born",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=http://dbpedia.org/resource/Vulkon_Entertainment http://dbpedia.org/property/guestso", "AllConf=0.0377358490566038", "triple=http://dbpedia.org/resource/Vulkon_Entertainment http://dbpedia.org/property/guests o", "class=Actor", "{AllConf=0.0377358490566038 condAB=0.0377358490566038 condBA=1.0 supA=53.0 supAB=2.0 supB=2.0}", "posTag=VB", "interestingness=AllConf", "subject=http://dbpedia.org/resource/Vulkon_Entertainment", "predicate=http://dbpedia.org/property/guests", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and 'born' in l_e $> (dbr:Vulkon_Entertainment& dbp:guests& e) in G" ]
+  }
+}, {
+  "id" : 6,
+  "pattern" : "known",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=http://dbpedia.org/resource/Vulkon_Entertainment http://dbpedia.org/property/guestso", "AllConf=0.117647058823529", "triple=http://dbpedia.org/resource/Vulkon_Entertainment http://dbpedia.org/property/guests o", "class=Actor", "{AllConf=0.117647058823529 condAB=0.117647058823529 condBA=1.0 supA=17.0 supAB=2.0 supB=2.0}", "posTag=VB", "interestingness=AllConf", "subject=http://dbpedia.org/resource/Vulkon_Entertainment", "predicate=http://dbpedia.org/property/guests", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and 'known for' in l_e $> (dbr:Vulkon_Entertainment& dbp:guests& e) in G" ]
+  }
+} ]

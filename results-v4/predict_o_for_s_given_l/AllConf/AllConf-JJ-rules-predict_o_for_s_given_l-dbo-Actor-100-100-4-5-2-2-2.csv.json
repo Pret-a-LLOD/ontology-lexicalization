@@ -1,0 +1,55 @@
+[ {
+  "id" : 14,
+  "pattern" : "british",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e phttp://dbpedia.org/resource/London", "AllConf=0.16", "triple=e p http://dbpedia.org/resource/London", "class=Actor", "{AllConf=0.16 condAB=0.16 condBA=0.4 supA=25.0 supAB=4.0 supB=10.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/London", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'British' in l_e $> exists p : (e& p& dbr:London) in G" ],
+    "1" : [ "kb=e phttp://dbpedia.org/resource/United_Kingdom", "AllConf=0.409090909090909", "triple=e p http://dbpedia.org/resource/United_Kingdom", "class=Actor", "{AllConf=0.409090909090909 condAB=0.409090909090909 condBA=0.529411764705882 supA=22.0 supAB=9.0 supB=17.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/United_Kingdom", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'a British' in l_e $> exists p : (e& p& dbr:United_Kingdom) in G" ],
+    "2" : [ "kb=e p\"\"@en", "AllConf=0.08", "triple=e p \"\"@en", "class=Actor", "{AllConf=0.08 condAB=0.08 condBA=0.153846153846154 supA=25.0 supAB=2.0 supB=13.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=\"\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'British' in l_e $> exists p : (e& p& \"\"@en) in G" ],
+    "3" : [ "kb=e p\"Actor\"@en", "AllConf=0.136363636363636", "triple=e p \"Actor\"@en", "class=Actor", "{AllConf=0.136363636363636 condAB=0.136363636363636 condBA=0.166666666666667 supA=22.0 supAB=3.0 supB=18.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=\"Actor\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'a British' in l_e $> exists p : (e& p& \"Actor\"@en) in G" ],
+    "4" : [ "kb=e p\"Actress\"@en", "AllConf=0.16", "triple=e p \"Actress\"@en", "class=Actor", "{AllConf=0.16 condAB=0.16 condBA=0.222222222222222 supA=25.0 supAB=4.0 supB=18.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=\"Actress\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'British' in l_e $> exists p : (e& p& \"Actress\"@en) in G" ],
+    "5" : [ "kb=e phttp://dbpedia.org/resource/England", "AllConf=0.217391304347826", "triple=e p http://dbpedia.org/resource/England", "class=Actor", "{AllConf=0.217391304347826 condAB=0.227272727272727 condBA=0.217391304347826 supA=22.0 supAB=5.0 supB=23.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/England", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'a British' in l_e $> exists p : (e& p& dbr:England) in G" ],
+    "6" : [ "kb=e phttp://dbpedia.org/resource/Actor", "AllConf=0.0909090909090909", "triple=e p http://dbpedia.org/resource/Actor", "class=Actor", "{AllConf=0.0909090909090909 condAB=0.0909090909090909 condBA=0.142857142857143 supA=22.0 supAB=2.0 supB=14.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/Actor", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'a British' in l_e $> exists p : (e& p& dbr:Actor) in G" ]
+  }
+}, {
+  "id" : 38,
+  "pattern" : "french",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e p\"\"@en", "AllConf=0.133333333333333", "triple=e p \"\"@en", "class=Actor", "{AllConf=0.133333333333333 condAB=0.133333333333333 condBA=0.153846153846154 supA=15.0 supAB=2.0 supB=13.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=\"\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'a French' in l_e $> exists p : (e& p& \"\"@en) in G" ],
+    "1" : [ "kb=e p\"Actor\"@en", "AllConf=0.111111111111111", "triple=e p \"Actor\"@en", "class=Actor", "{AllConf=0.111111111111111 condAB=0.133333333333333 condBA=0.111111111111111 supA=15.0 supAB=2.0 supB=18.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=\"Actor\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'a French' in l_e $> exists p : (e& p& \"Actor\"@en) in G" ],
+    "2" : [ "kb=e p\"Actress\"@en", "AllConf=0.166666666666667", "triple=e p \"Actress\"@en", "class=Actor", "{AllConf=0.166666666666667 condAB=0.176470588235294 condBA=0.166666666666667 supA=17.0 supAB=3.0 supB=18.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=\"Actress\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'French' in l_e $> exists p : (e& p& \"Actress\"@en) in G" ],
+    "3" : [ "kb=e phttp://dbpedia.org/resource/Paris", "AllConf=0.2", "triple=e p http://dbpedia.org/resource/Paris", "class=Actor", "{AllConf=0.2 condAB=0.2 condBA=1.0 supA=15.0 supAB=3.0 supB=3.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/Paris", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'a French' in l_e $> exists p : (e& p& dbr:Paris) in G" ],
+    "4" : [ "kb=e phttp://dbpedia.org/resource/France", "AllConf=0.6875", "triple=e p http://dbpedia.org/resource/France", "class=Actor", "{AllConf=0.6875 condAB=1.0 condBA=0.6875 supA=11.0 supAB=11.0 supB=16.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/France", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'was a French' in l_e $> exists p : (e& p& dbr:France) in G" ]
+  }
+}, {
+  "id" : 43,
+  "pattern" : "japanese",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e phttp://dbpedia.org/resource/Actress", "AllConf=0.222222222222222", "triple=e p http://dbpedia.org/resource/Actress", "class=Actor", "{AllConf=0.222222222222222 condAB=0.222222222222222 condBA=0.5 supA=9.0 supAB=2.0 supB=4.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/Actress", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'a Japanese' in l_e $> exists p : (e& p& dbr:Actress) in G" ],
+    "1" : [ "kb=e p\"\"@en", "AllConf=0.230769230769231", "triple=e p \"\"@en", "class=Actor", "{AllConf=0.230769230769231 condAB=0.5 condBA=0.230769230769231 supA=6.0 supAB=3.0 supB=13.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=\"\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'is a Japanese' in l_e $> exists p : (e& p& \"\"@en) in G" ],
+    "2" : [ "kb=e phttp://dbpedia.org/resource/Voice_acting_in_Japan", "AllConf=0.222222222222222", "triple=e p http://dbpedia.org/resource/Voice_acting_in_Japan", "class=Actor", "{AllConf=0.222222222222222 condAB=0.222222222222222 condBA=1.0 supA=9.0 supAB=2.0 supB=2.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/Voice_acting_in_Japan", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'a Japanese' in l_e $> exists p : (e& p& dbr:Voice_acting_in_Japan) in G" ],
+    "3" : [ "kb=e p\"ja\"@en", "AllConf=0.181818181818182", "triple=e p \"ja\"@en", "class=Actor", "{AllConf=0.181818181818182 condAB=0.181818181818182 condBA=1.0 supA=11.0 supAB=2.0 supB=2.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=\"ja\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'Japanese' in l_e $> exists p : (e& p& \"ja\"@en) in G" ],
+    "4" : [ "kb=e p\"Actor\"@en", "AllConf=0.166666666666667", "triple=e p \"Actor\"@en", "class=Actor", "{AllConf=0.166666666666667 condAB=0.333333333333333 condBA=0.166666666666667 supA=9.0 supAB=3.0 supB=18.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=\"Actor\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'a Japanese' in l_e $> exists p : (e& p& \"Actor\"@en) in G" ],
+    "5" : [ "kb=e p\"Actress\"@en", "AllConf=0.111111111111111", "triple=e p \"Actress\"@en", "class=Actor", "{AllConf=0.111111111111111 condAB=0.181818181818182 condBA=0.111111111111111 supA=11.0 supAB=2.0 supB=18.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=\"Actress\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'Japanese' in l_e $> exists p : (e& p& \"Actress\"@en) in G" ],
+    "6" : [ "kb=e phttp://dbpedia.org/resource/Japan", "AllConf=0.818181818181818", "triple=e p http://dbpedia.org/resource/Japan", "class=Actor", "{AllConf=0.818181818181818 condAB=1.0 condBA=0.818181818181818 supA=9.0 supAB=9.0 supB=11.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/Japan", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'a Japanese' in l_e $> exists p : (e& p& dbr:Japan) in G" ],
+    "7" : [ "kb=e phttp://dbpedia.org/resource/Actor", "AllConf=0.142857142857143", "triple=e p http://dbpedia.org/resource/Actor", "class=Actor", "{AllConf=0.142857142857143 condAB=0.222222222222222 condBA=0.142857142857143 supA=9.0 supAB=2.0 supB=14.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/Actor", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'a Japanese' in l_e $> exists p : (e& p& dbr:Actor) in G" ]
+  }
+}, {
+  "id" : 62,
+  "pattern" : "several",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e phttp://dbpedia.org/resource/Surrey", "AllConf=0.4", "triple=e p http://dbpedia.org/resource/Surrey", "class=Actor", "{AllConf=0.4 condAB=0.4 condBA=1.0 supA=5.0 supAB=2.0 supB=2.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/Surrey", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'several' in l_e $> exists p : (e& p& dbr:Surrey) in G" ],
+    "1" : [ "kb=e p\"Actress\"@en", "AllConf=0.166666666666667", "triple=e p \"Actress\"@en", "class=Actor", "{AllConf=0.166666666666667 condAB=0.6 condBA=0.166666666666667 supA=5.0 supAB=3.0 supB=18.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=\"Actress\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'several' in l_e $> exists p : (e& p& \"Actress\"@en) in G" ],
+    "2" : [ "kb=e phttp://dbpedia.org/resource/England", "AllConf=0.130434782608696", "triple=e p http://dbpedia.org/resource/England", "class=Actor", "{AllConf=0.130434782608696 condAB=0.6 condBA=0.130434782608696 supA=5.0 supAB=3.0 supB=23.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/England", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'several' in l_e $> exists p : (e& p& dbr:England) in G" ]
+  }
+}, {
+  "id" : 64,
+  "pattern" : "silent",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e phttp://dbpedia.org/resource/England", "AllConf=0.0869565217391304", "triple=e p http://dbpedia.org/resource/England", "class=Actor", "{AllConf=0.0869565217391304 condAB=0.4 condBA=0.0869565217391304 supA=5.0 supAB=2.0 supB=23.0}", "posTag=JJ", "interestingness=AllConf", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/England", "fullPosTag=JJ", "string=dbo:Actor in c_e and 'silent' in l_e $> exists p : (e& p& dbr:England) in G" ]
+  }
+} ]

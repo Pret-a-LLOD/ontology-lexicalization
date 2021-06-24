@@ -1,0 +1,22 @@
+[ {
+  "id" : 3,
+  "pattern" : "best_known",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=http://dbpedia.org/resource/Vulkon_Entertainment http://dbpedia.org/property/guestso", "Cosine=0.426401432711221", "triple=http://dbpedia.org/resource/Vulkon_Entertainment http://dbpedia.org/property/guests o", "class=Actor", "{Cosine=0.426401432711221 condAB=1.0 condBA=0.181818181818182 supA=2.0 supAB=2.0 supB=11.0}", "posTag=VB", "interestingness=Cosine", "subject=http://dbpedia.org/resource/Vulkon_Entertainment", "predicate=http://dbpedia.org/property/guests", "object=o", "fullPosTag=RB_VBN", "string=dbo:Actor in c_e and (dbr:Vulkon_Entertainment& dbp:guests& e) in G $> 'best known for' in l_e" ]
+  }
+}, {
+  "id" : 4,
+  "pattern" : "born",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=http://dbpedia.org/resource/Vulkon_Entertainment http://dbpedia.org/property/guestso", "Cosine=0.194257172471453", "triple=http://dbpedia.org/resource/Vulkon_Entertainment http://dbpedia.org/property/guests o", "class=Actor", "{Cosine=0.194257172471453 condAB=1.0 condBA=0.0377358490566038 supA=2.0 supAB=2.0 supB=53.0}", "posTag=VB", "interestingness=Cosine", "subject=http://dbpedia.org/resource/Vulkon_Entertainment", "predicate=http://dbpedia.org/property/guests", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and (dbr:Vulkon_Entertainment& dbp:guests& e) in G $> 'born' in l_e" ]
+  }
+}, {
+  "id" : 6,
+  "pattern" : "known",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=http://dbpedia.org/resource/Vulkon_Entertainment http://dbpedia.org/property/guestso", "Cosine=0.342997170285018", "triple=http://dbpedia.org/resource/Vulkon_Entertainment http://dbpedia.org/property/guests o", "class=Actor", "{Cosine=0.342997170285018 condAB=1.0 condBA=0.117647058823529 supA=2.0 supAB=2.0 supB=17.0}", "posTag=VB", "interestingness=Cosine", "subject=http://dbpedia.org/resource/Vulkon_Entertainment", "predicate=http://dbpedia.org/property/guests", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and (dbr:Vulkon_Entertainment& dbp:guests& e) in G $> 'known for' in l_e" ]
+  }
+} ]

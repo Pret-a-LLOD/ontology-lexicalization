@@ -1,0 +1,36 @@
+[ {
+  "id" : 15,
+  "pattern" : "british",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/captiono", "Kulczynski=0.233766233766234", "triple=e http://dbpedia.org/property/caption o", "class=Actor", "{Kulczynski=0.233766233766234 condAB=0.285714285714286 condBA=0.181818181818182 supA=14.0 supAB=4.0 supB=22.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/property/caption", "object=o", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists o : (e& dbp:caption& o) in G $> 'a British' in l_e" ]
+  }
+}, {
+  "id" : 40,
+  "pattern" : "french",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/captiono", "Kulczynski=0.138095238095238", "triple=e http://dbpedia.org/property/caption o", "class=Actor", "{Kulczynski=0.138095238095238 condAB=0.142857142857143 condBA=0.133333333333333 supA=14.0 supAB=2.0 supB=15.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/property/caption", "object=o", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists o : (e& dbp:caption& o) in G $> 'a French' in l_e" ]
+  }
+}, {
+  "id" : 45,
+  "pattern" : "japanese",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/heighto", "Kulczynski=0.611111111111111", "triple=e http://dbpedia.org/ontology/height o", "class=Actor", "{Kulczynski=0.611111111111111 condAB=1.0 condBA=0.222222222222222 supA=2.0 supAB=2.0 supB=9.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/ontology/height", "object=o", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists o : (e& dbo:height& o) in G $> 'a Japanese' in l_e" ]
+  }
+}, {
+  "id" : 64,
+  "pattern" : "several",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/birthPlaceo", "Kulczynski=0.541666666666667", "triple=e http://dbpedia.org/property/birthPlace o", "class=Actor", "{Kulczynski=0.541666666666667 condAB=0.0833333333333333 condBA=1.0 supA=60.0 supAB=5.0 supB=5.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/property/birthPlace", "object=o", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists o : (e& dbp:birthPlace& o) in G $> 'several' in l_e" ]
+  }
+}, {
+  "id" : 66,
+  "pattern" : "silent",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/birthPlaceo", "Kulczynski=0.433333333333333", "triple=e http://dbpedia.org/property/birthPlace o", "class=Actor", "{Kulczynski=0.433333333333333 condAB=0.0666666666666667 condBA=0.8 supA=60.0 supAB=4.0 supB=5.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/property/birthPlace", "object=o", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists o : (e& dbp:birthPlace& o) in G $> 'silent' in l_e" ]
+  }
+} ]

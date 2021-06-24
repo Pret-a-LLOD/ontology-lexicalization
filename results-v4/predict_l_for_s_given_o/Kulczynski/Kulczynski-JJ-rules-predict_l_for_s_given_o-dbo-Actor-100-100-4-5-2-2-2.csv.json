@@ -1,0 +1,55 @@
+[ {
+  "id" : 14,
+  "pattern" : "british",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e phttp://dbpedia.org/resource/London", "Kulczynski=0.28", "triple=e p http://dbpedia.org/resource/London", "class=Actor", "{Kulczynski=0.28 condAB=0.4 condBA=0.16 supA=10.0 supAB=4.0 supB=25.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/London", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& dbr:London) in G $> 'British' in l_e" ],
+    "1" : [ "kb=e phttp://dbpedia.org/resource/United_Kingdom", "Kulczynski=0.469251336898396", "triple=e p http://dbpedia.org/resource/United_Kingdom", "class=Actor", "{Kulczynski=0.469251336898396 condAB=0.529411764705882 condBA=0.409090909090909 supA=17.0 supAB=9.0 supB=22.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/United_Kingdom", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& dbr:United_Kingdom) in G $> 'a British' in l_e" ],
+    "2" : [ "kb=e p\"\"@en", "Kulczynski=0.116923076923077", "triple=e p \"\"@en", "class=Actor", "{Kulczynski=0.116923076923077 condAB=0.153846153846154 condBA=0.08 supA=13.0 supAB=2.0 supB=25.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=\"\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& \"\"@en) in G $> 'British' in l_e" ],
+    "3" : [ "kb=e p\"Actor\"@en", "Kulczynski=0.151515151515151", "triple=e p \"Actor\"@en", "class=Actor", "{Kulczynski=0.151515151515151 condAB=0.166666666666667 condBA=0.136363636363636 supA=18.0 supAB=3.0 supB=22.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=\"Actor\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& \"Actor\"@en) in G $> 'a British' in l_e" ],
+    "4" : [ "kb=e p\"Actress\"@en", "Kulczynski=0.191111111111111", "triple=e p \"Actress\"@en", "class=Actor", "{Kulczynski=0.191111111111111 condAB=0.222222222222222 condBA=0.16 supA=18.0 supAB=4.0 supB=25.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=\"Actress\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& \"Actress\"@en) in G $> 'British' in l_e" ],
+    "5" : [ "kb=e phttp://dbpedia.org/resource/England", "Kulczynski=0.222332015810277", "triple=e p http://dbpedia.org/resource/England", "class=Actor", "{Kulczynski=0.222332015810277 condAB=0.217391304347826 condBA=0.227272727272727 supA=23.0 supAB=5.0 supB=22.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/England", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& dbr:England) in G $> 'a British' in l_e" ],
+    "6" : [ "kb=e phttp://dbpedia.org/resource/Actor", "Kulczynski=0.116883116883117", "triple=e p http://dbpedia.org/resource/Actor", "class=Actor", "{Kulczynski=0.116883116883117 condAB=0.142857142857143 condBA=0.0909090909090909 supA=14.0 supAB=2.0 supB=22.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/Actor", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& dbr:Actor) in G $> 'a British' in l_e" ]
+  }
+}, {
+  "id" : 38,
+  "pattern" : "french",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e p\"\"@en", "Kulczynski=0.143589743589744", "triple=e p \"\"@en", "class=Actor", "{Kulczynski=0.143589743589744 condAB=0.153846153846154 condBA=0.133333333333333 supA=13.0 supAB=2.0 supB=15.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=\"\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& \"\"@en) in G $> 'a French' in l_e" ],
+    "1" : [ "kb=e p\"Actor\"@en", "Kulczynski=0.122222222222222", "triple=e p \"Actor\"@en", "class=Actor", "{Kulczynski=0.122222222222222 condAB=0.111111111111111 condBA=0.133333333333333 supA=18.0 supAB=2.0 supB=15.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=\"Actor\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& \"Actor\"@en) in G $> 'a French' in l_e" ],
+    "2" : [ "kb=e p\"Actress\"@en", "Kulczynski=0.17156862745098", "triple=e p \"Actress\"@en", "class=Actor", "{Kulczynski=0.17156862745098 condAB=0.166666666666667 condBA=0.176470588235294 supA=18.0 supAB=3.0 supB=17.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=\"Actress\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& \"Actress\"@en) in G $> 'French' in l_e" ],
+    "3" : [ "kb=e phttp://dbpedia.org/resource/Paris", "Kulczynski=0.6", "triple=e p http://dbpedia.org/resource/Paris", "class=Actor", "{Kulczynski=0.6 condAB=1.0 condBA=0.2 supA=3.0 supAB=3.0 supB=15.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/Paris", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& dbr:Paris) in G $> 'a French' in l_e" ],
+    "4" : [ "kb=e phttp://dbpedia.org/resource/France", "Kulczynski=0.84375", "triple=e p http://dbpedia.org/resource/France", "class=Actor", "{Kulczynski=0.84375 condAB=0.6875 condBA=1.0 supA=16.0 supAB=11.0 supB=11.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/France", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& dbr:France) in G $> 'was a French' in l_e" ]
+  }
+}, {
+  "id" : 43,
+  "pattern" : "japanese",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e phttp://dbpedia.org/resource/Actress", "Kulczynski=0.361111111111111", "triple=e p http://dbpedia.org/resource/Actress", "class=Actor", "{Kulczynski=0.361111111111111 condAB=0.5 condBA=0.222222222222222 supA=4.0 supAB=2.0 supB=9.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/Actress", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& dbr:Actress) in G $> 'a Japanese' in l_e" ],
+    "1" : [ "kb=e p\"\"@en", "Kulczynski=0.365384615384615", "triple=e p \"\"@en", "class=Actor", "{Kulczynski=0.365384615384615 condAB=0.230769230769231 condBA=0.5 supA=13.0 supAB=3.0 supB=6.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=\"\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& \"\"@en) in G $> 'is a Japanese' in l_e" ],
+    "2" : [ "kb=e phttp://dbpedia.org/resource/Voice_acting_in_Japan", "Kulczynski=0.611111111111111", "triple=e p http://dbpedia.org/resource/Voice_acting_in_Japan", "class=Actor", "{Kulczynski=0.611111111111111 condAB=1.0 condBA=0.222222222222222 supA=2.0 supAB=2.0 supB=9.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/Voice_acting_in_Japan", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& dbr:Voice_acting_in_Japan) in G $> 'a Japanese' in l_e" ],
+    "3" : [ "kb=e p\"ja\"@en", "Kulczynski=0.590909090909091", "triple=e p \"ja\"@en", "class=Actor", "{Kulczynski=0.590909090909091 condAB=1.0 condBA=0.181818181818182 supA=2.0 supAB=2.0 supB=11.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=\"ja\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& \"ja\"@en) in G $> 'Japanese' in l_e" ],
+    "4" : [ "kb=e p\"Actor\"@en", "Kulczynski=0.25", "triple=e p \"Actor\"@en", "class=Actor", "{Kulczynski=0.25 condAB=0.166666666666667 condBA=0.333333333333333 supA=18.0 supAB=3.0 supB=9.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=\"Actor\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& \"Actor\"@en) in G $> 'a Japanese' in l_e" ],
+    "5" : [ "kb=e p\"Actress\"@en", "Kulczynski=0.146464646464646", "triple=e p \"Actress\"@en", "class=Actor", "{Kulczynski=0.146464646464646 condAB=0.111111111111111 condBA=0.181818181818182 supA=18.0 supAB=2.0 supB=11.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=\"Actress\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& \"Actress\"@en) in G $> 'Japanese' in l_e" ],
+    "6" : [ "kb=e phttp://dbpedia.org/resource/Japan", "Kulczynski=0.909090909090909", "triple=e p http://dbpedia.org/resource/Japan", "class=Actor", "{Kulczynski=0.909090909090909 condAB=0.818181818181818 condBA=1.0 supA=11.0 supAB=9.0 supB=9.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/Japan", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& dbr:Japan) in G $> 'a Japanese' in l_e" ],
+    "7" : [ "kb=e phttp://dbpedia.org/resource/Actor", "Kulczynski=0.182539682539683", "triple=e p http://dbpedia.org/resource/Actor", "class=Actor", "{Kulczynski=0.182539682539683 condAB=0.142857142857143 condBA=0.222222222222222 supA=14.0 supAB=2.0 supB=9.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/Actor", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& dbr:Actor) in G $> 'a Japanese' in l_e" ]
+  }
+}, {
+  "id" : 62,
+  "pattern" : "several",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e phttp://dbpedia.org/resource/Surrey", "Kulczynski=0.7", "triple=e p http://dbpedia.org/resource/Surrey", "class=Actor", "{Kulczynski=0.7 condAB=1.0 condBA=0.4 supA=2.0 supAB=2.0 supB=5.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/Surrey", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& dbr:Surrey) in G $> 'several' in l_e" ],
+    "1" : [ "kb=e p\"Actress\"@en", "Kulczynski=0.383333333333333", "triple=e p \"Actress\"@en", "class=Actor", "{Kulczynski=0.383333333333333 condAB=0.166666666666667 condBA=0.6 supA=18.0 supAB=3.0 supB=5.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=\"Actress\"@en", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& \"Actress\"@en) in G $> 'several' in l_e" ],
+    "2" : [ "kb=e phttp://dbpedia.org/resource/England", "Kulczynski=0.365217391304348", "triple=e p http://dbpedia.org/resource/England", "class=Actor", "{Kulczynski=0.365217391304348 condAB=0.130434782608696 condBA=0.6 supA=23.0 supAB=3.0 supB=5.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/England", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& dbr:England) in G $> 'several' in l_e" ]
+  }
+}, {
+  "id" : 64,
+  "pattern" : "silent",
+  "partsOfSpeech" : "JJ",
+  "index" : {
+    "0" : [ "kb=e phttp://dbpedia.org/resource/England", "Kulczynski=0.243478260869565", "triple=e p http://dbpedia.org/resource/England", "class=Actor", "{Kulczynski=0.243478260869565 condAB=0.0869565217391304 condBA=0.4 supA=23.0 supAB=2.0 supB=5.0}", "posTag=JJ", "interestingness=Kulczynski", "subject=e", "predicate=p", "object=http://dbpedia.org/resource/England", "fullPosTag=JJ", "string=dbo:Actor in c_e and exists p : (e& p& dbr:England) in G $> 'silent' in l_e" ]
+  }
+} ]

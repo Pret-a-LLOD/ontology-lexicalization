@@ -7,6 +7,7 @@ package com.example.restservice;
 
 import java.util.*;  
 import com.example.config.*;
+import  main.*;
 
 
 /**
@@ -14,6 +15,8 @@ import com.example.config.*;
  * @author elahi
  */
 public class ResponseTransfer {
+    private  String baseDir = "/app/results-v4/";
+    private  String resourceDir = "";
     
     private Map<String,String> lexicalEntries=new TreeMap<String,String>();
     
@@ -22,12 +25,21 @@ public class ResponseTransfer {
         //this.lexicalEntries.put(Constants.dummylexicalEntry,Constants.dummyLemon);
         //this.lexicalEntries.put(Constants.dummylexicalEntry2,Constants.dummyLemon2);
         //this.lexicalEntries.put(Constants.dummylexicalEntry3,Constants.dummyLemon3);
-        PerlQuery PerlQuery=new PerlQuery();
-        String testString=PerlQuery.getResultString();
-        this.lexicalEntries.put(testString,testString);
-
+        //PerlQuery PerlQuery=new PerlQuery();
+        //String testString=PerlQuery.getResultString();
+        //this.lexicalEntries.put(testString,testString);
+        try {
+            ProcessCsv process = new ProcessCsv();
+            System.out.println("Processing files are ended!!!");
+        } catch (Exception ex) {
+          System.out.println("file process does not work!!!"+ex.getMessage());
+        }
+        
+        
 
     }
+    
+    
 
     public Map<String,String> getLexicalEntries() {
         return this.lexicalEntries;

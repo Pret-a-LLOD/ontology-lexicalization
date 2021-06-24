@@ -1,0 +1,43 @@
+[ {
+  "id" : 2,
+  "pattern" : "actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/birthPlaceo", "MaxConf=1.0", "triple=e http://dbpedia.org/ontology/birthPlace o", "class=Actor", "{MaxConf=1.0 condAB=0.125 condBA=1.0 supA=56.0 supAB=7.0 supB=7.0}", "posTag=NN", "interestingness=MaxConf", "subject=e", "predicate=http://dbpedia.org/ontology/birthPlace", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists o : (e& dbo:birthPlace& o) in G $> 'actor' in l_e(c&p&os)" ]
+  }
+}, {
+  "id" : 3,
+  "pattern" : "actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/birthPlaceo", "MaxConf=1.0", "triple=e http://dbpedia.org/ontology/birthPlace o", "class=Actor", "{MaxConf=1.0 condAB=0.0892857142857143 condBA=1.0 supA=56.0 supAB=5.0 supB=5.0}", "posTag=NN", "interestingness=MaxConf", "subject=e", "predicate=http://dbpedia.org/ontology/birthPlace", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists o : (e& dbo:birthPlace& o) in G $> 'actress' in l_e(c&p&os)" ]
+  }
+}, {
+  "id" : 4,
+  "pattern" : "actress.",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/countryo", "MaxConf=1.0", "triple=e http://dbpedia.org/ontology/country o", "class=Actor", "{MaxConf=1.0 condAB=0.145454545454545 condBA=1.0 supA=55.0 supAB=8.0 supB=8.0}", "posTag=NN", "interestingness=MaxConf", "subject=e", "predicate=http://dbpedia.org/ontology/country", "object=o", "fullPosTag=NN_.", "string=dbo:Actor in c_e and exists o : (e& dbo:country& o) in G $> ' actress. ' in l_e(c&p&os)" ]
+  }
+}, {
+  "id" : 7,
+  "pattern" : "film",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/birthPlaceo", "MaxConf=1.0", "triple=e http://dbpedia.org/ontology/birthPlace o", "class=Actor", "{MaxConf=1.0 condAB=0.0892857142857143 condBA=1.0 supA=56.0 supAB=5.0 supB=5.0}", "posTag=NN", "interestingness=MaxConf", "subject=e", "predicate=http://dbpedia.org/ontology/birthPlace", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and exists o : (e& dbo:birthPlace& o) in G $> 'film' in l_e(c&p&os)" ]
+  }
+}, {
+  "id" : 8,
+  "pattern" : "film_actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/nationalityo", "MaxConf=1.0", "triple=e http://dbpedia.org/ontology/nationality o", "class=Actor", "{MaxConf=1.0 condAB=0.238095238095238 condBA=1.0 supA=21.0 supAB=5.0 supB=5.0}", "posTag=NN", "interestingness=MaxConf", "subject=e", "predicate=http://dbpedia.org/ontology/nationality", "object=o", "fullPosTag=NN_NN", "string=dbo:Actor in c_e and exists o : (e& dbo:nationality& o) in G $> 'film actor' in l_e(c&p&os)" ]
+  }
+}, {
+  "id" : 9,
+  "pattern" : "swedish",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/birthDateo", "MaxConf=1.0", "triple=e http://dbpedia.org/ontology/birthDate o", "class=Actor", "{MaxConf=1.0 condAB=0.166666666666667 condBA=1.0 supA=54.0 supAB=9.0 supB=9.0}", "posTag=NN", "interestingness=MaxConf", "subject=e", "predicate=http://dbpedia.org/ontology/birthDate", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and exists o : (e& dbo:birthDate& o) in G $> 'Swedish' in l_e(c&p&os)" ]
+  }
+} ]

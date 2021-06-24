@@ -1,0 +1,22 @@
+[ {
+  "id" : 1,
+  "pattern" : "(born",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/birthDateo", "MaxConf=1.0", "triple=e http://dbpedia.org/ontology/birthDate o", "class=Actor", "{MaxConf=1.0 condAB=1.0 condBA=0.203703703703704 supA=11.0 supAB=11.0 supB=54.0}", "posTag=VB", "interestingness=MaxConf", "subject=e", "predicate=http://dbpedia.org/ontology/birthDate", "object=o", "fullPosTag=-LRB-_VBN", "string=dbo:Actor in c_e and ' (born ' in l_e(c&p&so) $> exists o : (e& dbo:birthDate& o) in G" ]
+  }
+}, {
+  "id" : 5,
+  "pattern" : "born",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/birthPlaceo", "MaxConf=1.0", "triple=e http://dbpedia.org/ontology/birthPlace o", "class=Actor", "{MaxConf=1.0 condAB=1.0 condBA=0.160714285714286 supA=9.0 supAB=9.0 supB=56.0}", "posTag=VB", "interestingness=MaxConf", "subject=e", "predicate=http://dbpedia.org/ontology/birthPlace", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and 'born' in l_e(c&p&so) $> exists o : (e& dbo:birthPlace& o) in G" ]
+  }
+}, {
+  "id" : 6,
+  "pattern" : "died",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/deathPlaceo", "MaxConf=1.0", "triple=e http://dbpedia.org/ontology/deathPlace o", "class=Actor", "{MaxConf=1.0 condAB=1.0 condBA=0.185185185185185 supA=5.0 supAB=5.0 supB=27.0}", "posTag=VB", "interestingness=MaxConf", "subject=e", "predicate=http://dbpedia.org/ontology/deathPlace", "object=o", "fullPosTag=VBD", "string=dbo:Actor in c_e and 'died' in l_e(c&p&so) $> exists o : (e& dbo:deathPlace& o) in G" ]
+  }
+} ]

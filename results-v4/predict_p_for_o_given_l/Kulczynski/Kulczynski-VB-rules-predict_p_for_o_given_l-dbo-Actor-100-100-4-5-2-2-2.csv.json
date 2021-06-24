@@ -1,0 +1,78 @@
+[ {
+  "id" : 8,
+  "pattern" : "appeared",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Kulczynski=0.183333333333333", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Kulczynski=0.183333333333333 condAB=0.333333333333333 condBA=0.0333333333333333 supA=6.0 supAB=2.0 supB=60.0}", "posTag=VB", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=VBD", "string=dbo:Actor in c_e and 'He appeared' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 12,
+  "pattern" : "best_known",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/guestso", "Kulczynski=0.424242424242424", "triple=e http://dbpedia.org/property/guests o", "class=Actor", "{Kulczynski=0.424242424242424 condAB=0.181818181818182 condBA=0.666666666666667 supA=11.0 supAB=2.0 supB=3.0}", "posTag=VB", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/property/guests", "object=o", "fullPosTag=RB_VBN", "string=dbo:Actor in c_e and 'best known for' in l_e $> exists s : (s& dbp:guests& e) in G" ]
+  }
+}, {
+  "id" : 14,
+  "pattern" : "born",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/relativeo", "Kulczynski=0.518867924528302", "triple=e http://dbpedia.org/ontology/relative o", "class=Actor", "{Kulczynski=0.518867924528302 condAB=0.0377358490566038 condBA=1.0 supA=53.0 supAB=2.0 supB=2.0}", "posTag=VB", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/ontology/relative", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and 'born' in l_e $> exists s : (s& dbo:relative& e) in G" ]
+  }
+}, {
+  "id" : 24,
+  "pattern" : "credited",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Kulczynski=0.325", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Kulczynski=0.325 condAB=0.6 condBA=0.05 supA=5.0 supAB=3.0 supB=60.0}", "posTag=VB", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and 'credited' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 28,
+  "pattern" : "died",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Kulczynski=0.319444444444444", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Kulczynski=0.319444444444444 condAB=0.555555555555556 condBA=0.0833333333333333 supA=9.0 supAB=5.0 supB=60.0}", "posTag=VB", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=VBD", "string=dbo:Actor in c_e and 'died in' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 48,
+  "pattern" : "known",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/relativeo", "Kulczynski=0.558823529411765", "triple=e http://dbpedia.org/ontology/relative o", "class=Actor", "{Kulczynski=0.558823529411765 condAB=0.117647058823529 condBA=1.0 supA=17.0 supAB=2.0 supB=2.0}", "posTag=VB", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/ontology/relative", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and 'known for' in l_e $> exists s : (s& dbo:relative& e) in G" ]
+  }
+}, {
+  "id" : 51,
+  "pattern" : "made",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Kulczynski=0.275", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Kulczynski=0.275 condAB=0.5 condBA=0.05 supA=6.0 supAB=3.0 supB=60.0}", "posTag=VB", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and 'made' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 53,
+  "pattern" : "married",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/spouseo", "Kulczynski=0.444444444444444", "triple=e http://dbpedia.org/property/spouse o", "class=Actor", "{Kulczynski=0.444444444444444 condAB=0.222222222222222 condBA=0.666666666666667 supA=9.0 supAB=2.0 supB=3.0}", "posTag=VB", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/property/spouse", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and 'married' in l_e $> exists s : (s& dbp:spouse& e) in G" ]
+  }
+}, {
+  "id" : 55,
+  "pattern" : "performed",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Kulczynski=0.325", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Kulczynski=0.325 condAB=0.6 condBA=0.05 supA=5.0 supAB=3.0 supB=60.0}", "posTag=VB", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and 'performed' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 56,
+  "pattern" : "played",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Kulczynski=0.35", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Kulczynski=0.35 condAB=0.583333333333333 condBA=0.116666666666667 supA=12.0 supAB=7.0 supB=60.0}", "posTag=VB", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=VBN", "string=dbo:Actor in c_e and 'played' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 57,
+  "pattern" : "playing",
+  "partsOfSpeech" : "VB",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Kulczynski=0.283333333333333", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Kulczynski=0.283333333333333 condAB=0.5 condBA=0.0666666666666667 supA=8.0 supAB=4.0 supB=60.0}", "posTag=VB", "interestingness=Kulczynski", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=VBG", "string=dbo:Actor in c_e and 'for playing' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+} ]

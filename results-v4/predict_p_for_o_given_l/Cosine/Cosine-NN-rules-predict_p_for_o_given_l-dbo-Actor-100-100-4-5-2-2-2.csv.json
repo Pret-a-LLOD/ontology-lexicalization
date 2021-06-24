@@ -1,0 +1,442 @@
+[ {
+  "id" : 1,
+  "pattern" : "1968",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.288675134594813", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.288675134594813 condAB=1.0 condBA=0.0833333333333333 supA=5.0 supAB=5.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=CD", "string=dbo:Actor in c_e and '1968' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 2,
+  "pattern" : "1982",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.173205080756888", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.173205080756888 condAB=0.6 condBA=0.05 supA=5.0 supAB=3.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=CD", "string=dbo:Actor in c_e and '1982' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 3,
+  "pattern" : "1989",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.105409255338946", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.105409255338946 condAB=0.333333333333333 condBA=0.0333333333333333 supA=6.0 supAB=2.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=CD", "string=dbo:Actor in c_e and '1989' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 4,
+  "pattern" : "actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/guestso", "Cosine=0.154303349962092", "triple=e http://dbpedia.org/property/guests o", "class=Actor", "{Cosine=0.154303349962092 condAB=0.0357142857142857 condBA=0.666666666666667 supA=56.0 supAB=2.0 supB=3.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/property/guests", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and 'actor' in l_e $> exists s : (s& dbp:guests& e) in G" ]
+  }
+}, {
+  "id" : 5,
+  "pattern" : "actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/guestso", "Cosine=0.168430384213304", "triple=e http://dbpedia.org/property/guests o", "class=Actor", "{Cosine=0.168430384213304 condAB=0.0425531914893617 condBA=0.666666666666667 supA=47.0 supAB=2.0 supB=3.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/property/guests", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and 'actress' in l_e $> exists s : (s& dbp:guests& e) in G" ]
+  }
+}, {
+  "id" : 6,
+  "pattern" : "also",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.338061701891407", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.338061701891407 condAB=0.571428571428571 condBA=0.2 supA=21.0 supAB=12.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=RB", "string=dbo:Actor in c_e and 'also' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 7,
+  "pattern" : "appearances",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.115470053837925", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.115470053837925 condAB=0.4 condBA=0.0333333333333333 supA=5.0 supAB=2.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNS", "string=dbo:Actor in c_e and 'appearances' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 9,
+  "pattern" : "april",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.204124145231932", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.204124145231932 condAB=0.5 condBA=0.0833333333333333 supA=10.0 supAB=5.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'April' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 10,
+  "pattern" : "august",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.210818510677892", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.210818510677892 condAB=0.666666666666667 condBA=0.0666666666666667 supA=6.0 supAB=4.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'August' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 11,
+  "pattern" : "best",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/guestso", "Cosine=0.308606699924184", "triple=e http://dbpedia.org/property/guests o", "class=Actor", "{Cosine=0.308606699924184 condAB=0.142857142857143 condBA=0.666666666666667 supA=14.0 supAB=2.0 supB=3.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/property/guests", "object=o", "fullPosTag=RB", "string=dbo:Actor in c_e and 'best' in l_e $> exists s : (s& dbp:guests& e) in G" ]
+  }
+}, {
+  "id" : 13,
+  "pattern" : "best_known_playing",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.115470053837925", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.115470053837925 condAB=0.4 condBA=0.0333333333333333 supA=5.0 supAB=2.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=RB_VBN_NN", "string=dbo:Actor in c_e and 'best known for playing' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 16,
+  "pattern" : "british_actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.115470053837925", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.115470053837925 condAB=0.4 condBA=0.0333333333333333 supA=5.0 supAB=2.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and 'was a British actor' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 17,
+  "pattern" : "british_actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.173205080756888", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.173205080756888 condAB=0.6 condBA=0.05 supA=5.0 supAB=3.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and 'British actress' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 18,
+  "pattern" : "british_stage",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.319504825211347", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.319504825211347 condAB=0.875 condBA=0.116666666666667 supA=8.0 supAB=7.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and 'a British stage and' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 19,
+  "pattern" : "british_stage_film",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.319504825211347", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.319504825211347 condAB=0.875 condBA=0.116666666666667 supA=8.0 supAB=7.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN_NN", "string=dbo:Actor in c_e and 'British stage and film' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 20,
+  "pattern" : "british_stage_film_actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.263523138347365", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.263523138347365 condAB=0.833333333333333 condBA=0.0833333333333333 supA=6.0 supAB=5.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN_NN_NN", "string=dbo:Actor in c_e and 'British stage and film actress' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 21,
+  "pattern" : "career",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.105409255338946", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.105409255338946 condAB=0.333333333333333 condBA=0.0333333333333333 supA=6.0 supAB=2.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and 'career' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 22,
+  "pattern" : "city",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.23094010767585", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.23094010767585 condAB=0.8 condBA=0.0666666666666667 supA=5.0 supAB=4.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'City' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 23,
+  "pattern" : "comedian",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.173205080756888", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.173205080756888 condAB=0.6 condBA=0.05 supA=5.0 supAB=3.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and 'comedian' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 25,
+  "pattern" : "credits",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.115470053837925", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.115470053837925 condAB=0.4 condBA=0.0333333333333333 supA=5.0 supAB=2.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNS", "string=dbo:Actor in c_e and 'credits' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 26,
+  "pattern" : "dancer",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.173205080756888", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.173205080756888 condAB=0.6 condBA=0.05 supA=5.0 supAB=3.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and 'dancer' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 27,
+  "pattern" : "december",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.204124145231932", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.204124145231932 condAB=0.5 condBA=0.0833333333333333 supA=10.0 supAB=5.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'December' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 29,
+  "pattern" : "director",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.172132593164774", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.172132593164774 condAB=0.444444444444444 condBA=0.0666666666666667 supA=9.0 supAB=4.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and 'director' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 30,
+  "pattern" : "drama",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.173205080756888", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.173205080756888 condAB=0.6 condBA=0.05 supA=5.0 supAB=3.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and 'drama' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 31,
+  "pattern" : "english",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.243432247780074", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.243432247780074 condAB=0.444444444444444 condBA=0.133333333333333 supA=18.0 supAB=8.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'an English' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 32,
+  "pattern" : "english_actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.173205080756888", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.173205080756888 condAB=0.6 condBA=0.05 supA=5.0 supAB=3.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP_NN", "string=dbo:Actor in c_e and 'was an English actor' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 33,
+  "pattern" : "english_actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.158113883008419", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.158113883008419 condAB=0.5 condBA=0.05 supA=6.0 supAB=3.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP_NN", "string=dbo:Actor in c_e and 'is an English actress' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 34,
+  "pattern" : "february",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.115470053837925", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.115470053837925 condAB=0.4 condBA=0.0333333333333333 supA=5.0 supAB=2.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'February' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 35,
+  "pattern" : "film",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.23094010767585", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.23094010767585 condAB=0.8 condBA=0.0666666666666667 supA=5.0 supAB=4.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and 'film and' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 36,
+  "pattern" : "film_actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.258198889747161", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.258198889747161 condAB=0.666666666666667 condBA=0.1 supA=9.0 supAB=6.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN_NN", "string=dbo:Actor in c_e and 'film actor' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 37,
+  "pattern" : "film_actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.301232038038355", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.301232038038355 condAB=0.777777777777778 condBA=0.116666666666667 supA=9.0 supAB=7.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN_NN", "string=dbo:Actor in c_e and 'film actress' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 38,
+  "pattern" : "films",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.365148371670111", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.365148371670111 condAB=0.666666666666667 condBA=0.2 supA=18.0 supAB=12.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNS", "string=dbo:Actor in c_e and 'films' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 39,
+  "pattern" : "first",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.210818510677892", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.210818510677892 condAB=0.666666666666667 condBA=0.0666666666666667 supA=6.0 supAB=4.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=RB", "string=dbo:Actor in c_e and 'first' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 41,
+  "pattern" : "french_actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.173205080756888", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.173205080756888 condAB=0.6 condBA=0.05 supA=5.0 supAB=3.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and 'was a French actor' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 42,
+  "pattern" : "french_actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.173205080756888", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.173205080756888 condAB=0.6 condBA=0.05 supA=5.0 supAB=3.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and 'French actress' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 43,
+  "pattern" : "january",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/relativeo", "Cosine=0.377964473009227", "triple=e http://dbpedia.org/ontology/relative o", "class=Actor", "{Cosine=0.377964473009227 condAB=0.142857142857143 condBA=1.0 supA=14.0 supAB=2.0 supB=2.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/relative", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'January' in l_e $> exists s : (s& dbo:relative& e) in G" ]
+  }
+}, {
+  "id" : 45,
+  "pattern" : "japanese_actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.115470053837925", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.115470053837925 condAB=0.4 condBA=0.0333333333333333 supA=5.0 supAB=2.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and 'Japanese actor' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 46,
+  "pattern" : "july",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.105409255338946", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.105409255338946 condAB=0.333333333333333 condBA=0.0333333333333333 supA=6.0 supAB=2.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'July' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 47,
+  "pattern" : "june",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.258198889747161", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.258198889747161 condAB=0.666666666666667 condBA=0.1 supA=9.0 supAB=6.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'June' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 49,
+  "pattern" : "known_playing",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.195180014589707", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.195180014589707 condAB=0.571428571428571 condBA=0.0666666666666667 supA=7.0 supAB=4.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and 'known for playing' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 50,
+  "pattern" : "london",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.207019667802706", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.207019667802706 condAB=0.428571428571429 condBA=0.1 supA=14.0 supAB=6.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'London' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 52,
+  "pattern" : "march",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.260874597374975", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.260874597374975 condAB=0.583333333333333 condBA=0.116666666666667 supA=12.0 supAB=7.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'March' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 54,
+  "pattern" : "october",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.195180014589707", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.195180014589707 condAB=0.571428571428571 condBA=0.0666666666666667 supA=7.0 supAB=4.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'October' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 58,
+  "pattern" : "role",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/relativeo", "Cosine=0.353553390593274", "triple=e http://dbpedia.org/ontology/relative o", "class=Actor", "{Cosine=0.353553390593274 condAB=0.125 condBA=1.0 supA=16.0 supAB=2.0 supB=2.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/relative", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and 'role' in l_e $> exists s : (s& dbo:relative& e) in G" ]
+  }
+}, {
+  "id" : 59,
+  "pattern" : "roles",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.379536057638295", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.379536057638295 condAB=0.785714285714286 condBA=0.183333333333333 supA=14.0 supAB=11.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNS", "string=dbo:Actor in c_e and 'roles' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 60,
+  "pattern" : "september",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.195180014589707", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.195180014589707 condAB=0.571428571428571 condBA=0.0666666666666667 supA=7.0 supAB=4.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'September' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 61,
+  "pattern" : "series",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.298142396999972", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.298142396999972 condAB=0.666666666666667 condBA=0.133333333333333 supA=12.0 supAB=8.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and 'series' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 63,
+  "pattern" : "shows",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.316227766016838", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.316227766016838 condAB=1.0 condBA=0.1 supA=6.0 supAB=6.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNS", "string=dbo:Actor in c_e and 'shows' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 65,
+  "pattern" : "since",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.263523138347365", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.263523138347365 condAB=0.833333333333333 condBA=0.0833333333333333 supA=6.0 supAB=5.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=IN", "string=dbo:Actor in c_e and 'since' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 66,
+  "pattern" : "stage",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/spouseo", "Cosine=0.226455406828919", "triple=e http://dbpedia.org/property/spouse o", "class=Actor", "{Cosine=0.226455406828919 condAB=0.0769230769230769 condBA=0.666666666666667 supA=26.0 supAB=2.0 supB=3.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/property/spouse", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and 'stage' in l_e $> exists s : (s& dbp:spouse& e) in G" ]
+  }
+}, {
+  "id" : 67,
+  "pattern" : "stage_film",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.311399577664609", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.311399577664609 condAB=0.727272727272727 condBA=0.133333333333333 supA=11.0 supAB=8.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN_NN", "string=dbo:Actor in c_e and 'stage and film' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 68,
+  "pattern" : "stage_film_actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.273861278752583", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.273861278752583 condAB=0.75 condBA=0.1 supA=8.0 supAB=6.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN_NN_NN", "string=dbo:Actor in c_e and 'stage and film actress' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 69,
+  "pattern" : "states",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/spouseo", "Cosine=0.516397779494322", "triple=e http://dbpedia.org/property/spouse o", "class=Actor", "{Cosine=0.516397779494322 condAB=0.4 condBA=0.666666666666667 supA=5.0 supAB=2.0 supB=3.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/property/spouse", "object=o", "fullPosTag=NNPS", "string=dbo:Actor in c_e and 'States' in l_e $> exists s : (s& dbp:spouse& e) in G" ]
+  }
+}, {
+  "id" : 70,
+  "pattern" : "sweden",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.158113883008419", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.158113883008419 condAB=0.5 condBA=0.05 supA=6.0 supAB=3.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'Sweden' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 71,
+  "pattern" : "swedish",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.296174438879546", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.296174438879546 condAB=0.526315789473684 condBA=0.166666666666667 supA=19.0 supAB=10.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'a Swedish' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 72,
+  "pattern" : "swedish_actor",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.115470053837925", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.115470053837925 condAB=0.4 condBA=0.0333333333333333 supA=5.0 supAB=2.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and 'Swedish actor' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 73,
+  "pattern" : "swedish_actress",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.23094010767585", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.23094010767585 condAB=0.8 condBA=0.0666666666666667 supA=5.0 supAB=4.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and 'is a Swedish actress' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 74,
+  "pattern" : "swedish_film",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.173205080756888", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.173205080756888 condAB=0.6 condBA=0.05 supA=5.0 supAB=3.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=JJ_NN", "string=dbo:Actor in c_e and 'Swedish film' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 75,
+  "pattern" : "television",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.319504825211347", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.319504825211347 condAB=0.875 condBA=0.116666666666667 supA=8.0 supAB=7.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NN", "string=dbo:Actor in c_e and 'and television' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 76,
+  "pattern" : "theatre",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.115470053837925", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.115470053837925 condAB=0.4 condBA=0.0333333333333333 supA=5.0 supAB=2.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'Theatre in' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+}, {
+  "id" : 77,
+  "pattern" : "united",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/spouseo", "Cosine=0.516397779494322", "triple=e http://dbpedia.org/property/spouse o", "class=Actor", "{Cosine=0.516397779494322 condAB=0.4 condBA=0.666666666666667 supA=5.0 supAB=2.0 supB=3.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/property/spouse", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'United' in l_e $> exists s : (s& dbp:spouse& e) in G" ]
+  }
+}, {
+  "id" : 78,
+  "pattern" : "united_states",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/property/spouseo", "Cosine=0.516397779494322", "triple=e http://dbpedia.org/property/spouse o", "class=Actor", "{Cosine=0.516397779494322 condAB=0.4 condBA=0.666666666666667 supA=5.0 supAB=2.0 supB=3.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/property/spouse", "object=o", "fullPosTag=NNP_NNPS", "string=dbo:Actor in c_e and 'the United States' in l_e $> exists s : (s& dbp:spouse& e) in G" ]
+  }
+}, {
+  "id" : 79,
+  "pattern" : "west",
+  "partsOfSpeech" : "NN",
+  "index" : {
+    "0" : [ "kb=e http://dbpedia.org/ontology/starringo", "Cosine=0.173205080756888", "triple=e http://dbpedia.org/ontology/starring o", "class=Actor", "{Cosine=0.173205080756888 condAB=0.6 condBA=0.05 supA=5.0 supAB=3.0 supB=60.0}", "posTag=NN", "interestingness=Cosine", "subject=e", "predicate=http://dbpedia.org/ontology/starring", "object=o", "fullPosTag=NNP", "string=dbo:Actor in c_e and 'West' in l_e $> exists s : (s& dbo:starring& e) in G" ]
+  }
+} ]
