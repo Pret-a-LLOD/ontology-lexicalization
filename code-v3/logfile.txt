@@ -443,3 +443,10 @@ STEP 2 - empty file for class <http://dbpedia.org/ontology/Place> pos <obj>.
 STEP 2 - empty file for class <http://dbpedia.org/ontology/BaseballSeason> pos <obj>.
 STEP 2 - empty file for class <http://dbpedia.org/ontology/Software> pos <obj>.
 STEP 4 - unexpected class URI namespace <http://www.w3.org/2002/07/owl#Thing>.
+reduced number of instances for class http://dbpedia.org/ontology/Actor from 3630 to 100
+reduced number of instances for class http://dbpedia.org/ontology/Actor from 3630 to 100
+reduced number of instances for class http://dbpedia.org/ontology/Actor from 3630 to 100
+done.
+done.
+reduced number of instances for class http://dbpedia.org/ontology/Actor from 3630 to 100
+done.

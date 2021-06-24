@@ -8,34 +8,50 @@ RUN cd /source && mvn -B package -DskipTests
 
 FROM maven:3.8-jdk-11 AS buildconv
 
-FROM ubuntu:bionic
+# Update the repository sources list
+RUN apt-get update
 
-ENV TERM xterm
-ENV DEBIAN_FRONTEND noninteractive
+# Install compiler and perl stuff
+RUN apt-get install --yes \
+ build-essential \
+ gcc-multilib \
+ apt-utils \
+ perl \
+ expat \
+ libexpat-dev 
 
-RUN apt-get update && apt-get install -y \
-    acedb-other-dotter \
-    build-essential \
-    bzip2 \
-    cpanminus
+# Install perl modules 
+RUN apt-get install -y cpanminus
 
-# accepts Microsoft EULA agreement without prompting
-# view EULA at http://wwww.microsoft.com/typography/fontpack/eula.htm
-RUN { echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true; } | debconf-set-selections \
-    && apt-get update && apt-get install -y ttf-mscorefonts-installer
+RUN cpanm CPAN::Meta \
+ readline \ 
+ Term::ReadKey \
+ YAML \
+ Digest::SHA \
+ Module::Build \
+ ExtUtils::MakeMaker \
+ Test::More \
+ Data::Stag \
+ Config::Simple \
+ Statistics::Lite \
+ Statistics::Descriptive \
+ YAML::Syck \
+ URL::Encode \
+ Number::Bytes::Human \
+ Text::CSV
+
+# wget installation
+# Install wget and install/updates certificates
+RUN apt-get update \
+ && apt-get install -y -q --no-install-recommends \
+    ca-certificates \
+ && apt-get clean \
+ && rm -r /var/lib/apt/lists/*
 
 
-RUN export PERL5LIB=.:$PERL5LIB && \
-    cpanm \
-    Archive::Zip \
-    BSD::Resource \
-    YAML::Syck \
-    URL::Encode \
-    Text::CSV \
-    Number::Bytes::Human \
-    IO::Uncompress::Bunzip2
 
-FROM openjdk:11.0.7
+# Wget data test
+RUN wget https://stackoverflow.com/questions/28885137/how-to-run-wget-inside-ubuntu-docker-image
 
 
 EXPOSE 8080
@@ -46,4 +62,3 @@ COPY ./ /app
 RUN chmod +x /app
 COPY ./openapi.yaml /openapi.yaml
 CMD ["java","-jar","target/rest-service-0.0.1-SNAPSHOT.jar"]
-

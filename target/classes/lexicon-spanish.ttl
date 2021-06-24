@@ -1,0 +1,34 @@
+@prefix :        <http://localhost:8080/#> .
+
+@prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#> .
+@prefix lemon:   <http://lemon-model.net/lemon#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+
+@base            <http://localhost:8080#> .
+
+:lexicon_en a    lemon:Lexicon ;
+  lemon:language "en" ;
+  lemon:entry    :spanish ;
+  lemon:entry    :spanish_res .
+
+:spanish a             lemon:LexicalEntry ;
+  lexinfo:partOfSpeech lexinfo:adjective ;
+  lemon:canonicalForm  :spanish_lemma ;
+  lemon:synBehavior    :spanish_attrFrame, :spanish_predFrame ;
+  lemon:sense          :spanish_sense .
+
+:spanish_lemma lemon:writtenRep "Spanish"@en .
+
+:spanish_predFrame a        lexinfo:AdjectivePredicateFrame ;
+  lexinfo:copulativeSubject :spanish_PredSynArg .
+
+:spanish_attrFrame a     lexinfo:AdjectiveAttributiveFrame ;
+  lexinfo:attributiveArg :spanish_AttrSynArg .
+
+:spanish_sense a  lemon:LexicalSense ;
+  lemon:reference :spanish_res ;
+  lemon:isA       :spanish_AttrSynArg, :spanish_PredSynArg .
+
+:spanish_res a   owl:Restriction ;
+  owl:onProperty <http://dbpedia.org/ontology/country> ;
+  owl:hasValue   <http://dbpedia.org/resource/Spain> .

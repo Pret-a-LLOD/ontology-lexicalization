@@ -23,7 +23,7 @@ public class ResponseTransfer {
         //this.lexicalEntries.put(Constants.dummylexicalEntry2,Constants.dummyLemon2);
         //this.lexicalEntries.put(Constants.dummylexicalEntry3,Constants.dummyLemon3);
         PerlQuery PerlQuery=new PerlQuery();
-        String testString=PerlQuery.Test();
+        String testString=PerlQuery.getResultString();
         this.lexicalEntries.put(testString,testString);
 
 

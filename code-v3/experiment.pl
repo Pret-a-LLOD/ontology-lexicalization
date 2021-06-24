@@ -29,9 +29,11 @@ use Text::CSV;
 # Step 4. collect frequent linguistic patterns for each frequent class
 # Step 5. create rules
 
+my $BASEDIR = "/app/"; 
+
 my $CFG = {
-	min_entities_per_class 		=> 1,
-	max_entities_per_class		=> 10,
+	min_entities_per_class 		=> 100,
+	max_entities_per_class		=> 100,
 	min_onegram_length              => 4,
 	min_pattern_count 		=> 5, 
 
@@ -41,31 +43,31 @@ my $CFG = {
 	min_propertystring_length 	=> 5,
 	max_propertystring_length 	=> 50, # was 100 before
 
-	min_supA 			=> 5,
-	min_supB 			=> 5,
-	min_supAB 			=> 5,
+	min_supA 			=> 2,
+	min_supB 			=> 2,
+	min_supAB 			=> 2,
 
 	rulepattern => {
-        	predict_l_for_s_given_po		=> 0,
-		predict_po_for_s_given_l		=> 0,
-		predict_localized_l_for_s_given_po	=> 0,
-		predict_po_for_s_given_localized_l	=> 0,
+        	predict_l_for_s_given_po		=> 1,
+		predict_po_for_s_given_l		=> 1,
+		predict_localized_l_for_s_given_po	=> 1,
+		predict_po_for_s_given_localized_l	=> 1,
 
-		predict_l_for_s_given_p			=> 0,
-		predict_p_for_s_given_l         	=> 0,
-		predict_localized_l_for_s_given_p       => 0,
-                predict_p_for_s_given_localized_l       => 0,
+		predict_l_for_s_given_p			=> 1,
+		predict_p_for_s_given_l         	=> 1,
+		predict_localized_l_for_s_given_p       => 1,
+                predict_p_for_s_given_localized_l       => 1,
 
-		predict_l_for_s_given_o         	=> 0,
-		predict_o_for_s_given_l         	=> 0,
+		predict_l_for_s_given_o         	=> 1,
+		predict_o_for_s_given_l         	=> 1,
 	
-		predict_l_for_o_given_sp         	=> 0,
-		predict_sp_for_o_given_l         	=> 0,
-		predict_localized_l_for_o_given_sp      => 0,
-                predict_sp_for_o_given_localized_l      => 0,
+		predict_l_for_o_given_sp         	=> 1,
+		predict_sp_for_o_given_l         	=> 1,
+		predict_localized_l_for_o_given_sp      => 1,
+                predict_sp_for_o_given_localized_l      => 1,
 
-		predict_l_for_o_given_s         	=> 0,
-		predict_s_for_o_given_l         	=> 0,
+		predict_l_for_o_given_s         	=> 1,
+		predict_s_for_o_given_l         	=> 1,
 
 		predict_l_for_o_given_p         	=> 1,
 		predict_p_for_o_given_l         	=> 1,
@@ -100,7 +102,7 @@ my $num_to_month = {
         12 => "December",
 };
 
-open(DAT,"<../data-v3/stopwords-en.txt");
+open(DAT,"<$BASEDIR/data-v4/stopwords-en.txt");
 while(defined(my $line=<DAT>)){
 	next if $line =~ m/\A#/;
 	$line =~ s/\n//;
@@ -109,7 +111,7 @@ while(defined(my $line=<DAT>)){
 close DAT;
 
 
-my $folder_length = 4; # length of the name of the subfolder in ../data-v3/data_per_entity/
+my $folder_length = 4; # length of the name of the subfolder in $BASEDIR/data-v4/data_per_entity/
 
 open(LOG,">>logfile.txt");
 
@@ -117,9 +119,9 @@ open(LOG,">>logfile.txt");
 # Step 1. find frequent classes
 my $frequent_class_to_entities = {};
 my $entity_to_frequent_classes = {};
-my $frequent_class_to_entities_file = "../data-v3/frequent_class_to_entities-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".yml";
-my $entity_to_frequent_classes_file = "../data-v3/entity_to_frequent_classes-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".yml";
-my $step1_time_file = "../data-v3/step1-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".time";
+my $frequent_class_to_entities_file = "$BASEDIR/data-v4/frequent_class_to_entities-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".yml";
+my $entity_to_frequent_classes_file = "$BASEDIR/data-v4/entity_to_frequent_classes-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".yml";
+my $step1_time_file = "$BASEDIR/data-v4/step1-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".time";
 if(
 	not -s $frequent_class_to_entities_file or
 	not -s $entity_to_frequent_classes_file
@@ -127,15 +129,15 @@ if(
 
 	my $start_time = time();
 	my $entities_with_abstract = {};
-	my $entities_with_abstract_file = "../data-v3/entities_with_abstract.yml";
+	my $entities_with_abstract_file = "$BASEDIR/data-v4/entities_with_abstract.yml";
 	if(not -s $entities_with_abstract_file){
-		print " < ../data-v3/2020.07.01/short-abstracts_lang=en.ttl.bz2 " . format_bytes(-s "../data-v3/2020.07.01/short-abstracts_lang=en.ttl.bz2") . "\n";
+		print " < $BASEDIR/data-v4/2020.07.01/short-abstracts_lang=en.ttl.bz2 " . format_bytes(-s "$BASEDIR/data-v4/2020.07.01/short-abstracts_lang=en.ttl.bz2") . "\n";
 		my $zh = IO::Uncompress::Bunzip2->new(
-			"../data-v3/2020.07.01/short-abstracts_lang=en.ttl.bz2",
+			"$BASEDIR/data-v4/2020.07.01/short-abstracts_lang=en.ttl.bz2",
 			{ AutoClose => 1, Transparent => 1, }
 		) or die "IO::Uncompress::Bunzip2 failed: $Bunzip2Error\n";
 
-		mkdir "../data-v3/data_per_entity/" if not -d "../data-v3/data_per_entity/";
+		mkdir "$BASEDIR/data-v4/data_per_entity/" if not -d "$BASEDIR/data-v4/data_per_entity/";
 
 		while(my $line=<$zh>){
 			my $obj = parse_NT_into_obj($line);
@@ -148,9 +150,9 @@ if(
 		$entities_with_abstract = LoadFile($entities_with_abstract_file);
 	}
 
-	print " < ../data-v3/2020.12.01/instance-types_lang=en_specific.ttl.bz2 " . (format_bytes(-s "../data-v3/2020.12.01/instance-types_lang=en_specific.ttl.bz2")) ."\n";
+	print " < $BASEDIR/data-v4/2020.12.01/instance-types_lang=en_specific.ttl.bz2 " . (format_bytes(-s "$BASEDIR/data-v4/2020.12.01/instance-types_lang=en_specific.ttl.bz2")) ."\n";
 	my $zh = IO::Uncompress::Bunzip2->new(
-		"../data-v3/2020.12.01/instance-types_lang=en_specific.ttl.bz2",
+		"$BASEDIR/data-v4/2020.12.01/instance-types_lang=en_specific.ttl.bz2",
 		{ AutoClose => 1, Transparent => 1, }
 	) or die "IO::Uncompress::Bunzip2 failed: $Bunzip2Error\n";
 
@@ -161,9 +163,11 @@ if(
 		#last if $cnt > 1000000; # TODO remove
 		my $obj = parse_NT_into_obj($line);
 		my $c = $obj->{o}->{value};
+		next if $c !~ m/\/Actor\Z/; # TODO remove
 		$frequent_class_to_entities->{$c}->{$obj->{s}->{value}} = 1 if exists $entities_with_abstract->{$obj->{s}->{value}};
 	}
 	foreach my $c (keys %{$frequent_class_to_entities}){ print "c $c\n";
+		next if $c !~ m/\/Actor\Z/; # TODO remove
 		if(scalar keys %{$frequent_class_to_entities->{$c}} < $CFG->{min_entities_per_class}){
 			delete $frequent_class_to_entities->{$c};
 		} else {
@@ -211,13 +215,13 @@ print "done with step 1. wait.\n"; #<STDIN>;
 # Step 2: collect triples per entity and per class
 my $class_to_pos_to_triples = {};
 my $entity_to_pos_to_triples = {};
-my $step2_finished_file = "../data-v3/step2-" . join("-", 
+my $step2_finished_file = "$BASEDIR/data-v4/step2-" . join("-", 
 	$CFG->{min_entities_per_class}, 
 	$CFG->{max_entities_per_class}, 
 	$CFG->{min_anchor_count}
 ) . ".finished";
 
-my $step2_time_file = "../data-v3/step2-" . join("-",
+my $step2_time_file = "$BASEDIR/data-v4/step2-" . join("-",
         $CFG->{min_entities_per_class},
         $CFG->{max_entities_per_class},
         $CFG->{min_anchor_count}) . ".time";
@@ -226,11 +230,11 @@ if(not -e $step2_finished_file){
 
 	my $start_time = time();
 
-	mkdir "../data-v3/data_per_class" if not -d "../data-v3/data_per_class";
-        mkdir "../data-v3/data_per_entity" if not -d "../data-v3/data_per_entity";
+	mkdir "$BASEDIR/data-v4/data_per_class" if not -d "$BASEDIR/data-v4/data_per_class";
+        mkdir "$BASEDIR/data-v4/data_per_entity" if not -d "$BASEDIR/data-v4/data_per_entity";
 
 	my $labels = {};
-        my $labels_file = "../data-v3/2020.12.01/labels_lang=en.ttl.bz2";
+        my $labels_file = "$BASEDIR/data-v4/2020.12.01/labels_lang=en.ttl.bz2";
         print " < $labels_file " . format_bytes(-s $labels_file) . "\n";
         my $zhl = IO::Uncompress::Bunzip2->new(
                 $labels_file,
@@ -250,7 +254,7 @@ if(not -e $step2_finished_file){
         my $anchors = {};
 	$cnt = 0;
         my $zha = IO::Uncompress::Bunzip2->new(
-                "../data-v3/2020.12.01/anchor-texts-sorted-counted-reversed.txt.bz2",
+                "$BASEDIR/data-v4/2020.12.01/anchor-texts-sorted-counted-reversed.txt.bz2",
                 { AutoClose => 1, Transparent => 1, }
         ) or die "IO::Uncompress::Bunzip2 failed: $Bunzip2Error\n";
         while(my $line=<$zha>){
@@ -274,10 +278,10 @@ if(not -e $step2_finished_file){
 	my $added_anchors_to_entity_file = {};
 
 	foreach my $file (
-                "../data-v3/2020.11.01/infobox-properties_lang=en.ttl.bz2",
-                "../data-v3/2020.12.01/mappingbased-objects_lang=en.ttl.bz2",
-                "../data-v3/2020.12.01/mappingbased-literals_lang=en.ttl.bz2",
-                "../data-v3/2020.12.01/instance-types_lang=en_specific.ttl.bz2",
+                "$BASEDIR/data-v4/2020.11.01/infobox-properties_lang=en.ttl.bz2",
+                "$BASEDIR/data-v4/2020.12.01/mappingbased-objects_lang=en.ttl.bz2",
+                "$BASEDIR/data-v4/2020.12.01/mappingbased-literals_lang=en.ttl.bz2",
+                "$BASEDIR/data-v4/2020.12.01/instance-types_lang=en_specific.ttl.bz2",
         ){
                 print " < $file " . format_bytes(-s $file) . "\n";
                 my $zh = IO::Uncompress::Bunzip2->new(
@@ -388,11 +392,11 @@ if(not -e $step2_finished_file){
 			next;
 		}
                 my $last = substr($e_enc, -$folder_length);
-		mkdir "../data-v3/data_per_entity/$last/" if not -d "../data-v3/data_per_entity/$last/";
+		mkdir "$BASEDIR/data-v4/data_per_entity/$last/" if not -d "$BASEDIR/data-v4/data_per_entity/$last/";
 		foreach my $pos (keys %{$entity_to_pos_to_triples->{$e}}){
 			# TODO take care of filenames that are too long
 			
-			my $entitydatafilename = "../data-v3/data_per_entity/$last/$e_enc-$pos-" . $CFG->{min_anchor_count} . ".ttl";
+			my $entitydatafilename = "$BASEDIR/data-v4/data_per_entity/$last/$e_enc-$pos-" . $CFG->{min_anchor_count} . ".ttl";
                         next if -e "$entitydatafilename.bz2" or -e $entitydatafilename;
 
 			#unlink "$entitydatafilename.bz2" if -s "$entitydatafilename.bz2"; # TODO reactivate
@@ -406,7 +410,7 @@ if(not -e $step2_finished_file){
 		}
 	}
 
-	mkdir "../data-v3/data_per_class/" if not -d "../data-v3/data_per_class";
+	mkdir "$BASEDIR/data-v4/data_per_class/" if not -d "$BASEDIR/data-v4/data_per_class";
 	foreach my $c (keys %{$class_to_pos_to_triples}){
 		my $c_enc;
                 if($c =~ m/http:\/\/dbpedia.org\/ontology\/(.*)/){
@@ -416,21 +420,21 @@ if(not -e $step2_finished_file){
                         print LOG "STEP 2 - unexpected class URI namespace <$c>.\n";
                         next;
                 }
-                mkdir "../data-v3/data_per_class/$c_enc/" if not -d "../data-v3/data_per_class/$c_enc";
+                mkdir "$BASEDIR/data-v4/data_per_class/$c_enc/" if not -d "$BASEDIR/data-v4/data_per_class/$c_enc";
 		foreach my $pos (qw(sub obj)){
 			if(not exists $class_to_pos_to_triples->{$c}->{$pos}){
 				print "empty file for class <$c>\n"; #<STDIN>;
 				print LOG "STEP 2 - empty file for class <$c> pos <$pos>.\n";
 			}
-			#print " > ../data-v3/data_per_class/$c_enc/$pos-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".ttl\n";
-			open(DAT,">../data-v3/data_per_class/$c_enc/$pos-" .$CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".ttl");
+			#print " > $BASEDIR/data-v4/data_per_class/$c_enc/$pos-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".ttl\n";
+			open(DAT,">$BASEDIR/data-v4/data_per_class/$c_enc/$pos-" .$CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".ttl");
 			foreach my $line (@{$class_to_pos_to_triples->{$c}->{$pos}}){
 				print DAT $line;
 			}
 			close DAT;
-			unlink "../data-v3/data_per_class/$c_enc/$pos-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".ttl.bz2"
-				if -e "../data-v3/data_per_class/$c_enc/$pos-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".ttl.bz2";
-			system("bzip2 ../data-v3/data_per_class/$c_enc/$pos-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".ttl");
+			unlink "$BASEDIR/data-v4/data_per_class/$c_enc/$pos-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".ttl.bz2"
+				if -e "$BASEDIR/data-v4/data_per_class/$c_enc/$pos-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".ttl.bz2";
+			system("bzip2 $BASEDIR/data-v4/data_per_class/$c_enc/$pos-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".ttl");
 		}
 	}
 
@@ -446,7 +450,7 @@ print "done with step 2. wait.\n"; #<STDIN>;
 
 
 # Step 3. create linguistic patterns per entity
-my $step3_finished_file = "../data-v3/step3-" . join("-",
+my $step3_finished_file = "$BASEDIR/data-v4/step3-" . join("-",
        $CFG->{min_entities_per_class},
        $CFG->{max_entities_per_class},
        $CFG->{min_onegram_length},
@@ -456,7 +460,7 @@ my $step3_finished_file = "../data-v3/step3-" . join("-",
        $CFG->{max_propertystring_length}
 ) . ".finished";
 
-my $step3_time_file = "../data-v3/step3-" . join("-",
+my $step3_time_file = "$BASEDIR/data-v4/step3-" . join("-",
        $CFG->{min_entities_per_class},
        $CFG->{max_entities_per_class},
        $CFG->{min_onegram_length},
@@ -471,9 +475,9 @@ if(not -e $step3_finished_file){
 	# TODO step 3 could be cleaned up a bit
         my $start_time = time();
 
-	print " < ../data-v3/2020.07.01/short-abstracts_lang=en.ttl.bz2 " . format_bytes(-s "../data-v3/2020.07.01/short-abstracts_lang=en.ttl.bz2") . "\n";
+	print " < $BASEDIR/data-v4/2020.07.01/short-abstracts_lang=en.ttl.bz2 " . format_bytes(-s "$BASEDIR/data-v4/2020.07.01/short-abstracts_lang=en.ttl.bz2") . "\n";
         my $zh = IO::Uncompress::Bunzip2->new(
-                "../data-v3/2020.07.01/short-abstracts_lang=en.ttl.bz2",
+                "$BASEDIR/data-v4/2020.07.01/short-abstracts_lang=en.ttl.bz2",
                 { AutoClose => 1, Transparent => 1, }
         ) or die "IO::Uncompress::Bunzip2 failed: $Bunzip2Error\n";
 
@@ -498,7 +502,7 @@ if(not -e $step3_finished_file){
                 	}
 
 			my $last = substr($e_enc, -$folder_length);
-			my $propertypatternfilename = "../data-v3/data_per_entity/$last/$e_enc-propertypatterns-" .
+			my $propertypatternfilename = "$BASEDIR/data-v4/data_per_entity/$last/$e_enc-propertypatterns-" .
                         join("-",
                                 $CFG->{min_entities_per_class},
                                 $CFG->{max_entities_per_class},
@@ -508,17 +512,17 @@ if(not -e $step3_finished_file){
                                 $CFG->{min_propertystring_length},
                                 $CFG->{max_propertystring_length}
                         ) . ".yml";
-                        my $propertypatternfilenamelength = length($propertypatternfilename) +4 - length("../data-v3/data_per_entity/$last/"); # +4: ".bz2"
+                        my $propertypatternfilenamelength = length($propertypatternfilename) +4 - length("$BASEDIR/data-v4/data_per_entity/$last/"); # +4: ".bz2"
 			if($propertypatternfilenamelength > 255){
                                 print LOG "STEP 3 - cannot create file for entity <$e>, propertypatternfilename too long: $propertypatternfilename ($propertypatternfilenamelength).\n";
 				next;
 			}
 
-			my $patternfilename = "../data-v3/data_per_entity/$last/$e_enc-patterns-" . join("-",
+			my $patternfilename = "$BASEDIR/data-v4/data_per_entity/$last/$e_enc-patterns-" . join("-",
                                 $CFG->{min_entities_per_class},
                                 $CFG->{max_entities_per_class},
                                 $CFG->{min_onegram_length}) . ".yml";
-                        my $patternfilenamelength = length($patternfilename) +4 - length("../data-v3/data_per_entity/$last/"); # +4: ".bz2"
+                        my $patternfilenamelength = length($patternfilename) +4 - length("$BASEDIR/data-v4/data_per_entity/$last/"); # +4: ".bz2"
 		
 			if($patternfilenamelength > 255){
                                 print LOG "STEP 3 - cannot create file for entity <$e>, patternfilename too long: $patternfilename ($patternfilenamelength).\n";
@@ -527,8 +531,8 @@ if(not -e $step3_finished_file){
 
 			#next if -s "$propertypatternfilename.bz2" and -s "$patternfilename.bz2";
 
-                        my $entitysubdatafilename = "../data-v3/data_per_entity/$last/$e_enc-sub-" . $CFG->{min_anchor_count} . ".ttl";
-			my $entityobjdatafilename = "../data-v3/data_per_entity/$last/$e_enc-obj-" . $CFG->{min_anchor_count} . ".ttl";
+                        my $entitysubdatafilename = "$BASEDIR/data-v4/data_per_entity/$last/$e_enc-sub-" . $CFG->{min_anchor_count} . ".ttl";
+			my $entityobjdatafilename = "$BASEDIR/data-v4/data_per_entity/$last/$e_enc-obj-" . $CFG->{min_anchor_count} . ".ttl";
 			
 			#next if not -s "$entitysubdatafilename.bz2" and not -s "$entityobjdatafilename.bz2"; # TODO remove
 		
@@ -903,7 +907,7 @@ if(not -e $step3_finished_file){
 				}
 			}			
 			#print Dump { property_patterns => $property_patterns }; <STDIN>;
-			#my $propertypatternfilename = "../data-v3/data_per_entity/$last/$e_enc-propertypatterns-" .
+			#my $propertypatternfilename = "$BASEDIR/data-v4/data_per_entity/$last/$e_enc-propertypatterns-" .
 			#join("-",
 			#	$CFG->{min_entities_per_class},
 			#	$CFG->{max_entities_per_class},
@@ -913,20 +917,20 @@ if(not -e $step3_finished_file){
 			#	$CFG->{min_propertystring_length},
 			#	$CFG->{max_propertystring_length}
 			#) . ".yml";
-			#my $propertypatternfilenamelength = length($propertypatternfilename) +4 - length("../data-v3/data_per_entity/$last/"); # +4: ".bz2"
+			#my $propertypatternfilenamelength = length($propertypatternfilename) +4 - length("$BASEDIR/data-v4/data_per_entity/$last/"); # +4: ".bz2"
 		
-			mkdir "../data-v3/data_per_entity/$last" if not -d "../data-v3/data_per_entity/$last";
+			mkdir "$BASEDIR/data-v4/data_per_entity/$last" if not -d "$BASEDIR/data-v4/data_per_entity/$last";
 			unlink "$propertypatternfilename.bz2" if -s "$propertypatternfilename.bz2";
                         unlink "$patternfilename.bz2" if -s "$patternfilename.bz2";
 
 			print " > $propertypatternfilename\n";# if rand(100) >= 99;
                         DumpFileCompressed($propertypatternfilename, $property_patterns);
 
-			#my $patternfilename = "../data-v3/data_per_entity/$last/$e_enc-patterns-" . join("-", 
+			#my $patternfilename = "$BASEDIR/data-v4/data_per_entity/$last/$e_enc-patterns-" . join("-", 
 			# 	$CFG->{min_entities_per_class},
 			#	$CFG->{max_entities_per_class},
 			#	$CFG->{min_onegram_length}) . ".yml";
-			#my $patternfilenamelength = lengt($patternfilename) +4 - length("../data-v3/data_per_entity/$last/"); # +4: ".bz2"
+			#my $patternfilenamelength = lengt($patternfilename) +4 - length("$BASEDIR/data-v4/data_per_entity/$last/"); # +4: ".bz2"
 
 			if(not -s $patternfilename . ".bz2"){
 
@@ -986,7 +990,7 @@ if(not -e $step3_finished_file){
 					$fivegrams_h->{join(" ", $onegrams[$i], $onegrams[$i+1], $onegrams[$i+2], $onegrams[$i+3], $onegrams[$i+4])} = 1 if $cnt_stop < 5;
 				}
 
-				mkdir "../data-v3/data_per_entity/$last" if not -d "../data-v3/data_per_entity/$last";
+				mkdir "$BASEDIR/data-v4/data_per_entity/$last" if not -d "$BASEDIR/data-v4/data_per_entity/$last";
 				print " > $patternfilename\n";# if rand(100) >= 99;
 				DumpFileCompressed($patternfilename, {
 						"1-gram" => [keys %{$onegrams_h}],
@@ -1009,7 +1013,7 @@ print "done with step 3. wait.\n"; #<STDIN>;
 
 
 # Step 4. collect frequent linguistic patterns for each frequent class
-my $step4_finished_file = "../data-v3/step4-" . join("-",
+my $step4_finished_file = "$BASEDIR/data-v4/step4-" . join("-",
 	$CFG->{min_entities_per_class},
         $CFG->{max_entities_per_class},
         $CFG->{min_onegram_length},
@@ -1021,7 +1025,7 @@ my $step4_finished_file = "../data-v3/step4-" . join("-",
         $CFG->{max_propertystring_length}
 ) . ".finished";
 
-my $step4_time_file = "../data-v3/step4-" . join("-",
+my $step4_time_file = "$BASEDIR/data-v4/step4-" . join("-",
        $CFG->{min_entities_per_class},
        $CFG->{max_entities_per_class},
        $CFG->{min_onegram_length},
@@ -1048,14 +1052,14 @@ if(-e $step3_finished_file and not -e $step4_finished_file){
                         print LOG "STEP 4 - unexpected class URI namespace <$c>.\n";
                         next;
                 }
-                mkdir "../data-v3/data_per_class/$c_enc/" if not -d "../data-v3/data_per_class/$c_enc";
+                mkdir "$BASEDIR/data-v4/data_per_class/$c_enc/" if not -d "$BASEDIR/data-v4/data_per_class/$c_enc";
 
 		# create set of linguistic patterns that sufficiently frequently occur with entities of this class
 
 		my $L = {};
 		my $LP = {};
 
-		my $classpatternfilename = "../data-v3/data_per_class/$c_enc/$c_enc-patterns-" . join("-",
+		my $classpatternfilename = "$BASEDIR/data-v4/data_per_class/$c_enc/$c_enc-patterns-" . join("-",
 			$CFG->{min_entities_per_class},
 			$CFG->{max_entities_per_class},
 			$CFG->{min_onegram_length},
@@ -1067,7 +1071,7 @@ if(-e $step3_finished_file and not -e $step4_finished_file){
 		
 		next if -e "$classpatternfilename.bz2";
 
-                my $classpropertypatternfilename = "../data-v3/data_per_class/$c_enc/$c_enc-propertypatterns-" . join("-",
+                my $classpropertypatternfilename = "$BASEDIR/data-v4/data_per_class/$c_enc/$c_enc-propertypatterns-" . join("-",
                 	$CFG->{min_entities_per_class},
                         $CFG->{max_entities_per_class},
 			$CFG->{min_anchor_count},
@@ -1094,7 +1098,7 @@ if(-e $step3_finished_file and not -e $step4_finished_file){
                 		}
 
                         	my $last = substr($e_enc, -$folder_length);
-				my $entitypatternfilename = "../data-v3/data_per_entity/$last/$e_enc-patterns-" . join("-",
+				my $entitypatternfilename = "$BASEDIR/data-v4/data_per_entity/$last/$e_enc-patterns-" . join("-",
                                 	$CFG->{min_entities_per_class},
                                 	$CFG->{max_entities_per_class},
                                 	$CFG->{min_onegram_length}
@@ -1113,7 +1117,7 @@ if(-e $step3_finished_file and not -e $step4_finished_file){
 					print "pattern file does not exist ($c): <$entitypatternfilename>\n"; <STDIN>;
 				}
 
-				my $entitypropertypatternfilename = "../data-v3/data_per_entity/$last/$e_enc-propertypatterns-" . join("-",
+				my $entitypropertypatternfilename = "$BASEDIR/data-v4/data_per_entity/$last/$e_enc-propertypatterns-" . join("-",
 						$CFG->{min_entities_per_class},
                                 		$CFG->{max_entities_per_class},
                                 		$CFG->{min_onegram_length},
@@ -1224,7 +1228,7 @@ foreach my $rulepattern (qw(
 	$bitstring .= $CFG->{rulepattern}->{$rulepattern};
 }
 
-my $step5_finished_file = "../data-v3/step5-" . join("-",
+my $step5_finished_file = "$BASEDIR/data-v4/step5-" . join("-",
 	$CFG->{min_entities_per_class},
 	$CFG->{max_entities_per_class},
 	$CFG->{min_onegram_length},
@@ -1240,7 +1244,7 @@ my $step5_finished_file = "../data-v3/step5-" . join("-",
 	$bitstring
 ) . ".finished";
 
-my $step5_time_file = "../data-v3/step5-" . join("-",
+my $step5_time_file = "$BASEDIR/data-v4/step5-" . join("-",
 	$CFG->{min_entities_per_class},
 	$CFG->{max_entities_per_class},
 	$CFG->{min_onegram_length},
@@ -1307,7 +1311,7 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
                         $CFG->{min_supAB}
                 );
 
-		my $patternfilename = "../data-v3/data_per_class/$c_enc/$c_enc-patterns-" . join("-",
+		my $patternfilename = "$BASEDIR/data-v4/data_per_class/$c_enc/$c_enc-patterns-" . join("-",
 			$CFG->{min_entities_per_class},
 			$CFG->{max_entities_per_class},
 			$CFG->{min_onegram_length},
@@ -1341,7 +1345,7 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
 			}
 		}
 
-		my $propertypatternfilename = "../data-v3/data_per_class/$c_enc/$c_enc-propertypatterns-" . join("-",
+		my $propertypatternfilename = "$BASEDIR/data-v4/data_per_class/$c_enc/$c_enc-propertypatterns-" . join("-",
 			$CFG->{min_entities_per_class},
 			$CFG->{max_entities_per_class},
 			$CFG->{min_anchor_count},
@@ -1403,7 +1407,7 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
 			$CFG->{rulepattern}->{predict_po_for_s_given_localized_l} or
 			$CFG->{rulepattern}->{predict_p_for_s_given_localized_l}
 		){
-			my $datafilename = "../data-v3/data_per_class/$c_enc/sub-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".ttl";
+			my $datafilename = "$BASEDIR/data-v4/data_per_class/$c_enc/sub-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".ttl";
 			next FEC if not -s "$datafilename.bz2";
 
 			my $frequent_terms = {};
@@ -1552,8 +1556,8 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
 
 			if($CFG->{rulepattern}->{predict_l_for_s_given_po} or $CFG->{rulepattern}->{predict_po_for_s_given_l}){
 				print "$c_enc sub predict_l_for_s_given_po and predict_po_for_s_given_l ...\n";
-				my $filename1_csv = "../results-v3/rules-predict_l_for_s_given_po-$parameterstring_nonlocalized.csv";
-                                my $filename2_csv = "../results-v3/rules-predict_po_for_s_given_l-$parameterstring_nonlocalized.csv";
+				my $filename1_csv = "$BASEDIR/results-v4/rules-predict_l_for_s_given_po-$parameterstring_nonlocalized.csv";
+                                my $filename2_csv = "$BASEDIR/results-v4/rules-predict_po_for_s_given_l-$parameterstring_nonlocalized.csv";
                                 my $csv1 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
                                 my $csv2 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
                                 my ($fh1, $fh2);
@@ -1643,8 +1647,8 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
 			
 			if($CFG->{rulepattern}->{predict_localized_l_for_s_given_po} or $CFG->{rulepattern}->{predict_po_for_s_given_localized_l}){
                                 print "$c_enc sub predict_localized_l_for_s_given_po and predict_po_for_s_given_localized_l ...\n";
-                                my $filename1_csv = "../results-v3/rules-predict_localized_l_for_s_given_po-$parameterstring_localized.csv";
-                                my $filename2_csv = "../results-v3/rules-predict_po_for_s_given_localized_l-$parameterstring_localized.csv";
+                                my $filename1_csv = "$BASEDIR/results-v4/rules-predict_localized_l_for_s_given_po-$parameterstring_localized.csv";
+                                my $filename2_csv = "$BASEDIR/results-v4/rules-predict_po_for_s_given_localized_l-$parameterstring_localized.csv";
 				my $csv1 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
                                 my $csv2 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
                                 my ($fh1, $fh2);
@@ -1736,8 +1740,8 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
 
 			if($CFG->{rulepattern}->{predict_l_for_s_given_p} or $CFG->{rulepattern}->{predict_p_for_s_given_l}){
                                 print "$c_enc sub predict_l_for_s_given_p and predict_p_for_s_given_l ...\n";
-                                my $filename1_csv = "../results-v3/rules-predict_l_for_s_given_p-$parameterstring_nonlocalized.csv";
-                                my $filename2_csv = "../results-v3/rules-predict_p_for_s_given_l-$parameterstring_nonlocalized.csv";
+                                my $filename1_csv = "$BASEDIR/results-v4/rules-predict_l_for_s_given_p-$parameterstring_nonlocalized.csv";
+                                my $filename2_csv = "$BASEDIR/results-v4/rules-predict_p_for_s_given_l-$parameterstring_nonlocalized.csv";
                                 my $csv1 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
                                 my $csv2 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
                                 my ($fh1, $fh2);
@@ -1825,8 +1829,8 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
 
 			if($CFG->{rulepattern}->{predict_localized_l_for_s_given_p} or $CFG->{rulepattern}->{predict_p_for_s_given_localized_l}){
                                 print "$c_enc sub predict_localized_l_for_s_given_p and predict_p_for_s_given_localized_l ...\n";
-                                my $filename1_csv = "../results-v3/rules-predict_localized_l_for_s_given_p-$parameterstring_localized.csv";
-                                my $filename2_csv = "../results-v3/rules-predict_p_for_s_given_localized_l-$parameterstring_localized.csv";
+                                my $filename1_csv = "$BASEDIR/results-v4/rules-predict_localized_l_for_s_given_p-$parameterstring_localized.csv";
+                                my $filename2_csv = "$BASEDIR/results-v4/rules-predict_p_for_s_given_localized_l-$parameterstring_localized.csv";
 				my $csv1 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
                                 my $csv2 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
                                 my ($fh1, $fh2);
@@ -1916,8 +1920,8 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
 
 			if($CFG->{rulepattern}->{predict_l_for_s_given_o} or $CFG->{rulepattern}->{predict_o_for_s_given_l}){
                                 print "$c_enc sub predict_l_for_s_given_o and predict_o_for_s_given_l ...\n";
-                                my $filename1_csv = "../results-v3/rules-predict_l_for_s_given_o-$parameterstring_nonlocalized.csv";
-                                my $filename2_csv = "../results-v3/rules-predict_o_for_s_given_l-$parameterstring_nonlocalized.csv";
+                                my $filename1_csv = "$BASEDIR/results-v4/rules-predict_l_for_s_given_o-$parameterstring_nonlocalized.csv";
+                                my $filename2_csv = "$BASEDIR/results-v4/rules-predict_o_for_s_given_l-$parameterstring_nonlocalized.csv";
                                 my $csv1 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
                                 my $csv2 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
                                 my ($fh1, $fh2);
@@ -2029,7 +2033,7 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
                         $CFG->{rulepattern}->{predict_p_for_o_given_localized_l}
                 ){
 
-                        my $datafilename = "../data-v3/data_per_class/$c_enc/obj-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".ttl";
+                        my $datafilename = "$BASEDIR/data-v4/data_per_class/$c_enc/obj-" . $CFG->{min_entities_per_class} . "-" . $CFG->{max_entities_per_class} . ".ttl";
                         next FEC if not -s "$datafilename.bz2";
 
                         my $frequent_terms = {};
@@ -2174,8 +2178,8 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
 
 			if($CFG->{rulepattern}->{predict_l_for_o_given_sp} or $CFG->{rulepattern}->{predict_sp_for_o_given_l}){
                                 print "$c_enc sub predict_l_for_o_given_sp and predict_sp_for_o_given_l ...\n";
-                                my $filename1_csv = "../results-v3/rules-predict_l_for_o_given_sp-$parameterstring_nonlocalized.csv";
-                                my $filename2_csv = "../results-v3/rules-predict_sp_for_o_given_l-$parameterstring_nonlocalized.csv";
+                                my $filename1_csv = "$BASEDIR/results-v4/rules-predict_l_for_o_given_sp-$parameterstring_nonlocalized.csv";
+                                my $filename2_csv = "$BASEDIR/results-v4/rules-predict_sp_for_o_given_l-$parameterstring_nonlocalized.csv";
                                 my $csv1 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
                                 my $csv2 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
                                 my ($fh1, $fh2);
@@ -2265,8 +2269,8 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
 
 			if($CFG->{rulepattern}->{predict_localized_l_for_o_given_sp} or $CFG->{rulepattern}->{predict_sp_for_o_given_localized_l}){
                                 print "$c_enc sub predict_localized_l_for_o_given_sp and predict_sp_for_o_given_localized_l ...\n";
-                                my $filename1_csv = "../results-v3/rules-predict_localized_l_for_o_given_sp-$parameterstring_localized.csv";
-                                my $filename2_csv = "../results-v3/rules-predict_sp_for_o_given_localized_l-$parameterstring_localized.csv";
+                                my $filename1_csv = "$BASEDIR/results-v4/rules-predict_localized_l_for_o_given_sp-$parameterstring_localized.csv";
+                                my $filename2_csv = "$BASEDIR/results-v4/rules-predict_sp_for_o_given_localized_l-$parameterstring_localized.csv";
                                 my $csv1 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
                                 my $csv2 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
                                 my ($fh1, $fh2);
@@ -2358,8 +2362,8 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
 
 			if($CFG->{rulepattern}->{predict_l_for_o_given_s} or $CFG->{rulepattern}->{predict_s_for_o_given_l}){
 				print "$c_enc sub predict_l_for_o_given_s and predict_s_for_o_given_l ...\n";
-				my $filename1_csv = "../results-v3/rules-predict_l_for_o_given_s-$parameterstring_nonlocalized.csv";
-				my $filename2_csv = "../results-v3/rules-predict_s_for_o_given_l-$parameterstring_nonlocalized.csv";
+				my $filename1_csv = "$BASEDIR/results-v4/rules-predict_l_for_o_given_s-$parameterstring_nonlocalized.csv";
+				my $filename2_csv = "$BASEDIR/results-v4/rules-predict_s_for_o_given_l-$parameterstring_nonlocalized.csv";
 				my $csv1 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
 				my $csv2 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
 				my ($fh1, $fh2);
@@ -2447,8 +2451,8 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
 
 			if($CFG->{rulepattern}->{predict_l_for_o_given_p} or $CFG->{rulepattern}->{predict_p_for_o_given_l}){
 				print "$c_enc sub predict_l_for_o_given_p and predict_p_for_o_given_l ...\n";
-				my $filename1_csv = "../results-v3/rules-predict_l_for_o_given_p-$parameterstring_nonlocalized.csv";
-				my $filename2_csv = "../results-v3/rules-predict_p_for_o_given_l-$parameterstring_nonlocalized.csv";
+				my $filename1_csv = "$BASEDIR/results-v4/rules-predict_l_for_o_given_p-$parameterstring_nonlocalized.csv";
+				my $filename2_csv = "$BASEDIR/results-v4/rules-predict_p_for_o_given_l-$parameterstring_nonlocalized.csv";
 				my $csv1 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
 				my $csv2 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
 				my ($fh1, $fh2);
@@ -2536,8 +2540,8 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
 
 			if($CFG->{rulepattern}->{predict_localized_l_for_o_given_p} or $CFG->{rulepattern}->{predict_p_for_o_given_localized_l}){
 				print "$c_enc sub predict_localized_l_for_o_given_p and predict_p_for_o_given_localized_l ...\n";
-				my $filename1_csv = "../results-v3/rules-predict_localized_l_for_o_given_p-$parameterstring_localized.csv";
-				my $filename2_csv = "../results-v3/rules-predict_p_for_o_given_localized_l-$parameterstring_localized.csv";
+				my $filename1_csv = "$BASEDIR/results-v4/rules-predict_localized_l_for_o_given_p-$parameterstring_localized.csv";
+				my $filename2_csv = "$BASEDIR/results-v4/rules-predict_p_for_o_given_localized_l-$parameterstring_localized.csv";
 				my $csv1 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
 				my $csv2 = Text::CSV->new ({ binary => 1, auto_diag => 1 });
 				my ($fh1, $fh2);
@@ -2636,7 +2640,7 @@ if(-e $step4_finished_file and not -e $step5_finished_file){
 	print DAT "$time_diff\n";
 	close DAT;
 }
-print "done with step 5. wait.\n"; <STDIN>;
+print "done with step 5. wait.\n"; #<STDIN>;
 
 
 print LOG "done.\n";
