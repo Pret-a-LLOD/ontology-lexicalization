@@ -51,7 +51,7 @@ RUN apt-get update \
 
 
 # Wget data test
-RUN wget https://stackoverflow.com/questions/28885137/how-to-run-wget-inside-ubuntu-docker-image
+#RUN wget https://stackoverflow.com/questions/28885137/how-to-run-wget-inside-ubuntu-docker-image
 
 
 EXPOSE 8080

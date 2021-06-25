@@ -28,21 +28,19 @@ public class ResponseTransfer {
         //this.lexicalEntries.put(Constants.dummylexicalEntry,Constants.dummyLemon);
         //this.lexicalEntries.put(Constants.dummylexicalEntry2,Constants.dummyLemon2);
         //this.lexicalEntries.put(Constants.dummylexicalEntry3,Constants.dummyLemon3);
-          /*PerlQuery PerlQuery=new PerlQuery(location,scriptName);
-          String testString=PerlQuery.getResultString();
-          this.lexicalEntries.put(testString,testString);*/
+        /*PerlQuery PerlQuery = new PerlQuery(location, scriptName);
+        String testString = PerlQuery.getResultString();*/
+        //this.lexicalEntries.put(testString,testString);
         try {
-            String resourceDir = baseDir+processData;
-            ProcessCsv process = new ProcessCsv(baseDir,resourceDir);
+            String resourceDir = baseDir + processData;
+            ProcessCsv process = new ProcessCsv(baseDir, resourceDir);
             System.out.println("Processing files are ended!!!");
         } catch (Exception ex) {
-          System.out.println("file process does not work!!!"+ex.getMessage());
+            System.out.println("file process does not work!!!" + ex.getMessage());
         }
-        
-        
 
     }
-    
+
     
 
     public Map<String,String> getLexicalEntries() {
