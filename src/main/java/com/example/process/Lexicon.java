@@ -9,8 +9,6 @@ import com.example.analyzer.PosAnalyzer;
 import static com.example.analyzer.TextAnalyzer.OBJECT;
 import  com.example.process.*;
 import com.example.utils.FileFolderUtils;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -99,15 +97,26 @@ public class Lexicon implements PredictionRules{
             LexiconUnit LexiconUnit = new LexiconUnit(count, word, postagOfWord, kbList);
             posTaggedLex = this.setPartsOfSpeech(postagOfWord, LexiconUnit, posTaggedLex);
         }
+        
+        this.writeFileLemon(posTaggedLex);
 
-        for (String postag : posTaggedLex.keySet()) {
-            //String fileName = qald9Dir+ OBJECT + "/"+postag + "-" + key  + ".json";
+        /*for (String postag : posTaggedLex.keySet()) {
             String fileName = directory + "/" + interestingness + "-" + postag + "-" + key + ".json";
             System.out.println(fileName);
             List<LexiconUnit> lexiconUnts = posTaggedLex.get(postag);
             this.lexiconPosTaggged.put(postag, lexiconUnts);
             ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
             mapper.writeValue(Paths.get(fileName).toFile(), lexiconUnts);
+        }*/
+
+    }
+    
+    private void writeFileLemon(Map<String, List<LexiconUnit>> posTaggedLex) {
+        for (String postag : posTaggedLex.keySet()) {
+            List<LexiconUnit> lexiconUnts = posTaggedLex.get(postag);
+            for (LexiconUnit lexiconUnit : lexiconUnts) {
+                System.out.println("lexiconUnit:" + lexiconUnit);
+            }
         }
 
     }
