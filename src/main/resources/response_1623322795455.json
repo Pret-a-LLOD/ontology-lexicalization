@@ -1,0 +1,331 @@
+[
+  [
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "ontolex:LexicalSense",
+      "@id": "test-manpower-en-sen",
+      "reference": "test-worker-en",
+      "isSenseOf": "test-manpower-en-len"
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "ontolex:LexicalEntry",
+      "@id": "test-manpower-en-len",
+      "sense": "test-manpower-en-sen",
+      "form": "test-manpower-en-form",
+      "writtenRep": {
+        "@language": "en",
+        "@value": "manpower"
+      }
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "vartrans:senseRelation",
+      "@id": "test-worker-en-sen-senrel-test-manpower-en-sen",
+      "category": "lexinfo:synonym",
+      "relates": [
+        {
+          "@id": "test-worker-en-sen"
+        },
+        {
+          "@id": "test-manpower-en-sen"
+        }
+      ]
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "ontolex:LexicalSense",
+      "@id": "test-structure-of-the-labour-force-en-sen",
+      "reference": "test-worker-en",
+      "isSenseOf": "test-structure-of-the-labour-force-en-len"
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "ontolex:LexicalEntry",
+      "@id": "test-structure-of-the-labour-force-en-len",
+      "sense": "test-structure-of-the-labour-force-en-sen",
+      "form": "test-structure-of-the-labour-force-en-form",
+      "writtenRep": {
+        "@language": "en",
+        "@value": "structure of the labour force"
+      }
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "vartrans:senseRelation",
+      "@id": "test-worker-en-sen-senrel-test-structure-of-the-labour-force-en-sen",
+      "category": "lexinfo:synonym",
+      "relates": [
+        {
+          "@id": "test-worker-en-sen"
+        },
+        {
+          "@id": "test-structure-of-the-labour-force-en-sen"
+        }
+      ]
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "ontolex:LexicalSense",
+      "@id": "test-mano-de-obra-es-sen",
+      "reference": "test-worker-en",
+      "isSenseOf": "test-mano-de-obra-es-len"
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "ontolex:LexicalEntry",
+      "@id": "test-mano-de-obra-es-len",
+      "sense": "test-mano-de-obra-es-sen",
+      "form": "test-mano-de-obra-es-form",
+      "writtenRep": {
+        "@language": "es",
+        "@value": "mano de obra"
+      }
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "vartrans:senseRelation",
+      "@id": "test-worker-en-sen-senrel-test-mano-de-obra-es-sen",
+      "category": "lexinfo:translation",
+      "relates": [
+        {
+          "@id": "test-worker-en-sen"
+        },
+        {
+          "@id": "test-mano-de-obra-es-sen"
+        }
+      ]
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "ontolex:LexicalSense",
+      "@id": "test-estructura-de-la-mano-de-obra-es-sen",
+      "reference": "test-worker-en",
+      "isSenseOf": "test-estructura-de-la-mano-de-obra-es-len"
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "ontolex:LexicalEntry",
+      "@id": "test-estructura-de-la-mano-de-obra-es-len",
+      "sense": "test-estructura-de-la-mano-de-obra-es-sen",
+      "form": "test-estructura-de-la-mano-de-obra-es-form",
+      "writtenRep": {
+        "@language": "es",
+        "@value": "estructura de la mano de obra"
+      }
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "vartrans:senseRelation",
+      "@id": "test-worker-en-sen-senrel-test-estructura-de-la-mano-de-obra-es-sen",
+      "category": "lexinfo:translation",
+      "relates": [
+        {
+          "@id": "test-worker-en-sen"
+        },
+        {
+          "@id": "test-estructura-de-la-mano-de-obra-es-sen"
+        }
+      ]
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "ontolex:LexicalSense",
+      "@id": "test-trabajador-es-sen",
+      "reference": "test-worker-en",
+      "isSenseOf": "test-trabajador-es-len"
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "ontolex:LexicalEntry",
+      "@id": "test-trabajador-es-len",
+      "sense": "test-trabajador-es-sen",
+      "form": "test-trabajador-es-form",
+      "writtenRep": {
+        "@language": "es",
+        "@value": "trabajador"
+      }
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "vartrans:senseRelation",
+      "@id": "test-worker-en-sen-senrel-test-trabajador-es-sen",
+      "category": "lexinfo:translation",
+      "relates": [
+        {
+          "@id": "test-worker-en-sen"
+        },
+        {
+          "@id": "test-trabajador-es-sen"
+        }
+      ]
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "ontolex:LexicalSense",
+      "@id": "test-worker-en-sen",
+      "reference": "test-worker-en",
+      "isSenseOf": "test-worker-en-len",
+      "usageExample": {
+        "@language": "en",
+        "@value": "the worker of the company where fired by the employer"
+      }
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "ontolex:LexicalEntry",
+      "@id": "test-worker-en-len",
+      "sense": "test-worker-en-sen",
+      "form": "test-worker-en-form",
+      "writtenRep": {
+        "@language": "en",
+        "@value": "worker"
+      }
+    },
+    {
+      "@context": [
+        "https://termitup.oeg.fi.upm.es/static/def/context.json",
+        {
+          "@base": "https://termitup.oeg.fi.upm.es/terminology/"
+        }
+      ],
+      "@type": "skos:Concept",
+      "@id": "test-worker-en",
+      "inScheme": "test",
+      "isReferenceOf": [
+        {
+          "@id": "test-worker-en-sen"
+        },
+        {
+          "@id": "test-manpower-en-sen"
+        },
+        {
+          "@id": "test-structure-of-the-labour-force-en-sen"
+        },
+        {
+          "@id": "test-mano-de-obra-es-sen"
+        },
+        {
+          "@id": "test-estructura-de-la-mano-de-obra-es-sen"
+        },
+        {
+          "@id": "test-trabajador-es-sen"
+        }
+      ],
+      "closeMatch": [
+        "http://eurovoc.europa.eu/1737"
+      ],
+      "narrower": [
+        "http://eurovoc.europa.eu/1529",
+        "http://eurovoc.europa.eu/1739",
+        "http://eurovoc.europa.eu/1740",
+        "http://eurovoc.europa.eu/2550",
+        "http://eurovoc.europa.eu/2555",
+        "http://eurovoc.europa.eu/2868",
+        "http://eurovoc.europa.eu/3539",
+        "http://eurovoc.europa.eu/3540",
+        "http://eurovoc.europa.eu/4555",
+        "http://eurovoc.europa.eu/4556",
+        "http://eurovoc.europa.eu/4557",
+        "http://eurovoc.europa.eu/4558",
+        "http://eurovoc.europa.eu/4559",
+        "http://eurovoc.europa.eu/4561",
+        "http://eurovoc.europa.eu/4562",
+        "http://eurovoc.europa.eu/4563",
+        "http://eurovoc.europa.eu/6354",
+        "http://eurovoc.europa.eu/6745",
+        "http://eurovoc.europa.eu/c_95b02746",
+        "http://eurovoc.europa.eu/c_9eb9cbaa"
+      ],
+      "related": [
+        "http://eurovoc.europa.eu/1738",
+        "http://eurovoc.europa.eu/4299"
+      ]
+    }
+  ]
+]

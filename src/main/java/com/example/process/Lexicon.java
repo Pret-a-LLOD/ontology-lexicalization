@@ -115,7 +115,10 @@ public class Lexicon implements PredictionRules{
         for (String postag : posTaggedLex.keySet()) {
             List<LexiconUnit> lexiconUnts = posTaggedLex.get(postag);
             for (LexiconUnit lexiconUnit : lexiconUnts) {
-                System.out.println("lexiconUnit:" + lexiconUnit);
+                if (postag.contains("JJ")) {
+                    Templates templates = new Templates(postag, "spanish", "Spanish");
+                    System.out.println("templates:" + templates.getResultStr());
+                }
             }
         }
 
