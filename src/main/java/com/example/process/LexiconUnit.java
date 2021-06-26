@@ -24,65 +24,24 @@ public class LexiconUnit {
     @JsonProperty("partsOfSpeech")
     private String partsOfSpeech;
     @JsonProperty("index")
-    private LinkedHashMap<Integer, List<String>> entityInfos = new LinkedHashMap<Integer, List<String>>();
+    private LinkedHashMap<Integer, List<LineInfo>> entityInfos = new LinkedHashMap<Integer, List<LineInfo>>();
     @JsonIgnore
     private LinkedHashMap<Integer, LineInfo> lineInfos = new LinkedHashMap<Integer, LineInfo>();
     
-   
-   
-
     public LexiconUnit() {
 
     }
     
-    public LexiconUnit(LexiconUnit existLexiconUnit, LexiconUnit givenLexiconUnit) {
-        Integer newIndex = 0;
-        LinkedHashMap<Integer, List<String>> entityInfos = new LinkedHashMap<Integer, List<String>>();
-        for (Integer index : existLexiconUnit.getEntityInfos().keySet()) {
-            List<String> pairs = existLexiconUnit.getEntityInfos().get(index);
-            entityInfos.put(newIndex, pairs);
-            newIndex = newIndex + 1;
-        }
-        for (Integer index : givenLexiconUnit.getEntityInfos().keySet()) {
-            List<String> pairs = givenLexiconUnit.getEntityInfos().get(index);
-            entityInfos.put(newIndex, pairs);
-            newIndex = newIndex + 1;
-        }
-        this.id = existLexiconUnit.getId();
-        this.partsOfSpeech = existLexiconUnit.getPartsOfSpeech();
-        this.word = existLexiconUnit.getWord();
-        this.entityInfos = entityInfos;
-    }
     
-      public LexiconUnit(Integer id,String word, String partsOfSpeech, LinkedHashMap<Integer, List<String>> entityInfos) {
+      public LexiconUnit(Integer id,String word, String partsOfSpeech, LinkedHashMap<Integer, List<LineInfo>> entityInfos) {
         this.id=id;
         this.partsOfSpeech = partsOfSpeech;
         this.word = word;
         this.entityInfos = entityInfos;
     }
-
-
-    public LexiconUnit(Integer id,String word, String partsOfSpeech, LinkedHashMap<Integer, List<String>> kbLineList,LinkedHashMap<Integer, LineInfo> kbLineListLine) {
-        this.id=id;
-        this.partsOfSpeech = partsOfSpeech;
-        this.word = word;
-        this.entityInfos = kbLineList;
-        this.lineInfos=kbLineListLine;
-    }
-
-    /*public LexiconUnit(LexiconUnit LexiconUnit, LinkedHashMap<Integer, List<String>> newEntityInfos) {
-        this.id = LexiconUnit.getId();
-        this.partsOfSpeech = LexiconUnit.getPartsOfSpeech();
-        this.word = LexiconUnit.getWord();
-        this.entityInfos = newEntityInfos;
-    }*/
 
     public String getWord() {
         return word;
-    }
-
-    public LinkedHashMap<Integer, List<String>> getEntityInfos() {
-        return entityInfos;
     }
 
     public String getPartsOfSpeech() {
@@ -93,8 +52,8 @@ public class LexiconUnit {
         return id;
     }
 
-    public LinkedHashMap<Integer, LineInfo> getLineInfos() {
-        return lineInfos;
+    public LinkedHashMap<Integer, List<LineInfo>>  getLineInfos() {
+        return entityInfos;
     }
 
     @Override

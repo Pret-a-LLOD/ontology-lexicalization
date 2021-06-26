@@ -39,57 +39,28 @@ public class Lexicon implements PredictionRules{
         Integer count = 0, countJJ = 0, countVB = 0;
         for (String word : lineLexicon.keySet()) {
             String postagOfWord = null;
-            LinkedHashMap<Integer, List<String>> kbList = new LinkedHashMap<Integer, List<String>>();
+            LinkedHashMap<Integer, List<LineInfo>> kbList = new LinkedHashMap<Integer, List<LineInfo>>();
             Integer index = 0;
             List<LineInfo> LineInfos = lineLexicon.get(word);
             //Collections.sort(LineInfos,new LineInfo());  
 
             Set<String> duplicateCheck = new HashSet<String>();
-
-            /*if(postagOfWord.contains(Analyzer.NOUN))
-                    countNN=countNN+1;
-                else if (postagOfWord.contains(Analyzer.ADJECTIVE)){
-                     countJJ=countJJ+1;
-                }
-                else if (postagOfWord.contains(Analyzer.VERB)){
-                     countVB=countVB+1;
-                }*/
             count = count + 1;
             for (LineInfo lineInfo : LineInfos) {
                 postagOfWord = lineInfo.getPartOfSpeech();
                 String value = null;
 
                 String object = lineInfo.getObject();
-                List<String> pairs = new ArrayList<String>();
+                List<LineInfo> pairs = new ArrayList<LineInfo>();
                 if (duplicateCheck.contains(object)) {
                     continue;
                 }
-                /*if(lineInfo.getWordOriginal().contains("legal journal"))
-                    System.out.println("lineInfo2:"+lineInfo);
-                 */
                 if (lineInfo.getProbabilityValue().isEmpty()) {
                     continue;
                 } else {
                     value = lineInfo.getProbabilityValue(interestingness).toString();
                 }
-
-               
-                //pairs.add("pair=" + lineInfo.getPredicate() + "_" + lineInfo.getObject());
-                String kb = this.getPair(lineInfo, predictionRule);
-                pairs.add("kb"+"=" + kb);
-                pairs.add(interestingness + "=" + value);
-                pairs.add("triple" + "=" + lineInfo.getSubject() + " " + lineInfo.getPredicate() + " " + lineInfo.getObject());
-                pairs.add("class" + "=" + lineInfo.getClassName());
-                //pairs.add("line" + "=" +lineInfo.toString().replace("=", " ") );
-                pairs.add(lineInfo.getProbabilityValue().toString().replace(",", ""));
-                pairs.add("posTag" + "=" + lineInfo.getPosTag());
-                pairs.add("interestingness" + "=" + interestingness);
-                pairs.add("subject" + "=" + lineInfo.getSubjectOriginal());
-                pairs.add("predicate" + "=" + lineInfo.getPredicateOriginal());
-                pairs.add("object" + "=" + lineInfo.getObjectOriginal());
-                pairs.add("fullPosTag" + "=" + lineInfo.getFullPosTag());
-                pairs.add("string" + "=" +lineInfo.getLine().replace("=", "$").replace(",", "&"));
-
+                pairs.add(lineInfo);
                 kbList.put(index, pairs);
                 index = index + 1;
                 duplicateCheck.add(object);
@@ -99,24 +70,19 @@ public class Lexicon implements PredictionRules{
         }
         
         this.writeFileLemon(posTaggedLex);
-
-        /*for (String postag : posTaggedLex.keySet()) {
-            String fileName = directory + "/" + interestingness + "-" + postag + "-" + key + ".json";
-            System.out.println(fileName);
-            List<LexiconUnit> lexiconUnts = posTaggedLex.get(postag);
-            this.lexiconPosTaggged.put(postag, lexiconUnts);
-            ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.writeValue(Paths.get(fileName).toFile(), lexiconUnts);
-        }*/
-
     }
     
     private void writeFileLemon(Map<String, List<LexiconUnit>> posTaggedLex) {
         for (String postag : posTaggedLex.keySet()) {
             List<LexiconUnit> lexiconUnts = posTaggedLex.get(postag);
             for (LexiconUnit lexiconUnit : lexiconUnts) {
+                LinkedHashMap<Integer, List<LineInfo>> ranks=lexiconUnit.getLineInfos();
+                String writtenForm=lexiconUnit.getWord();
+                for(Integer rank:ranks.keySet()){
+                    
+                }
                 if (postag.contains("JJ")) {
-                    Templates templates = new Templates(postag, "spanish", "Spanish");
+                    Templates templates = new Templates(postag, "spanish", writtenForm);
                     System.out.println("templates:" + templates.getResultStr());
                 }
             }

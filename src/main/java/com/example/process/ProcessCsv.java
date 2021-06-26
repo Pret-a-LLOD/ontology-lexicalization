@@ -48,7 +48,7 @@ public class ProcessCsv implements NullInterestingness, PredictionRules {
         posTag.add("VB");
         String txt = "txt";
 
-        Logger LOGGER = Logger.getLogger(CreateTXT.class.getName());
+        Logger LOGGER = Logger.getLogger(ProcessCsv.class.getName());
         String outputDir = resourceDir;
         Lemmatizer lemmatizer = new Lemmatizer();
         //String  txtDir =  "src/main/resources/data" + "/" + "txt" +  "/"  ;
