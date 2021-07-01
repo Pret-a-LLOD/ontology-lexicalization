@@ -190,7 +190,7 @@ public class Lemmatizer implements TextAnalyzer {
         String posTag = "VB";
 
         lemma=lemmaAnalyzer.getGeneralizedPosTagLemma(text10, posTag);
-        System.out.println(lemma);
+        //System.out.println(lemma);
 
     }
 
