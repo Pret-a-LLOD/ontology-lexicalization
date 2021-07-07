@@ -114,7 +114,13 @@ public class LexiconJson implements PredictionRules {
             //System.out.println("prediction::" + prediction);
             posLexInfo = lexinfo_adjective;
             givenPosTag = "JJ";
-        } else {
+        }/*else if (prediction.equals(PredictionRules.predict_p_for_o_given_localized_l)
+                || prediction.equals(PredictionRules.predict_p_for_s_given_l)) {
+            //System.out.println("prediction::" + prediction);
+            posLexInfo = lexinfo_adjective;
+            givenPosTag = "VB";
+        }*/
+        else {
             return;
         }
         

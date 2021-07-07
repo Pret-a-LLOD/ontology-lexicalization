@@ -49,17 +49,15 @@ public class ProcessCsv implements NullInterestingness, PredictionRules {
         posTag.add("JJ");
         posTag.add("NN");
         posTag.add("VB");
-        String txt = "txt";
 
         Logger LOGGER = Logger.getLogger(ProcessCsv.class.getName());
         String outputDir = resourceDir;
         Lemmatizer lemmatizer = new Lemmatizer();
         //String  txtDir =  "src/main/resources/data" + "/" + "txt" +  "/"  ;
         //String  txtDir =  "src/main/resources/data" + "/" + "txt" +  "/"  ;
-        String txtDir = resourceDir + "/" + txt + "/";
+        //String txtDir = resourceDir + "/" + txt + "/";
         //txtDir = "/var/www/html/ontologyLexicalization/data/";
 
-        FileFolderUtils.createDirectory(txtDir);
 
         List<String> predictKBGivenLInguistic = new ArrayList<String>(Arrays.asList(
                 predict_l_for_s_given_po,
@@ -187,64 +185,12 @@ public class ProcessCsv implements NullInterestingness, PredictionRules {
                 }
 
             }
-            LexiconJson lexicon = new LexiconJson(directory,turtleLexicon);
+             LexiconJson lexicon = new LexiconJson(directory,turtleLexicon);
             lexicon.preparePropertyLexicon(prediction, directory, className, interestingness, lineLexicon);
 
         }
                
     }
-
-    /*private static Lexicon createLexicon(String qald9Dir, String directory, String dbo_prediction, String interestingness, String experimentID, Integer numberOfRules) throws Exception {
-        Map<String, List<LineInfo>> lineLexicon = new TreeMap<String, List<LineInfo>>();
-        List<String[]> rows = new ArrayList<String[]>();
-        PropertyCSV propertyCSV = new PropertyCSV();
-
-        File file = new File(directory + "/" + experimentID);
-        CsvFile csvFile = new CsvFile(file);
-        rows = csvFile.getRows(file);
-        //System.out.println("number of rows:"+rows.size());
-        //rows = csvFile.getRows(file, 1000.0, 300000);
-
-        Integer index = 0, rowCount = 0;
-        for (String[] row : rows) {
-            if (rowCount == 0) {
-                rowCount = rowCount + 1;
-                continue;
-            } else {
-                rowCount = rowCount + 1;
-            }
-            LineInfo lineInfo = new LineInfo(index, row, dbo_prediction, interestingness, propertyCSV);
-            index = index + 1;
-
-            if (index >= numberOfRules) {
-                break;
-            }
-            if (!lineInfo.getValidFlag()) {
-                continue;
-            }
-
-            String nGram = lineInfo.getWord();
-            nGram = nGram.replace("\"", "");
-            nGram = nGram.toLowerCase().trim().strip();
-            nGram = nGram.replaceAll(" ", "_");
-            nGram = StopWordRemoval.deleteStopWord(nGram);
-
-            List<LineInfo> results = new ArrayList<LineInfo>();
-            if (lineLexicon.containsKey(nGram)) {
-                results = lineLexicon.get(nGram);
-                results.add(lineInfo);
-                lineLexicon.put(nGram, results);
-            } else {
-                results.add(lineInfo);
-                lineLexicon.put(nGram, results);
-
-            }
-
-        }
-        Lexicon lexicon = new Lexicon(qald9Dir);
-        lexicon.preparePropertyLexicon(dbo_prediction, directory, experimentID, interestingness, lineLexicon);
-        return lexicon;
-    }*/
 
     private static String[] findParameter(String[] info) {
         String[] parameters = new String[3];
