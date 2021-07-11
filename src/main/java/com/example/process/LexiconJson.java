@@ -11,6 +11,7 @@ import com.example.process.*;
 import com.example.utils.FileFolderUtils;
 import static de.citec.sc.lemon.core.Language.EN;
 import de.citec.sc.lemon.core.Lexicon;
+import de.citec.sc.lemon.core.Provenance;
 import de.citec.sc.lemon.core.Reference;
 import de.citec.sc.lemon.core.Restriction;
 import de.citec.sc.lemon.core.Sense;
@@ -53,14 +54,10 @@ import org.apache.jena.riot.RDFFormat;
  *
  * @author elahi
  */
-public class LexiconJson implements PredictionRules {
+public class LexiconJson implements PredictionRules,LemonConstants {
 
     private String lexiconDirectory = null;
-    private String lexinfo = "http://www.lexinfo.net/ontology/2.0/lexinfo#";
-    private String lemon = "http://lemon-model.net/lemon#";
-    private String lexinfo_adjective = lexinfo + "/" + "adjective";
-    private String baseUri = "http://localhost:8080/";
-    private Lexicon turtleLexicon=null;
+    private  Lexicon turtleLexicon=null;
 
     private Map<String, List<LexiconUnit>> lexiconPosTaggged = new TreeMap<String, List<LexiconUnit>>();
 
@@ -147,19 +144,40 @@ public class LexiconJson implements PredictionRules {
                         //entry=addSense(entry,writtenForm,lineInfo);
                         //System.out.println("entry::" + entry);
         
-                        Sense sense = new Sense();
+                        /*Sense sense = new Sense();
                         Reference ref = new Restriction(baseUri + "RestrictionClass" + writtenForm,
                                 lineInfo.getPredicateOriginal(),
                                 lineInfo.getObjectOriginal());
+                        sense.setReference(ref);*/
+                        Sense sense = new Sense();
+                        Reference ref = new SimpleReference("http://dbpedia.org/ontology/spouse");
                         sense.setReference(ref);
-
                         SyntacticBehaviour behaviour = new SyntacticBehaviour();
-                        behaviour.setFrame(lexinfo + "AdjectivePredicateFrame");
+                        String lexinfo = "http://www.lexinfo.net/ontology/2.0/lexinfo#";
+                        String lemon = "http://lemon-model.net/lemon#";
+
+                        behaviour.setFrame(lexinfo + "NounPossessiveFrame");
+
+                        behaviour.add(new SyntacticArgument(lexinfo + "prepositionalObject", "object", "on"));
+
+                        behaviour.add(new SyntacticArgument(lexinfo + "copulativeArg", "subject", null));
+
+                        sense.addSenseArg(new SenseArgument(lemon + "subjOfProp", "subject"));
+
+                        sense.addSenseArg(new SenseArgument(lemon + "objOfProp", "object"));
+                        Provenance provenance = new Provenance();
+                        provenance.setFrequency(1);
+                        entry.addProvenance(provenance, sense);
+
+                        entry.addSyntacticBehaviour(behaviour, sense);
+                        
+                      
+
+                        
                         /*behaviour.add(new SyntacticArgument(lexinfo + "prepositionalObject", "object", preposition));
                           behaviour.add(new SyntacticArgument(lexinfo + "copulativeArg", "subject", null));
                           sense.addSenseArg(new SenseArgument(lemon + "subjOfProp", "subject"));
                           sense.addSenseArg(new SenseArgument(lemon + "objOfProp", "object"));*/
-                        entry.addSyntacticBehaviour(behaviour, sense);
                     }
                     
                 }
@@ -167,8 +185,8 @@ public class LexiconJson implements PredictionRules {
             }
         }
 
-      
-
+         //System.out.println("lexicon::"+turtleLexicon);
+        
         /*LexiconSerialization serializer = new LexiconSerialization();
         Model model = ModelFactory.createDefaultModel();
         serializer.serialize(lexicon, model);
@@ -178,7 +196,7 @@ public class LexiconJson implements PredictionRules {
         out.close();*/
     }
 
-    private de.citec.sc.lemon.core.LexicalEntry addSense(de.citec.sc.lemon.core.LexicalEntry entry,String writtenForm, LineInfo lineInfo) throws FileNotFoundException, IOException {
+    /*private de.citec.sc.lemon.core.LexicalEntry addSense(de.citec.sc.lemon.core.LexicalEntry entry,String writtenForm, LineInfo lineInfo) throws FileNotFoundException, IOException {
         Sense sense = new Sense();
         Reference ref = new Restriction(baseUri + "RestrictionClass" + writtenForm,
                 lineInfo.getPredicateOriginal(),
@@ -187,10 +205,29 @@ public class LexiconJson implements PredictionRules {
        
         SyntacticBehaviour behaviour  = new SyntacticBehaviour();
         behaviour.setFrame(lexinfo + "AdjectivePredicateFrame");
-        /*behaviour.add(new SyntacticArgument(lexinfo + "prepositionalObject", "object", preposition));
+       
+        entry.addSyntacticBehaviour(behaviour, sense);
+
+        return entry;
+    }*/
+      private de.citec.sc.lemon.core.LexicalEntry addSenseToLemon(de.citec.sc.lemon.core.LexicalEntry entry, String writtenForm, LineInfo lineInfo) throws FileNotFoundException, IOException {
+        Sense sense = new Sense();
+        Reference ref = new SimpleReference("http://dbpedia.org/ontology/spouse");
+        sense.setReference(ref);
+        SyntacticBehaviour behaviour = new SyntacticBehaviour();
+        String lexinfo = "http://www.lexinfo.net/ontology/2.0/lexinfo#";
+        String lemon = "http://lemon-model.net/lemon#";
+
+        behaviour.setFrame(lexinfo + "NounPossessiveFrame");
+
+        behaviour.add(new SyntacticArgument(lexinfo + "prepositionalObject", "object", "on"));
+
         behaviour.add(new SyntacticArgument(lexinfo + "copulativeArg", "subject", null));
+
         sense.addSenseArg(new SenseArgument(lemon + "subjOfProp", "subject"));
-        sense.addSenseArg(new SenseArgument(lemon + "objOfProp", "object"));*/
+
+        sense.addSenseArg(new SenseArgument(lemon + "objOfProp", "object"));
+
         entry.addSyntacticBehaviour(behaviour, sense);
 
         return entry;

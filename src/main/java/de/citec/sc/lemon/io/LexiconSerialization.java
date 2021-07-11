@@ -87,7 +87,6 @@ public class LexiconSerialization {
                             */
                             if(!StringUtils.isAlpha(entry.getPreposition().getCanonicalForm())) add_entry = false;
                         }
-                        
                         if(add_entry){
                             serialize(entry,model,baseURI);
                             model.add(model.createResource("http://dblexipedia.org/Lexicon"), LEMON.entry, model.createResource(entry.getURI()));
@@ -133,7 +132,7 @@ public class LexiconSerialization {
                         model.add(model.createResource(entry.getURI()+"#CanonicalForm"), LEMON.otherForm, model.createLiteral(alternativeForm+"@"+entry.getLanguage().toString().toLowerCase()));
                     }
                 }
-                
+
                 for(String same_as_uri:entry.getList_same_as())  model.add(model.createResource(entry.getURI()), OWL.sameAs, model.createResource(same_as_uri));
                 
                 
@@ -144,7 +143,7 @@ public class LexiconSerialization {
                             
                             Reference ref = sense.getReference();
                             ref_counter+=1;
-                            //System.out.println("Sense"+Integer.toString(ref_counter)+":"+sense.toString());
+                            System.out.println("Sense"+Integer.toString(ref_counter)+":"+sense.toString());
                             model.add(model.createResource(entry.getURI()), LEMON.sense, model.createResource(entry.getURI()+"#Sense"+Integer.toString(ref_counter)));
                             
                             Provenance provenance = entry.getProvenance(sense);

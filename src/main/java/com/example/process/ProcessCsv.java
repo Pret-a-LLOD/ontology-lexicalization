@@ -35,15 +35,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.example.process.*;
 import de.citec.sc.lemon.core.Lexicon;
+import de.citec.sc.lemon.io.LexiconSerialization;
+import java.io.FileOutputStream;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.riot.RDFDataMgr;
+import org.apache.jena.riot.RDFFormat;
 
 /**
  *
  * @author elahi
  */
-public class ProcessCsv implements NullInterestingness, PredictionRules {
-    private static Lexicon  turtleLexicon = new de.citec.sc.lemon.core.Lexicon();
+public class ProcessCsv implements NullInterestingness, PredictionRules,LemonConstants {
 
-    
+    private  Lexicon  turtleLexicon = new de.citec.sc.lemon.core.Lexicon(LemonConstants.baseUri);
+
     public  ProcessCsv(String baseDir,String resourceDir) throws Exception {
         Set<String> posTag = new HashSet<String>();
         posTag.add("JJ");
@@ -92,7 +98,7 @@ public class ProcessCsv implements NullInterestingness, PredictionRules {
         for (String prediction : predictKBGivenLInguistic) {
             //String inputDir = baseDir + prediction + "/" ;
             String inputDir = baseDir + "/";
-            System.out.println("prediction::"+prediction);
+            //System.out.println("prediction::"+prediction);
             for (String inter : interestingness) {
                 outputDir = resourceDir + "/" + prediction + "/" + inter + "/";
                 FileFolderUtils.createDirectory(outputDir);
@@ -102,10 +108,8 @@ public class ProcessCsv implements NullInterestingness, PredictionRules {
             }
         }
 
-        System.out.println("lexicon:::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-        System.out.println(turtleLexicon);
-        System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
         
+       
     }
 
     public void generate(String rawFileDir, String outputDir, String prediction, String givenInterestingness, Logger givenLOGGER, String fileType) throws Exception {
@@ -118,7 +122,7 @@ public class ProcessCsv implements NullInterestingness, PredictionRules {
         }
     }
 
-    private static void createExperimentLinesCsv(String directory, String prediction, String interestingness, List<File> classFiles) throws Exception {
+    private  void createExperimentLinesCsv(String directory, String prediction, String interestingness, List<File> classFiles) throws Exception {
 
         List<String[]> rows = new ArrayList<String[]>();
         Integer numberOfClass = 0;
@@ -185,7 +189,7 @@ public class ProcessCsv implements NullInterestingness, PredictionRules {
                 }
 
             }
-             LexiconJson lexicon = new LexiconJson(directory,turtleLexicon);
+            LexiconJson lexicon = new LexiconJson(directory,turtleLexicon);
             lexicon.preparePropertyLexicon(prediction, directory, className, interestingness, lineLexicon);
 
         }
@@ -213,6 +217,10 @@ public class ProcessCsv implements NullInterestingness, PredictionRules {
             return true;
         }
         return false;
+    }
+
+    public  Lexicon getTurtleLexicon() {
+        return turtleLexicon;
     }
 
 
