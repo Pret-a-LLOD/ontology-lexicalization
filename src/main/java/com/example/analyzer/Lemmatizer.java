@@ -5,7 +5,6 @@
  */
 package com.example.analyzer;
 
-import com.example.exceptions.TextAnalyzer;
 import com.example.utils.PairCheck;
 import edu.stanford.nlp.ling.TaggedWord;
 import opennlp.tools.langdetect.*;
