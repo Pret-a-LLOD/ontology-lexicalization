@@ -15,7 +15,6 @@ package com.example.process;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import com.example.analyzer.Lemmatizer;
 import com.example.utils.*;
 import java.io.File;
 import java.io.IOException;

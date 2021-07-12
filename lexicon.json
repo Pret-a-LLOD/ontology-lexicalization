@@ -21,15 +21,15 @@
     "writtenRep" : "british@en"
   }, {
     "@id" : "http://localhost:8080/british#Sense1",
-    "objOfProp" : "http://localhost:8080/british#1626000351431object",
+    "objOfProp" : "http://localhost:8080/british#1626084621223object",
     "reference" : "http://dbpedia.org/ontology/spouse",
-    "subjOfProp" : "http://localhost:8080/british#1626000351431subject",
+    "subjOfProp" : "http://localhost:8080/british#1626084621223subject",
     "generatedBy" : "http://localhost:8080/british#Activity1"
   }, {
     "@id" : "http://localhost:8080/british#SynBehaviour1_1",
     "@type" : "http://www.lexinfo.net/ontology/2.0/lexinfo#NounPossessiveFrame",
-    "copulativeArg" : "http://localhost:8080/british#1626000351431subject",
-    "prepositionalObject" : "http://localhost:8080/british#1626000351431object"
+    "copulativeArg" : "http://localhost:8080/british#1626084621223subject",
+    "prepositionalObject" : "http://localhost:8080/british#1626084621223object"
   }, {
     "@id" : "http://localhost:8080/french",
     "@type" : "http://lemon-model.net/lemon#LexicalEntry",
@@ -48,15 +48,15 @@
     "writtenRep" : "french@en"
   }, {
     "@id" : "http://localhost:8080/french#Sense1",
-    "objOfProp" : "http://localhost:8080/french#1626000351435object",
+    "objOfProp" : "http://localhost:8080/french#1626084621225object",
     "reference" : "http://dbpedia.org/ontology/spouse",
-    "subjOfProp" : "http://localhost:8080/french#1626000351435subject",
+    "subjOfProp" : "http://localhost:8080/french#1626084621225subject",
     "generatedBy" : "http://localhost:8080/french#Activity1"
   }, {
     "@id" : "http://localhost:8080/french#SynBehaviour1_1",
     "@type" : "http://www.lexinfo.net/ontology/2.0/lexinfo#NounPossessiveFrame",
-    "copulativeArg" : "http://localhost:8080/french#1626000351435subject",
-    "prepositionalObject" : "http://localhost:8080/french#1626000351435object"
+    "copulativeArg" : "http://localhost:8080/french#1626084621225subject",
+    "prepositionalObject" : "http://localhost:8080/french#1626084621225object"
   }, {
     "@id" : "http://localhost:8080/japanese",
     "@type" : "http://lemon-model.net/lemon#LexicalEntry",
@@ -75,15 +75,15 @@
     "writtenRep" : "japanese@en"
   }, {
     "@id" : "http://localhost:8080/japanese#Sense1",
-    "objOfProp" : "http://localhost:8080/japanese#1626000351436object",
+    "objOfProp" : "http://localhost:8080/japanese#1626084621226object",
     "reference" : "http://dbpedia.org/ontology/spouse",
-    "subjOfProp" : "http://localhost:8080/japanese#1626000351436subject",
+    "subjOfProp" : "http://localhost:8080/japanese#1626084621226subject",
     "generatedBy" : "http://localhost:8080/japanese#Activity1"
   }, {
     "@id" : "http://localhost:8080/japanese#SynBehaviour1_1",
     "@type" : "http://www.lexinfo.net/ontology/2.0/lexinfo#NounPossessiveFrame",
-    "copulativeArg" : "http://localhost:8080/japanese#1626000351436subject",
-    "prepositionalObject" : "http://localhost:8080/japanese#1626000351436object"
+    "copulativeArg" : "http://localhost:8080/japanese#1626084621226subject",
+    "prepositionalObject" : "http://localhost:8080/japanese#1626084621226object"
   }, {
     "@id" : "http://localhost:8080/several",
     "@type" : "http://lemon-model.net/lemon#LexicalEntry",
@@ -102,15 +102,15 @@
     "writtenRep" : "several@en"
   }, {
     "@id" : "http://localhost:8080/several#Sense1",
-    "objOfProp" : "http://localhost:8080/several#1626000351438object",
+    "objOfProp" : "http://localhost:8080/several#1626084621226object",
     "reference" : "http://dbpedia.org/ontology/spouse",
-    "subjOfProp" : "http://localhost:8080/several#1626000351438subject",
+    "subjOfProp" : "http://localhost:8080/several#1626084621226subject",
     "generatedBy" : "http://localhost:8080/several#Activity1"
   }, {
     "@id" : "http://localhost:8080/several#SynBehaviour1_1",
     "@type" : "http://www.lexinfo.net/ontology/2.0/lexinfo#NounPossessiveFrame",
-    "copulativeArg" : "http://localhost:8080/several#1626000351438subject",
-    "prepositionalObject" : "http://localhost:8080/several#1626000351438object"
+    "copulativeArg" : "http://localhost:8080/several#1626084621226subject",
+    "prepositionalObject" : "http://localhost:8080/several#1626084621226object"
   }, {
     "@id" : "http://localhost:8080/silent",
     "@type" : "http://lemon-model.net/lemon#LexicalEntry",
@@ -129,15 +129,15 @@
     "writtenRep" : "silent@en"
   }, {
     "@id" : "http://localhost:8080/silent#Sense1",
-    "objOfProp" : "http://localhost:8080/silent#1626000351439object",
+    "objOfProp" : "http://localhost:8080/silent#1626084621227object",
     "reference" : "http://dbpedia.org/ontology/spouse",
-    "subjOfProp" : "http://localhost:8080/silent#1626000351439subject",
+    "subjOfProp" : "http://localhost:8080/silent#1626084621227subject",
     "generatedBy" : "http://localhost:8080/silent#Activity1"
   }, {
     "@id" : "http://localhost:8080/silent#SynBehaviour1_1",
     "@type" : "http://www.lexinfo.net/ontology/2.0/lexinfo#NounPossessiveFrame",
-    "copulativeArg" : "http://localhost:8080/silent#1626000351439subject",
-    "prepositionalObject" : "http://localhost:8080/silent#1626000351439object"
+    "copulativeArg" : "http://localhost:8080/silent#1626084621227subject",
+    "prepositionalObject" : "http://localhost:8080/silent#1626084621227object"
   } ],
   "@context" : {
     "prepositionalObject" : {

@@ -133,4 +133,12 @@ public interface TextAnalyzer {
     public static String posTagFile = "en-pos-maxent.bin";
     public static String lemmaDictionary = "en-lemmatizer.txt";
 
+    public Set<String> posTag = new HashSet<String>() {
+        {
+            posTag.add("JJ");
+            posTag.add("NN");
+            posTag.add("VB");
+        }
+    };
+
 }
