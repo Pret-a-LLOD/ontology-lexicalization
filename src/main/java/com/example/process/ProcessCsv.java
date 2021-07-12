@@ -189,7 +189,7 @@ public class ProcessCsv implements NullInterestingness, PredictionRules,LemonCon
                 }
 
             }
-            LexiconJson lexicon = new LexiconJson(directory,turtleLexicon);
+            CreateLemon lexicon = new CreateLemon(directory,turtleLexicon);
             lexicon.preparePropertyLexicon(prediction, directory, className, interestingness, lineLexicon);
 
         }

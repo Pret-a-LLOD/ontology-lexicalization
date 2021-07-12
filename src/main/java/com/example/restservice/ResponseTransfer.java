@@ -5,25 +5,17 @@
  */
 package com.example.restservice;
 
+import com.example.analyzer.PerlException;
 import java.util.*;
 import com.example.config.*;
-import com.example.exceptions.PerlException;
 import com.example.process.*;
 import de.citec.sc.lemon.io.LexiconSerialization;
-import eu.monnetproject.lemon.LemonFactory;
-import eu.monnetproject.lemon.LemonModel;
-import eu.monnetproject.lemon.LemonModels;
-import eu.monnetproject.lemon.LemonSerializer;
-import eu.monnetproject.lemon.LinguisticOntology;
-import eu.monnetproject.lemon.model.LexicalEntry;
-import eu.monnetproject.lemon.model.LexicalForm;
-import eu.monnetproject.lemon.model.Lexicon;
-import eu.monnetproject.lemon.model.Text;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.StringWriter;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,39 +27,47 @@ import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.RDFFormat;
 
+
 /**
  *
  * @author elahi
  */
-public class ResponseTransfer {
+public class ResponseTransfer{
 
     private String baseDir = "results-v4/";
     private static String location = "perl/";
     private static String scriptName = "experiment.pl";
     private static String processData = "processData/";
     private static String lexiconFile = "lexicon.json";
-
-    private Map<String, String> lexicalEntries = new TreeMap<String, String>();
+    private String jsonLDString =null;
 
     public ResponseTransfer(Configuration config) {
         try {
             this.runPerlScript();
-            this.writeJsonLD(this.runProcessOutput(), lexiconFile);
+            LexiconSerialization serializer = new LexiconSerialization();
+            Model model = ModelFactory.createDefaultModel();
+            serializer.serialize(this.runProcessOutput(), model);
+            this.writeJsonLDToFile(model, lexiconFile,RDFFormat.JSONLD);
+            this.writeJsonLDtoString(model, scriptName, RDFFormat.JSONLD);
         } catch (PerlException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("perl script is not working!!" + ex.getMessage());
-            return;
+            this.jsonLDString=ex.getMessage();
+           
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("File not found!!" + ex.getMessage());
-            return;
+             this.jsonLDString=ex.getMessage();
+           
         } catch (IOException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("writing to file failed!!" + ex.getMessage());
-            return;
+            System.out.println("writing to file failed!!" + ex.getMessage()); 
+            this.jsonLDString=ex.getMessage();
+           
         } catch (Exception ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("System output process does not work!!");
+             this.jsonLDString=ex.getMessage();
         }
 
     }
@@ -83,18 +83,21 @@ public class ResponseTransfer {
         return new ProcessCsv(baseDir, resourceDir).getTurtleLexicon();
     }
 
-    private void writeJsonLD(de.citec.sc.lemon.core.Lexicon lexicon, String fileName) throws FileNotFoundException, IOException {
-        LexiconSerialization serializer = new LexiconSerialization();
-        Model model = ModelFactory.createDefaultModel();
-        serializer.serialize(lexicon, model);
+    private void writeJsonLDToFile(Model model, String fileName,RDFFormat type) throws FileNotFoundException, IOException {
         FileOutputStream out = new FileOutputStream(new File(fileName));
-        RDFDataMgr.write(out, model, RDFFormat.JSONLD);
+        RDFDataMgr.write(out, model, type);
         out.close();
-        System.out.println("lemon creation works!!!");
+      
+    }
+    private void writeJsonLDtoString(Model model, String fileName, RDFFormat type) throws FileNotFoundException, IOException {
+        StringWriter stringWriter = new StringWriter();
+        RDFDataMgr.write(stringWriter, model, type);
+        jsonLDString = stringWriter.toString();
+        stringWriter.close();
     }
 
-    public Map<String, String> getLexicalEntries() {
-        return this.lexicalEntries;
+    public String getJsonLDString() {
+        return jsonLDString;
     }
 
 }

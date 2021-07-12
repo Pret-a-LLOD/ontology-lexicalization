@@ -574,6 +574,11 @@ public class LineInfo implements NullInterestingness,PredictionRules{
         return fullPosTag;
     }
 
+    
+    public String getPreposition() {
+        return "of";
+    }
+
   
 
     public Double getCheckedAssociationRuleValue() {

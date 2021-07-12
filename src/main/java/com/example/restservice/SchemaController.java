@@ -25,10 +25,11 @@ import org.springframework.web.bind.annotation.*;
         method = {RequestMethod.GET, RequestMethod.POST})
 public class SchemaController {
     
-    @RequestMapping(path = "/response", method = RequestMethod.POST)
+    @RequestMapping(path = "/response", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseTransfer postResponseController(@RequestBody Configuration conf) {
-        return new ResponseTransfer(conf);
+    public String postResponseController(@RequestBody Configuration conf) {
+        ResponseTransfer responseTransfer=new ResponseTransfer(conf);
+        return responseTransfer.getJsonLDString();
      }
     
     /*@PostMapping("/response")
