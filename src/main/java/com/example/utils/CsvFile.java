@@ -7,8 +7,6 @@ package com.example.utils;
 
 import com.example.analyzer.PosAnalyzer;
 import static com.example.analyzer.TextAnalyzer.OBJECT;
-import com.example.process.*;
-import static com.example.utils.FileFolderUtils.getFileSizeMegaBytes;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
@@ -38,7 +36,7 @@ import java.util.logging.Logger;
  *
  * @author elahi
  */
-public class CsvFile implements CsvConstants {
+public class CsvFile  {
 
     private File filename = null;
     public String[] qaldHeader = null;

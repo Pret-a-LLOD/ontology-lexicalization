@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.process;
+package com.example.core;
 
+import com.example.config.PredictionRules;
+import com.example.config.NullInterestingness;
 import com.example.analyzer.PosAnalyzer;
 import com.example.analyzer.TextAnalyzer;
 import static com.example.analyzer.TextAnalyzer.POS_TAGGER_WORDS;

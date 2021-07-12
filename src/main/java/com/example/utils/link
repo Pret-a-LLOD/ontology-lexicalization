@@ -1,9 +1,0 @@
-<!-- https://mvnrepository.com/artifact/com.github.monnetproject/lemon.api -->
-<dependency>
-    <groupId>com.github.monnetproject</groupId>
-    <artifactId>lemon.api</artifactId>
-    <version>1.18.4</version>
-</dependency>
-
-
-https://github.com/ag-sc/lemon.api.git

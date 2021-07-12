@@ -1,4 +1,4 @@
-package com.example.process;
+package com.example.core;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,6 +15,9 @@ package com.example.process;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.example.config.LemonConstants;
+import com.example.config.PredictionRules;
+import com.example.config.NullInterestingness;
 import com.example.analyzer.Lemmatizer;
 import com.example.utils.*;
 import java.io.File;
@@ -33,7 +36,6 @@ import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.example.process.*;
 import de.citec.sc.lemon.core.Lexicon;
 import de.citec.sc.lemon.io.LexiconSerialization;
 import java.io.FileOutputStream;

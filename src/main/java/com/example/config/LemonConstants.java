@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.process;
+package com.example.config;
 
 import static de.citec.sc.lemon.vocabularies.LEXINFO.preposition;
 

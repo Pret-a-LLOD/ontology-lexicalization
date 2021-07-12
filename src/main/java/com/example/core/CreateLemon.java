@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.process;
+package com.example.core;
 
+import com.example.config.LemonConstants;
+import com.example.config.PredictionRules;
 import com.example.analyzer.PosAnalyzer;
 import com.example.analyzer.TextAnalyzer;
 import static com.example.analyzer.TextAnalyzer.OBJECT;
-import com.example.process.*;
 import com.example.utils.FileFolderUtils;
 import static de.citec.sc.lemon.core.Language.EN;
 import de.citec.sc.lemon.core.Lexicon;
