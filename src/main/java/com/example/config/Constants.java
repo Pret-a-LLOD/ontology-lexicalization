@@ -31,4 +31,5 @@ public interface Constants {
     public static String predict_p_for_o_given_l = "predict_p_for_o_given_l";
     public static String predict_localized_l_for_o_given_p = "predict_localized_l_for_o_given_p";
     public static String predict_p_for_o_given_localized_l = "predict_p_for_o_given_localized_l";
+     public static String UNDERSCORE="UNDERSCORE";
 }

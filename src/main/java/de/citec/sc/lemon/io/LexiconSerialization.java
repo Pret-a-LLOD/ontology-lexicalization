@@ -57,6 +57,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author swalter
  */
 public class LexiconSerialization {
+     private String baseURI = null;
     
         public LexiconSerialization(){
            
@@ -65,15 +66,15 @@ public class LexiconSerialization {
 
 	public void serialize(Lexicon lexicon, Model model) {
             
-                String baseURI = lexicon.getBaseURI();
+                this.baseURI = lexicon.getBaseURI();
                 
                 for(Preposition prep : lexicon.getPrepositions()){
-                    model.add(model.createResource("http://dblexipedia.org/Lexicon"), LEMON.entry, model.createResource(lexicon.getBaseURI()+"preposition_"+prep.getCanonicalForm()));
-                    model.add(model.createResource(lexicon.getBaseURI()+"preposition_"+prep.getCanonicalForm()), LEMON.language,model.createLiteral(prep.getLanguage().toString().toLowerCase()));
-                    model.add(model.createResource(lexicon.getBaseURI()+"preposition_"+prep.getCanonicalForm()), LEXINFO.partOfSpeech,model.createResource("http://www.lexinfo.net/ontology/2.0/lexinfo#preposition"));
-                    model.add(model.createResource(lexicon.getBaseURI()+"preposition_"+prep.getCanonicalForm()), LEMON.canonicalForm, model.createResource(lexicon.getBaseURI()+"preposition_"+prep.getCanonicalForm()+"#CanonicalForm"));
-                    //model.add(model.createResource(lexicon.getBaseURI()+"preposition_"+prep.getCanonicalForm()+"#CanonicalForm"), LEMON.writtenRep, model.createLiteral(prep.getCanonicalForm()+"@"+prep.getLanguage().toString().toLowerCase()));
-                    model.add(model.createResource(lexicon.getBaseURI()+"preposition_"+prep.getCanonicalForm()+"#CanonicalForm"), LEMON.writtenRep, model.createLiteral(prep.getCanonicalForm()+"@"+prep.getLanguage().toString().toLowerCase()));
+                    model.add(model.createResource(baseURI), LEMON.entry, model.createResource(this.baseURI+"preposition_"+prep.getCanonicalForm()));
+                    model.add(model.createResource(baseURI+"preposition_"+prep.getCanonicalForm()), LEMON.language,model.createLiteral(prep.getLanguage().toString().toLowerCase()));
+                    model.add(model.createResource(baseURI+"preposition_"+prep.getCanonicalForm()), LEXINFO.partOfSpeech,model.createResource("http://www.lexinfo.net/ontology/2.0/lexinfo#preposition"));
+                    model.add(model.createResource(baseURI+"preposition_"+prep.getCanonicalForm()), LEMON.canonicalForm, model.createResource(this.baseURI+"preposition_"+prep.getCanonicalForm()+"#CanonicalForm"));
+                    //model.add(model.createResource(this.baseURI+"preposition_"+prep.getCanonicalForm()+"#CanonicalForm"), LEMON.writtenRep, model.createLiteral(prep.getCanonicalForm()+"@"+prep.getLanguage().toString().toLowerCase()));
+                    model.add(model.createResource(baseURI+"preposition_"+prep.getCanonicalForm()+"#CanonicalForm"), LEMON.writtenRep, model.createLiteral(prep.getCanonicalForm()+"@"+prep.getLanguage().toString().toLowerCase()));
                     
                 }
 		
@@ -89,7 +90,7 @@ public class LexiconSerialization {
                         }
                         if(add_entry){
                             serialize(entry,model,baseURI);
-                            model.add(model.createResource("http://dblexipedia.org/Lexicon"), LEMON.entry, model.createResource(entry.getURI()));
+                            model.add(model.createResource(baseURI), LEMON.entry, model.createResource(entry.getURI()));
                             
                             	
                         }
@@ -98,7 +99,7 @@ public class LexiconSerialization {
 			
 		}
 		
-		model.add(model.createResource("http://dblexipedia.org/Lexicon"), RDF.type, LEMON.Lexicon);	
+		model.add(model.createResource(baseURI), RDF.type, LEMON.Lexicon);	
 		
 	}
 
@@ -167,7 +168,7 @@ public class LexiconSerialization {
                             }
                             
                             for(String pattern : provenance.getPatternset()) {
-                                model.add(model.createResource("http://dblexipedia.org/Lexicon"), LEMON.sparqlPattern, model.createResource(baseURI+"pattern_"+pattern));
+                                model.add(model.createResource(baseURI), LEMON.sparqlPattern, model.createResource(baseURI+"pattern_"+pattern));
                                 model.add(model.createResource(baseURI+"pattern_"+pattern), OWL.hasValue, model.createLiteral(pattern));
                                 model.add(model.createResource(baseURI+"pattern_"+pattern), LEMON.canonicalForm, model.createResource(baseURI+"pattern_"+pattern+"#CanonicalForm"));
                                 model.add(model.createResource(baseURI+"pattern_"+pattern+"#CanonicalForm"), LEMON.writtenRep, model.createLiteral(pattern));

@@ -1,1 +1,0 @@
-class,ruletype_longname,ruletype_shortname,"linguistic pattern","order of arguments",patterntype,subject,predicate,object,condAB,condBA,supA,supB,supAB,AllConf,Coherence,Cosine,IR,Kulczynski,MaxConf,string

@@ -33,6 +33,6 @@
      "predict_localized_l_for_o_given_p": 1,
      "predict_p_for_o_given_localized_l": 1
   },
-  "string": "Hello World"
+  "string": "http://localhost:8080/"
 }
 

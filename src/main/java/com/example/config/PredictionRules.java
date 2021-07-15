@@ -51,31 +51,5 @@ public interface PredictionRules {
     public static final String predict_sp_for_o_given_localized_l = "predict_sp_for_o_given_localized_l";
     public static final String predict_sp_for_o_given_l = "predict_sp_for_o_given_l";
 
-    public static final List<String> predictKBGivenLInguistic = new ArrayList<String>(Arrays.asList(
-            predict_sp_for_o_given_localized_l,
-            predict_p_for_o_given_localized_l,
-            predict_p_for_o_given_localized_l,
-            predict_po_for_s_given_l,
-            predict_p_for_s_given_l,
-            predict_o_for_s_given_l,
-            predict_sp_for_o_given_l,
-            predict_s_for_o_given_l,
-            predict_p_for_o_given_l
-            ));
-
-    
-    
-    public static final List<String> predictLinguisticGivenKB = new ArrayList<String>(Arrays.asList(
-           predict_p_for_s_given_l,
-           predict_o_for_s_given_l, 
-           predict_p_for_o_given_l, 
-           predict_po_for_s_given_l, 
-           predict_s_for_o_given_l,
-           predict_po_for_s_given_localized_l,
-           predict_p_for_s_given_localized_l, 
-           predict_p_for_o_given_localized_l,
-           predict_sp_for_o_given_localized_l, 
-           predict_sp_for_o_given_l 
-    ));
-
+   
 }

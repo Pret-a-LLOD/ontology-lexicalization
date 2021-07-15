@@ -56,14 +56,14 @@ import org.apache.jena.riot.RDFFormat;
  *
  * @author elahi
  */
-public class CreateLemon implements PredictionRules, LemonConstants, TextAnalyzer {
+public class LemonCreator implements PredictionRules, LemonConstants, TextAnalyzer {
 
     private String lexiconDirectory = null;
     private Lexicon turtleLexicon = null;
 
     private Map<String, List<LexiconUnit>> lexiconPosTaggged = new TreeMap<String, List<LexiconUnit>>();
 
-    public CreateLemon(String outputDir, Lexicon turtleLexicon) throws IOException {
+    public LemonCreator(String outputDir, Lexicon turtleLexicon) throws IOException {
         this.lexiconDirectory = outputDir;
         this.turtleLexicon = turtleLexicon;
     }
@@ -136,12 +136,12 @@ public class CreateLemon implements PredictionRules, LemonConstants, TextAnalyze
             for (LexiconUnit lexiconUnit : lexiconUnts) {
                 LinkedHashMap<Integer, List<LineInfo>> ranks = lexiconUnit.getLineInfos();
                 String writtenForm = lexiconUnit.getWord();
-                System.out.println("prediction::" + prediction);
-                System.out.println("writtenForm::" + writtenForm);
+                //System.out.println("prediction::" + prediction);
+                //System.out.println("writtenForm::" + writtenForm);
                 de.citec.sc.lemon.core.LexicalEntry entry = new de.citec.sc.lemon.core.LexicalEntry(EN);
                 entry.setCanonicalForm(writtenForm);
                 entry.setPOS(posLexInfo);
-                entry.setURI(baseUri + writtenForm);
+                entry.setURI(this.turtleLexicon.getBaseURI() + writtenForm);
                 entry.setPOS(posLexInfo);
 
                 for (Integer rank : ranks.keySet()) {
@@ -158,8 +158,8 @@ public class CreateLemon implements PredictionRules, LemonConstants, TextAnalyze
 
                         try {
 
-                            sense = this.addSenseToEntry(writtenForm, lineInfo, postag);
-                            System.out.println(sense);
+                            sense = this.addSenseToEntry(this.turtleLexicon.getBaseURI(),writtenForm, lineInfo, postag);
+                            //System.out.println(sense);
                             behaviour = this.addBehaviourToEntry(sense, writtenForm, postag,lineInfo.getPreposition());
                             provenance = this.addProvinceToEntry();
 
@@ -185,20 +185,20 @@ public class CreateLemon implements PredictionRules, LemonConstants, TextAnalyze
 
     }
 
-    private Sense addSenseToEntry(String writtenForm, LineInfo lineInfo, String posTag) throws FileNotFoundException, IOException {
+    private Sense addSenseToEntry(String baseUri,String writtenForm, LineInfo lineInfo, String posTag) throws FileNotFoundException, IOException {
         Sense sense = new Sense();
         if (posTag.contains(ADJECTIVE)) {
             Reference ref = new Restriction(baseUri + "RestrictionClass" + "_" + writtenForm,
                     lineInfo.getObjectOriginal(),
                     lineInfo.getPredicateOriginal());
             sense.setReference(ref);
-        } else if (posTag.contains(NOUN)) {
+        } else if (posTag.contains(NOUN)||posTag.contains(VERB)) {
             Reference ref = new SimpleReference(lineInfo.getObjectOriginal());
             sense.setReference(ref);
-        } else if (posTag.contains(VERB)) {
+        } /*else if (posTag.contains(VERB)) {
             Reference ref = new SimpleReference(lineInfo.getPredicateOriginal());
             sense.setReference(ref);
-        }
+        }*/
 
         return sense;
 

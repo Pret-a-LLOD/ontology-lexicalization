@@ -12,7 +12,9 @@ import com.example.analyzer.TextAnalyzer;
 import static com.example.analyzer.TextAnalyzer.POS_TAGGER_WORDS;
 import com.example.utils.Pair;
 import com.example.utils.PropertyCSV;
+import com.example.utils.StopWordRemoval;
 import com.google.common.collect.Sets;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.lang3.StringUtils;
 import java.util.Comparator;
+import java.util.HashSet;
 
 /**
  *
@@ -90,11 +93,11 @@ public class LineInfo implements NullInterestingness,PredictionRules{
 
         this.className = setClassName(row[propertyCSV.getClassNameIndex()]);
          this.setSubject(row[propertyCSV.getSubjectIndex()]);
-        this.setProperty(row[propertyCSV.getPredicateIndex()]);
-       this.setObject(row[propertyCSV.getObjectIndex()]);
-        //System.out.println("subject" + this.subjectOriginal);
-        //System.out.println("predicate" + this.predicateOriginal);
-        //System.out.println("object" + this.objectOriginal);
+         this.setProperty(row[propertyCSV.getPredicateIndex()]);
+         this.setObject(row[propertyCSV.getObjectIndex()]);
+         System.out.println("subject original" + this.subjectOriginal);
+         System.out.println("predicate original" + this.predicateOriginal);
+         System.out.println("object original" + this.objectOriginal);
 
         if (!isKBValid()) {
             this.validFlag = false;
@@ -520,15 +523,14 @@ public class LineInfo implements NullInterestingness,PredictionRules{
         }
         return false;
     }
-    
-    
-  
 
     @Override
     public String toString() {
-        String line = this.line + "\n";
-        return "LineInfo{"+this.className+" ," + subject + ", predicate=" + predicate + ", object=" + object + ", word=" + word + ", probabilityValue=" + probabilityValue + '}';
+        return "LineInfo{" + ", subjectOriginal=" + subjectOriginal + ", predicateOriginal=" + predicateOriginal + ", objectOriginal=" + objectOriginal + ", posTag=" + posTag + ", word=" + word + ", wordOriginal=" + wordOriginal + ", className=" + className + ", predictionRule=" + predictionRule + ", subjectObjectOrder=" + subjectObjectOrder + ", validFlag=" + validFlag + ", nGramNumber=" + nGramNumber;
     }
+    
+    
+  
 
  
     private String setClassName(String className) {
@@ -581,7 +583,7 @@ public class LineInfo implements NullInterestingness,PredictionRules{
         return "of";
     }
 
-  
+   
 
     public Double getCheckedAssociationRuleValue() {
         return checkedAssociationRuleValue;

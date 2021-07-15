@@ -7,6 +7,27 @@ package com.example.utils;
 
 import com.example.analyzer.PosAnalyzer;
 import static com.example.analyzer.TextAnalyzer.OBJECT;
+import com.example.config.PredictionRules;
+import static com.example.config.PredictionRules.predict_l_for_o_given_p;
+import static com.example.config.PredictionRules.predict_l_for_o_given_s;
+import static com.example.config.PredictionRules.predict_l_for_o_given_sp;
+import static com.example.config.PredictionRules.predict_l_for_s_given_o;
+import static com.example.config.PredictionRules.predict_l_for_s_given_p;
+import static com.example.config.PredictionRules.predict_l_for_s_given_po;
+import static com.example.config.PredictionRules.predict_localized_l_for_o_given_p;
+import static com.example.config.PredictionRules.predict_localized_l_for_o_given_sp;
+import static com.example.config.PredictionRules.predict_localized_l_for_s_given_p;
+import static com.example.config.PredictionRules.predict_localized_l_for_s_given_po;
+import static com.example.config.PredictionRules.predict_o_for_s_given_l;
+import static com.example.config.PredictionRules.predict_p_for_o_given_l;
+import static com.example.config.PredictionRules.predict_p_for_o_given_localized_l;
+import static com.example.config.PredictionRules.predict_p_for_s_given_l;
+import static com.example.config.PredictionRules.predict_p_for_s_given_localized_l;
+import static com.example.config.PredictionRules.predict_po_for_s_given_l;
+import static com.example.config.PredictionRules.predict_po_for_s_given_localized_l;
+import static com.example.config.PredictionRules.predict_s_for_o_given_l;
+import static com.example.config.PredictionRules.predict_sp_for_o_given_l;
+import static com.example.config.PredictionRules.predict_sp_for_o_given_localized_l;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
@@ -31,57 +52,137 @@ import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.compress.compressors.CompressorException;
 
 /**
  *
  * @author elahi
  */
-public class CsvFile  {
+public class CsvFile  implements PredictionRules {
 
-    private File filename = null;
+    private File csvFile = null;
+    private BufferedReader bufferedReader=null;
     public String[] qaldHeader = null;
     private Map<String, List<String[]>> wordRows = new TreeMap<String, List<String[]>>();
     private Map<String, Integer> interestingnessIndexes = new HashMap<String, Integer>();
-
     private List<String[]> rows = new ArrayList<String[]>();
-    private static Logger LOGGER = null;
 
-    public CsvFile(File filename, Logger LOGGER) {
-        this.filename = filename;
-        this.LOGGER = LOGGER;
-    }
 
     public CsvFile(File filename) {
-        this.filename = filename;
+        this.csvFile = filename;
+        try {
+            this.bufferedReader = FileFolderUtils.getBufferedReaderForCompressedFile(csvFile);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (CompressorException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
-    public void writeToCSV(List<String[]> csvData) {
-        if (csvData.isEmpty()) {
-            System.out.println("writing csv file failed!!!");
-            return;
-        }
-        try ( CSVWriter writer = new CSVWriter(new FileWriter(this.filename))) {
-            writer.writeAll(csvData);
+    public List<String[]> getRowsManual() {
+        List<String[]> rows = new ArrayList<String[]>();
+        Stack<String> stack = new Stack<String>();
+        try {
+            rows = generateLinebyLine(this.bufferedReader, 300000);
+            System.out.println("rows:::"+rows.size());
         } catch (IOException ex) {
-            System.out.println("writing csv file failed!!!" + ex.getMessage());
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("The file is not found!!!" + ex.getMessage());
         }
-    }
+        catch (Exception ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+           System.err.println( "The file reading is failed!!" + ex.getMessage());
+        }
 
-    public void writeToCSV(File newQaldFile, List<String[]> csvData) {
-        if (csvData.isEmpty()) {
-            System.out.println("writing csv file failed!!!");
-            return;
-        }
-        try ( CSVWriter writer = new CSVWriter(new FileWriter(newQaldFile))) {
-            writer.writeAll(csvData);
+        return rows;
+    }
+    
+     
+
+    /*public List<String[]> getRows(File qaldFile) {
+        List<String[]> rows = new ArrayList<String[]>();
+        System.out.println("file name:"+qaldFile);
+    
+        Stack<String> stack = new Stack<String>();
+        CSVReader reader;
+        try {
+            {
+                reader = new CSVReader(new FileReader(qaldFile));
+                rows = reader.readAll();
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("The file is not found!!!" + ex.getMessage());
         } catch (IOException ex) {
-            System.out.println("writing csv file failed!!!" + ex.getMessage());
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+               System.err.println("The file is not found!!!" + ex.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Error in csv file!!!" + ex.getMessage());
+
         }
+
+        return rows;
+    }*/
+
+   
+
+  
+
+    private List<String[]> generateLinebyLine(BufferedReader manualReader, Integer lineLimit) throws FileNotFoundException, IOException {
+        List<String[]> rows = new ArrayList<String[]>();
+        //BufferedReader manualReader = new BufferedReader(new FileReader(pathToCsv));
+        String line = null;
+        Integer index = 0;
+        while ((line = manualReader.readLine()) != null) {
+            line = this.modifyLine(line);
+            try {
+                if (line.contains(",")) {
+                    String[] data = line.split(",");
+                    rows.add(data);
+                } else {
+                    System.out.println("the line does not contain comma:" + line);
+                }
+
+            } catch (Exception ex) {
+                System.out.println("invalid lin in CSV ::" + line);
+            }
+            index = index + 1;
+            if (index > lineLimit) {
+                break;
+            }
+        }
+        manualReader.close();
+        return rows;
     }
 
+    private String modifyLine(String line) {
+        line = line.replace("c_s,ll_s => po", predict_po_for_s_given_l);
+        line = line.replace("c_s,l_s => po", predict_po_for_s_given_localized_l);
+        line = line.replace("c_s,l_s => p", predict_p_for_s_given_l);
+        line = line.replace("c_s,ll_s => p", predict_p_for_s_given_localized_l);
+        line = line.replace("c_s,l_s => o", predict_o_for_s_given_l);
+        line = line.replace("c_o,l_o => sp", predict_sp_for_o_given_l);
+        line = line.replace("c_o,ll_o => sp", predict_sp_for_o_given_localized_l);
+        line = line.replace("c_o,l_o => s", predict_s_for_o_given_l);
+        line = line.replace("c_o,l_o => p", predict_p_for_o_given_l);
+        line = line.replace("c_o,ll_o => p", predict_p_for_o_given_localized_l);
+        line = line.replace("c_s,po => l_s", predict_l_for_s_given_po);
+        line = line.replace("c_s,po => ll_s", predict_localized_l_for_s_given_po);
+        line = line.replace("c_s,p => l_s", predict_l_for_s_given_p);
+        line = line.replace("c_s,p => ll_s", predict_localized_l_for_s_given_p);
+        line = line.replace("c_s,o => l_s", predict_l_for_s_given_o);
+        line = line.replace("c_o,sp => l_o", predict_l_for_o_given_sp);
+        line = line.replace("c_o,sp => ll_o", predict_localized_l_for_o_given_sp);
+        line = line.replace("c_o,s => l_o", predict_l_for_o_given_s);
+        line = line.replace("c_o,p => l_o", predict_l_for_o_given_p);
+        line = line.replace("c_o,p => ll_o", predict_localized_l_for_o_given_p);
+        return line;
+    }
+  
     public File getFilename() {
-        return filename;
+        return csvFile;
     }
 
     public String[] getQaldHeader() {
@@ -92,169 +193,5 @@ public class CsvFile  {
         return wordRows;
     }
 
-    public String getExperiment(String experiment, String interestingness) {
-        String[] info = experiment.split("-");
-        String str = null;
-        str = experiment.replace(interestingness + "-", "");
-        str = str.replace("-" + interestingness, ">");
-        return str.substring(0, str.indexOf(">"));
-    }
-
-    public static String getInterestingnessThresold(String experiment, String interestingness) {
-        String[] info = experiment.split("-");
-        String str = null;
-        for (Integer index = 0; info.length > index; index++) {
-            str = info[index];
-        }
-
-        return str;
-    }
-
-    private String getColumnKey(String interestingness, Double thresoldValue, String posTag, String hitStr) {
-        return interestingness + "_" + thresoldValue.toString() + "-" + posTag + "-" + hitStr;
-    }
-
-    public List<String[]> getManualRow(File qaldFile, Double limit, Integer lineLimit) {
-        List<String[]> rows = new ArrayList<String[]>();
-
-        Stack<String> stack = new Stack<String>();
-        CSVReader reader;
-        try {
-            rows = generateLinebyLine(qaldFile, lineLimit);
-        } catch (IOException ex) {
-            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        /*try {
-            
-            if (FileFolderUtils.isFileBig(qaldFile, limit)) {
-                rows = generateLinebyLine(qaldFile,lineLimit);
-                System.out.println("@@@@@@@@@@@@@@@@@@@@@@" + qaldFile.getName()+" size:"+rows.size());
-            } else {
-                reader = new CSVReader(new FileReader(qaldFile));
-                rows = reader.readAll();
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
-            LOGGER.log(Level.SEVERE, "CSV File not found:!!!" + ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
-            LOGGER.log(Level.SEVERE, "CSV File not found:!!!" + ex.getMessage());
-        }  catch (CsvException ex) {
-            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
-            LOGGER.log(Level.SEVERE, "CSV problems:!!!" + ex.getMessage());
-        }
-         catch (Exception ex) {
-            try {
-                rows = generateLinebyLine(qaldFile,lineLimit);
-            } catch (IOException ex1) {
-                Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex1);
-            }
-        }*/
-        return rows;
-    }
-
-    public List<String[]> getRows(File qaldFile) {
-        List<String[]> rows = new ArrayList<String[]>();
-
-        /*if (FileFolderUtils.isFileSizeManageable(qaldFile, 40.0)) {
-            System.out.println("..........." + qaldFile.getName());
-            return rows;
-        }*/
-        Stack<String> stack = new Stack<String>();
-        CSVReader reader;
-        try {
-            /*if (!FileFolderUtils.isFileBig(qaldFile, 100.0)) {
-                rows = generateLinebyLine(qaldFile);
-                 System.out.println("@@@@@@@@@@@@@@@@@@@@@@" + qaldFile.getName()+" size:"+rows.size());
-            } else*/ {
-                reader = new CSVReader(new FileReader(qaldFile));
-                rows = reader.readAll();
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
-            LOGGER.log(Level.SEVERE, "CSV File not found:!!!" + ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
-            LOGGER.log(Level.SEVERE, "CSV File not found:!!!" + ex.getMessage());
-        } catch (CsvException ex) {
-            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
-            LOGGER.log(Level.SEVERE, "CSV problems:!!!" + ex.getMessage());
-        }
-
-        return rows;
-    }
-
-    public List<String[]> cvsModifier(File qaldFile) throws Exception {
-        List<String[]> modifyrows = new ArrayList<String[]>();
-        Map<String, List<String[]>> sort = new TreeMap<String, List<String[]>>();
-        List<String[]> rows = getRows(qaldFile);
-        String[] header = null;
-        Integer j = 0;
-        for (String[] row : rows) {
-            if (j == 0) {
-                header = row;
-
-                j = j + 1;
-                continue;
-            }
-
-            String key = null;
-            String[] newRow = new String[row.length];
-            for (Integer index = 0; index < row.length; index++) {
-                //String query = " \" " + row[index].replace("$", ",") + " \" ";
-                String query = row[index].replace("$", ",");
-                if (index == 0) {
-                    key = row[index];
-                    key = key.toLowerCase();
-                    key = key.replace(" ", "_").strip().trim();
-                    newRow[index] = query;
-                }
-                newRow[index] = query;
-
-            }
-            List<String[]> list = new ArrayList<String[]>();
-            if (sort.containsKey(key)) {
-                list = sort.get(key);
-            }
-
-            list.add(newRow);
-            sort.put(key, list);
-        }
-
-        modifyrows.add(header);
-        for (String key : sort.keySet()) {
-            List<String[]> list = sort.get(key);
-            for (String[] row : list) {
-                modifyrows.add(row);
-            }
-        }
-        return modifyrows;
-    }
-
-  
-
-    private List<String[]> generateLinebyLine(File pathToCsv, Integer lineLimit) throws FileNotFoundException, IOException {
-        List<String[]> rows = new ArrayList<String[]>();
-        BufferedReader csvReader = new BufferedReader(new FileReader(pathToCsv));
-        String line = null;
-        Integer index = 0;
-        while ((line = csvReader.readLine()) != null) {
-            try {
-                String[] data = line.split(",");
-                rows.add(data);
-
-            } catch (Exception ex) {
-                ;
-            }
-            index = index + 1;
-            if (index > lineLimit) {
-                break;
-            }
-            // do something with the data
-        }
-        csvReader.close();
-        return rows;
-    }
 
 }

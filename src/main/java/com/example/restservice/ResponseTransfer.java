@@ -32,20 +32,23 @@ public class ResponseTransfer {
     private static String location = "perl/";
     private static String scriptName = "experiment.pl";
     private static String processData = "processData/";
-    private static String lexiconFile = "lexicon.json";
+    private static String jsonOutput = "lexicon.json";
+    private static String turtleOutput = "lexicon.ttl";
     private String jsonLDString = null;
 
     public ResponseTransfer(Configuration config) {
         try {
-            this.runPerlScript();
+            //this.runPerlScript();
+            de.citec.sc.lemon.core.Lexicon turtleLexicon=this.runProcessOutput(config);
             LexiconSerialization serializer = new LexiconSerialization();
             Model model = ModelFactory.createDefaultModel();
-            serializer.serialize(this.runProcessOutput(), model);
-            this.writeJsonLDToFile(model, lexiconFile, RDFFormat.JSONLD);
+            serializer.serialize(turtleLexicon, model);
+            this.writeJsonLDToFile(model, jsonOutput, RDFFormat.JSONLD);
+             this.writeJsonLDToFile(model, turtleOutput, RDFFormat.TURTLE);
             this.writeJsonLDtoString(model, scriptName, RDFFormat.JSONLD);
         } catch (PerlException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("perl script is not working!!" + ex.getMessage());
+            System.out.println("ontology lexicalization::" + ex.getMessage());
             this.jsonLDString = ex.getMessage();
 
         } catch (FileNotFoundException ex) {
@@ -66,15 +69,17 @@ public class ResponseTransfer {
 
     }
 
-    private Boolean runPerlScript() {
+    private Boolean runPerlScript() throws PerlException {
         PerlQuery PerlQuery = new PerlQuery(location, scriptName);
-        String testString = PerlQuery.getResultString();
-        return true;
+        if(PerlQuery.getProcessSuccessFlag())
+            return true;
+        else 
+            throw new PerlException("Perl script does not work!!");
     }
 
-    private de.citec.sc.lemon.core.Lexicon runProcessOutput() throws Exception {
+    private de.citec.sc.lemon.core.Lexicon runProcessOutput(Configuration config) throws Exception {
         String resourceDir = baseDir + processData;
-        return new ProcessCsv(baseDir, resourceDir).getTurtleLexicon();
+        return new ProcessCsv(baseDir, resourceDir,config.getBaseUri()).getTurtleLexicon();
     }
 
     private void writeJsonLDToFile(Model model, String fileName, RDFFormat type) throws FileNotFoundException, IOException {

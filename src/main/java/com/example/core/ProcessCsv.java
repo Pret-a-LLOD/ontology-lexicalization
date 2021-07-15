@@ -19,6 +19,8 @@ import com.example.config.LemonConstants;
 import com.example.config.PredictionRules;
 import com.example.config.NullInterestingness;
 import com.example.analyzer.Lemmatizer;
+import com.example.config.Configuration;
+import static com.example.config.Constants.UNDERSCORE;
 import com.example.utils.*;
 import java.io.File;
 import java.io.IOException;
@@ -50,9 +52,10 @@ import org.apache.jena.riot.RDFFormat;
  */
 public class ProcessCsv implements NullInterestingness, PredictionRules,LemonConstants {
 
-    private  Lexicon  turtleLexicon = new de.citec.sc.lemon.core.Lexicon(LemonConstants.baseUri);
+    private  Lexicon  turtleLexicon =null;
 
-    public  ProcessCsv(String baseDir,String resourceDir) throws Exception {
+    public  ProcessCsv(String baseDir,String resourceDir,String baseUri ) throws Exception {
+        this.turtleLexicon=new de.citec.sc.lemon.core.Lexicon(baseUri);
         Set<String> posTag = new HashSet<String>();
         posTag.add("JJ");
         posTag.add("NN");
@@ -120,11 +123,11 @@ public class ProcessCsv implements NullInterestingness, PredictionRules,LemonCon
         if (!files.isEmpty()) {
             createExperimentLinesCsv(outputDir, prediction, givenInterestingness, files);
         } else {
-            throw new Exception("NO files found for " + prediction + " " + rawFileDir);
+            throw new Exception("NO ontology lexicalization files are found for processing at "+rawFileDir);
         }
     }
 
-    private  void createExperimentLinesCsv(String directory, String prediction, String interestingness, List<File> classFiles) throws Exception {
+    private  void createExperimentLinesCsv(String outputDir, String prediction, String interestingness, List<File> classFiles) throws Exception {
 
         List<String[]> rows = new ArrayList<String[]>();
         Integer numberOfClass = 0;
@@ -138,7 +141,8 @@ public class ProcessCsv implements NullInterestingness, PredictionRules,LemonCon
             }*/
             CsvFile csvFile = new CsvFile(classFile);
             //rows = csvFile.getManualRow(classFile, 1000.0, 300000);
-            rows = csvFile.getRows(classFile);
+            //rows = csvFile.getRows(classFile);
+            rows = csvFile.getRowsManual();
             PropertyCSV propertyCSV = new PropertyCSV();
             numberOfClass = numberOfClass + 1;
             String className = classFile.getName().replace("http%3A%2F%2Fdbpedia.org%2Fontology%2F", "");
@@ -156,6 +160,8 @@ public class ProcessCsv implements NullInterestingness, PredictionRules,LemonCon
                         continue;
                     } else if (lineInfo.getProbabilityValue().isEmpty()) {
                         continue;
+                    }else if (!lineInfo.getValidFlag()) {
+                        continue;
                     }
 
                 }
@@ -169,30 +175,35 @@ public class ProcessCsv implements NullInterestingness, PredictionRules,LemonCon
                  }*/
 
                 try {
-                    String nGram = lineInfo.getWord();
+                    /*String nGram = lineInfo.getWord();
                     nGram = nGram.replace("\"", "");
                     nGram = nGram.toLowerCase().trim().strip();
                     nGram = nGram.replaceAll(" ", "_");
-                    nGram = StopWordRemoval.deleteStopWord(nGram);
+                    nGram = StopWordRemoval.deleteStopWord(nGram);*/
+                    String nGram = this.isValidWord(lineInfo.getWord(),lineInfo.getnGramNumber());
 
-                    List<LineInfo> results = new ArrayList<LineInfo>();
-                    if (lineLexicon.containsKey(nGram)) {
-                        results = lineLexicon.get(nGram);
-                        results.add(lineInfo);
-                        lineLexicon.put(nGram, results);
-                    } else {
-                        results.add(lineInfo);
-                        lineLexicon.put(nGram, results);
+                    if (nGram != null) {
+                        System.out.println("nGram::::::::::::::::::::::::::::::;;" + nGram);
+                        List<LineInfo> results = new ArrayList<LineInfo>();
+                        if (lineLexicon.containsKey(nGram)) {
+                            results = lineLexicon.get(nGram);
+                            results.add(lineInfo);
+                            lineLexicon.put(nGram, results);
+                        } else {
+                            results.add(lineInfo);
+                            lineLexicon.put(nGram, results);
 
+                        }
                     }
+                   
                 } catch (Exception ex) {
                     // System.out.println("nGram::"+nGram);
                     continue;
                 }
 
             }
-            CreateLemon lexicon = new CreateLemon(directory,turtleLexicon);
-            lexicon.preparePropertyLexicon(prediction, directory, className, interestingness, lineLexicon);
+            LemonCreator lexicon = new LemonCreator(outputDir,turtleLexicon);
+            lexicon.preparePropertyLexicon(prediction, outputDir, className, interestingness, lineLexicon);
 
         }
                
@@ -220,7 +231,31 @@ public class ProcessCsv implements NullInterestingness, PredictionRules,LemonCon
         }
         return false;
     }
+    
+    private String isValidWord(String word,Integer nGramNumber) {
+        String nGram = word;
+        nGram = nGram.replace("\"", "");
+        nGram = nGram.toLowerCase().trim().strip();
+        nGram = nGram.replaceAll(" ", "_");
+        nGram = StopWordRemoval.deleteStopWord(nGram);
+        nGram = nGram.replaceAll("_", UNDERSCORE);
+        nGram = nGram.replaceAll("[^A-Za-z0-9]", "");
+        nGram = nGram.replace(UNDERSCORE, "_");
+        
+        if (nGram.contains("_")) {
+            if ((nGram.split("_").length > 2)) {
+                return null;
+            } else {
+                return nGram;
+            }
+        } else if (nGram.length() > 2) {
+            return nGram;
+        }
 
+        return null;
+    }
+
+   
     public  Lexicon getTurtleLexicon() {
         return turtleLexicon;
     }

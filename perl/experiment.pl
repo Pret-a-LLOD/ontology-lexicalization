@@ -29,6 +29,8 @@ use Text::CSV;
 # Step 4. collect frequent linguistic patterns for each frequent class
 # Step 5. create rules
 
+# for docker my $BASEDIR = "/app/";
+# for maven my $BASEDIR = "/app/";
 my $BASEDIR = "/app/"; 
 
 my $CFG = {

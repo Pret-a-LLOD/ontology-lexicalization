@@ -18,7 +18,6 @@ public interface LemonConstants {
     public String lexinfo_adjective = lexinfo + "/" + "adjective";
     public String lexinfo_verb = lexinfo + "/" + "verb";
     public String lexinfo_noun = lexinfo + "/" + "noun";
-    public String baseUri = "http://localhost:8080/";
     public String AdjectivePredicateFrame = "AdjectivePredicateFrame";
     public String attributiveArg = "attributiveArg";
     public String AttrSynArg = "AttrSynArg";

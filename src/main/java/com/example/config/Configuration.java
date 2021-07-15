@@ -30,7 +30,7 @@ public class Configuration {
     private Integer min_supB = 5;
     private Integer min_supAB = 5;
     private Map<String, Integer> rulepattern = new TreeMap<String, Integer>();
-    private String string = "Hello World";
+    private String baseUri = "http://localhost:8080/";
 
     public Integer getMin_entities_per_class() {
         return min_entities_per_class;
@@ -84,14 +84,8 @@ public class Configuration {
         return rulepattern;
     }
 
-    public String getString() {
-        return string;
+    public String getBaseUri() {
+        return baseUri;
     }
 
-    public String toString() {
-        return "Configuration{" + "min_entities_per_class=" + min_entities_per_class + ", max_entities_per_class=" + max_entities_per_class + ", min_onegram_length=" + min_onegram_length + ", min_pattern_count=" + min_pattern_count + ", min_anchor_count=" + min_anchor_count + ", min_propertyonegram_length=" + min_propertyonegram_length + ", min_propertypattern_count=" + min_propertypattern_count + ", min_propertystring_length=" + min_propertystring_length + ", max_propertystring_length=" + max_propertystring_length + ", min_supA=" + min_supA + ", min_supB=" + min_supB + ", min_supAB=" + min_supAB + ", rulepattern=" + rulepattern + ", string=" + string + '}';
-    }
-
-  
-    
 }

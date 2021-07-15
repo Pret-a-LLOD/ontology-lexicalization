@@ -5,10 +5,14 @@
  */
 package com.example.core;
 
+import com.example.exceptions.PerlException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,53 +20,53 @@ import java.io.IOException;
  */
 public class PerlQuery {
 
-    private static String resultString = null;
+    private  Boolean processSuccessFlag = false;
 
-    public PerlQuery(String location, String scriptName) {
-        if (runPerl(location,scriptName)) {
-            this.resultString = "working perl1";
-        } else {
-            this.resultString = "not working!!";
+    public PerlQuery(String location, String scriptName) throws PerlException {
+        try { 
+            runPerl(location,scriptName);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PerlQuery.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new PerlException("Perl script is not working!!"+ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(PerlQuery.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new PerlException("process error exceptions!!"+ex.getMessage());
         }
 
     }
 
-    public static Boolean runPerl(String location,String scriptName) {
+    public void runPerl(String location, String scriptName) throws IOException, InterruptedException {
+        Runtime runTime = Runtime.getRuntime();
+        System.out.println("location + scriptName::" + location + scriptName);
+        String[] commands = {"perl", location + scriptName};
+        Process process = runTime.exec(commands);
 
-        try {
-
-            Runtime rt = Runtime.getRuntime();
-            String[] commands = {"perl", location + scriptName};
-            Process proc = rt.exec(commands);
-
-            BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-
-            BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-
-// Read the output from the command
-            System.out.println("Here is the standard output of the command:\n");
-            String s = null;
-            while ((s = stdInput.readLine()) != null) {
-                System.out.println(s);
-            }
-
-// Read any errors from the attempted command
-            System.out.println("Here is the standard error of the command (if any):\n");
-            while ((s = stdError.readLine()) != null) {
-                System.out.println(s);
-            }
-
-        } catch (Exception e) {
-            System.err.println("error executing  " + e.getMessage());
-            return false;
+        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+        // Read the output from the command
+        System.out.println("Here is the standard output of the command:\n");
+        String s = null;
+        while ((s = stdInput.readLine()) != null) {
+            System.out.println(s);
+        }
+        // Read any errors from the attempted command
+        System.out.println("Here is the standard error of the command (if any):\n");
+        while ((s = stdError.readLine()) != null) {
+            System.out.println(s);
         }
 
-        return true;
+        if (process.waitFor() == 0) {
+            System.out.println("Process terminated ");
+            processSuccessFlag = true;
+        }
 
     }
 
-    public static String getResultString() {
-        return resultString;
+    public  Boolean getProcessSuccessFlag() {
+        return processSuccessFlag;
     }
 
+    
 }
