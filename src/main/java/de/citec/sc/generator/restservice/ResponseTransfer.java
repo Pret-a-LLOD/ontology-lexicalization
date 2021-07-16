@@ -6,6 +6,7 @@
 package de.citec.sc.generator.restservice;
 
 import de.citec.generator.config.Configuration;
+import de.citec.generator.config.Constants;
 import de.citec.generator.core.PerlQuery;
 import de.citec.generator.core.ProcessCsv;
 import de.citec.sc.generator.exceptions.PerlException;
@@ -26,20 +27,14 @@ import org.apache.jena.riot.RDFFormat;
  *
  * @author elahi
  */
-public class ResponseTransfer {
+public class ResponseTransfer implements Constants {
 
-    private String baseDir = "results-v4/";
-    private static String location = "perl/";
-    private static String scriptName = "experiment.pl";
-    private static String processData = "processData/";
-    private static String jsonOutput = "examples/lexicon.json";
-    private static String turtleOutput = "examples/lexicon.ttl";
     private String jsonLDString = null;
 
     public ResponseTransfer(Configuration config) {
         try {
-            //this.runPerlScript();
-            de.citec.sc.lemon.core.Lexicon turtleLexicon=this.runProcessOutput(config);
+            this.runPerlScript();
+            de.citec.sc.lemon.core.Lexicon turtleLexicon = this.runProcessOutput(config);
             LexiconSerialization serializer = new LexiconSerialization();
             Model model = ModelFactory.createDefaultModel();
             serializer.serialize(turtleLexicon, model);
@@ -47,7 +42,7 @@ public class ResponseTransfer {
             //this.writeJsonLDToFile(model, turtleOutput, RDFFormat.TURTLE);
             this.writeJsonLDtoString(model, scriptName, RDFFormat.JSONLD);
             System.out.println("processing ends ");
-            
+
         } catch (PerlException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("ontology lexicalization::" + ex.getMessage());
@@ -73,15 +68,16 @@ public class ResponseTransfer {
 
     private Boolean runPerlScript() throws PerlException {
         PerlQuery PerlQuery = new PerlQuery(location, scriptName);
-        if(PerlQuery.getProcessSuccessFlag())
+        if (PerlQuery.getProcessSuccessFlag()) {
             return true;
-        else 
+        } else {
             throw new PerlException("Perl script does not work!!");
+        }
     }
 
     private de.citec.sc.lemon.core.Lexicon runProcessOutput(Configuration config) throws Exception {
         String resourceDir = baseDir + processData;
-        return new ProcessCsv(baseDir, resourceDir,config).getTurtleLexicon();
+        return new ProcessCsv(baseDir, resourceDir, config).getTurtleLexicon();
     }
 
     private void writeJsonLDToFile(Model model, String fileName, RDFFormat type) throws FileNotFoundException, IOException {
