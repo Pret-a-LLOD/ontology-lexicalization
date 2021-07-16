@@ -53,9 +53,11 @@ import org.apache.jena.riot.RDFFormat;
 public class ProcessCsv implements NullInterestingness, PredictionRules,LemonConstants {
 
     private  Lexicon  turtleLexicon =null;
+    private Integer rankLimit=0;
 
-    public  ProcessCsv(String baseDir,String resourceDir,String baseUri ) throws Exception {
-        this.turtleLexicon=new de.citec.sc.lemon.core.Lexicon(baseUri);
+    public  ProcessCsv(String baseDir,String resourceDir,Configuration config) throws Exception {
+        this.turtleLexicon=new de.citec.sc.lemon.core.Lexicon(config.getBaseUri());
+        this.rankLimit=config.getRankLimit();
         Set<String> posTag = new HashSet<String>();
         posTag.add("JJ");
         posTag.add("NN");
@@ -146,7 +148,7 @@ public class ProcessCsv implements NullInterestingness, PredictionRules,LemonCon
             PropertyCSV propertyCSV = new PropertyCSV();
             numberOfClass = numberOfClass + 1;
             String className = classFile.getName().replace("http%3A%2F%2Fdbpedia.org%2Fontology%2F", "");
-            //important System.out.println
+            //important //System.out.println
             //System.out.println("interestingness:" + interestingness + " now running clssName::" + className + " " + prediction);
 
             Integer index = 0;
@@ -183,7 +185,7 @@ public class ProcessCsv implements NullInterestingness, PredictionRules,LemonCon
                     String nGram = this.isValidWord(lineInfo.getWord(),lineInfo.getnGramNumber());
 
                     if (nGram != null) {
-                        System.out.println("nGram::::::::::::::::::::::::::::::;;" + nGram);
+                        //System.out.println("nGram::::::::::::::::::::::::::::::;;" + nGram);
                         List<LineInfo> results = new ArrayList<LineInfo>();
                         if (lineLexicon.containsKey(nGram)) {
                             results = lineLexicon.get(nGram);
@@ -202,7 +204,7 @@ public class ProcessCsv implements NullInterestingness, PredictionRules,LemonCon
                 }
 
             }
-            LemonCreator lexicon = new LemonCreator(outputDir,turtleLexicon);
+            LemonCreator lexicon = new LemonCreator(outputDir,turtleLexicon,rankLimit);
             lexicon.preparePropertyLexicon(prediction, outputDir, className, interestingness, lineLexicon);
 
         }

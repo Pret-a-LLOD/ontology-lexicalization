@@ -31,6 +31,22 @@ public class Configuration {
     private Integer min_supAB = 5;
     private Map<String, Integer> rulepattern = new TreeMap<String, Integer>();
     private String baseUri = "http://localhost:8080/";
+    private Integer rank_limit = 20;
+    /*private Integer min_entities_per_class = 0;
+    private Integer max_entities_per_class = 0;
+    private Integer min_onegram_length = 0;
+    private Integer min_pattern_count = 0;
+    private Integer min_anchor_count = 0;
+    private Integer min_propertyonegram_length = 0;
+    private Integer min_propertypattern_count = 0;
+    private Integer min_propertystring_length = 0;
+    private Integer max_propertystring_length = 0;
+    private Integer min_supA = 0;
+    private Integer min_supB = 0;
+    private Integer min_supAB = 0;
+    private Map<String, Integer> rulepattern = new TreeMap<String, Integer>();
+    private String baseUri = null;
+    private Integer rank_limit = 0;*/
 
     public Integer getMin_entities_per_class() {
         return min_entities_per_class;
@@ -86,6 +102,10 @@ public class Configuration {
 
     public String getBaseUri() {
         return baseUri;
+    }
+
+    public Integer getRankLimit() {
+        return rank_limit;
     }
 
 }

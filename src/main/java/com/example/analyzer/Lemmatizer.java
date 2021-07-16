@@ -176,15 +176,15 @@ public class Lemmatizer implements TextAnalyzer {
 
         Lemmatizer lemmaAnalyzer = new Lemmatizer();
         /*for (String token : withOutPosTag.keySet()) {
-            System.out.println(token + " " + withOutPosTag.get(token));
+            //System.out.println(token + " " + withOutPosTag.get(token));
         }
 
         Pair<Boolean, String> pair = lemmaAnalyzer.getLemmaWithoutPos("attended");
         if (pair.getValue0()) {
-            System.out.println(pair.getValue1());
+            //System.out.println(pair.getValue1());
         }
         String lemma=lemmaAnalyzer.getLemma(text5);
-        System.out.println("text5:"+lemma);*/
+        //System.out.println("text5:"+lemma);*/
         
         String text10 = "attended";
         String posTag = "VB";

@@ -32,8 +32,8 @@ public class ResponseTransfer {
     private static String location = "perl/";
     private static String scriptName = "experiment.pl";
     private static String processData = "processData/";
-    private static String jsonOutput = "lexicon.json";
-    private static String turtleOutput = "lexicon.ttl";
+    private static String jsonOutput = "examples/lexicon.json";
+    private static String turtleOutput = "examples/lexicon.ttl";
     private String jsonLDString = null;
 
     public ResponseTransfer(Configuration config) {
@@ -44,26 +44,28 @@ public class ResponseTransfer {
             Model model = ModelFactory.createDefaultModel();
             serializer.serialize(turtleLexicon, model);
             this.writeJsonLDToFile(model, jsonOutput, RDFFormat.JSONLD);
-             this.writeJsonLDToFile(model, turtleOutput, RDFFormat.TURTLE);
+            //this.writeJsonLDToFile(model, turtleOutput, RDFFormat.TURTLE);
             this.writeJsonLDtoString(model, scriptName, RDFFormat.JSONLD);
+            System.out.println("processing ends ");
+            
         } catch (PerlException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ontology lexicalization::" + ex.getMessage());
+            System.err.println("ontology lexicalization::" + ex.getMessage());
             this.jsonLDString = ex.getMessage();
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("File not found!!" + ex.getMessage());
+            System.err.println("File not found!!" + ex.getMessage());
             this.jsonLDString = ex.getMessage();
 
         } catch (IOException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("writing to file failed!!" + ex.getMessage());
+            System.err.println("writing to file failed!!" + ex.getMessage());
             this.jsonLDString = ex.getMessage();
 
         } catch (Exception ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("System output process does not work!!");
+            System.err.println("System output process does not work!!");
             this.jsonLDString = ex.getMessage();
         }
 
@@ -79,7 +81,7 @@ public class ResponseTransfer {
 
     private de.citec.sc.lemon.core.Lexicon runProcessOutput(Configuration config) throws Exception {
         String resourceDir = baseDir + processData;
-        return new ProcessCsv(baseDir, resourceDir,config.getBaseUri()).getTurtleLexicon();
+        return new ProcessCsv(baseDir, resourceDir,config).getTurtleLexicon();
     }
 
     private void writeJsonLDToFile(Model model, String fileName, RDFFormat type) throws FileNotFoundException, IOException {

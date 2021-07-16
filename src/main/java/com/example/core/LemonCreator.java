@@ -7,10 +7,7 @@ package com.example.core;
 
 import com.example.config.LemonConstants;
 import com.example.config.PredictionRules;
-import com.example.analyzer.PosAnalyzer;
 import com.example.analyzer.TextAnalyzer;
-import static com.example.analyzer.TextAnalyzer.OBJECT;
-import com.example.utils.FileFolderUtils;
 import static de.citec.sc.lemon.core.Language.EN;
 import de.citec.sc.lemon.core.Lexicon;
 import de.citec.sc.lemon.core.Provenance;
@@ -21,36 +18,8 @@ import de.citec.sc.lemon.core.SenseArgument;
 import de.citec.sc.lemon.core.SimpleReference;
 import de.citec.sc.lemon.core.SyntacticArgument;
 import de.citec.sc.lemon.core.SyntacticBehaviour;
-import de.citec.sc.lemon.io.LexiconSerialization;
-import static de.citec.sc.lemon.vocabularies.LEXINFO.preposition;
-import eu.monnetproject.lemon.LemonFactory;
-import eu.monnetproject.lemon.LemonModel;
-import eu.monnetproject.lemon.LemonModels;
-import eu.monnetproject.lemon.LemonSerializer;
-import eu.monnetproject.lemon.LinguisticOntology;
-import eu.monnetproject.lemon.model.LexicalEntry;
-import eu.monnetproject.lemon.model.LexicalForm;
-import eu.monnetproject.lemon.model.Text;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.net.URI;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import net.lexinfo.LexInfo;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.riot.RDFDataMgr;
-import org.apache.jena.riot.RDFFormat;
+import java.io.*;
+import java.util.*;
 
 /**
  *
@@ -60,12 +29,13 @@ public class LemonCreator implements PredictionRules, LemonConstants, TextAnalyz
 
     private String lexiconDirectory = null;
     private Lexicon turtleLexicon = null;
-
+    private Integer rankLimit = 0;
     private Map<String, List<LexiconUnit>> lexiconPosTaggged = new TreeMap<String, List<LexiconUnit>>();
 
-    public LemonCreator(String outputDir, Lexicon turtleLexicon) throws IOException {
+    public LemonCreator(String outputDir, Lexicon turtleLexicon, Integer rankLimit) throws IOException {
         this.lexiconDirectory = outputDir;
         this.turtleLexicon = turtleLexicon;
+        this.rankLimit = rankLimit;
     }
 
     public void preparePropertyLexicon(String prediction, String directory, String key, String interestingness, Map<String, List<LineInfo>> lineLexicon) throws IOException, Exception {
@@ -138,14 +108,21 @@ public class LemonCreator implements PredictionRules, LemonConstants, TextAnalyz
                 String writtenForm = lexiconUnit.getWord();
                 //System.out.println("prediction::" + prediction);
                 //System.out.println("writtenForm::" + writtenForm);
+                /*if(!writtenForm.equals("japanese"))
+                    continue;*/
                 de.citec.sc.lemon.core.LexicalEntry entry = new de.citec.sc.lemon.core.LexicalEntry(EN);
                 entry.setCanonicalForm(writtenForm);
                 entry.setPOS(posLexInfo);
                 entry.setURI(this.turtleLexicon.getBaseURI() + writtenForm);
                 entry.setPOS(posLexInfo);
 
+                Integer index = 0;
                 for (Integer rank : ranks.keySet()) {
                     List<LineInfo> rankLineInfo = ranks.get(rank);
+                    index = index + 1;
+                    if (index > this.rankLimit) {
+                        break;
+                    }
                     for (LineInfo lineInfo : rankLineInfo) {
                         //System.out.println("Pos tag::" + lineInfo.getPosTag());
                         //System.out.println("predicate::" + prediction);
@@ -158,22 +135,22 @@ public class LemonCreator implements PredictionRules, LemonConstants, TextAnalyz
 
                         try {
 
-                            sense = this.addSenseToEntry(this.turtleLexicon.getBaseURI(),writtenForm, lineInfo, postag);
-                            //System.out.println(sense);
-                            behaviour = this.addBehaviourToEntry(sense, writtenForm, postag,lineInfo.getPreposition());
+                            sense = this.addSenseToEntry(this.turtleLexicon.getBaseURI(), writtenForm, lineInfo, postag);
+                            //System.out.println("sense::::"+sense);
+                            //System.out.println("index::" + index);
+                            behaviour = this.addBehaviourToEntry(sense, writtenForm, postag, lineInfo.getPreposition());
                             provenance = this.addProvinceToEntry();
-
                             if (sense != null && behaviour != null && provenance != null) {
                                 entry.addSyntacticBehaviour(behaviour, sense);
                                 entry.addProvenance(provenance, sense);
                             }
 
                         } catch (NullPointerException ex) {
-                            System.out.println("either sense or behavior or sense is not !!!" + ex.getMessage());
+                            System.err.println("either sense or behavior or sense is not !!!" + ex.getMessage());
                         } catch (IOException ex) {
-                            System.out.println("No sense is added to the entry!!!" + ex.getMessage());
+                            System.err.println("No sense is added to the entry!!!" + ex.getMessage());
                         } catch (Exception ex) {
-                            System.out.println("No behaviour is added to the entry!!!" + ex.getMessage());
+                            System.err.println("No behaviour is added to the entry!!!" + ex.getMessage());
                         }
 
                     }
@@ -185,17 +162,18 @@ public class LemonCreator implements PredictionRules, LemonConstants, TextAnalyz
 
     }
 
-    private Sense addSenseToEntry(String baseUri,String writtenForm, LineInfo lineInfo, String posTag) throws FileNotFoundException, IOException {
+    private Sense addSenseToEntry(String baseUri, String writtenForm, LineInfo lineInfo, String posTag) throws FileNotFoundException, IOException {
         Sense sense = new Sense();
         if (posTag.contains(ADJECTIVE)) {
             Reference ref = new Restriction(baseUri + "RestrictionClass" + "_" + writtenForm,
                     lineInfo.getObjectOriginal(),
                     lineInfo.getPredicateOriginal());
             sense.setReference(ref);
-        } else if (posTag.contains(NOUN)||posTag.contains(VERB)) {
+        } else if (posTag.contains(NOUN) || posTag.contains(VERB)) {
             Reference ref = new SimpleReference(lineInfo.getObjectOriginal());
             sense.setReference(ref);
-        } /*else if (posTag.contains(VERB)) {
+        }
+        /*else if (posTag.contains(VERB)) {
             Reference ref = new SimpleReference(lineInfo.getPredicateOriginal());
             sense.setReference(ref);
         }*/

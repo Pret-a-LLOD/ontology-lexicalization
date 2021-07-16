@@ -85,7 +85,7 @@ public class CsvFile  implements PredictionRules {
         Stack<String> stack = new Stack<String>();
         try {
             rows = generateLinebyLine(this.bufferedReader, 300000);
-            System.out.println("rows:::"+rows.size());
+            //System.out.println("rows:::"+rows.size());
         } catch (IOException ex) {
             Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("The file is not found!!!" + ex.getMessage());
@@ -130,7 +130,7 @@ public class CsvFile  implements PredictionRules {
 
   
 
-    private List<String[]> generateLinebyLine(BufferedReader manualReader, Integer lineLimit) throws FileNotFoundException, IOException {
+    private List<String[]> generateLinebyLine(BufferedReader manualReader, Integer lineLimit) throws FileNotFoundException, IOException, Exception {
         List<String[]> rows = new ArrayList<String[]>();
         //BufferedReader manualReader = new BufferedReader(new FileReader(pathToCsv));
         String line = null;
@@ -142,11 +142,11 @@ public class CsvFile  implements PredictionRules {
                     String[] data = line.split(",");
                     rows.add(data);
                 } else {
-                    System.out.println("the line does not contain comma:" + line);
+                    throw new Exception("the line does not contain comma:"  + line);
                 }
 
             } catch (Exception ex) {
-                System.out.println("invalid lin in CSV ::" + line);
+                throw new Exception("invalid lin in CSV ::" + line+" "+ex.getMessage());
             }
             index = index + 1;
             if (index > lineLimit) {

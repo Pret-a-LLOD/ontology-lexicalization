@@ -95,9 +95,9 @@ public class LineInfo implements NullInterestingness,PredictionRules{
          this.setSubject(row[propertyCSV.getSubjectIndex()]);
          this.setProperty(row[propertyCSV.getPredicateIndex()]);
          this.setObject(row[propertyCSV.getObjectIndex()]);
-         System.out.println("subject original" + this.subjectOriginal);
-         System.out.println("predicate original" + this.predicateOriginal);
-         System.out.println("object original" + this.objectOriginal);
+         /*System.out.println("subject original" + this.subjectOriginal);
+         //System.out.println("predicate original" + this.predicateOriginal);
+         //System.out.println("object original" + this.objectOriginal);*/
 
         if (!isKBValid()) {
             this.validFlag = false;
@@ -106,7 +106,7 @@ public class LineInfo implements NullInterestingness,PredictionRules{
 
         this.wordOriginal = row[propertyCSV.getLinguisticPatternIndex()];
         /*if(this.wordOriginal.contains("ustralian"))
-            System.out.println("@@@@@@@@@@@@@@@22:"+wordOriginal);*/
+            //System.out.println("@@@@@@@@@@@@@@@22:"+wordOriginal);*/
 
         if (wordOriginal != null) {
             this.validFlag = true;
@@ -442,10 +442,10 @@ public class LineInfo implements NullInterestingness,PredictionRules{
         if(analyzer.posTaggerText(word)){
         this.fullPosTag=analyzer.getFullPosTag();
         /*System.out.println("word::" + word);
-        System.out.println("adjective::" + analyzer.getAdjectives());
-        System.out.println("noun::" + analyzer.getNouns());
-        System.out.println("verb::" + analyzer.getVerbs());
-        System.out.println("fullPosTag::" + fullPosTag);*/
+        //System.out.println("adjective::" + analyzer.getAdjectives());
+        //System.out.println("noun::" + analyzer.getNouns());
+        //System.out.println("verb::" + analyzer.getVerbs());
+        //System.out.println("fullPosTag::" + fullPosTag);*/
         }
         this.word = word.trim().strip();
     }

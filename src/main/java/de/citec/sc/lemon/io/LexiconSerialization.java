@@ -144,7 +144,7 @@ public class LexiconSerialization {
                             
                             Reference ref = sense.getReference();
                             ref_counter+=1;
-                            System.out.println("Sense"+Integer.toString(ref_counter)+":"+sense.toString());
+                            //System.out.println("Sense"+Integer.toString(ref_counter)+":"+sense.toString());
                             model.add(model.createResource(entry.getURI()), LEMON.sense, model.createResource(entry.getURI()+"#Sense"+Integer.toString(ref_counter)));
                             
                             Provenance provenance = entry.getProvenance(sense);
