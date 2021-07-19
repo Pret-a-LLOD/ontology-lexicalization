@@ -38,6 +38,15 @@ RUN cpanm CPAN::Meta \
  YAML::Syck \
  URL::Encode \
  Number::Bytes::Human \
+ JSON \
+ Data::Dumper \
+ FileHandle \
+ File::Basename \
+ utf8 \
+ File::Slurp \
+ JSON::Parse \
+ Term::ReadKey \
+ Data::Dumper \
  Text::CSV
 
 # wget installation
@@ -47,11 +56,6 @@ RUN apt-get update \
     ca-certificates \
  && apt-get clean \
  && rm -r /var/lib/apt/lists/*
-
-
-
-# Wget data test
-#RUN wget https://stackoverflow.com/questions/28885137/how-to-run-wget-inside-ubuntu-docker-image
 
 
 EXPOSE 8080
