@@ -5,6 +5,7 @@
  */
 package de.citec.generator.core;
 
+import de.citec.generator.config.Configuration;
 import de.citec.sc.generator.exceptions.PerlException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,8 +22,10 @@ import java.util.logging.Logger;
 public class PerlQuery {
 
     private  Boolean processSuccessFlag = false;
+     private String configJson = null;
 
-    public PerlQuery(String location, String scriptName) throws PerlException {
+    public PerlQuery(String location, String scriptName,String jsonString) throws PerlException {
+        this.configJson=jsonString;
         try { 
             runPerl(location,scriptName);
         } catch (InterruptedException ex) {
@@ -40,8 +43,10 @@ public class PerlQuery {
     public void runPerl(String location, String scriptName) throws IOException, InterruptedException {
         Runtime runTime = Runtime.getRuntime();
         //System.out.println("location + scriptName::" + location + scriptName);
-        String[] commands = {"perl", location + scriptName};
-        Process process = runTime.exec(commands);
+        //String[] commands = {"perl", location + scriptName};
+        String command = "perl "+ location + scriptName+" "+this.configJson;
+        //System.out.println("command::"+command);
+        Process process = runTime.exec(command);
 
         BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
         BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));

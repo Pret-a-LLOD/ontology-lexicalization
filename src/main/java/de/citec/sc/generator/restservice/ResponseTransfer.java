@@ -5,6 +5,8 @@
  */
 package de.citec.sc.generator.restservice;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.citec.generator.config.Configuration;
 import de.citec.generator.config.Constants;
 import de.citec.generator.core.PerlQuery;
@@ -33,7 +35,9 @@ public class ResponseTransfer implements Constants {
 
     public ResponseTransfer(Configuration config) {
         try {
-            this.runPerlScript();
+            String jsonString = this.makeJsonString(config);
+            //this.jsonLDString = jsonString;
+            this.runPerlScript(jsonString);
             de.citec.sc.lemon.core.Lexicon turtleLexicon = this.runProcessOutput(config);
             LexiconSerialization serializer = new LexiconSerialization();
             Model model = ModelFactory.createDefaultModel();
@@ -66,8 +70,8 @@ public class ResponseTransfer implements Constants {
 
     }
 
-    private Boolean runPerlScript() throws PerlException {
-        PerlQuery PerlQuery = new PerlQuery(location, scriptName);
+    private Boolean runPerlScript(String jsonString) throws PerlException {
+        PerlQuery PerlQuery = new PerlQuery(location, scriptName,jsonString);
         if (PerlQuery.getProcessSuccessFlag()) {
             return true;
         } else {
@@ -97,5 +101,12 @@ public class ResponseTransfer implements Constants {
     public String getJsonLDString() {
         return jsonLDString;
     }
+    
+    public String makeJsonString(Configuration config) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(config);
+        return json;
+    }
+
 
 }

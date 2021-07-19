@@ -6,6 +6,16 @@ use IO::Uncompress::Bunzip2 '$Bunzip2Error';
 use URL::Encode qw(url_encode_utf8);
 use Number::Bytes::Human qw(format_bytes);
 use Text::CSV;
+use JSON;
+use Data::Dumper;
+use FileHandle;
+use File::Basename;
+use utf8;
+binmode STDOUT, ':utf8';
+use File::Slurp;
+use JSON::Parse ':all';
+use Term::ReadKey;
+use Data::Dumper;
 
 
 # Note 1. The code makes use of shortened class names and shortened entity names.
@@ -104,6 +114,34 @@ my $num_to_month = {
         12 => "December",
 };
 
+###################################################
+my $total = $#ARGV + 1;
+my $counter = 1;
+my $jsonConfig = "";
+
+# Use loop to print all args stored in an array called @ARGV
+foreach my $a(@ARGV) {
+     if($counter == 1){
+       $jsonConfig = $a;
+       print "Arg # $counter : $a\n";
+     }
+	
+	$counter++;
+}
+
+my $parsed=parse_json($jsonConfig);
+
+
+print Dumper($parsed);
+
+my $selectedClass = "Actor";
+print "baseUri: $parsed->{baseUri}\n";
+print "propertyUrl: $parsed->{propertyUrl}\n";
+
+
+#################################################
+
+
 open(DAT,"<$BASEDIR/data-v4/stopwords-en.txt");
 while(defined(my $line=<DAT>)){
 	next if $line =~ m/\A#/;
@@ -159,17 +197,28 @@ if(
 	) or die "IO::Uncompress::Bunzip2 failed: $Bunzip2Error\n";
 
 	my $cnt = 0;
+    my $needToFind = "Actor";
+
+
 	while(my $line=<$zh>){
 		$cnt++;
 		print "step 1 - $cnt\n" if $cnt % 100000 == 0;
 		#last if $cnt > 1000000; # TODO remove
 		my $obj = parse_NT_into_obj($line);
 		my $c = $obj->{o}->{value};
-		next if $c !~ m/\/Actor\Z/; # TODO remove
+        
+		# # next if $c !~ m/\/Actor\Z/; # TODO remove
+        next if $c !~ m/\/$needToFind\Z/; # TODO remove
+        print "class1 > $c\n";
+
 		$frequent_class_to_entities->{$c}->{$obj->{s}->{value}} = 1 if exists $entities_with_abstract->{$obj->{s}->{value}};
 	}
 	foreach my $c (keys %{$frequent_class_to_entities}){ print "c $c\n";
-		next if $c !~ m/\/Actor\Z/; # TODO remove
+        
+		## next if $c !~ m/\/Actor\Z/; # TODO remove
+        next if $c !~ m/\/$needToFind\Z/; # TODO remove     
+        print "class2 > $c\n";
+
 		if(scalar keys %{$frequent_class_to_entities->{$c}} < $CFG->{min_entities_per_class}){
 			delete $frequent_class_to_entities->{$c};
 		} else {
@@ -212,6 +261,9 @@ if(
 	$entity_to_frequent_classes = LoadFile($entity_to_frequent_classes_file);
 }
 print "done with step 1. wait.\n"; #<STDIN>;
+
+
+
 
 
 # Step 2: collect triples per entity and per class
@@ -1205,23 +1257,18 @@ foreach my $rulepattern (qw(
 	predict_po_for_s_given_l
 	predict_localized_l_for_s_given_po
 	predict_po_for_s_given_localized_l
-
 	predict_l_for_s_given_p
 	predict_p_for_s_given_l
 	predict_localized_l_for_s_given_p
 	predict_p_for_s_given_localized_l
-
 	predict_l_for_s_given_o
 	predict_o_for_s_given_l
-
 	predict_l_for_o_given_sp
 	predict_sp_for_o_given_l
 	predict_localized_l_for_o_given_sp
 	predict_sp_for_o_given_localized_l
-
 	predict_l_for_o_given_s
 	predict_s_for_o_given_l
-
 	predict_l_for_o_given_p
 	predict_p_for_o_given_l
 	predict_localized_l_for_o_given_p
@@ -3187,4 +3234,3 @@ sub identify {
 	
 	return $R;
 }
-
