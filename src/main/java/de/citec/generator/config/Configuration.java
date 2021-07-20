@@ -5,18 +5,16 @@
  */
 package de.citec.generator.config;
 
-
 /**
  *
  * @author elahi
  */
-
-import java.util.*;
-
-
-
 public class Configuration {
 
+    /*private String class_name = "http://dbpedia.org/ontology/Actor";
+    private String uri_basic = "http://localhost:8080/";
+    private String uri_abstract = "http://localhost/data-v4/short-abstracts_lang=en.ttl.bz2";
+    private String uri_property = "http://localhost/data-v4/2020.11.01/infobox-properties_lang=en.ttl.bz2";
     private Integer min_entities_per_class = 100;
     private Integer max_entities_per_class = 10000;
     private Integer min_onegram_length = 4;
@@ -29,10 +27,13 @@ public class Configuration {
     private Integer min_supA = 5;
     private Integer min_supB = 5;
     private Integer min_supAB = 5;
-    private Map<String, Integer> rulepattern = new TreeMap<String, Integer>();
-    private String baseUri = "http://localhost:8080/";
-    private Integer rank_limit = 20;
-    /*private Integer min_entities_per_class = 0;
+    private Integer rank_limit = 20;*/
+    
+    private String class_name = null;
+    private String uri_basic = null;
+    private String uri_abstract = null;
+    private String uri_property = null;
+    private Integer min_entities_per_class = 0;
     private Integer max_entities_per_class = 0;
     private Integer min_onegram_length = 0;
     private Integer min_pattern_count = 0;
@@ -44,9 +45,12 @@ public class Configuration {
     private Integer min_supA = 0;
     private Integer min_supB = 0;
     private Integer min_supAB = 0;
-    private Map<String, Integer> rulepattern = new TreeMap<String, Integer>();
-    private String baseUri = null;
-    private Integer rank_limit = 0;*/
+    private Integer rank_limit = 0;
+
+
+    public String getClass_name() {
+        return class_name;
+    }
 
     public Integer getMin_entities_per_class() {
         return min_entities_per_class;
@@ -96,16 +100,33 @@ public class Configuration {
         return min_supAB;
     }
 
-    public Map<String, Integer>getRulepattern() {
-        return rulepattern;
-    }
-
-    public String getBaseUri() {
-        return baseUri;
-    }
-
-    public Integer getRankLimit() {
+    public Integer getRank_limit() {
         return rank_limit;
+    }
+
+    public String getUri_basic() {
+        return uri_basic;
+    }
+
+    public String getUri_abstract() {
+        return uri_abstract;
+    }
+
+    public String getUri_property() {
+        return uri_property;
+    }
+
+    public String getClassName() throws Exception {
+        if (this.class_name.isEmpty()) {
+            throw new Exception("The class is invalid!!!:");
+        } else if (this.class_name.contains("http:")) {
+            return this.class_name.substring(class_name.lastIndexOf("/") + 1);
+        } else if (class_name.contains("dbo:")) {
+            String[] info = class_name.split(":");
+            return info[1];
+        } else {
+            return this.class_name;
+        }
     }
 
 }

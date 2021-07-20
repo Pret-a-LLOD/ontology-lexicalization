@@ -12,6 +12,7 @@ import de.citec.generator.config.Constants;
 import de.citec.generator.core.PerlQuery;
 import de.citec.generator.core.ProcessCsv;
 import de.citec.sc.generator.exceptions.PerlException;
+import de.citec.sc.generator.utils.FileFolderUtils;
 import de.citec.sc.lemon.io.LexiconSerialization;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -37,7 +38,11 @@ public class ResponseTransfer implements Constants {
         try {
             String jsonString = this.makeJsonString(config);
             //this.jsonLDString = jsonString;
-            this.runPerlScript(jsonString);
+            /*System.out.print("!!!!!!!!!START!!!!!!!!!!!!!!!!");
+            System.out.print(jsonString);
+            System.out.print("!!!!!!!!!!END!!!!!!!!!!!!!!!");*/
+
+            //this.runPerlScript(jsonString);
             de.citec.sc.lemon.core.Lexicon turtleLexicon = this.runProcessOutput(config);
             LexiconSerialization serializer = new LexiconSerialization();
             Model model = ModelFactory.createDefaultModel();
@@ -71,7 +76,9 @@ public class ResponseTransfer implements Constants {
     }
 
     private Boolean runPerlScript(String jsonString) throws PerlException {
-        PerlQuery PerlQuery = new PerlQuery(location, scriptName,jsonString);
+        FileFolderUtils.delete(new File(interDir));
+        FileFolderUtils.delete(new File(resultDir));
+        PerlQuery PerlQuery = new PerlQuery(perlDir, scriptName,jsonString);
         if (PerlQuery.getProcessSuccessFlag()) {
             return true;
         } else {
@@ -80,8 +87,8 @@ public class ResponseTransfer implements Constants {
     }
 
     private de.citec.sc.lemon.core.Lexicon runProcessOutput(Configuration config) throws Exception {
-        String resourceDir = baseDir + processData;
-        return new ProcessCsv(baseDir, resourceDir, config).getTurtleLexicon();
+        String resourceDir = resultDir + processData;
+        return new ProcessCsv(resultDir, resourceDir, config).getTurtleLexicon();
     }
 
     private void writeJsonLDToFile(Model model, String fileName, RDFFormat type) throws FileNotFoundException, IOException {
@@ -104,8 +111,7 @@ public class ResponseTransfer implements Constants {
     
     public String makeJsonString(Configuration config) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(config);
-        return json;
+        return mapper.writeValueAsString(config);
     }
 
 

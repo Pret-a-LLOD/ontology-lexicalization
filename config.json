@@ -1,4 +1,8 @@
 {
+  "class_name"   : "http://dbpedia.org/ontology/Actor",
+  "uri_basic": "http://localhost:8080/",
+  "uri_abstract" : "http://localhost/data-v4/short-abstracts_lang=en.ttl.bz2",
+  "uri_property" : "http://localhost/data-v4/2020.11.01/infobox-properties_lang=en.ttl.bz2",
   "min_entities_per_class": 100,
   "max_entities_per_class": 10000,
   "min_onegram_length": 4,
@@ -11,29 +15,6 @@
   "min_supA": 5,
   "min_supB": 5,
   "min_supAB":5,
-  "rulepattern": {
-     "predict_l_for_s_given_po":  0,
-     "predict_po_for_s_given_l":  0,
-     "predict_localized_l_for_s_given_po":  0,
-     "predict_po_for_s_given_localized_l":  0,
-     "predict_l_for_s_given_p":  0,
-     "predict_p_for_s_given_l":  0,
-     "predict_localized_l_for_s_given_p": 0,
-     "predict_p_for_s_given_localized_l": 0,
-     "predict_l_for_s_given_o":  0,
-     "predict_o_for_s_given_l":  0,
-     "predict_l_for_o_given_sp": 0,
-     "predict_sp_for_o_given_l": 0,
-     "predict_localized_l_for_o_given_sp": 0,
-     "predict_sp_for_o_given_localized_l": 0,
-     "predict_l_for_o_given_s": 0,
-     "predict_s_for_o_given_l": 0,
-     "predict_l_for_o_given_p": 1,
-     "predict_p_for_o_given_l": 1,
-     "predict_localized_l_for_o_given_p": 1,
-     "predict_p_for_o_given_localized_l": 1
-  },
-  "string": "http://localhost:8080/",
-  "rank_limit": 5
+  "rank_limit": 20
 }
 

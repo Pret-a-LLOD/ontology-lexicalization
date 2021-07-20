@@ -7,27 +7,26 @@ package de.citec.sc.generator.utils;
 
 import de.citec.sc.generator.analyzer.PosAnalyzer;
 import static de.citec.sc.generator.analyzer.TextAnalyzer.OBJECT;
-import de.citec.generator.config.PredictionRules;
-import static de.citec.generator.config.PredictionRules.predict_l_for_o_given_p;
-import static de.citec.generator.config.PredictionRules.predict_l_for_o_given_s;
-import static de.citec.generator.config.PredictionRules.predict_l_for_o_given_sp;
-import static de.citec.generator.config.PredictionRules.predict_l_for_s_given_o;
-import static de.citec.generator.config.PredictionRules.predict_l_for_s_given_p;
-import static de.citec.generator.config.PredictionRules.predict_l_for_s_given_po;
-import static de.citec.generator.config.PredictionRules.predict_localized_l_for_o_given_p;
-import static de.citec.generator.config.PredictionRules.predict_localized_l_for_o_given_sp;
-import static de.citec.generator.config.PredictionRules.predict_localized_l_for_s_given_p;
-import static de.citec.generator.config.PredictionRules.predict_localized_l_for_s_given_po;
-import static de.citec.generator.config.PredictionRules.predict_o_for_s_given_l;
-import static de.citec.generator.config.PredictionRules.predict_p_for_o_given_l;
-import static de.citec.generator.config.PredictionRules.predict_p_for_o_given_localized_l;
-import static de.citec.generator.config.PredictionRules.predict_p_for_s_given_l;
-import static de.citec.generator.config.PredictionRules.predict_p_for_s_given_localized_l;
-import static de.citec.generator.config.PredictionRules.predict_po_for_s_given_l;
-import static de.citec.generator.config.PredictionRules.predict_po_for_s_given_localized_l;
-import static de.citec.generator.config.PredictionRules.predict_s_for_o_given_l;
-import static de.citec.generator.config.PredictionRules.predict_sp_for_o_given_l;
-import static de.citec.generator.config.PredictionRules.predict_sp_for_o_given_localized_l;
+import static de.citec.generator.config.PredictionPatterns.predict_l_for_o_given_p;
+import static de.citec.generator.config.PredictionPatterns.predict_l_for_o_given_s;
+import static de.citec.generator.config.PredictionPatterns.predict_l_for_o_given_sp;
+import static de.citec.generator.config.PredictionPatterns.predict_l_for_s_given_o;
+import static de.citec.generator.config.PredictionPatterns.predict_l_for_s_given_p;
+import static de.citec.generator.config.PredictionPatterns.predict_l_for_s_given_po;
+import static de.citec.generator.config.PredictionPatterns.predict_localized_l_for_o_given_p;
+import static de.citec.generator.config.PredictionPatterns.predict_localized_l_for_o_given_sp;
+import static de.citec.generator.config.PredictionPatterns.predict_localized_l_for_s_given_p;
+import static de.citec.generator.config.PredictionPatterns.predict_localized_l_for_s_given_po;
+import static de.citec.generator.config.PredictionPatterns.predict_o_for_s_given_l;
+import static de.citec.generator.config.PredictionPatterns.predict_p_for_o_given_l;
+import static de.citec.generator.config.PredictionPatterns.predict_p_for_o_given_localized_l;
+import static de.citec.generator.config.PredictionPatterns.predict_p_for_s_given_l;
+import static de.citec.generator.config.PredictionPatterns.predict_p_for_s_given_localized_l;
+import static de.citec.generator.config.PredictionPatterns.predict_po_for_s_given_l;
+import static de.citec.generator.config.PredictionPatterns.predict_po_for_s_given_localized_l;
+import static de.citec.generator.config.PredictionPatterns.predict_s_for_o_given_l;
+import static de.citec.generator.config.PredictionPatterns.predict_sp_for_o_given_l;
+import static de.citec.generator.config.PredictionPatterns.predict_sp_for_o_given_localized_l;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
@@ -53,12 +52,13 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.compress.compressors.CompressorException;
+import de.citec.generator.config.PredictionPatterns;
 
 /**
  *
  * @author elahi
  */
-public class CsvFile  implements PredictionRules {
+public class CsvFile  implements PredictionPatterns {
 
     private File csvFile = null;
     private BufferedReader bufferedReader=null;
@@ -74,8 +74,10 @@ public class CsvFile  implements PredictionRules {
             this.bufferedReader = FileFolderUtils.getBufferedReaderForCompressedFile(csvFile);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("input file not found::"+ex.getMessage());
         } catch (CompressorException ex) {
             Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("the output file needs to be compressed::"+ex.getMessage());
         }
 
     }

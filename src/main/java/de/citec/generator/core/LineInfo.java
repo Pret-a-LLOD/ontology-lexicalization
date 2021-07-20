@@ -5,8 +5,6 @@
  */
 package de.citec.generator.core;
 
-import de.citec.generator.config.PredictionRules;
-import de.citec.generator.config.NullInterestingness;
 import de.citec.sc.generator.analyzer.PosAnalyzer;
 import de.citec.sc.generator.analyzer.TextAnalyzer;
 import static de.citec.sc.generator.analyzer.TextAnalyzer.POS_TAGGER_WORDS;
@@ -26,13 +24,14 @@ import java.util.logging.Logger;
 import org.apache.commons.lang3.StringUtils;
 import java.util.Comparator;
 import java.util.HashSet;
+import de.citec.generator.config.PredictionPatterns;
 
 /**
  *
  * @author elahi
  */
 //,Comparator
-public class LineInfo implements NullInterestingness,PredictionRules{
+public class LineInfo implements PredictionPatterns{
 
     private String line = null;
     private String subject = "e";

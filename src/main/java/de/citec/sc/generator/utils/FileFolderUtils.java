@@ -68,9 +68,11 @@ public class FileFolderUtils {
         return br2;
     }
   
-  
+    public static void delete(File dir) {
+        File[] files = dir.listFiles();
+        for (File file : files) {
+            file.delete();
+        }
+    }
 
-  
-  
-
-  }
+}

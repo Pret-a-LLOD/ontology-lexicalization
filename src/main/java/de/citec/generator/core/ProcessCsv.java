@@ -20,47 +20,27 @@ import de.citec.sc.generator.utils.StopWordRemoval;
 import de.citec.sc.generator.utils.PropertyCSV;
 import de.citec.sc.generator.utils.CsvFile;
 import de.citec.generator.config.LemonConstants;
-import de.citec.generator.config.PredictionRules;
-import de.citec.generator.config.NullInterestingness;
 import de.citec.sc.generator.analyzer.Lemmatizer;
 import de.citec.generator.config.Configuration;
 import static de.citec.generator.config.Constants.UNDERSCORE;
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.*;
 import de.citec.sc.lemon.core.Lexicon;
-import de.citec.sc.lemon.io.LexiconSerialization;
-import java.io.FileOutputStream;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.riot.RDFDataMgr;
-import org.apache.jena.riot.RDFFormat;
+import java.util.logging.Logger;
+import de.citec.generator.config.PredictionPatterns;
 
 /**
  *
  * @author elahi
  */
-public class ProcessCsv implements NullInterestingness, PredictionRules,LemonConstants {
+public class ProcessCsv implements  PredictionPatterns,LemonConstants {
 
     private  Lexicon  turtleLexicon =null;
     private Integer rankLimit=0;
 
     public  ProcessCsv(String baseDir,String resourceDir,Configuration config) throws Exception {
-        this.turtleLexicon=new de.citec.sc.lemon.core.Lexicon(config.getBaseUri());
-        this.rankLimit=config.getRankLimit();
+        this.turtleLexicon=new de.citec.sc.lemon.core.Lexicon(config.getUri_basic());
+        this.rankLimit=config.getRank_limit();
         Set<String> posTag = new HashSet<String>();
         posTag.add("JJ");
         posTag.add("NN");

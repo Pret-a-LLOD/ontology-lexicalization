@@ -6,7 +6,6 @@
 package de.citec.generator.core;
 
 import de.citec.generator.config.LemonConstants;
-import de.citec.generator.config.PredictionRules;
 import de.citec.sc.generator.analyzer.TextAnalyzer;
 import static de.citec.sc.lemon.core.Language.EN;
 import de.citec.sc.lemon.core.Lexicon;
@@ -20,12 +19,13 @@ import de.citec.sc.lemon.core.SyntacticArgument;
 import de.citec.sc.lemon.core.SyntacticBehaviour;
 import java.io.*;
 import java.util.*;
+import de.citec.generator.config.PredictionPatterns;
 
 /**
  *
  * @author elahi
  */
-public class LemonCreator implements PredictionRules, LemonConstants, TextAnalyzer {
+public class LemonCreator implements PredictionPatterns, LemonConstants, TextAnalyzer {
 
     private String lexiconDirectory = null;
     private Lexicon turtleLexicon = null;
@@ -83,14 +83,14 @@ public class LemonCreator implements PredictionRules, LemonConstants, TextAnalyz
             //System.out.println("prediction::" + prediction);
             posLexInfo = lexinfo_adjective;
             givenPosTag = ADJECTIVE;
-        } else if (prediction.equals(PredictionRules.predict_p_for_o_given_localized_l)
-                || prediction.equals(PredictionRules.predict_p_for_o_given_l)
-                || prediction.equals(PredictionRules.predict_p_for_s_given_localized_l)
-                || prediction.equals(PredictionRules.predict_p_for_s_given_l)) {
+        } else if (prediction.equals(PredictionPatterns.predict_p_for_o_given_localized_l)
+                || prediction.equals(PredictionPatterns.predict_p_for_o_given_l)
+                || prediction.equals(PredictionPatterns.predict_p_for_s_given_localized_l)
+                || prediction.equals(PredictionPatterns.predict_p_for_s_given_l)) {
             //System.out.println("prediction::" + prediction);
             posLexInfo = lexinfo_verb;
             givenPosTag = TextAnalyzer.VERB;
-        } else if (prediction.equals(PredictionRules.predict_o_for_s_given_l)) {
+        } else if (prediction.equals(PredictionPatterns.predict_o_for_s_given_l)) {
             //System.out.println("prediction::" + prediction);
             posLexInfo = lexinfo_noun;
             givenPosTag = TextAnalyzer.NOUN;

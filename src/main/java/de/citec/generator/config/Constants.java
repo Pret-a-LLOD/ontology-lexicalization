@@ -11,7 +11,7 @@ package de.citec.generator.config;
  */
 public interface Constants {
 
-    public static String predict_l_for_s_given_po = "predict_l_for_s_given_po";
+    /*public static String predict_l_for_s_given_po = "predict_l_for_s_given_po";
     public static String predict_po_for_s_given_l = "predict_po_for_s_given_l";
     public static String predict_localized_l_for_s_given_po = "predict_localized_l_for_s_given_po";
     public static String predict_po_for_s_given_localized_l = "predict_po_for_s_given_localized_l";
@@ -30,13 +30,14 @@ public interface Constants {
     public static String predict_l_for_o_given_p = "predict_l_for_o_given_p";
     public static String predict_p_for_o_given_l = "predict_p_for_o_given_l";
     public static String predict_localized_l_for_o_given_p = "predict_localized_l_for_o_given_p";
-    public static String predict_p_for_o_given_localized_l = "predict_p_for_o_given_localized_l";
+    public static String predict_p_for_o_given_localized_l = "predict_p_for_o_given_localized_l";*/
     public static String UNDERSCORE = "UNDERSCORE";
-
-    public String baseDir = "results-v4/";
-    public static String location = "perl/";
+    public static String perlDir = "perl/";
     public static String scriptName = "experiment.pl";
     public static String processData = "processData/";
-    public static String jsonOutput = "examples/lexicon.json";
-    public static String turtleOutput = "examples/lexicon.ttl";
+    public String appDir = "app/";
+    public String interDir = appDir+"inter/";
+    public String resultDir = appDir+"results/";
+    public static String jsonOutput = resultDir+"lexicon.json";
+    public static String turtleOutput = resultDir+"lexicon.ttl";
 }

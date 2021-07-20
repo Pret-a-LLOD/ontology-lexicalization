@@ -6,6 +6,7 @@
 package de.citec.generator.core;
 
 import de.citec.generator.config.Configuration;
+import de.citec.generator.config.Constants;
 import de.citec.sc.generator.exceptions.PerlException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -19,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author elahi
  */
-public class PerlQuery {
+public class PerlQuery implements Constants {
 
     private  Boolean processSuccessFlag = false;
      private String configJson = null;
@@ -44,7 +45,7 @@ public class PerlQuery {
         Runtime runTime = Runtime.getRuntime();
         //System.out.println("location + scriptName::" + location + scriptName);
         //String[] commands = {"perl", location + scriptName};
-        String command = "perl "+ location + scriptName+" "+this.configJson;
+        String command = "perl "+ location + scriptName+" "+this.configJson+" "+appDir;
         //System.out.println("command::"+command);
         Process process = runTime.exec(command);
 

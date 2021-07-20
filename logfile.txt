@@ -1,1 +1,2 @@
 reduced number of instances for class http://dbpedia.org/ontology/Actor from 3630 to 100
+done.
