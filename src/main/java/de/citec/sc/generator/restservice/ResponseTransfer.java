@@ -156,6 +156,7 @@ public class ResponseTransfer implements Constants {
 
     }
     
+    
     private LemonJsonLD makeClass(String jsonString) throws JsonProcessingException  {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(jsonString, LemonJsonLD.class);
@@ -188,5 +189,6 @@ public class ResponseTransfer implements Constants {
         return mapper.writeValueAsString(config);
     }
 
+    
 
 }
