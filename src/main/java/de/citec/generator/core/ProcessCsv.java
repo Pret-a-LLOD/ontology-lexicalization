@@ -35,26 +35,25 @@ import de.citec.generator.config.PredictionPatterns;
  */
 public class ProcessCsv implements  PredictionPatterns,LemonConstants {
 
-    private  Lexicon  turtleLexicon =null;
-    private Integer rankLimit=0;
+    private Lexicon turtleLexicon = null;
+    private Integer rankLimit = 0;
+    private Logger LOGGER = Logger.getLogger(ProcessCsv.class.getName());
+    private Lemmatizer lemmatizer = new Lemmatizer();
+
 
     public  ProcessCsv(String baseDir,String resourceDir,Configuration config) throws Exception {
-        this.turtleLexicon=new de.citec.sc.lemon.core.Lexicon(config.getUri_basic());
+        /*System.out.println("config::"+config);
+        System.out.println("baseDir::"+baseDir);
+        System.out.println("resourceDir::"+resourceDir);
+        System.out.println("basic URI::"+config.getUri_basic());*/
+        this.turtleLexicon=new Lexicon(config.getUri_basic());
         this.rankLimit=config.getRank_limit();
         Set<String> posTag = new HashSet<String>();
         posTag.add("JJ");
         posTag.add("NN");
         posTag.add("VB");
-
-        Logger LOGGER = Logger.getLogger(ProcessCsv.class.getName());
         String outputDir = resourceDir;
-        Lemmatizer lemmatizer = new Lemmatizer();
-        //String  txtDir =  "src/main/resources/data" + "/" + "txt" +  "/"  ;
-        //String  txtDir =  "src/main/resources/data" + "/" + "txt" +  "/"  ;
-        //String txtDir = resourceDir + "/" + txt + "/";
-        //txtDir = "/var/www/html/ontologyLexicalization/data/";
-
-
+      
         List<String> predictKBGivenLInguistic = new ArrayList<String>(Arrays.asList(
                 predict_l_for_s_given_po,
                 predict_localized_l_for_s_given_po,

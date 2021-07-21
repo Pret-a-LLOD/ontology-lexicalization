@@ -1,45 +1,48 @@
 package de.citec.sc.generator.restservice;
 
 import de.citec.generator.config.Configuration;
-import java.util.concurrent.atomic.AtomicLong;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PathVariable;
+import de.citec.generator.config.Constants;
+import de.citec.generator.results.LemonJsonLD;
+import de.citec.generator.results.LexProcessResult;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.web.bind.annotation.RestController;
-
-
-import java.util.concurrent.ThreadLocalRandom;
-import java.nio.charset.Charset;
-import java.util.Random;
-import java.util.stream.IntStream;
-import java.util.Arrays;
-import java.util.List;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/", 
-        consumes = MediaType.APPLICATION_JSON_VALUE, 
-        produces = MediaType.APPLICATION_JSON_VALUE, 
+@RequestMapping(path = "/",
+        consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE,
         method = {RequestMethod.GET, RequestMethod.POST})
 public class SchemaController {
-    
-    @RequestMapping(path = "/response", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @RequestMapping(path = "/lexicalization", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String postResponseController(@RequestBody Configuration conf) {
-        ResponseTransfer responseTransfer=new ResponseTransfer(conf);
-        return responseTransfer.getJsonLDString();
-     }
+    public LexProcessResult lexicalization(@RequestBody Configuration conf) {
+        return new ResponseTransfer().runLexicalization(conf);
+
+    }
     
-    /*@PostMapping("/response")
+    @RequestMapping(path = "/createLemon", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String createLemon(@RequestBody Configuration conf) {
+        return new ResponseTransfer().createLemon(conf);
+    }
+
+    /*@RequestMapping(path = "/response", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String processer(@RequestBody Configuration conf) {
+        ResponseTransfer responseTransfer = new ResponseTransfer(conf);
+        return responseTransfer.getJsonLDString();
+    }*/
+
+ /*@PostMapping("/response")
     @ResponseBody
     public ResponseTransfer postResponseController(@RequestBody LoginForm loginForm) {
         return new ResponseTransfer("Thanks For Posting!!!");
      }*/
-
-  
-    /*
+ /*
     /*@RequestMapping(path = "/foo/{id}", produces = MediaType.APPLICATION_XML_VALUE, method = RequestMethod.GET)
     public ThisIsAFooXML getAFooXml(@PathVariable String id) {
         ThisIsAFooXML foo = fooService.getAFoo(id);
@@ -51,8 +54,7 @@ public class SchemaController {
         ThisIsAFooXML foo = fooService.getAFoo(id);
         return foo;
     }*/
-    
-    /*
+ /*
     @GetMapping("/schema/{type}")
     public Person schema_endpoint(
             @PathVariable(value = "type") String type

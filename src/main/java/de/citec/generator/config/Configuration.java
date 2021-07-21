@@ -10,26 +10,8 @@ package de.citec.generator.config;
  * @author elahi
  */
 public class Configuration {
-
-    /*private String class_name = "http://dbpedia.org/ontology/Actor";
-    private String uri_basic = "http://localhost:8080/";
-    private String uri_abstract = "http://localhost/data-v4/short-abstracts_lang=en.ttl.bz2";
-    private String uri_property = "http://localhost/data-v4/2020.11.01/infobox-properties_lang=en.ttl.bz2";
-    private Integer min_entities_per_class = 100;
-    private Integer max_entities_per_class = 10000;
-    private Integer min_onegram_length = 4;
-    private Integer min_pattern_count = 5;
-    private Integer min_anchor_count = 10;
-    private Integer min_propertyonegram_length = 4;
-    private Integer min_propertypattern_count = 5;
-    private Integer min_propertystring_length = 5;
-    private Integer max_propertystring_length = 50;
-    private Integer min_supA = 5;
-    private Integer min_supB = 5;
-    private Integer min_supAB = 5;
-    private Integer rank_limit = 20;*/
-    
     private String class_name = null;
+    private String linked_data=null;
     private String uri_basic = null;
     private String uri_abstract = null;
     private String uri_property = null;
@@ -127,6 +109,15 @@ public class Configuration {
         } else {
             return this.class_name;
         }
+    }
+
+    public String getLinked_data() {
+        return linked_data;
+    }
+
+    @Override
+    public String toString() {
+        return "Configuration{" + "class_name=" + class_name + ", linked_data=" + linked_data + ", uri_basic=" + uri_basic + ", uri_abstract=" + uri_abstract + ", uri_property=" + uri_property + ", min_entities_per_class=" + min_entities_per_class + ", max_entities_per_class=" + max_entities_per_class + ", min_onegram_length=" + min_onegram_length + ", min_pattern_count=" + min_pattern_count + ", min_anchor_count=" + min_anchor_count + ", min_propertyonegram_length=" + min_propertyonegram_length + ", min_propertypattern_count=" + min_propertypattern_count + ", min_propertystring_length=" + min_propertystring_length + ", max_propertystring_length=" + max_propertystring_length + ", min_supA=" + min_supA + ", min_supB=" + min_supB + ", min_supAB=" + min_supAB + ", rank_limit=" + rank_limit + '}';
     }
 
 }
