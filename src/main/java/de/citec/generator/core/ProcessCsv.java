@@ -21,7 +21,9 @@ import de.citec.sc.generator.utils.PropertyCSV;
 import de.citec.sc.generator.utils.CsvFile;
 import de.citec.generator.config.LemonConstants;
 import de.citec.sc.generator.analyzer.Lemmatizer;
-import de.citec.generator.config.Configuration;
+import de.citec.generator.config.ConfigDownload;
+import de.citec.generator.config.ConfigLemon;
+import de.citec.generator.config.ConfigLex;
 import static de.citec.generator.config.Constants.UNDERSCORE;
 import java.io.File;
 import java.util.*;
@@ -41,7 +43,7 @@ public class ProcessCsv implements  PredictionPatterns,LemonConstants {
     private Lemmatizer lemmatizer = new Lemmatizer();
 
 
-    public  ProcessCsv(String baseDir,String resourceDir,Configuration config) throws Exception {
+    public  ProcessCsv(String baseDir,String resourceDir,ConfigLemon config) throws Exception {
         /*System.out.println("config::"+config);
         System.out.println("baseDir::"+baseDir);
         System.out.println("resourceDir::"+resourceDir);

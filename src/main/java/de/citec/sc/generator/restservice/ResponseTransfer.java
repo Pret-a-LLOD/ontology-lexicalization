@@ -7,12 +7,15 @@ package de.citec.sc.generator.restservice;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.citec.generator.config.Configuration;
+import de.citec.generator.config.ConfigDownload;
+import de.citec.generator.config.ConfigLemon;
+import de.citec.generator.config.ConfigLex;
 import de.citec.generator.config.Constants;
 import de.citec.generator.core.PerlQuery;
 import de.citec.generator.core.ProcessCsv;
-import de.citec.generator.results.LemonJsonLD;
-import de.citec.generator.results.LexProcessResult;
+import de.citec.generator.results.ResultDownload;
+import de.citec.generator.results.ResultJsonLD;
+import de.citec.generator.results.ResultLex;
 import de.citec.sc.generator.exceptions.PerlException;
 import de.citec.sc.generator.utils.FileFolderUtils;
 import de.citec.sc.lemon.core.Lexicon;
@@ -98,36 +101,36 @@ public class ResponseTransfer implements Constants {
         }*/
     }
     
-    public LexProcessResult runLexicalization(Configuration config) {
+    public ResultLex lexicalization(ConfigLex config) {
         String className = null;
         try {
             String jsonString = this.makeJsonString(config);
-            className = config.getClassName();
+            className = config.getClass_url();
             FileFolderUtils.delete(new File(interDir));
             FileFolderUtils.delete(new File(resultDir));
             PerlQuery perlQuery = new PerlQuery(perlDir, scriptName, jsonString);
             Boolean flag = perlQuery.getProcessSuccessFlag();
             System.out.println("Lexicalization process successfuly ended!!");
-            return new LexProcessResult(className, config.getUri_basic(), flag);
+            return new ResultLex(className, flag);
         } catch (PerlException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println(ex.getMessage());
-            return new LexProcessResult(className, config.getUri_basic(), false);
+            return new ResultLex(className, false);
 
         } catch (IOException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("writing to file failed!!" + ex.getMessage());
-            return new LexProcessResult(className, config.getUri_basic(), false);
+            return new ResultLex(className,  false);
 
         } catch (Exception ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("System output process does not work!!" + ex.getMessage());
-            return new LexProcessResult(className, config.getUri_basic(), false);
+            return new ResultLex(className, false);
         }
 
     }
     
-    public String createLemon(Configuration config) {
+    public String createLemon(ConfigLemon config) {
         try {
             String resourceDir = resultDir + processData;
             Lexicon turtleLexicon = new ProcessCsv(resultDir, resourceDir, config).getTurtleLexicon();
@@ -157,9 +160,9 @@ public class ResponseTransfer implements Constants {
     }
     
     
-    private LemonJsonLD makeClass(String jsonString) throws JsonProcessingException  {
+    private ResultJsonLD makeClass(String jsonString) throws JsonProcessingException  {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(jsonString, LemonJsonLD.class);
+        return mapper.readValue(jsonString, ResultJsonLD.class);
     }
 
 
@@ -184,9 +187,29 @@ public class ResponseTransfer implements Constants {
     }
 
 
-    public String makeJsonString(Configuration config) throws JsonProcessingException {
+    public String makeJsonString(ConfigLex config) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(config);
+    }
+
+    public ResultDownload downloadData(ConfigDownload conf) {
+        try {
+            PerlQuery PerlQuery = new PerlQuery(conf.getUri_abstract());
+            if (PerlQuery.getProcessSuccessFlag()) {
+                return new ResultDownload(conf.getLinked_data(), "Successfull downloaded!!");
+            } else {
+                return new ResultDownload(conf.getLinked_data(), "downloaded failed!!");
+            }
+
+        } catch (PerlException ex) {
+            Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResultDownload(conf.getLinked_data(), "downloaded failed!!");
+        }
+
+    }
+
+    String searchLemon(ConfigDownload conf) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

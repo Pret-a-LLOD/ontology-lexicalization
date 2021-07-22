@@ -8,7 +8,7 @@ package de.citec.generator.results;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.citec.generator.config.Configuration;
+import de.citec.generator.config.ConfigDownload;
 import java.io.File;
 import java.io.IOException;
 

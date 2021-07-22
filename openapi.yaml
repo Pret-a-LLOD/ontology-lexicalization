@@ -1,33 +1,399 @@
 openapi: 3.0.0
 info:
-  title: random value and schemas generator API
-  description: the teanga dummy API example which generates random outputs
+  description: >-
+    CBL is a tool for ontology lexicaliation (bridging gap between terms presented in natural language and content of knowledge graph) 
   version: 1.0.0-oas3
+  title: Corpus based lexicalization (CBL)
+  x-port: '8080'
+  license: 
+    name: Prêt-à-LLOD
+    url: 'https://www.pret-a-llod.eu/'
+tags:
+  - name: CBL Components
+    description: >-
+      The components that automatically generates ontology lexicalization give a linked data. The current version is implemented for DBpedia.
 paths:
-  '/response':
+  /import:
     post:
-      description: Given corpus and knowledge graph provide ontology lexicalization in lemon format 
-      operationId: ontolex
+      tags:
+        - CBL Component
+      summary: Download linked data. The current version only works for DBpedia.
       requestBody:
-        description: corpus and knowledge graph
+        description: |-
+          __abstract_url__: url of the DBpedia abstracts release. DBpedia abstracts in turtle format. The DBpedia corpus is very large.
+
+          __property_url__: url of the DBpedia properties. The DBpedia knowledge graph in (i.e. triples) in turtle format.
+
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Configuration'
+              $ref: '#/components/schemas/ConfigLex'
+            example:          
+              linked_data: DBpedia
+              uri_abstract : http://localhost/data-v4/inputAbstract/short-abstracts_lang=en.ttl.bz2
+              uri_property : http://localhost/data-v4/inputProperty/infobox-properties_lang=en.ttl.bz2
       responses:
         '200':
-          description: return ontology lexicalization in lemon format
+          description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/String'
-        default:
-          description: unexpected error
+                $ref: '#/components/schemas/DownloadResult'
+        '404':
+          description: Failed. No more requests.
+          content: {}
+  /lexicalization:
+    post:
+      tags:
+        - CBL Component
+      summary: 'Given DBpedia abstracts (i.e. text) and knowledge graph of linked data (i.e. triples), the component generates predicate-object pair, predicate, object for linguistic patterns (i.e. a token, a sequence of tokens tagged with parts-of-speech) present in the corpus'
+      requestBody:
+        description: >-
+          __class_url__: The tool provide class specific ontology lexicalization.  
+          
+          __minimum_entities_per_class__: The minimum entities per class.
+          
+          __maximum_entities_per_class__: the maximum entties per class.
+          
+          __minimum_onegram_length__: The length of n gram.
+          
+          __minimum_pattern_count__: minimum pattern count for text.
+          
+          __minimum_anchor_count__:  the achor count.
+          
+          __minimum_propertyonegram_length__: .
+          
+          __minimum_propertypattern_count__ : .
+          
+          __minimum_propertystring_length__: .
+          
+          __maximum_propertystring_length__: .
+          
+          __minimum_supportA__: .
+          
+          __minimum_supportB__:  .
+          
+          __minimum_supportAB__: .
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfigLex'
+            example:          
+              class_url: http://dbpedia.org/ontology/Actor
+              minimum_entities_per_class : 100
+              maximum_entities_per_class : 100
+              minimum_onegram_length : 4
+              minimum_pattern_count : 5
+              minimum_anchor_count : 10
+              minimum_propertyonegram_length : 4
+              minimum_propertypattern_count : 5
+              minimum_propertystring_length : 5
+              maximum_propertystring_length : 50
+              minimum_supportA : 2
+              minimum_supportB : 2
+              minimum_supportAB : 2
+      responses:
+        '200':
+          description: lexicalization successful completed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ResultLex'
+        '404':
+          description: Failed. No more requests.
+          content: {}
+  /createLemon:
+    post:
+      tags:
+        - CBL Components
+      summary: The ontology lexicalization is generated using rule patterns and null variance of interestingness. The lingustic patterns are post-processed to create Lemon.
+      requestBody:
+        description: |-
+          __uri_base__: The uri for the lemon. 
 
+          __rank_limit__: The number of rank. The system provides a ranked list of KBs (i.e. predicate/object pair, predicate, object) for a linguistic terms.  
+           
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfigLemon'
+            example:          
+              uri_base: http://localhost:8080/
+              rank_limit : 20
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultJsonLD'
+        '404':
+          description: Failed. No more requests.
+          content: {}
+  /searchPattern:
+    post:
+      tags:
+        - CBL components
+      requestBody:
+        description: |-
+          __terms__: term to search.
 
-    
+           __parts_of_speech__: noun/adjective/verb 
+
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfigSearch'
+            example:  
+              term_to_search : born
+              parts_of_speech : noun
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultJsonLD'
+        '404':
+          description: Failed. No more requests.
+          content: {}
+components:
+  schemas:
+    ConfigLex:
+      type: object
+      properties:
+        class_url:
+          type: string
+          format: string
+        minimum_entities_per_class:
+          type: integer
+        maximum_entities_per_class:
+          type: integer
+        minimum_onegram_length:
+          type: integer
+        minimum_pattern_count:
+          type: integer
+        minimum_anchor_count:
+          type: integer
+        minimum_propertyonegram_length:
+          type: integer
+        minimum_propertypattern_count:
+          type: integer
+        minimum_propertystring_length:
+          type: integer
+        maximum_propertystring_length:
+          type: integer
+        minimum_supportA:
+          type: integer
+        minimum_supportB:
+          type: integer
+        minimum_supportAB:
+          type: integer
+    ResultLex:
+      type: object
+      properties:
+        class_url:
+          type: string
+          format: string
+        status:
+          type: string
+          format: string
+    ConfigLemon:
+      type: object
+      properties:
+        uri_base:
+          type: string
+          format: string
+        rank_limit:
+          type: integer
+          minimum: 10
+          maximum: 100
+    ResultJsonLD:
+      type: object
+      properties:
+        "@context":
+          type: array
+          items:
+            type: object
+            properties:
+              "language":
+                type: object
+                format: string
+                properties:
+                  "@id":
+                   type: string
+                   format: string
+              "entry":
+                type: object
+                format: string
+                properties:
+                  "@id":
+                   type: string
+                   format: string
+                  "@type":
+                   type: string
+                   format: string
+              "canonicalForm":
+                type: object
+                format: string
+                properties:
+                  "@id":
+                   type: string
+                   format: string
+                  "@type":
+                   type: string
+                   format: string
+              "sense":
+                type: object
+                format: string
+                properties:
+                  "@id":
+                   type: string
+                   format: string
+                  "@type":
+                   type: string
+                   format: string
+              "partOfSpeech":
+                type: object
+                format: string
+                properties:
+                  "@id":
+                   type: string
+                   format: string
+                  "@type":
+                   type: string
+                   format: string
+              "reference":
+                type: object
+                format: string
+                properties:
+                  "@id":
+                   type: string
+                   format: string
+                  "@type":
+                   type: string
+                   format: string
+              "writtenRep":
+                type: object
+                format: string
+                properties:
+                  "@id":
+                   type: string
+                   format: string
+              "label":
+                type: object
+                format: string
+                properties:
+                  "@id":
+                   type: string
+                   format: string
+        "@graph":
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/ItemEntry'
+              - $ref: '#/components/schemas/ItemCanonicalForm'
+              - $ref: '#/components/schemas/ItemWrittenRep'
+              - $ref: '#/components/schemas/ItemReference'
+              - $ref: '#/components/schemas/ItemFrequency'
+                  
+    ItemEntry:
+      type: object
+      properties:
+        "@id":
+          type: string
+          format: string
+        "@type":
+          type: string
+          format: string
+        "entry":
+          type: array
+          format: string
+          items:
+            type: string
+    ItemCanonicalForm:
+      type: object
+      properties:
+        "@id":
+          type: string
+          format: string
+        "@type":
+          type: string
+          format: string
+        canonicalForm:
+          type: string
+          format: string
+        language:
+          type: string
+          format: string
+        sense:
+          type: string
+          format: string
+        synBehavior:
+          type: string
+          format: string
+        partOfSpeech:
+          type: string
+          format: string
+        label:
+          type: string
+          format: string
+    ItemWrittenRep:
+      type: object
+      properties:
+        label:
+          type: string
+          format: string
+        writtenRep:
+          type: string
+          format: string
+    ItemReference:
+      type: object
+      properties:
+        "@id":
+          type: string
+          format: string
+        objOfProp:
+          type: string
+          format: string
+        reference:
+          type: string
+          format: string
+        subjOfProp:
+          type: string
+          format: string
+        generatedBy:
+          type: string
+          format: string
+    ItemFrequency:
+      type: object
+      properties:
+        "@id":
+          type: string
+          format: string
+        "@type":
+          type: string
+          format: string
+        frequency:
+          type: string
+          format: string
+    DownloadResult:
+      type: object
+      properties:
+        linked_data:
+          type: string
+          format: string
+        status:
+          type: string
+          format: string
+    ConfigSearch:
+      type: object
+      properties:
+        term_to_search:
+          type: string
+        parts_of_speech:
+          type: string

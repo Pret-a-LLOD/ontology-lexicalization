@@ -1,9 +1,12 @@
 package de.citec.sc.generator.restservice;
 
-import de.citec.generator.config.Configuration;
+import de.citec.generator.config.ConfigDownload;
+import de.citec.generator.config.ConfigLemon;
+import de.citec.generator.config.ConfigLex;
 import de.citec.generator.config.Constants;
-import de.citec.generator.results.LemonJsonLD;
-import de.citec.generator.results.LexProcessResult;
+import de.citec.generator.results.ResultDownload;
+import de.citec.generator.results.ResultJsonLD;
+import de.citec.generator.results.ResultLex;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,25 +17,33 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
-        method = {RequestMethod.GET, RequestMethod.POST})
+        method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 public class SchemaController {
+    
+    
+    @RequestMapping(path = "/import", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResultDownload downloadData(@RequestBody ConfigDownload conf) {
+        return new ResponseTransfer().downloadData(conf);
+    }
 
     @RequestMapping(path = "/lexicalization", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public LexProcessResult lexicalization(@RequestBody Configuration conf) {
-        return new ResponseTransfer().runLexicalization(conf);
+    public ResultLex lexicalization(@RequestBody ConfigLex conf) {
+        return new ResponseTransfer().lexicalization(conf);
 
     }
 
     @RequestMapping(path = "/createLemon", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String createLemon(@RequestBody Configuration conf) {
+    public String createLemon(@RequestBody ConfigLemon conf) {
         return new ResponseTransfer().createLemon(conf);
     }
     
-    /*@RequestMapping(path = "/search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path = "/searchPattern", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String searchLemon(@RequestBody Configuration conf) {
+    public String searchLemon(@RequestBody ConfigDownload conf) {
         return new ResponseTransfer().searchLemon(conf);
-    }*/
+    }
+  
 }

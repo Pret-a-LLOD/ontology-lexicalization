@@ -5,7 +5,7 @@
  */
 package de.citec.generator.core;
 
-import de.citec.generator.config.Configuration;
+import de.citec.generator.config.ConfigDownload;
 import de.citec.generator.config.Constants;
 import de.citec.sc.generator.exceptions.PerlException;
 import java.io.InputStream;
@@ -28,7 +28,8 @@ public class PerlQuery implements Constants {
     public PerlQuery(String location, String scriptName,String jsonString) throws PerlException {
         this.configJson=jsonString;
         try { 
-            runPerl(location,scriptName);
+            String command = "perl "+ location + scriptName+" "+this.configJson+" "+appDir;
+            runCommandLine(command);
         } catch (InterruptedException ex) {
             Logger.getLogger(PerlQuery.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
@@ -40,12 +41,32 @@ public class PerlQuery implements Constants {
         }
 
     }
+    
+    public PerlQuery(String urlString) throws PerlException {
+        this.configJson = urlString;
 
-    public void runPerl(String location, String scriptName) throws IOException, InterruptedException {
+        try {
+            String command = "wget --reject=\"index.html*\" " + urlString + " -P " + inputAbstract;
+            System.out.print("downloading "+urlString+" ......");
+            System.out.print("It may take some time .... ");
+            runCommandLine(command);
+            System.out.print("download is finished!");
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PerlQuery.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new PerlException("download failed!!" + ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(PerlQuery.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new PerlException("process error exceptions!!" + ex.getMessage());
+        }
+
+    }
+
+    public void runCommandLine(String command) throws IOException, InterruptedException {
         Runtime runTime = Runtime.getRuntime();
         //System.out.println("location + scriptName::" + location + scriptName);
         //String[] commands = {"perl", location + scriptName};
-        String command = "perl "+ location + scriptName+" "+this.configJson+" "+appDir;
         //System.out.println("command::"+command);
         Process process = runTime.exec(command);
 

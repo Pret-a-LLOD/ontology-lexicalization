@@ -11,31 +11,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author elahi
  */
-public class LexProcessResult {
+public class ResultLex {
 
     @JsonProperty("class_name")
     private String className = null;
-    @JsonProperty("linked_data")
-    private String linked_data  =null;
     @JsonProperty("status")
     private String status  =null;
     
-    public LexProcessResult(String className,String linked_data,Boolean flag){
+    public ResultLex(String className,Boolean flag){
         this.className=className;
-        this.linked_data=linked_data;
         if(flag)
             this.status="Successfull complete lexicalization!!";
         else 
            this.status="Lexicalization process failed!!"; 
         
     }
+    
+    public ResultLex(String className, String linked_data, String status) {
+        this.className = className;
+        this.status = status;
+    }
     public String getClassName() {
         return className;
     }
-
-    public String getLinked_data() {
-        return linked_data;
-    }
-    
 
 }

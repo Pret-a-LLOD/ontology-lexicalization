@@ -38,6 +38,7 @@ public interface Constants {
     public String appDir = "app/";
     public String interDir = appDir+"inter/";
     public String resultDir = appDir+"results/";
+    public static String inputAbstract=appDir+"input/inputAbstract";
     public static String jsonOutputDir = resultDir+"lexicon.json";
     public static String turtleOutputDir = resultDir+"lexicon.ttl";
     public static String defaultResult = "{\"@graph\" : [],\"@context\":{}}";

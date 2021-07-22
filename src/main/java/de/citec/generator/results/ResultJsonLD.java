@@ -22,16 +22,16 @@ import java.util.TreeMap;
  * @author elahi
  */
 @JsonIgnoreProperties
-public class LemonJsonLD implements Constants{
+public class ResultJsonLD implements Constants{
 
     private String jsonString = null;
     
-    public LemonJsonLD(){
+    public ResultJsonLD(){
       this.jsonString=defaultResult;  
         
     }
 
-    public LemonJsonLD(String jsonString) {
+    public ResultJsonLD(String jsonString) {
         this.jsonString = jsonString;
     }
 
