@@ -49,16 +49,9 @@ The input fule looks like as follow:
 wget -O config.json https://raw.githubusercontent.com/Pret-a-LLOD/ontology-lexicalization/master/config.json
 ```
 
-- The lexicalization process includes semantic annotations and association rules.
-- The DBpedia is large and so it may take nearly 1 hour to get results for a class. 
-- The system can be also run for all frequent classes (frequent 340 classes) of DBpedia but it will take more than a week to get results.
-
 4. run the following command
 ```
-curl -H POST "Accept: application/json" \
-     -H "Content-type: application/json" \
-     --data-binary @config.json \
-     -X POST  http://localhost:8001/lexicalization
+curl -H "Accept: application/json" -H "Content-type: application/json"  --data-binary @config.json -X POST  http://localhost:8080/lexicalization
 ```
 
 ### create lemon
@@ -66,10 +59,7 @@ The process will create the results in ontolex lemon format.
 - The input file contains number ranked list for each linguistic pattern. the detail can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
 5. run the following command
 ```
-curl -H POST "Accept: application/json" \
-     -H "Content-type: application/json" \
-     --data-binary @config.json \
-     -X POST  http://localhost:8001/createLemon
+curl -H "Accept: application/json" -H "Content-type: application/json"  --data-binary @config.json -X POST  http://localhost:8080/createLemon
 ```
 
 ## CBL code
