@@ -37,39 +37,48 @@ curl -H POST "Accept: application/json" \
 ```
 - The DBpedia knowledge graph is large. It may take some time to download
 
-# The below content is wrong and under construction  
-
-### Link your terminology with other terminology
-4.  Run the following command. Here, the other terminology is *intaglio terminology* (https://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/sparql)
+### lexicalization
+Given the DBpedia abstract and DBpedia knowledge base, the process will link linguistic terms (i.e. a token/a sequence of tokens) of the corpus with the content of DBpedia (i.e. predicate-object pair/restriction class, predicate, object, etc.)
+- The process will first annotate the text with semantic information (i.e. annotating texts with rdfs: label) and then generates association rules to predict predicate-object pair, predicate, object, etc.
+- The DBpedia is large and so it may take near 1 hour to get results for a class. For simplicity, we can run it for a class (i.e. Actor). It can be run for any class. 
+- The system can be also run for all frequent classes (frequent 340 classes) of DBpedia but it will take more than a week to get results.
+- write the class config.json contains the class.  The class list of DBpedia can be found here. 
+- run the following command
 ```
-curl -d "endpoint=https://webtentacle1.techfak.uni-bielefeld.de/tbx2rdf_intaglio/sparql" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -X POST "http://localhost:8080/link"      
- ```
-For example, *hole* is a term that exists both in your terminology and other terminology. To view the link, do the followings: 
-- Browser: Click **Browser** button. Select alphabet pair **G_H** and then click the term **hole**. 
-- Auto-completion search: Click **Terms** button and type *ho*. Select the term *hole*. 
-- Sparql: Click **Sparql** button. Write the query for the term *hole* and then Click **Query** button.
+curl -H POST "Accept: application/json" \
+    -H "Content-type: application/json" \
+    --data-binary @config.json \
+    -X POST  http://localhost:8001/lexicalization
+```
+- All the parameters of input and output is detailed in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
+
+### create lemon
+- The process will create ontolex lemon for all linguistic terms
+- run the following command
+```
+curl -H POST "Accept: application/json" \
+    -H "Content-type: application/json" \
+    --data-binary @config.json \
+    -X POST  http://localhost:8001/createLemon
+```
+- All the parameters of input and output is detailed in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
 
 Please use the following citation:
 ```
 @inproceedings{Buono-LREC2020,
-	title = {{Terme-`a-LLOD: Simplifying the Conversion and Hosting of TerminologicalResources as Linked Data}},
-	author = {Maria Pia Di Buono, Philipp Cimiano, Mohammad Fazleh Elahi, Frank Grimm},
+	title = {{Bridging the gap between Ontology and Lexicon via Class-specific Association Rules Mined from a Loosely-Parallel Text-Data Corpus}},
+	author = {Basil Ell, Mohammad Fazleh Elahi, Philipp Cimiano},
 	booktitle = {Proceedings of the 7th Workshop on Linked Data in Linguistics (LDL-2020) at Language Resources and Evaluation Conference (LREC 2020)},
-	pages = {28–35},
-	year = {2020},
-	location = {Marseille, France},
-	publisher = {Association for Computational Linguistics},
-	link = {https://lrec2020.lrec-conf.org/media/proceedings/Workshops/Books/LDL2020book.pdf}
+	year = {2021},
+	location = {Zaragoza, Spain},
+	link = {https://pub.uni-bielefeld.de/record/2954753}
 }
 ```
 
 ## Developers
 * **Mohammad Fazleh Elahi**
-* **Frank Grimm**
+* **Basil Ell**
 ## Supervisors
-* **Maria Pia Di Buono**
 * **Dr. Philipp Cimiano**  
 
 
