@@ -6,7 +6,6 @@ This page provides instructions on how to run the tool.
 ### Getting started with CBL
 To run CBL on your machine follow the instructions.
 
-## Requirements
 - docker (https://docs.docker.com/engine/install/)
 
 1. Download the image of CBL. 
@@ -17,43 +16,45 @@ docker pull pretallod/lex-cbl
 ```
 docker run -p 8001:8080 -t pretallod/lex-cbl
 ```
-After the container is running do the followings:
+The DBpedia resource including abstracts corpus (i.e. texts), knowledge graph (triples), and anchor text (i.e. rdfs:label dictionary) are very large. Therefore, it is provided inside the container. 
 
 ### lexicalization
-- the DBpedia resource (abstracts, knowledge graph, and semantically annotated text/anchor text) are very large. Therefore, the container contains the DBpedia resource. 
-- Given the DBpedia resource, the program will provide class-specific lexicalization. 
-- The input file contains class and necessary parameteres to run the lexicalization process. The process will link linguistic terms (i.e. a token/a sequence of tokens) of the DBpedia abstracts of the class with predicate-object pair/restriction class, predicate, object, etc.
-- The input file with example can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
-- Download input file. If you have wget command installed in your terminal, download the configuration file for DBpedia
+- Given a DBpedia class, the program will provide class-specific lexicalization. That is, it links the linguistic patterns (a token/a sequence of tokens tagged with parts-of-speech) of the text (of abstract) with predict predicate-object pair, predicate, object, etc.
+- The input file contains class and parameteres to run lexicalization process. The detail can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
+
+3. Download input file. If you have wget command installed in your terminal, download the configuration file for DBpedia
 
 ```
 wget -O config.json https://github.com/Pret-a-LLOD/ontology-lexicalization/blob/master/config.json
 ```
-- The process will first annotate the text with semantic information (i.e. annotating texts with rdfs: label) and then generates association rules to predict predicate-object pair, predicate, object, etc.
-- The DBpedia is large and so it may take nearly 1 hour to get results for a class. For simplicity, we can run it for a class (i.e. Actor). It can be run for any class. 
+- The lexicalization process includes semantic annotations and association rules.
+- The DBpedia is large and so it may take nearly 1 hour to get results for a class. 
 - The system can be also run for all frequent classes (frequent 340 classes) of DBpedia but it will take more than a week to get results.
-- write the class config.json contains the class.  The class list of DBpedia can be found here. 
-- run the following command
+
+4. run the following command
 ```
 curl -H POST "Accept: application/json" \
-    -H "Content-type: application/json" \
-    --data-binary @config.json \
-    -X POST  http://localhost:8001/lexicalization
+     -H "Content-type: application/json" \
+     --data-binary @config.json \
+     -X POST  http://localhost:8001/lexicalization
 ```
 
 ### create lemon
-- The process will post process the data and create ontolex lemon 
-- The input file with example can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
+The process will create the results in ontolex lemon format. 
+- The input file contains number ranked list for each linguistic pattern. the detail can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
 - run the following command
 ```
 curl -H POST "Accept: application/json" \
-    -H "Content-type: application/json" \
-    --data-binary @config.json \
-    -X POST  http://localhost:8001/createLemon
+     -H "Content-type: application/json" \
+     --data-binary @config.json \
+     -X POST  http://localhost:8001/createLemon
 ```
 
 ## CBL code
 The project contains code of Perl and Java.
+
+## Algorithm behind the project
+Given a linguistic pattern (i.e. a token or a sequence of tokens tagged with parts-of-speech and lemmatized), the tool uses class-specific association rules (Ell et al., 2021) together with null-invariant measures of interestingness to predict predicate-object pair (i.e. class lexicalization), predicate, object of DBpedia.
 
 ## Reference
 Please use the following citation:
