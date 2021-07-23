@@ -17,6 +17,10 @@ docker pull pretallod/lex-cbl
 ```
 docker run -p 8001:8080 -t pretallod/lex-cbl
 ```
+After the container is running do the followings:
+
+### Endpoints and input/output specifications
+All endpoints and parameter details can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
 
 ### Download linked data
 Download DBpedia abstracts corpus and knowledge graph as follows: 
@@ -31,7 +35,6 @@ curl -H POST "Accept: application/json" \
     --data-binary @config.json \
     -X POST  http://localhost:8001/download 
 ```
-- The parameter details can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
 - The DBpedia knowledge graph is large. It may take some time to download
 
 # The below content is wrong and under construction  
