@@ -63,6 +63,10 @@ curl -H POST "Accept: application/json" \
 ```
 - All the parameters of input and output is detailed in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
 
+## CBL code
+The project contains code of Perl and Java.
+
+## Reference
 Please use the following citation:
 ```
 @inproceedings{Buono-LREC2020,
