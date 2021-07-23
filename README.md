@@ -19,8 +19,11 @@ docker run -p 8001:8080 -t pretallod/lex-cbl
 The DBpedia resource including abstracts corpus (i.e. texts), knowledge graph (triples), and anchor text (i.e. rdfs:label dictionary) are very large. Therefore, it is provided inside the container. 
 
 ### lexicalization
-Given a DBpedia class, the program will provide class-specific lexicalization. That is, it links the linguistic patterns (a token/a sequence of tokens tagged with parts-of-speech) of the text (of abstract) with predict predicate-object pair, predicate, object, etc.
-- The input file contains class url and parameteres to run lexicalization process. The detail parameters can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
+Given a DBpedia class, the program will provide class-specific lexicalization. That is, it links the linguistic patterns (a token/a sequence of tokens tagged with parts-of-speech) of the text (of abstract) with predict predicate-object pair, predicate, object, etc.<br/>
+
+The lexicalization process includes semantic annotations and association rules.The DBpedia is large and so it may take nearly 1 hour to get results for a class.The system can be also run for all frequent classes (frequent 340 classes) of DBpedia but it will take more than a week to get results.<br/>
+
+- For simplicity run it for a single class. The input file contains class url and parameteres to run lexicalization process. The detail parameters can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
 The input fule looks like as follow:
 ```
 {
