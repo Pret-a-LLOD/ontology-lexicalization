@@ -19,11 +19,11 @@ docker run -p 8001:8080 -t pretallod/lex-cbl
 ```
 
 ### Download linked data
-3. Download DBpedia abstracts corpus and knowledge graph
--If you have wget command installed in your terminal, download the configuration file for DBpedia
-`
+Download DBpedia abstracts corpus and knowledge graph as follows: 
+- If you have wget command installed in your terminal, download the configuration file for DBpedia
+```
 wget -O config.json https://github.com/Pret-a-LLOD/ontology-lexicalization/blob/master/config.json
-`
+```
 - run the following command to download DBpedia abstracts and knowledge graph
 ```
 curl -H POST "Accept: application/json" \
