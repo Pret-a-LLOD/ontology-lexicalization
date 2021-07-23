@@ -47,7 +47,7 @@ An example of input file is shown below.
 ```
 3. Download input file
 ```
-wget -O inputLex.json https://raw.githubusercontent.com/Pret-a-LLOD/ontology-lexicalization/master/inputLex
+wget -O inputLex.json https://raw.githubusercontent.com/Pret-a-LLOD/ontology-lexicalization/master/inputLex.json
 ```
 
 4. run the following command
@@ -57,11 +57,24 @@ curl -H "Accept: application/json" -H "Content-type: application/json"  --data-b
 
 ### create lemon
 The process will create the results in ontolex lemon format. 
-- The input file contains number ranked list for each linguistic pattern. the detail can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
-5. run the following command
+- The input file contains the url (of the resource) and number ranked list (of senses) for each linguistic pattern. the detail can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
+An example of input file is shown below. 
 ```
-curl -H "Accept: application/json" -H "Content-type: application/json"  --data-binary @config.json -X POST  http://localhost:8001/createLemon
+{
+  "uri_basic": "http://localhost:8080/",
+  "rank_limit": 20
+}
 ```
+5. Download input file for lemon creation
+```
+wget -O inputLemon.json https://raw.githubusercontent.com/Pret-a-LLOD/ontology-lexicalization/master/inputLemon.json
+```
+
+6. run the following command
+```
+curl -H "Accept: application/json" -H "Content-type: application/json"  --data-binary @inputLemon.json -X POST  http://localhost:8001/createLemon
+```
+- The output is [lemon file](https://github.com/Pret-a-LLOD/ontology-lexicalization/blob/master/examples/lexicon.json) in Json-LD format.
 
 ## CBL code
 The project contains code of Perl and Java.
