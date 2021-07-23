@@ -23,8 +23,10 @@ Given a DBpedia class, the program will provide class-specific lexicalization. T
 
 The lexicalization process includes semantic annotations and association rules.The DBpedia is large and so it may take nearly 1 hour to get results for a class.The system can be also run for all frequent classes (frequent 340 classes) of DBpedia but it will take more than a week to get results.<br/>
 
-- For simplicity run it for a single class. The input file contains class url and parameteres to run lexicalization process. The detail parameters can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
-The input fule looks like as follow:
+List of DBpedia class can be found [link](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1) <br/>
+
+- For simplicity run it for a single class (for example http://dbpedia.org/ontology/Actor). The input file contains class url and parameteres to run lexicalization process. The detail parameters can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
+An example of input file is shown below. 
 ```
 {
   "class_name"   : "http://dbpedia.org/ontology/Actor",
