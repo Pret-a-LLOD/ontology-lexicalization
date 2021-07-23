@@ -147,7 +147,8 @@ public class LexiconLoader {
                          HashMap<Sense,Provenance> mappingReferenceProvenance = new HashMap<Sense,Provenance>();
                          getSenses(loaded_entry,model,hashsetSenseBehaviour,mappingReferenceProvenance);
                          for(Sense sense : hashsetSenseBehaviour.keySet()) entry.addAllSyntacticBehaviour(hashsetSenseBehaviour.get(sense), sense);
-                         for(Sense sense: mappingReferenceProvenance.keySet()) entry.addProvenance(mappingReferenceProvenance.get(sense), sense);
+                         //recently changed for deleting provinces..
+                         //for(Sense sense: mappingReferenceProvenance.keySet()) entry.addProvenance(mappingReferenceProvenance.get(sense), sense);
                          
                          if(pos!=null)lexicon.addEntry(entry);
                          

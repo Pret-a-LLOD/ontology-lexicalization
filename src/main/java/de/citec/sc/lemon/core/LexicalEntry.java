@@ -249,7 +249,7 @@ public class LexicalEntry {
 	}
 
 
-	public void addProvenance(Provenance provenance, Sense sense) {
+	public void addProvenanceT(Provenance provenance, Sense sense) {
 //            this.hashsetSense.add(sense);
                 if(mappingReferenceProvenance.containsKey(sense)){
                     //System.out.println("For given sense there is already a provenance");

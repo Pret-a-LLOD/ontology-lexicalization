@@ -92,6 +92,14 @@ public class CsvFile  implements PredictionPatterns {
             Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("The file is not found!!!" + ex.getMessage());
         }
+        catch (CompressorException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println( "The system can read only compressed file!!" + ex.getMessage());
+        }
+        catch (NullPointerException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println( "The system can read only compressed file!!" + ex.getMessage());
+        }
         catch (Exception ex) {
             Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
            System.err.println( "The file reading is failed!!" + ex.getMessage());

@@ -20,6 +20,8 @@ import de.citec.sc.lemon.core.SyntacticBehaviour;
 import java.io.*;
 import java.util.*;
 import de.citec.generator.config.PredictionPatterns;
+import edu.stanford.nlp.util.Pair;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -108,13 +110,22 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
                 String writtenForm = lexiconUnit.getWord();
                 //System.out.println("prediction::" + prediction);
                 //System.out.println("writtenForm::" + writtenForm);
-                /*if(!writtenForm.equals("japanese"))
+                /*if(!writtenForm.equals("born"))
                     continue;*/
+
+                if (!isValidWrittenForm(writtenForm)) {
+                    continue;
+                }
+                else
+                    writtenForm=this.modify(writtenForm);
+                    
+
                 de.citec.sc.lemon.core.LexicalEntry entry = new de.citec.sc.lemon.core.LexicalEntry(EN);
                 entry.setCanonicalForm(writtenForm);
                 entry.setPOS(posLexInfo);
                 entry.setURI(this.turtleLexicon.getBaseURI() + writtenForm);
                 entry.setPOS(posLexInfo);
+                Set<Sense> senses = new HashSet<Sense>();
 
                 Integer index = 0;
                 for (Integer rank : ranks.keySet()) {
@@ -135,14 +146,22 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
 
                         try {
 
-                            sense = this.addSenseToEntry(this.turtleLexicon.getBaseURI(), writtenForm, lineInfo, postag);
+                            Pair<Boolean, Sense> senseCheck = this.addSenseToEntry(this.turtleLexicon.getBaseURI(), writtenForm, lineInfo, postag);
                             //System.out.println("sense::::"+sense);
                             //System.out.println("index::" + index);
+                            if (senseCheck.first()) {
+                                sense = senseCheck.second();
+                                senses.add(sense);
+                                //System.out.println("sense::::" + sense);
+                            } else {
+                                continue;
+                            }
+
                             behaviour = this.addBehaviourToEntry(sense, writtenForm, postag, lineInfo.getPreposition());
                             provenance = this.addProvinceToEntry();
                             if (sense != null && behaviour != null && provenance != null) {
                                 entry.addSyntacticBehaviour(behaviour, sense);
-                                entry.addProvenance(provenance, sense);
+                                //entry.addProvenance(provenance, sense);
                             }
 
                         } catch (NullPointerException ex) {
@@ -156,62 +175,72 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
                     }
 
                 }
-                turtleLexicon.addEntry(entry);
+                if (!senses.isEmpty()) {
+                    turtleLexicon.addEntry(entry);
+                }
             }
         }
 
     }
 
-    private Sense addSenseToEntry(String baseUri, String writtenForm, LineInfo lineInfo, String posTag) throws FileNotFoundException, IOException {
+    private Pair<Boolean, Sense> addSenseToEntry(String baseUri, String writtenForm, LineInfo lineInfo, String posTag) throws FileNotFoundException, IOException {
         Sense sense = new Sense();
+        Boolean flag = false;
         if (posTag.contains(ADJECTIVE)) {
+            flag = this.isValidReference(lineInfo.getObjectOriginal());
+
             Reference ref = new Restriction(baseUri + "RestrictionClass" + "_" + writtenForm,
                     lineInfo.getObjectOriginal(),
                     lineInfo.getPredicateOriginal());
             sense.setReference(ref);
         } else if (posTag.contains(NOUN) || posTag.contains(VERB)) {
+            flag = this.isValidReference(lineInfo.getObjectOriginal());
             Reference ref = new SimpleReference(lineInfo.getObjectOriginal());
             sense.setReference(ref);
         }
-        /*else if (posTag.contains(VERB)) {
-            Reference ref = new SimpleReference(lineInfo.getPredicateOriginal());
-            sense.setReference(ref);
-        }*/
 
-        return sense;
+        return new Pair<Boolean, Sense>(flag, sense);
 
+    }
+
+    public boolean isNumeric(String strNum) {
+        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+        if (strNum == null) {
+            return false;
+        }
+        return pattern.matcher(strNum).matches();
     }
 
     private SyntacticBehaviour addBehaviourToEntry(Sense sense, String writtenForm, String posTag, String preposition) throws FileNotFoundException, IOException {
         SyntacticBehaviour behaviour = new SyntacticBehaviour();
 
         if (posTag.contains(ADJECTIVE)) {
-            behaviour.setFrame(lexinfo + AdjectivePredicateFrame);
+            /*behaviour.setFrame(lexinfo + AdjectivePredicateFrame);
             behaviour.add(new SyntacticArgument(lexinfo + attributiveArg, writtenForm + "_" + AttrSynArg, null));
             behaviour.add(new SyntacticArgument(lexinfo + copulativeSubject, writtenForm + "_" + PredSynArg, null));
             sense.addSenseArg(new SenseArgument(lemon + attributiveArg, writtenForm + "_" + AttrSynArg));
-            sense.addSenseArg(new SenseArgument(lemon + copulativeSubject, writtenForm + "_" + PredSynArg));
+            sense.addSenseArg(new SenseArgument(lemon + copulativeSubject, writtenForm + "_" + PredSynArg));*/
         } else if (posTag.contains(VERB)) {
             if (preposition != null) {
-                behaviour.setFrame(lexinfo + IntransitivePPFrame);
+                /*behaviour.setFrame(lexinfo + IntransitivePPFrame);
                 behaviour.add(new SyntacticArgument(lexinfo + prepositionalAdjunct, object, preposition));
                 behaviour.add(new SyntacticArgument(lexinfo + copulativeSubject, subject, null));
                 sense.addSenseArg(new SenseArgument(lemon + subjOfProp, subject));
-                sense.addSenseArg(new SenseArgument(lemon + objOfProp, object));
+                sense.addSenseArg(new SenseArgument(lemon + objOfProp, object));*/
             } else {
-                behaviour.setFrame(lexinfo + TransitiveFrame);
+                /*behaviour.setFrame(lexinfo + TransitiveFrame);
                 behaviour.add(new SyntacticArgument(lexinfo + subject, subject, null));
                 behaviour.add(new SyntacticArgument(lexinfo + directObject, object, null));
                 sense.addSenseArg(new SenseArgument(lemon + subjOfProp, subject));
-                sense.addSenseArg(new SenseArgument(lemon + objOfProp, object));
+                sense.addSenseArg(new SenseArgument(lemon + objOfProp, object));*/
             }
 
         } else if (posTag.contains(NOUN)) {
-            behaviour.setFrame(lexinfo + NounPPFrame);
+            /*behaviour.setFrame(lexinfo + NounPPFrame);
             behaviour.add(new SyntacticArgument(lexinfo + prepositionalAdjunct, object, preposition));
             behaviour.add(new SyntacticArgument(lexinfo + copulativeSubject, subject, null));
             sense.addSenseArg(new SenseArgument(lemon + subjOfProp, object));
-            sense.addSenseArg(new SenseArgument(lemon + objOfProp, subject));
+            sense.addSenseArg(new SenseArgument(lemon + objOfProp, subject));*/
         }
 
         return behaviour;
@@ -220,7 +249,7 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
 
     private Provenance addProvinceToEntry() throws FileNotFoundException, IOException {
         Provenance provenance = new Provenance();
-        provenance.setFrequency(1);
+        //provenance.setFrequency(1);
         return provenance;
     }
 
@@ -259,5 +288,35 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
 
     private String getPair(LineInfo lineInfo, String predictionRule) throws Exception {
         return lineInfo.getSubject() + " " + lineInfo.getPredicate() + lineInfo.getObject();
+    }
+
+    private Boolean isValidReference(String objectOriginal) {
+        if (objectOriginal.contains("http://www.w3.org/2001/XMLSchema")
+                || objectOriginal.contains("http://dbpedia.org/datatype/centimetre")) {
+            return false;
+        } else if (objectOriginal.contains("http") && objectOriginal.contains("http")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    private Boolean isValidWrittenForm(String writtenForm) {
+        if (this.isNumeric(writtenForm)) {
+            return false;
+        } else if (writtenForm.equals("also") ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private String modify(String writtenForm) {
+        if(writtenForm.contains("_")){
+            writtenForm=writtenForm.replace("_", " ") ; 
+            //System.out.println("multiword written form::"+writtenForm);
+           return writtenForm;
+        } 
+        return writtenForm;
     }
 }

@@ -44,6 +44,7 @@ import java.util.regex.Pattern;
 /**
  * 
  * @author swalter
+ * //deleting provinces
  */
 public class Templates {
 	
@@ -86,7 +87,7 @@ public class Templates {
                     sense.addSenseArg(new SenseArgument("http://lemon-model.net/lemon#objOfProp","object"));
 
                     entry.addSyntacticBehaviour(behaviour,sense);
-                    entry.addProvenance(provenance,sense);
+                    //entry.addProvenance(provenance,sense);
 
                     lexicon.addEntry(entry);
                     
@@ -105,7 +106,7 @@ public class Templates {
                     sense.addSenseArg(new SenseArgument("http://lemon-model.net/lemon#objOfProp","subject"));
 
                     entry.addSyntacticBehaviour(behaviour,sense);
-                    entry.addProvenance(provenance,sense);
+                    //entry.addProvenance(provenance,sense);
 
                     lexicon.addEntry(entry);
 
@@ -151,7 +152,7 @@ public class Templates {
                     sense.addSenseArg(new SenseArgument("http://lemon-model.net/lemon#objOfProp","object"));
 
                     entry.addSyntacticBehaviour(behaviour,sense);
-                    entry.addProvenance(provenance,sense);
+                    //entry.addProvenance(provenance,sense);
 
                     lexicon.addEntry(entry);
                     
@@ -170,7 +171,7 @@ public class Templates {
                     sense.addSenseArg(new SenseArgument("http://lemon-model.net/lemon#objOfProp","subject"));
 
                     entry.addSyntacticBehaviour(behaviour,sense);
-                    entry.addProvenance(provenance,sense);
+                    //entry.addProvenance(provenance,sense);
 
                     lexicon.addEntry(entry);
                     
@@ -215,7 +216,7 @@ public class Templates {
                     sense.addSenseArg(new SenseArgument("http://lemon-model.net/lemon#objOfProp","object"));
 
                     entry.addSyntacticBehaviour(behaviour,sense);
-                    entry.addProvenance(provenance,sense);
+                    //entry.addProvenance(provenance,sense);
 
                     lexicon.addEntry(entry);
                     
@@ -234,7 +235,7 @@ public class Templates {
                     sense.addSenseArg(new SenseArgument("http://lemon-model.net/lemon#objOfProp","subject"));
 
                     entry.addSyntacticBehaviour(behaviour,sense);
-                    entry.addProvenance(provenance,sense);
+                    //entry.addProvenance(provenance,sense);
 
                     lexicon.addEntry(entry);
                     
@@ -283,7 +284,7 @@ public class Templates {
                     sense.addSenseArg(new SenseArgument("http://lemon-model.net/lemon#objOfProp","object"));
 
                     entry.addSyntacticBehaviour(behaviour,sense);
-                    entry.addProvenance(provenance,sense);
+                    //entry.addProvenance(provenance,sense);
 
                     lexicon.addEntry(entry);
 
@@ -299,7 +300,7 @@ public class Templates {
                     sense.addSenseArg(new SenseArgument("http://lemon-model.net/lemon#objOfProp","object"));
 
                     entry.addSyntacticBehaviour(behaviour,sense);
-                    entry.addProvenance(provenance,sense);
+                    //entry.addProvenance(provenance,sense);
 
                     lexicon.addEntry(entry);
             }
@@ -344,7 +345,7 @@ public class Templates {
                     sense.addSenseArg(new SenseArgument("http://lemon-model.net/lemon#objOfProp","object"));
 
                     entry.addSyntacticBehaviour(behaviour,sense);
-                    entry.addProvenance(provenance,sense);
+                    //entry.addProvenance(provenance,sense);
 
                     lexicon.addEntry(entry);
                     
@@ -360,7 +361,7 @@ public class Templates {
                     sense.addSenseArg(new SenseArgument("http://lemon-model.net/lemon#objOfProp","object"));
 
                     entry.addSyntacticBehaviour(behaviour,sense);
-                    entry.addProvenance(provenance,sense);
+                    //entry.addProvenance(provenance,sense);
 
                     lexicon.addEntry(entry);
             }	
@@ -399,7 +400,7 @@ public class Templates {
                     sense.addSenseArg(new SenseArgument("http://lemon-model.net/lemon#objOfProp","object"));
 
                     entry.addSyntacticBehaviour(behaviour,sense);
-                    entry.addProvenance(provenance,sense);
+                    //entry.addProvenance(provenance,sense);
 
                     lexicon.addEntry(entry);
 
@@ -416,7 +417,7 @@ public class Templates {
                     sense.addSenseArg(new SenseArgument("http://lemon-model.net/lemon#objOfProp","object"));
 
                     entry.addSyntacticBehaviour(behaviour,sense);
-                    entry.addProvenance(provenance,sense);
+                    //entry.addProvenance(provenance,sense);
 
                     lexicon.addEntry(entry);
             }	
@@ -463,7 +464,7 @@ public class Templates {
                     sense.addSenseArg(new SenseArgument("http://lemon-model.net/lemon#objOfProp","object"));
 
                     entry.addSyntacticBehaviour(behaviour,sense);
-                    entry.addProvenance(provenance,sense);
+                    //entry.addProvenance(provenance,sense);
 
                     lexicon.addEntry(entry);
                     
@@ -479,7 +480,7 @@ public class Templates {
                     sense.addSenseArg(new SenseArgument("http://lemon-model.net/lemon#objOfProp","object"));
 
                     entry.addSyntacticBehaviour(behaviour,sense);
-                    entry.addProvenance(provenance,sense);
+                    //entry.addProvenance(provenance,sense);
 
                     lexicon.addEntry(entry);
             }	
@@ -509,7 +510,7 @@ public class Templates {
             
             Provenance provenance = new Provenance();
             provenance.setFrequency(1);
-            entry.addProvenance(provenance,sense);	
+            //entry.addProvenance(provenance,sense);	
             
             lexicon.addEntry(entry);
 
@@ -547,7 +548,7 @@ public class Templates {
 
             entry.addSyntacticBehaviour(behaviour,sense);
 
-            entry.addProvenance(provenance,sense);
+            //entry.addProvenance(provenance,sense);
 
             lexicon.addEntry(entry);     
         }

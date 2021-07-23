@@ -146,12 +146,17 @@ public class LexiconSerialization {
                             ref_counter+=1;
                             //System.out.println("Sense"+Integer.toString(ref_counter)+":"+sense.toString());
                             model.add(model.createResource(entry.getURI()), LEMON.sense, model.createResource(entry.getURI()+"#Sense"+Integer.toString(ref_counter)));
+                            //recently deleted for deleting provinces
+                            //Provenance provenance = entry.getProvenance(sense);
+                            //recently change
+                            //model.add(model.createResource(entry.getURI()+"#Sense"+Integer.toString(ref_counter)), PROVO.generatedBy, model.createResource(entry.getURI()+"#Activity"+Integer.toString(ref_counter)));
                             
-                            Provenance provenance = entry.getProvenance(sense);
-                            model.add(model.createResource(entry.getURI()+"#Sense"+Integer.toString(ref_counter)), PROVO.generatedBy, model.createResource(entry.getURI()+"#Activity"+Integer.toString(ref_counter)));
-                            SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ssZ");			
-                            model.add(model.createResource(entry.getURI()+"#Activity"+Integer.toString(ref_counter)), RDF.type, PROVO.Activity);
-                            if (provenance.getStartedAtTime() != null) model.add(model.createResource(entry.getURI()+"#Activity"+Integer.toString(ref_counter)), PROVO.startedAtTime, model.createLiteral(df.format(provenance.getStartedAtTime())));
+                            SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ssZ");	
+                            //recently changed for deleting activity and province
+                            //model.add(model.createResource(entry.getURI()+"#Activity"+Integer.toString(ref_counter)), RDF.type, PROVO.Activity);
+                            
+                            //recently deleted for deleting provinces
+                            /*if (provenance.getStartedAtTime() != null) model.add(model.createResource(entry.getURI()+"#Activity"+Integer.toString(ref_counter)), PROVO.startedAtTime, model.createLiteral(df.format(provenance.getStartedAtTime())));
                             if (provenance.getEndedAtTime() != null) model.add(model.createResource(entry.getURI()+"#Activity"+Integer.toString(ref_counter)), PROVO.endedatTime, model.createLiteral(df.format(provenance.getEndedAtTime())));
                             if (provenance.getConfidence() != null) model.add(model.createResource(entry.getURI()+"#Activity"+Integer.toString(ref_counter)), PROVO.confidence, model.createTypedLiteral(provenance.getConfidence()));
                             if (provenance.getAgent() != null) model.add(model.createResource(entry.getURI()+"#Activity"+Integer.toString(ref_counter)), PROVO.associatedWith, model.createLiteral(provenance.getAgent()));
@@ -173,7 +178,7 @@ public class LexiconSerialization {
                                 model.add(model.createResource(baseURI+"pattern_"+pattern), LEMON.canonicalForm, model.createResource(baseURI+"pattern_"+pattern+"#CanonicalForm"));
                                 model.add(model.createResource(baseURI+"pattern_"+pattern+"#CanonicalForm"), LEMON.writtenRep, model.createLiteral(pattern));
                                 model.add(model.createResource(entry.getURI()+"#Activity"+Integer.toString(ref_counter)), PROVO.pattern, model.createResource(baseURI+"pattern_"+pattern));
-                            }
+                            }*/
 
                                 
                             if (ref instanceof de.citec.sc.lemon.core.SimpleReference)

@@ -109,7 +109,7 @@ public class ProcessCsv implements  PredictionPatterns,LemonConstants {
         if (!files.isEmpty()) {
             createExperimentLinesCsv(outputDir, prediction, givenInterestingness, files);
         } else {
-            throw new Exception("NO ontology lexicalization files are found for processing at "+rawFileDir);
+            throw new Exception("NO ontology lexicalization files are found for processing"+". "+"Run lexicalization process first");
         }
     }
 

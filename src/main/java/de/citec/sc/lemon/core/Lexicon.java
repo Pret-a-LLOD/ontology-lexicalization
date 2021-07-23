@@ -108,8 +108,9 @@ public class Lexicon {
                             /*
                             Update Provenance
                             */
-                            Provenance provenance = entry.getProvenance(sense);
-                            containedEntry.addProvenance(provenance, sense);
+                            //recently deleted
+                            //Provenance provenance = entry.getProvenance(sense);
+                            //containedEntry.addProvenance(provenance, sense);
                         });
 
                         

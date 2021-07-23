@@ -49,7 +49,7 @@ public class PROVO {
         public static Property sentence = defaultModel.createProperty("http://www.w3.org/ns/prov#sentence");
 
 	
-	public static Resource Activity = defaultModel.createProperty("http://www.w3.org/ns/prov#Activity");
+	//public static Resource Activity = defaultModel.createProperty("http://www.w3.org/ns/prov#Activity");
 	public static Resource Entity = defaultModel.createProperty("http://www.w3.org/ns/prov#Entity");
 	public static Resource Agent = defaultModel.createProperty("http://www.w3.org/ns/prov#Agent");
     
