@@ -10,19 +10,19 @@ package de.citec.generator.config;
  * @author elahi
  */
 public class ConfigLex {
-    private String class_url = "http://dbpedia.org/ontology/Actor";
-    private Integer minimum_entities_per_class = 100;
-    private Integer maximum_entities_per_class = 100;
-    private Integer minimum_onegram_length = 4;
-    private Integer minimum_pattern_count = 5;
-    private Integer minimum_anchor_count = 10;
-    private Integer minimum_propertyonegram_length =4;
-    private Integer minimum_propertypattern_count = 5;
-    private Integer minimum_propertystring_length = 5;
-    private Integer maximum_propertystring_length = 50;
-    private Integer minimum_supportA = 2;
-    private Integer minimum_supportB = 2;
-    private Integer minimum_supportAB = 2;
+    private String class_url = null;
+    private Integer minimum_entities_per_class = 0;
+    private Integer maximum_entities_per_class = 0;
+    private Integer minimum_onegram_length = 0;
+    private Integer minimum_pattern_count = 0;
+    private Integer minimum_anchor_count = 0;
+    private Integer minimum_propertyonegram_length =0;
+    private Integer minimum_propertypattern_count = 0;
+    private Integer minimum_propertystring_length = 0;
+    private Integer maximum_propertystring_length = 0;
+    private Integer minimum_supportA = 0;
+    private Integer minimum_supportB = 0;
+    private Integer minimum_supportAB = 0;
     
 
 

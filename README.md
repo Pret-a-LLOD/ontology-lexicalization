@@ -29,31 +29,30 @@ List of DBpedia class can be found [link](https://app.swaggerhub.com/apis/melahi
 An example of input file is shown below. 
 ```
 {
-  "class_name"   : "http://dbpedia.org/ontology/Actor",
-  "min_entities_per_class": 100,
-  "max_entities_per_class": 10000,
-  "min_onegram_length": 4,
-  "min_pattern_count": 5,
-  "min_anchor_count": 10,
-  "min_propertyonegram_length": 4,
-  "min_propertypattern_count": 5,
-  "min_propertystring_length": 5,
-  "max_propertystring_length": 50,
-  "min_supA": 5,
-  "min_supB": 5,
-  "min_supAB":5,
-  "rank_limit": 20
+  "class_url"   : "http://dbpedia.org/ontology/Actor",
+  "minimum_entities_per_class": 100,
+  "maximum_entities_per_class": 10000,
+  "minimum_onegram_length": 4,
+  "minimum_pattern_count": 5,
+  "minimum_anchor_count": 10,
+  "minimum_propertyonegram_length": 4,
+  "minimum_propertypattern_count": 5,
+  "minimum_propertystring_length": 5,
+  "maximum_propertystring_length": 50,
+  "minimum_supportA": 5,
+  "minimum_supportB": 5,
+  "minimum_supportAB":5,
 }
-```
-3. Download input file. If you have wget command installed in your terminal, download the configuration file for DBpedia
 
 ```
-wget -O config.json https://raw.githubusercontent.com/Pret-a-LLOD/ontology-lexicalization/master/config.json
+3. Download input file
+```
+wget -O inputLex.json https://raw.githubusercontent.com/Pret-a-LLOD/ontology-lexicalization/master/inputLex.json
 ```
 
 4. run the following command
 ```
-curl -H "Accept: application/json" -H "Content-type: application/json"  --data-binary @config.json -X POST  http://localhost:8080/lexicalization
+curl -H "Accept: application/json" -H "Content-type: application/json"  --data-binary @inputLex.json -X POST  http://localhost:8080/lexicalization
 ```
 
 ### create lemon

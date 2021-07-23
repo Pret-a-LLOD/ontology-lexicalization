@@ -1,0 +1,15 @@
+{
+  "class_url"   : "http://dbpedia.org/ontology/Actor",
+  "minimum_entities_per_class": 100,
+  "maximum_entities_per_class": 10000,
+  "minimum_onegram_length": 4,
+  "minimum_pattern_count": 5,
+  "minimum_anchor_count": 10,
+  "minimum_propertyonegram_length": 4,
+  "minimum_propertypattern_count": 5,
+  "minimum_propertystring_length": 5,
+  "maximum_propertystring_length": 50,
+  "minimum_supportA": 5,
+  "minimum_supportB": 5,
+  "minimum_supportAB":5,
+}
