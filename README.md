@@ -19,14 +19,33 @@ docker run -p 8001:8080 -t pretallod/lex-cbl
 The DBpedia resource including abstracts corpus (i.e. texts), knowledge graph (triples), and anchor text (i.e. rdfs:label dictionary) are very large. Therefore, it is provided inside the container. 
 
 ### lexicalization
-- Given a DBpedia class, the program will provide class-specific lexicalization. That is, it links the linguistic patterns (a token/a sequence of tokens tagged with parts-of-speech) of the text (of abstract) with predict predicate-object pair, predicate, object, etc.
-- The input file contains class and parameteres to run lexicalization process. The detail can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
-
+Given a DBpedia class, the program will provide class-specific lexicalization. That is, it links the linguistic patterns (a token/a sequence of tokens tagged with parts-of-speech) of the text (of abstract) with predict predicate-object pair, predicate, object, etc.
+- The input file contains class url and parameteres to run lexicalization process. The detail parameters can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
+The input fule looks like as follow:
+```
+{
+  "class_name"   : "http://dbpedia.org/ontology/Actor",
+  "min_entities_per_class": 100,
+  "max_entities_per_class": 10000,
+  "min_onegram_length": 4,
+  "min_pattern_count": 5,
+  "min_anchor_count": 10,
+  "min_propertyonegram_length": 4,
+  "min_propertypattern_count": 5,
+  "min_propertystring_length": 5,
+  "max_propertystring_length": 50,
+  "min_supA": 5,
+  "min_supB": 5,
+  "min_supAB":5,
+  "rank_limit": 20
+}
+```
 3. Download input file. If you have wget command installed in your terminal, download the configuration file for DBpedia
 
 ```
-wget -O config.json https://github.com/Pret-a-LLOD/ontology-lexicalization/blob/master/config.json
+wget -O config.json https://raw.githubusercontent.com/Pret-a-LLOD/ontology-lexicalization/master/config.json
 ```
+
 - The lexicalization process includes semantic annotations and association rules.
 - The DBpedia is large and so it may take nearly 1 hour to get results for a class. 
 - The system can be also run for all frequent classes (frequent 340 classes) of DBpedia but it will take more than a week to get results.
