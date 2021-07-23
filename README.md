@@ -47,7 +47,7 @@ An example of input file is shown below.
 ```
 3. Download input file
 ```
-wget -O inputLex.json https://raw.githubusercontent.com/Pret-a-LLOD/ontology-lexicalization/master/inputLex.json
+wget -O inputLex.json https://raw.githubusercontent.com/Pret-a-LLOD/ontology-lexicalization/master/inputLex
 ```
 
 4. run the following command
