@@ -4,7 +4,7 @@ The Corpus-based lexicalization (CBL) is a tool for bridging the lexical gap bet
 This page provides instructions on how to run the tool.
 
 ### Getting started with CBL
-To run CBL on your machine follow the instructions.
+To run CBL on your machine follow 5 instrcutions given below:
 
 - docker (https://docs.docker.com/engine/install/)
 
@@ -42,7 +42,7 @@ curl -H POST "Accept: application/json" \
 ### create lemon
 The process will create the results in ontolex lemon format. 
 - The input file contains number ranked list for each linguistic pattern. the detail can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
-- run the following command
+5. run the following command
 ```
 curl -H POST "Accept: application/json" \
      -H "Content-type: application/json" \
