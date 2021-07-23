@@ -68,7 +68,7 @@ Please use the following citation:
 @inproceedings{Buono-LREC2020,
 	title = {{Bridging the gap between Ontology and Lexicon via Class-specific Association Rules Mined from a Loosely-Parallel Text-Data Corpus}},
 	author = {Basil Ell, Mohammad Fazleh Elahi, Philipp Cimiano},
-	booktitle = {Proceedings of the 7th Workshop on Linked Data in Linguistics (LDL-2020) at Language Resources and Evaluation Conference (LREC 2020)},
+	booktitle = {Proceedings of the  3rd Conference on Language, Data and Knowledge (LDK 2021)},
 	year = {2021},
 	location = {Zaragoza, Spain},
 	link = {https://pub.uni-bielefeld.de/record/2954753}
