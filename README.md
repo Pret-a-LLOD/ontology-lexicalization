@@ -52,7 +52,7 @@ wget -O inputLex.json https://raw.githubusercontent.com/Pret-a-LLOD/ontology-lex
 
 4. run the following command
 ```
-curl -H "Accept: application/json" -H "Content-type: application/json"  --data-binary @inputLex.json -X POST  http://localhost:8080/lexicalization
+curl -H "Accept: application/json" -H "Content-type: application/json"  --data-binary @inputLex.json -X POST  http://localhost:8001/lexicalization
 ```
 
 ### create lemon
@@ -60,7 +60,7 @@ The process will create the results in ontolex lemon format.
 - The input file contains number ranked list for each linguistic pattern. the detail can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
 5. run the following command
 ```
-curl -H "Accept: application/json" -H "Content-type: application/json"  --data-binary @config.json -X POST  http://localhost:8080/createLemon
+curl -H "Accept: application/json" -H "Content-type: application/json"  --data-binary @config.json -X POST  http://localhost:8001/createLemon
 ```
 
 ## CBL code
