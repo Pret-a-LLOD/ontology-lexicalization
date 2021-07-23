@@ -19,18 +19,28 @@ docker run -p 8001:8080 -t pretallod/lex-cbl
 ```
 After the container is running do the followings:
 
-### lexicalization
-- the DBpedia resource (abstracts, knowledge graph, and semantically annotated text/anchor text) are very large. Therefore, the container contains the DBpedia resource. 
-- Given the DBpedia resource, the program will provide class-specific lexicalization. 
-- The input file contains class and necessary parameteres to run the lexicalization process. The process will link linguistic terms (i.e. a token/a sequence of tokens) of the DBpedia abstracts of the class with predicate-object pair/restriction class, predicate, object, etc.
-- The input file with example can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
-- Download input file. If you have wget command installed in your terminal, download the configuration file for DBpedia
+### Endpoints and input/output specifications
+All endpoints and parameter details can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
 
+### Download linked data
+Download DBpedia abstracts corpus and knowledge graph as follows: 
+- If you have wget command installed in your terminal, download the configuration file for DBpedia
 ```
 wget -O config.json https://github.com/Pret-a-LLOD/ontology-lexicalization/blob/master/config.json
 ```
+- run the following command to download DBpedia abstracts and knowledge graph
+```
+curl -H POST "Accept: application/json" \
+    -H "Content-type: application/json" \
+    --data-binary @config.json \
+    -X POST  http://localhost:8001/download 
+```
+- The DBpedia knowledge graph is large. It may take some time to download
+
+### lexicalization
+Given the DBpedia abstract and DBpedia knowledge base, the process will link linguistic terms (i.e. a token/a sequence of tokens) of the corpus with the content of DBpedia (i.e. predicate-object pair/restriction class, predicate, object, etc.)
 - The process will first annotate the text with semantic information (i.e. annotating texts with rdfs: label) and then generates association rules to predict predicate-object pair, predicate, object, etc.
-- The DBpedia is large and so it may take nearly 1 hour to get results for a class. For simplicity, we can run it for a class (i.e. Actor). It can be run for any class. 
+- The DBpedia is large and so it may take near 1 hour to get results for a class. For simplicity, we can run it for a class (i.e. Actor). It can be run for any class. 
 - The system can be also run for all frequent classes (frequent 340 classes) of DBpedia but it will take more than a week to get results.
 - write the class config.json contains the class.  The class list of DBpedia can be found here. 
 - run the following command
@@ -40,10 +50,10 @@ curl -H POST "Accept: application/json" \
     --data-binary @config.json \
     -X POST  http://localhost:8001/lexicalization
 ```
+- All the parameters of input and output is detailed in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
 
 ### create lemon
-- The process will post process the data and create ontolex lemon 
-- The input file with example can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
+- The process will create ontolex lemon for all linguistic terms
 - run the following command
 ```
 curl -H POST "Accept: application/json" \
@@ -51,6 +61,7 @@ curl -H POST "Accept: application/json" \
     --data-binary @config.json \
     -X POST  http://localhost:8001/createLemon
 ```
+- All the parameters of input and output is detailed in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
 
 ## CBL code
 The project contains code of Perl and Java.
