@@ -31,7 +31,7 @@ curl -H POST "Accept: application/json" \
     --data-binary @config.json \
     -X POST  http://localhost:8001/download 
 ```
-- The parameter details can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.0)
+- The parameter details can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
 - The DBpedia knowledge graph is large. It may take some time to download
 
 # The below content is wrong and under construction  
