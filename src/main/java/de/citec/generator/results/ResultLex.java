@@ -27,7 +27,7 @@ public class ResultLex {
         
     }
     
-    public ResultLex(String className, String linked_data, String status) {
+    public ResultLex(String className, String status) {
         this.className = className;
         this.status = status;
     }

@@ -119,32 +119,34 @@ my $num_to_month = {
 my $total = $#ARGV + 1;
 my $counter = 1;
 my $jsonConfig = "";
+my $className ="";
 
 # Use loop to print all args stored in an array called @ARGV
 foreach my $a(@ARGV) {
-     if($counter == 1){
-       $jsonConfig = $a;
+    #  if($counter == 1){
+    #    $jsonConfig = $a;
+    #   print "Arg # $counter : $a\n";
+    #  }
+    if($counter == 1){
+       $BASEDIR = $a;
        print "Arg # $counter : $a\n";
      }
     if($counter == 2){
-       $BASEDIR = $a;
+       $className  = $a;
        print "Arg # $counter : $a\n";
      }
 	$counter++;
 }
 
-my $parsed=parse_json($jsonConfig);
-
-
-print Dumper($parsed);
-
-my $className = $parsed->{className};
-print "className::". $className. "\n";
+# my $parsed=parse_json($jsonConfig);
+# print Dumper($parsed);
+# my $className = $parsed->{class_url};
+# my $className = $parsed->{class_url};
+print "className::". $jsonConfig. "\n";
 print "BASEDIR::". $BASEDIR. "\n";
+print "className::". $className. "\n";
 
 #################################################
-
-
 open(DAT,"<$BASEDIR/input/stopwords-en.txt");
 while(defined(my $line=<DAT>)){
 	next if $line =~ m/\A#/;
@@ -262,7 +264,6 @@ if(
 	$entity_to_frequent_classes = LoadFile($entity_to_frequent_classes_file);
 }
 print "done with step 1. wait.\n"; #<STDIN>;
-
 
 
 
@@ -502,6 +503,7 @@ if(not -e $step2_finished_file){
 
 }
 print "done with step 2. wait.\n"; #<STDIN>;
+
 
 
 # Step 3. create linguistic patterns per entity

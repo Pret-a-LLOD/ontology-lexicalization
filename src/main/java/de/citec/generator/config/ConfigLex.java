@@ -5,6 +5,10 @@
  */
 package de.citec.generator.config;
 
+import de.citec.sc.generator.exceptions.ConfigException;
+import edu.stanford.nlp.util.Pair;
+
+
 /**
  *
  * @author elahi
@@ -22,12 +26,17 @@ public class ConfigLex {
     private Integer maximum_propertystring_length = 0;
     private Integer minimum_supportA = 0;
     private Integer minimum_supportB = 0;
-    private Integer minimum_supportAB = 0;
-    
+    private Integer minimum_supportAB = 0;    
 
-
-    public String getClass_url() throws Exception {
-        return checkClass(class_url);
+ 
+    public String getClass_url() throws ConfigException  {
+        Pair<Boolean, String> check = checkClass(class_url);
+        if (check.first()) {
+            this.class_url = check.second();
+            return this.class_url;
+        } else {
+            throw new ConfigException("");
+        }
     }
 
     public Integer getMinimum_entities_per_class() {
@@ -78,16 +87,18 @@ public class ConfigLex {
         return minimum_supportAB;
     }
 
-    public String checkClass(String class_url) throws Exception {
+    public Pair<Boolean,String> checkClass(String class_url)  {
         if (class_url.isEmpty()) {
-            throw new Exception("The class is invalid!!!:");
+            return new Pair<Boolean,String>(Boolean.FALSE,class_url);
         } else if (class_url.contains("http:")) {
-            return class_url.substring(class_url.lastIndexOf("/") + 1);
+            class_url=class_url.substring(class_url.lastIndexOf("/") + 1);
+             return new Pair<Boolean,String>(Boolean.TRUE,class_url);
         } else if (class_url.contains("dbo:")) {
             String[] info = class_url.split(":");
-            return info[1];
+             class_url= info[1];
+             return new Pair<Boolean,String>(Boolean.TRUE,class_url);
         } else {
-            return class_url;
+            return new Pair<Boolean,String>(Boolean.FALSE,class_url);
         }
     }
    

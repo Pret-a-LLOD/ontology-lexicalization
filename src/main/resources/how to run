@@ -1,2 +1,0 @@
-        $command =$javaCommand.$space.$dir.$jarFile.$space.$rule.$space.$inter.$space.$tokenStr;ls
-
