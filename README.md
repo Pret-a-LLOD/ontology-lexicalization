@@ -1,32 +1,30 @@
 # Corpus-based lexicalization for DBpedia
-The Corpus-based lexicalization (CBL) is a tool for bridging the lexical gap between content expressed in the form of natural language (NL) texts and content stored in an RDF knowledge base (KB). The current version of the tool is implemented for DBpedia. The Corpus-based lexicalization (CBL) is the core task of so-called ontology lexicalization [ontology lexicalization](https://aclanthology.org/W13-3803.pdf)
+The corpus-based lexicalization (CBL) is a tool for bridging the lexical gap between natural language (NL) expressions (i.e. linguistic patterns) and the content stored in an RDF knowledge base (i.e. ontology).  The tool uses class-specific association rules together with null-invariant measures of interestingness to induce correspondences between lexical elements and KB elements. The current version of the tool is implemented for DBpedia. The Corpus-based lexicalization (CBL) is the core task of so-called ontology lexicalization [ontology lexicalization](https://aclanthology.org/W13-3803.pdf). This page provides instructions on how to run the tool.
 
-This page provides instructions on how to run the tool.
+### Requirements
+- docker [docker](https://docs.docker.com/engine/install/)
+- 7GB free space: The DBpedia resource includes abstracts, knowledge graph (i.e. triples), and anchor text (i.e. rdfs:label dictionary for entities). The size is near 6GB . For simplicity, the DBpedia resources is provided with the container. Therefore the docker image is near 6 GB. 
 
 ### Getting started with CBL
-To run CBL on your machine follow 5 instrcutions given below:
+To run CBL on your machine, follow 6 instructions given below:
 
-- docker (https://docs.docker.com/engine/install/)
-
-1. Download the image of CBL. 
+1. Download the image of CBL (lex-cbl). 
 ```
-docker pull pretallod/lex-cbl
+docker pull elahi/lex-cbl
 ```
 2. Run the image as a container.
 ```
-docker run -p 8001:8080 -t pretallod/lex-cbl
+docker run -p 8001:8080 -t elahi/lex-cbl
 ```
-The DBpedia resource including abstracts corpus (i.e. texts), knowledge graph (triples), and anchor text (i.e. rdfs:label dictionary) are very large. Therefore, it is provided inside the container. 
 
 ### lexicalization
-Given a DBpedia class, the program will provide class-specific lexicalization. That is, it links the linguistic patterns (a token/a sequence of tokens tagged with parts-of-speech) of the text (of abstract) with predict predicate-object pair, predicate, object, etc.<br/>
-
-The lexicalization process includes semantic annotations and association rules.The DBpedia is large and so it may take nearly 1 hour to get results for a class.The system can be also run for all frequent classes (frequent 340 classes) of DBpedia but it will take more than a week to get results.<br/>
+Given a class, the program will provide class-specific lexicalization. That is, it links the linguistic patterns (a token/a sequence of tokens tagged with parts-of-speech) of the text (of DBpedia abstract) KB elements. <br/>
 
 List of DBpedia class can be found [link](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1) <br/>
 
 - For simplicity run it for a single class (for example http://dbpedia.org/ontology/Actor). The input file contains class url and parameteres to run lexicalization process. The detail parameters can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
-An example of input file is shown below. 
+
+Input Example:
 ```
 {
   "class_url"   : "http://dbpedia.org/ontology/Actor",
@@ -43,17 +41,24 @@ An example of input file is shown below.
   "minimum_supportB": 5,
   "minimum_supportAB":5,
 }
-
 ```
-3. Download input file
+3. Download the input file
 ```
 wget -O inputLex.json https://raw.githubusercontent.com/Pret-a-LLOD/ontology-lexicalization/master/inputLex.json
 ```
 
-4. run the following command
+4. run the following command. The process may take nearly 2 hours.
 ```
 curl -H "Accept: application/json" -H "Content-type: application/json"  --data-binary @inputLex.json -X POST  http://localhost:8001/lexicalization
 ```
+Output Example:
+```
+{
+  "class_url":"http://dbpedia.org/ontology/Actor",
+  "status":"Successfull completed lexicalization!!"
+}
+```
+- Note: The system can be also run for all frequent classes (i.e.  340 classes) of DBpedia. It will take more than a week to get results.<br/>
 
 ### create lemon
 The process will create the results in ontolex lemon format. 
@@ -74,13 +79,11 @@ wget -O inputLemon.json https://raw.githubusercontent.com/Pret-a-LLOD/ontology-l
 ```
 curl -H "Accept: application/json" -H "Content-type: application/json"  --data-binary @inputLemon.json -X POST  http://localhost:8001/createLemon
 ```
-- The output is [lemon file](https://github.com/Pret-a-LLOD/ontology-lexicalization/blob/master/examples/lexicon.json) in Json-LD format.
+- An example of output is [lemon](https://github.com/Pret-a-LLOD/ontology-lexicalization/blob/master/examples/lexicon.json) in Json-LD format.
 
 ## CBL code
 The project contains code of Perl and Java.
 
-## Algorithm behind the project
-Given a linguistic pattern (i.e. a token or a sequence of tokens tagged with parts-of-speech and lemmatized), the tool uses class-specific association rules (Ell et al., 2021) together with null-invariant measures of interestingness to predict predicate-object pair (i.e. class lexicalization), predicate, object of DBpedia.
 
 ## Reference
 Please use the following citation:
