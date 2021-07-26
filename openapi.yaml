@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: >-
     CBL is a tool for ontology lexicaliation (bridging gap between terms presented in natural language and content of knowledge graph) 
-  version: 1.0.0-oas3
+  version: 1.0.1
   title: Corpus based lexicalization (CBL)
   x-port: '8080'
   license: 
@@ -13,36 +13,6 @@ tags:
     description: >-
       The components that automatically generates ontology lexicalization give a linked data. The current version is implemented for DBpedia.
 paths:
-  /import:
-    post:
-      tags:
-        - CBL Component
-      summary: Download linked data. The current version only works for DBpedia.
-      requestBody:
-        description: |-
-          __abstract_url__: url of the DBpedia abstracts release. DBpedia abstracts in turtle format. The DBpedia corpus is very large.
-
-          __property_url__: url of the DBpedia properties. The DBpedia knowledge graph in (i.e. triples) in turtle format.
-
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ConfigLex'
-            example:          
-              linked_data: DBpedia
-              uri_abstract : http://localhost/data-v4/inputAbstract/short-abstracts_lang=en.ttl.bz2
-              uri_property : http://localhost/data-v4/inputProperty/infobox-properties_lang=en.ttl.bz2
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DownloadResult'
-        '404':
-          description: Failed. No more requests.
-          content: {}
   /lexicalization:
     post:
       tags:
@@ -62,19 +32,19 @@ paths:
           
           __minimum_anchor_count__:  the achor count.
           
-          __minimum_propertyonegram_length__: .
+          __minimum_propertyonegram_length__: minimum length of ongram
           
-          __minimum_propertypattern_count__ : .
+          __minimum_propertypattern_count__ : minimum property count.
           
-          __minimum_propertystring_length__: .
+          __minimum_propertystring_length__: minimum property string length
           
-          __maximum_propertystring_length__: .
+          __maximum_propertystring_length__: maximum property string length
           
-          __minimum_supportA__: .
+          __minimum_supportA__: minimum support for Left side of the association rule
           
-          __minimum_supportB__:  .
+          __minimum_supportB__:  minimum support for right side of the association rule
           
-          __minimum_supportAB__: .
+          __minimum_supportAB__: minimum support for both left side and right of the association rule
         required: true
         content:
           application/json:
@@ -83,7 +53,7 @@ paths:
             example:          
               class_url: http://dbpedia.org/ontology/Actor
               minimum_entities_per_class : 100
-              maximum_entities_per_class : 100
+              maximum_entities_per_class : 1000
               minimum_onegram_length : 4
               minimum_pattern_count : 5
               minimum_anchor_count : 10
@@ -102,7 +72,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ResultLex'
         '404':
-          description: Failed. No more requests.
+          description: Failed to process ontology lexicalization 
           content: {}
   /createLemon:
     post:
@@ -123,34 +93,6 @@ paths:
             example:          
               uri_base: http://localhost:8080/
               rank_limit : 20
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResultJsonLD'
-        '404':
-          description: Failed. No more requests.
-          content: {}
-  /searchPattern:
-    post:
-      tags:
-        - CBL components
-      requestBody:
-        description: |-
-          __terms__: term to search.
-
-           __parts_of_speech__: noun/adjective/verb 
-
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ConfigSearch'
-            example:  
-              term_to_search : born
-              parts_of_speech : noun
       responses:
         '200':
           description: successful operation
@@ -291,17 +233,36 @@ components:
                   "@id":
                    type: string
                    format: string
+              "hasValue":
+                type: object
+                format: string
+                properties:
+                  "@id":
+                   type: string
+                   format: string
+                  "@type":
+                   type: string
+                   format: string
+              "onProperty":
+                type: object
+                format: string
+                properties:
+                  "@id":
+                   type: string
+                   format: string
+                  "@type":
+                   type: string
+                   format: string
         "@graph":
           type: array
           items:
             anyOf:
-              - $ref: '#/components/schemas/ItemEntry'
-              - $ref: '#/components/schemas/ItemCanonicalForm'
-              - $ref: '#/components/schemas/ItemWrittenRep'
-              - $ref: '#/components/schemas/ItemReference'
-              - $ref: '#/components/schemas/ItemFrequency'
-                  
-    ItemEntry:
+              - $ref: '#/components/schemas/HashMapEntry'
+              - $ref: '#/components/schemas/HashMapDetail'
+              - $ref: '#/components/schemas/HashMapWrittenRep'
+              - $ref: '#/components/schemas/HashMapReference'
+
+    HashMapEntry:
       type: object
       properties:
         "@id":
@@ -315,7 +276,7 @@ components:
           format: string
           items:
             type: string
-    ItemCanonicalForm:
+    HashMapDetail:
       type: object
       properties:
         "@id":
@@ -333,52 +294,28 @@ components:
         sense:
           type: string
           format: string
-        synBehavior:
-          type: string
-          format: string
         partOfSpeech:
           type: string
           format: string
         label:
           type: string
           format: string
-    ItemWrittenRep:
+    HashMapWrittenRep:
       type: object
       properties:
-        label:
+        "@id":
           type: string
           format: string
         writtenRep:
           type: string
           format: string
-    ItemReference:
+    HashMapReference:
       type: object
       properties:
         "@id":
-          type: string
-          format: string
-        objOfProp:
           type: string
           format: string
         reference:
-          type: string
-          format: string
-        subjOfProp:
-          type: string
-          format: string
-        generatedBy:
-          type: string
-          format: string
-    ItemFrequency:
-      type: object
-      properties:
-        "@id":
-          type: string
-          format: string
-        "@type":
-          type: string
-          format: string
-        frequency:
           type: string
           format: string
     DownloadResult:

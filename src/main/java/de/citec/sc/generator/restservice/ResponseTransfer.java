@@ -27,8 +27,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.riot.RDFDataMgr;
@@ -136,7 +145,49 @@ public class ResponseTransfer implements Constants {
 
 
     public ResultDownload downloadData(ConfigDownload conf) {
+        
+        /*long startTime = System.nanoTime();
+        Path file = Paths.get("/home/elahi/a-teanga/dockerTest/ontology-lexicalization/app/");
         try {
+            //Java 8: Stream class
+            Stream<String> lines = Files.lines(file, StandardCharsets.UTF_8);
+
+            for (String line : (Iterable<String>) lines::iterator) {
+                //System.out.println(line);
+            }
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        long endTime = System.nanoTime();
+        long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
+        System.out.println("Total elapsed time: " + elapsedTimeInMillis + " ms");*/
+        
+        
+        
+        URL url;
+         System.out.println(conf);
+        try {
+            url = new URL(conf.getUri_abstract());
+            Path path = Paths.get("/home/elahi/a-teanga/dockerTest/ontology-lexicalization/app/");
+            Files.copy(url.openStream(), path);
+            return new ResultDownload(conf.getUri_abstract(), "successfully download the file!");
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
+            return new ResultDownload(conf.getUri_abstract(), "failed to download turtle files!");
+        }
+        catch (FileAlreadyExistsException ex) {
+            Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResultDownload(conf.getUri_abstract(), "File already exists!!");
+        }
+        catch (IOException ex) {
+            Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResultDownload(conf.getUri_abstract(), "failed to download turtle files!");
+        }
+        
+       /* try {
             PerlQuery PerlQuery = new PerlQuery(conf.getUri_abstract());
             if (PerlQuery.getProcessSuccessFlag()) {
                 return new ResultDownload(conf.getLinked_data(), "Successfull downloaded!!");
@@ -147,7 +198,7 @@ public class ResponseTransfer implements Constants {
         } catch (PerlException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             return new ResultDownload(conf.getLinked_data(), "downloaded failed!!");
-        }
+        }*/
 
     }
 

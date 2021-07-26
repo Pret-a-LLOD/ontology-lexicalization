@@ -13,13 +13,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ResultLex {
 
-    @JsonProperty("class_name")
-    private String className = null;
+    @JsonProperty("class_url")
+    private String class_url = null;
     @JsonProperty("status")
     private String status  =null;
     
     public ResultLex(String className,Boolean flag){
-        this.className=className;
+        this.class_url=className;
         if(flag)
             this.status="Successfull complete lexicalization!!";
         else 
@@ -28,11 +28,11 @@ public class ResultLex {
     }
     
     public ResultLex(String className, String status) {
-        this.className = className;
+        this.class_url = className;
         this.status = status;
     }
     public String getClassName() {
-        return className;
+        return class_url;
     }
 
 }

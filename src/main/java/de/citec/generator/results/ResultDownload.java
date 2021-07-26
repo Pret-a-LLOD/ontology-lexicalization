@@ -13,18 +13,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ResultDownload {
 
-    @JsonProperty("linked_data")
-    private String linked_data = null;
-    @JsonProperty("status")
+    private String url = null;
     private String status = null;
 
-    public ResultDownload(String linked_data, String status) {
-        this.linked_data = linked_data;
+    public ResultDownload(String url, String status) {
+        this.url = url;
         this.status=status;
     }
 
     public String getLinked_data() {
-        return linked_data;
+        return url;
     }
 
     public String getStatus() {

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class SchemaController {
     
     
-    @RequestMapping(path = "/import", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path = "/download", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResultDownload downloadData(@RequestBody ConfigDownload conf) {
         return new ResponseTransfer().downloadData(conf);
