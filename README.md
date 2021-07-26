@@ -1,9 +1,11 @@
 # Corpus-based lexicalization for DBpedia
-The corpus-based lexicalization (CBL) is a tool for bridging the lexical gap between natural language (NL) expressions (i.e. linguistic patterns) and the content stored in an RDF knowledge base (i.e. ontology).  The tool uses class-specific association rules together with null-invariant measures of interestingness to induce correspondences between lexical elements and KB elements. The current version of the tool is implemented for DBpedia. The Corpus-based lexicalization (CBL) is the core task of so-called ontology lexicalization [ontology lexicalization](https://aclanthology.org/W13-3803.pdf). This page provides instructions on how to run the tool.
+The corpus-based lexicalization (CBL) is a tool for bridging the lexical gap between natural language (NL) expressions (i.e. linguistic patterns) and the content stored in an RDF knowledge base (i.e. ontology).  The tool uses class-specific association rules together with null-invariant measures of interestingness to induce correspondences between lexical elements and KB elements. 
+- The current version of the tool is implemented for DBpedia. The Corpus-based lexicalization (CBL) is the core task of so-called ontology lexicalization [ontology lexicalization](https://aclanthology.org/W13-3803.pdf). 
+- This page provides instructions on how to run the tool.
 
 ### Requirements
 - docker [docker](https://docs.docker.com/engine/install/)
-- 7GB free space: The DBpedia resource includes abstracts, knowledge graph (i.e. triples), and anchor text (i.e. rdfs:label dictionary for entities). The size is near 6GB . For simplicity, the DBpedia resources is provided with the container. Therefore the docker image is near 6 GB. 
+- 7GB free space: The DBpedia resource includes abstracts, knowledge graph (i.e. triples), and anchor text (i.e. rdfs:label dictionary for entities). The size is near 6GB . For simplicity, the DBpedia resources is provided with the container.
 
 ### Getting started with CBL
 To run CBL on your machine, follow 6 instructions given below:
