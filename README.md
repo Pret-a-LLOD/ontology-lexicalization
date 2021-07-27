@@ -5,18 +5,20 @@ The corpus-based lexicalization (CBL) is a tool for bridging the lexical gap bet
 
 ### Requirements
 - docker [docker](https://docs.docker.com/engine/install/)
-- 7GB free space: The DBpedia resource includes abstracts, knowledge graph (i.e. triples), and anchor text (i.e. rdfs:label dictionary for entities). The size is near 6GB . For simplicity, the DBpedia resources is provided with the container.
+- 6GB free space: The DBpedia resource includes abstracts, knowledge graph (i.e. triples), and anchor text (i.e. rdfs:label dictionary for entities).The DBpedia resources is provided with the container. The image size is near 5GB .
+- - The task is divided into two parts: lexicalization an create lemon. The lexicalization endpoint has to be run first (instruction 3 and 4). After completion, the run create lemon endpoint (instruction 5 and 6).
 
 ### Getting started with CBL
 To run CBL on your machine, follow 6 instructions given below:
 
 1. Download the image of CBL (lex-cbl). 
 ```
-docker pull elahi/lex-cbl
+docker pull elahi/lex-cbl:1.0
+
 ```
 2. Run the image as a container.
 ```
-docker run -p 8001:8080 -t elahi/lex-cbl
+docker run -p 8001:8080 -t elahi/lex-cbl:1.0
 ```
 
 ### lexicalization
