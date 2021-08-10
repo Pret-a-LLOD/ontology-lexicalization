@@ -114,11 +114,11 @@ public class GoogleXslSheet implements TextAnalyzer{
         public static Integer rangeIndex = 11;
         public static String csvFileName = AttributiveAdjectiveFrameStr + ".csv";
 
-        public static String getRow(String writtenForm, Integer rank, LineInfo lineInfo) {
+        public static String getRow(String id, String writtenForm, Integer rank, LineInfo lineInfo) {
             String[] row = new String[rangeIndex + 1];
             String predicate = lineInfo.getPredicateOriginal();
             String object = lineInfo.getObjectOriginal();
-            row[lemonEntryIndex] = writtenForm;
+            row[lemonEntryIndex] = id;
             row[writtenFormInfinitive] = writtenForm;
             row[partOfSpeechIndex] = adjective;
             row[SyntacticFrame] = AttributiveAdjectiveFrameStr;
@@ -133,17 +133,15 @@ public class GoogleXslSheet implements TextAnalyzer{
             String str = "";
             for (Integer index = 0; index < row.length; index++) {
                 String line = null;
-                if (index == (row.length - 1))
+                if (index == (row.length - 1)) {
                     line = row[index];
-                else {
+                } else {
                     line = row[index] + ",";
                 }
                 str += line;
             }
             return str;
         }
-
-       
 
         public static String getCsvFileName() {
             return csvFileName;

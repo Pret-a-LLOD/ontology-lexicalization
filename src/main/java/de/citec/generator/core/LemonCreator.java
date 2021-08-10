@@ -87,7 +87,6 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
         //this.writeFileLemon(prediction, posTaggedLex);
 
     }
-    
 
     public void writeLemon(String prediction, Map<String, List<LexiconUnit>> posTaggedLex) {
         String posLexInfo = null, givenPosTag = null;
@@ -126,10 +125,9 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
 
                 if (!isValidWrittenForm(writtenForm)) {
                     continue;
+                } else {
+                    writtenForm = this.modify(writtenForm);
                 }
-                else
-                    writtenForm=this.modify(writtenForm);
-                    
 
                 de.citec.sc.lemon.core.LexicalEntry entry = new de.citec.sc.lemon.core.LexicalEntry(EN);
                 entry.setCanonicalForm(writtenForm);
@@ -193,8 +191,8 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
         }
 
     }
-    
-    public void writeLemoninCsv(String prediction, Map<String, List<LexiconUnit>> posTaggedLex) throws IOException, Exception {
+
+    public void writeLemoninCsv(String prediction, Map<String, List<LexiconUnit>> posTaggedLex,Boolean labelConsiderFlag) throws IOException, Exception {
         String posLexInfo = null, givenPosTag = null, syntacticFileName = null, syntacticType = null;
         Integer size = 0;
         List<String> lines = new ArrayList<String>();
@@ -249,7 +247,7 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
                         break;
                     }
                     for (LineInfo lineInfo : rankLineInfo) {
-                         String row =null;
+                        String row = null;
                         if (syntacticType.contains(GoogleXslSheet.AttributiveAdjectiveFrameStr)) {
                             /*System.out.println("prediction::" + prediction);
                             System.out.println("writtenForm::" + writtenForm);
@@ -257,11 +255,15 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
                             System.out.println("pos tag::" + lineInfo.getPosTag());
                             System.out.println("predicate::" + lineInfo.getPredicateOriginal());
                             System.out.println("object::" + lineInfo.getObjectOriginal());*/
-                            if(index>1)
-                               row = GoogleXslSheet.AttributiveAdjectiveFrame.getRow("-", rank+1, lineInfo);
-                            else
-                               row = GoogleXslSheet.AttributiveAdjectiveFrame.getRow(writtenForm, rank+1, lineInfo);
-                                
+                            if(lineInfo.isLabel())
+                                continue;
+                            
+                            if (index > 1) {
+                                row = GoogleXslSheet.AttributiveAdjectiveFrame.getRow("-", writtenForm, rank + 1, lineInfo);
+                            } else {
+                                row = GoogleXslSheet.AttributiveAdjectiveFrame.getRow(writtenForm, writtenForm, rank + 1, lineInfo);
+                            }
+
                             lines.add(row);
                             //csvLexicalEntry.writeNext(row);
                         } else if (syntacticType.contains(GoogleXslSheet.IntransitivePPFrameStr)) {
@@ -280,7 +282,6 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
         }
     }
 
-   
     private Pair<Boolean, Sense> addSenseToEntry(String baseUri, String writtenForm, LineInfo lineInfo, String posTag) throws FileNotFoundException, IOException {
         Sense sense = new Sense();
         Boolean flag = false;
@@ -398,11 +399,11 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
             return false;
         }
     }
-    
+
     private Boolean isValidWrittenForm(String writtenForm) {
         if (this.isNumeric(writtenForm)) {
             return false;
-        } else if (writtenForm.equals("also") ) {
+        } else if (writtenForm.equals("also")) {
             return false;
         } else {
             return true;
@@ -410,17 +411,12 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
     }
 
     private String modify(String writtenForm) {
-        if(writtenForm.contains("_")){
-            writtenForm=writtenForm.replace("_", " ") ; 
+        if (writtenForm.contains("_")) {
+            writtenForm = writtenForm.replace("_", " ");
             //System.out.println("multiword written form::"+writtenForm);
-           return writtenForm;
-        } 
+            return writtenForm;
+        }
         return writtenForm;
     }
 
-   
-    
-   
-
-   
 }

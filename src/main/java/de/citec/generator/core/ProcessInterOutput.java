@@ -194,7 +194,7 @@ public class ProcessInterOutput implements  PredictionPatterns,LemonConstants {
             if (type.contains("createLemon")) {
                 lexicon.writeLemon(prediction, posTaggedLex);
             } else if (type.contains("createQuestion")) {
-                lexicon.writeLemoninCsv(prediction, posTaggedLex);
+                lexicon.writeLemoninCsv(prediction, posTaggedLex,false);
             }
 
         }

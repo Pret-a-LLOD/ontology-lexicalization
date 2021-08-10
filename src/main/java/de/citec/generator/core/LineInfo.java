@@ -55,6 +55,7 @@ public class LineInfo implements PredictionPatterns{
     private  static String PROPERTY = "property";
     private   String checkedAssociationRule = null;
     private   Double checkedAssociationRuleValue = null;
+    private Boolean labelFlag = false;
 
 
 
@@ -571,6 +572,15 @@ public class LineInfo implements PredictionPatterns{
             }
         }
         return true;
+    }
+     
+     public boolean isLabel() {
+        if (this.object != null) {
+            if (this.object.strip().trim().contains("\"")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getFullPosTag() {
