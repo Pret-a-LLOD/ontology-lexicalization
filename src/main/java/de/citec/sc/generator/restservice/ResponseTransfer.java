@@ -11,7 +11,7 @@ import de.citec.generator.config.ConfigDownload;
 import de.citec.generator.config.ConfigLemon;
 import de.citec.generator.config.ConfigLex;
 import de.citec.generator.config.Constants;
-import de.citec.generator.core.PerlQuery;
+import de.citec.generator.core.CommandLine;
 import de.citec.generator.core.ProcessInterOutput;
 import de.citec.generator.results.ResultDownload;
 import de.citec.generator.results.ResultJsonLD;
@@ -55,8 +55,8 @@ public class ResponseTransfer implements Constants {
             FileFolderUtils.delete(new File(interDir));
             FileFolderUtils.delete(new File(resultDir));
             class_url = config.getClass_url();
-            PerlQuery perlQuery = new PerlQuery(perlDir, scriptName, class_url);
-            Boolean flag = perlQuery.getProcessSuccessFlag();
+            CommandLine commandLine = new CommandLine(perlDir, lexGenScriptName, class_url);
+            Boolean flag = commandLine.getProcessSuccessFlag();
             System.out.println("Lexicalization process successfuly ended!!");
             return new ResultLex(class_url, flag);
 
@@ -93,7 +93,7 @@ public class ResponseTransfer implements Constants {
             System.out.println("lemon creating ends!! ");
             //this.writeJsonLDToFile(model, jsonOutputDir, RDFFormat.JSONLD);
             //this.writeJsonLDToFile(model, turtleOutputDir, RDFFormat.TURTLE);
-            return this.writeJsonLDtoString(model, scriptName, RDFFormat.JSONLD);
+            return this.writeJsonLDtoString(model, lexGenScriptName, RDFFormat.JSONLD);
         } catch (JsonProcessingException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("Json creation fails!!" + ex.getMessage());
@@ -247,26 +247,34 @@ public class ResponseTransfer implements Constants {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public String createLexicalEntry(ConfigLemon config) {
+    public ResultLex createLexicalEntry(ConfigLemon config) {
+        String class_url = "test"; Boolean flag =false;
         try {
             String resourceDir = resultDir + processData;
             Lexicon turtleLexicon = new ProcessInterOutput(resultDir, resourceDir, config, "createQuestion").getTurtleLexicon();
-            System.out.println("lemon creating ends!! ");
-             return turtleLexicon.toString();
+            /*System.out.println("lemon creating ends!! ");
+            //String[] parameters=new String []{"java -jar",javaScriptName,resultDir,language,lexiconDir,numberOfentitiesToConsider.toString(),dataSetConfig};
+            String command="java -jar"+" "+javaScriptName+" "+resultDir+" "+language+" "+lexiconDir+" "+numberOfentitiesToConsider+" "+dataSetConfig;
+            command="java -jar question-grammar-generator/target/QuestionGrammarGenerator.jar EN question-grammar-generator/lexicon/en question-grammar-generator/output 10 csv question-grammar-generator/dataset/wikidata.json";
+            System.out.println("command:"+command);
+            CommandLine commandLine = new CommandLine(command);
+            flag = commandLine.getProcessSuccessFlag();*/
+            System.out.println("Lexicalization process successfuly ended!!");
+            return new ResultLex(class_url, flag);
         } catch (JsonProcessingException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("Json creation fails!!" + ex.getMessage());
-            return defaultResult;
+            return new ResultLex(class_url, "Configuration file is correct.");
 
         } catch (IOException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("writing to file failed!!" + ex.getMessage());
-            return defaultResult;
+            return new ResultLex(class_url, "Configuration file is correct.");
 
         } catch (Exception ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("System output process does not work!!" + ex.getMessage());
-            return defaultResult;
+            return new ResultLex(class_url, "Configuration file is correct.");
         }
     }
 

@@ -21,16 +21,17 @@ import java.util.logging.Logger;
  *
  * @author elahi
  */
-public class PerlQuery implements Constants {
+public class CommandLine implements Constants {
 
     private Boolean processSuccessFlag = false;
     private String configJson = null;
 
-    public PerlQuery(String location, String scriptName, String class_url) throws PerlException {
+    public CommandLine(String location, String scriptName, String class_url) throws PerlException {
         try {
             System.out.println("Reading DBpedia abstract and knowledge graph and corpus based lexicalization!!\n");
             //System.out.println("Step 1. find frequent entities and process abstracts. Wait..." + "\n");
-            this.runCommandLine(location, scriptName, class_url);
+            String command = "perl " + location + scriptName + " " + appDir + " " + class_url;
+            this.runCommandLine(command);
             /*if (runCommandLine(location, "frequentClass.pl", class_url)) {
                 System.out.println("done with step 1." + "\n");
                 if (runCommandLine(location, "tripleProcess.pl", class_url)) {
@@ -40,26 +41,75 @@ public class PerlQuery implements Constants {
                 throw new PerlException("Step 1. failed to process");*/
 
         } catch (InterruptedException ex) {
-            Logger.getLogger(PerlQuery.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CommandLine.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
             throw new PerlException("Perl script is not working!!" + ex.getMessage());
         } catch (IOException ex) {
-            Logger.getLogger(PerlQuery.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CommandLine.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
             throw new PerlException("process error exceptions!!" + ex.getMessage());
         }
 
     }
     
+     public CommandLine(String commands) throws PerlException {
+        try {
+            System.out.println("Creating questions for QA system!!!!\n");
+            this.runCommandLine(commands);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(CommandLine.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new PerlException("Perl script is not working!!" + ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(CommandLine.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new PerlException("process error exceptions!!" + ex.getMessage());
+        }
 
-    public Boolean runCommandLine(String location, String scriptName, String class_url) throws IOException, InterruptedException {
+    }
+    
+    
 
-        String command = "perl " + location + scriptName + " " + appDir + " " + class_url;
+    public Boolean runCommandLine(String command) throws IOException, InterruptedException {
+
+      
         Runtime runTime = Runtime.getRuntime();
         //System.out.println("location + scriptName::" + location + scriptName);
         //String[] commands = {"perl", location + scriptName};
         //System.out.println("command::"+command);
         Process process = runTime.exec(command);
+
+        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+        // Read the output from the command
+        String s = null;
+        while ((s = stdInput.readLine()) != null) {
+            System.out.println(s);
+        }
+        // Read any errors from the attempted command
+        System.out.println("Error of the command (if any):\n");
+        while ((s = stdError.readLine()) != null) {
+            System.err.println(s);
+        }
+
+        if (process.waitFor() == 0) {
+            System.err.println("Process terminated ");
+            processSuccessFlag = true;
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+    
+     public Boolean runCommandLine(String[] commands) throws IOException, InterruptedException {
+
+      
+        Runtime runTime = Runtime.getRuntime();
+        //System.out.println("location + scriptName::" + location + scriptName);
+        //String[] commands = {"perl", location + scriptName};
+        //System.out.println("command::"+command);
+        Process process = runTime.exec(commands);
 
         BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
         BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));

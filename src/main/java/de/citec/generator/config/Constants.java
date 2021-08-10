@@ -33,7 +33,9 @@ public interface Constants {
     public static String predict_p_for_o_given_localized_l = "predict_p_for_o_given_localized_l";*/
     public static String UNDERSCORE = "UNDERSCORE";
     public static String perlDir = "perl/";
-    public static String scriptName = "experiment.pl";
+    public static String lexGenScriptName = "experiment.pl";
+    public static String quesGenScriptName = "QuestionGrammarGenerator.jar";
+
     public static String processData = "processData/";
     public String appDir = "app/";
     public String interDir = appDir + "inter/";
@@ -46,6 +48,11 @@ public interface Constants {
     public static String abstractOutputPath = inputDir + "inputAbstract/";
     public static String propertyOutputPath = inputDir + "inputProperty/";
     public static String semanticOutputPath = inputDir + "inputSemantic/";
-    public static String datasetDir = appDir + "dataset/";
+    //public static String datasetDir = appDir + "dataset/";
+    public static String quesAnslDir = "question-grammar-generator/";
+    public static String dataSetConfig = appDir + "dataset/dbpedia.json";
+    public static String lexiconDir = quesAnslDir + "lexicon/en/";
+    public static String language = "EN";
+    public static Integer numberOfentitiesToConsider = 10;
 
 }

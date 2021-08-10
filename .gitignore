@@ -1,5 +1,7 @@
 app/input/
 app/inter/
 app/results/
+question-grammar-generator/output/
+question-grammar-generator/lexicon/
 target/
 .Dockerfile.swp

@@ -12,7 +12,7 @@ import de.citec.sc.generator.analyzer.TextAnalyzer;
  *
  * @author elahi
  */
-public class GoogleXslSheet implements TextAnalyzer{
+public class GoogleXslSheet implements TextAnalyzer {
 
     public static Integer lemonEntryIndex = 0;
     public static Integer partOfSpeechIndex = 1;
@@ -76,7 +76,7 @@ public class GoogleXslSheet implements TextAnalyzer{
         public static Integer referenceIndex = 10;
         public static Integer domainIndex = 11;
         public static Integer rangeIndex = 12;
-        public static String csvFileName = IntransitivePPFrameStr+".csv";
+        public static String csvFileName = IntransitivePPFrameStr + ".csv";
 
         public static String[] getRow(String[] row, String writtenForm, Integer rank, LineInfo lineInfo) {
             String predicate = lineInfo.getPredicateOriginal();
@@ -146,6 +146,16 @@ public class GoogleXslSheet implements TextAnalyzer{
         public static String getCsvFileName() {
             return csvFileName;
         }
+
+        /*private static String modify(String kb) {
+            if (kb.contains("http://dbpedia.org/ontology/")) {
+                return "dbo:";
+            } else if (kb.contains("http://dbpedia.org/ontology/")) {
+                return "dbp:";
+            } else {
+                return kb;
+            }
+        }*/
 
     }
 

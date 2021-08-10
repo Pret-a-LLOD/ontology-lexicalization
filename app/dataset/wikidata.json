@@ -1,8 +1,0 @@
-{
-    "endpoint": "https://query.wikidata.org/sparql",
-    "prefix": 
-            {
-                "wdt": "http://www.wikidata.org/prop/direct/",
-                "wd": "http://www.wikidata.org/entity/"
-            }
-}

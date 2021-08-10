@@ -574,7 +574,7 @@ public class LineInfo implements PredictionPatterns{
         return true;
     }
      
-     public boolean isLabel() {
+    public boolean isLabel() {
         if (this.object != null) {
             if (this.object.strip().trim().contains("\"")) {
                 return true;

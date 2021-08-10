@@ -6,7 +6,7 @@
 package de.citec.generator.core;
 
 import com.opencsv.CSVWriter;
-import static de.citec.generator.config.Constants.datasetDir;
+import de.citec.generator.config.Constants;
 import de.citec.generator.config.LemonConstants;
 import de.citec.sc.generator.analyzer.TextAnalyzer;
 import static de.citec.sc.lemon.core.Language.EN;
@@ -192,8 +192,8 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
 
     }
 
-    public void writeLemoninCsv(String prediction, Map<String, List<LexiconUnit>> posTaggedLex,Boolean labelConsiderFlag) throws IOException, Exception {
-        String posLexInfo = null, givenPosTag = null, syntacticFileName = null, syntacticType = null;
+    public void writeLemoninCsv(String prediction, Map<String, List<LexiconUnit>> posTaggedLex, Boolean labelConsiderFlag) throws IOException, Exception {
+        String posLexInfo = null, givenPosTag = null, syntacticFileName = null, syntacticType = null,outputDir=null;
         Integer size = 0;
         List<String> lines = new ArrayList<String>();
 
@@ -203,6 +203,7 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
             posLexInfo = lexinfo_adjective;
             givenPosTag = JJ;
             syntacticFileName = prediction + "_" + GoogleXslSheet.AttributiveAdjectiveFrame.csvFileName;
+            outputDir=Constants.lexiconDir+adjective+"/";
             syntacticType = GoogleXslSheet.AttributiveAdjectiveFrameStr;
             size = GoogleXslSheet.AttributiveAdjectiveFrame.rangeIndex + 1;
         } else if (prediction.equals(PredictionPatterns.predict_p_for_o_given_localized_l)
@@ -211,12 +212,14 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
             posLexInfo = lexinfo_verb;
             givenPosTag = TextAnalyzer.VB;
             syntacticFileName = prediction + "_" + GoogleXslSheet.InTransitFrame.csvFileName;
+            outputDir=Constants.lexiconDir+verb+"/";
             syntacticType = GoogleXslSheet.IntransitivePPFrameStr;
             size = GoogleXslSheet.InTransitFrame.rangeIndex + 1;
         } else if (prediction.equals(PredictionPatterns.predict_o_for_s_given_l)) {
             //System.out.println("prediction::" + prediction);
             posLexInfo = lexinfo_noun;
             givenPosTag = TextAnalyzer.NN;
+            outputDir=Constants.lexiconDir+noun+"/";
         } else {
             return;
         }
@@ -226,7 +229,9 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
                 continue;
             }
             List<LexiconUnit> lexiconUnts = posTaggedLex.get(postag);
+            Integer id = 0;
             for (LexiconUnit lexiconUnit : lexiconUnts) {
+                id = id + 1;
                 LinkedHashMap<Integer, List<LineInfo>> ranks = lexiconUnit.getLineInfos();
                 String writtenForm = lexiconUnit.getWord();
                 if (!givenPosTag.equals(TextAnalyzer.JJ)) {
@@ -242,10 +247,6 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
                 Integer index = 0;
                 for (Integer rank : ranks.keySet()) {
                     List<LineInfo> rankLineInfo = ranks.get(rank);
-                    index = index + 1;
-                    if (index > this.rankLimit) {
-                        break;
-                    }
                     for (LineInfo lineInfo : rankLineInfo) {
                         String row = null;
                         if (syntacticType.contains(GoogleXslSheet.AttributiveAdjectiveFrameStr)) {
@@ -255,20 +256,35 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
                             System.out.println("pos tag::" + lineInfo.getPosTag());
                             System.out.println("predicate::" + lineInfo.getPredicateOriginal());
                             System.out.println("object::" + lineInfo.getObjectOriginal());*/
-                            if(lineInfo.isLabel())
-                                continue;
                             
-                            if (index > 1) {
-                                row = GoogleXslSheet.AttributiveAdjectiveFrame.getRow("-", writtenForm, rank + 1, lineInfo);
+                            if (!labelConsiderFlag) {
+                                if (lineInfo.isLabel()) {
+                                    continue;
+                                }
+                            }
+                            else
+                              index = index + 1;
+
+                            
+
+                            if (index > 0) {
+                                row = GoogleXslSheet.AttributiveAdjectiveFrame.getRow("-", writtenForm, rank, lineInfo);
                             } else {
-                                row = GoogleXslSheet.AttributiveAdjectiveFrame.getRow(writtenForm, writtenForm, rank + 1, lineInfo);
+                                row = GoogleXslSheet.AttributiveAdjectiveFrame.getRow(writtenForm + "_" + id.toString(), writtenForm, rank, lineInfo);
+                            }
+                            if (row != null) {
+                                lines.add(row);
                             }
 
-                            lines.add(row);
                             //csvLexicalEntry.writeNext(row);
                         } else if (syntacticType.contains(GoogleXslSheet.IntransitivePPFrameStr)) {
                             //row = GoogleXslSheet.InTransitFrame.getRow(row, writtenForm, rank, lineInfo);
                             //csvLexicalEntry.writeNext(row);
+                        }
+                        
+
+                        if (index > this.rankLimit) {
+                            break;
                         }
                     }
 
@@ -277,7 +293,7 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
             }
         }
         if (!lines.isEmpty()) {
-            FileFolderUtils.listToFiles(lines, datasetDir + syntacticFileName);
+            FileFolderUtils.listToFiles(lines, outputDir + syntacticFileName);
 
         }
     }

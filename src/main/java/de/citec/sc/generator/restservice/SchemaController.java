@@ -48,8 +48,9 @@ public class SchemaController {
     
     @RequestMapping(path = "/createQuestion", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String createLexicalEntry(@RequestBody ConfigLemon conf) {
+    public ResultLex createLexicalEntry(@RequestBody ConfigLemon conf) {
         return new ResponseTransfer().createLexicalEntry(conf);
     }
+   
   
 }
