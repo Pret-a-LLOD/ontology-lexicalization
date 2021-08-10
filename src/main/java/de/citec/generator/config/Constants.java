@@ -36,11 +36,16 @@ public interface Constants {
     public static String scriptName = "experiment.pl";
     public static String processData = "processData/";
     public String appDir = "app/";
-    public String interDir = appDir+"inter/";
-    public String resultDir = appDir+"results/";
-    public static String inputAbstract=appDir+"input/inputAbstract";
-    public static String jsonOutputDir = resultDir+"lexicon.json";
-    public static String turtleOutputDir = resultDir+"lexicon.ttl";
+    public String interDir = appDir + "inter/";
+    public String resultDir = appDir + "results/";
+    public String inputDir = appDir + "input/";
+    public static String inputAbstract = appDir + "input/inputAbstract";
+    public static String jsonOutputDir = resultDir + "lexicon.json";
+    public static String turtleOutputDir = resultDir + "lexicon.ttl";
     public static String defaultResult = "{\"@graph\" : [],\"@context\":{}}";
-    
+    public static String abstractOutputPath = inputDir + "inputAbstract/";
+    public static String propertyOutputPath = inputDir + "inputProperty/";
+    public static String semanticOutputPath = inputDir + "inputSemantic/";
+    public static String datasetDir = appDir + "dataset/";
+
 }

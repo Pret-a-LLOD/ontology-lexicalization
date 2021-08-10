@@ -35,21 +35,22 @@ import de.citec.generator.config.PredictionPatterns;
  *
  * @author elahi
  */
-public class ProcessCsv implements  PredictionPatterns,LemonConstants {
+public class ProcessInterOutput implements  PredictionPatterns,LemonConstants {
 
     private Lexicon turtleLexicon = null;
     private Integer rankLimit = 0;
-    private Logger LOGGER = Logger.getLogger(ProcessCsv.class.getName());
+    private Logger LOGGER = Logger.getLogger(ProcessInterOutput.class.getName());
     private Lemmatizer lemmatizer = new Lemmatizer();
+    private String type = null;
 
-
-    public  ProcessCsv(String baseDir,String resourceDir,ConfigLemon config) throws Exception {
+    public  ProcessInterOutput(String baseDir,String resourceDir,ConfigLemon config,String type) throws Exception {
         /*System.out.println("config::"+config);
         System.out.println("baseDir::"+baseDir);
         System.out.println("resourceDir::"+resourceDir);
         System.out.println("basic URI::"+config.getUri_basic());*/
         this.turtleLexicon=new Lexicon(config.getUri_basic());
         this.rankLimit=config.getRank_limit();
+        this.type=type;
         Set<String> posTag = new HashSet<String>();
         posTag.add("JJ");
         posTag.add("NN");
@@ -93,7 +94,7 @@ public class ProcessCsv implements  PredictionPatterns,LemonConstants {
             for (String inter : interestingness) {
                 outputDir = resourceDir + "/" + prediction + "/" + inter + "/";
                 FileFolderUtils.createDirectory(outputDir);
-                  this.generate(inputDir, outputDir, prediction, inter, LOGGER, ".csv");
+                  this.generate(inputDir, outputDir, prediction, inter, LOGGER, ".csv",type);
                 //System.out.println(outputDir);
                 //CreateTXT.resultStrTxt(posTag,outputDir,txtDir, prediction, lemmatizer, inter);
             }
@@ -103,18 +104,18 @@ public class ProcessCsv implements  PredictionPatterns,LemonConstants {
        
     }
 
-    public void generate(String rawFileDir, String outputDir, String prediction, String givenInterestingness, Logger givenLOGGER, String fileType) throws Exception {
+    public void generate(String rawFileDir, String outputDir, String prediction, String givenInterestingness, Logger givenLOGGER, String fileType,String type) throws Exception {
         
         List<File> files = FileFolderUtils.getSpecificFiles(rawFileDir, prediction + "-", ".csv");
         if (!files.isEmpty()) {
-            createExperimentLinesCsv(outputDir, prediction, givenInterestingness, files);
+            createExperimentLinesCsv(outputDir, prediction, givenInterestingness, files,type);
         } else {
             throw new Exception("NO ontology lexicalization files are found for processing"+". "+"Run lexicalization process first");
         }
     }
 
-    private  void createExperimentLinesCsv(String outputDir, String prediction, String interestingness, List<File> classFiles) throws Exception {
-
+    private void createExperimentLinesCsv(String outputDir, String prediction, String interestingness, List<File> classFiles, String type) throws Exception {
+        Map<String, List<LexiconUnit>> posTaggedLex = new TreeMap<String, List<LexiconUnit>>();
         List<String[]> rows = new ArrayList<String[]>();
         Integer numberOfClass = 0;
         Integer maximumNumberOflines = 300000;
@@ -146,7 +147,7 @@ public class ProcessCsv implements  PredictionPatterns,LemonConstants {
                         continue;
                     } else if (lineInfo.getProbabilityValue().isEmpty()) {
                         continue;
-                    }else if (!lineInfo.getValidFlag()) {
+                    } else if (!lineInfo.getValidFlag()) {
                         continue;
                     }
 
@@ -166,7 +167,7 @@ public class ProcessCsv implements  PredictionPatterns,LemonConstants {
                     nGram = nGram.toLowerCase().trim().strip();
                     nGram = nGram.replaceAll(" ", "_");
                     nGram = StopWordRemoval.deleteStopWord(nGram);*/
-                    String nGram = this.isValidWord(lineInfo.getWord(),lineInfo.getnGramNumber());
+                    String nGram = this.isValidWord(lineInfo.getWord(), lineInfo.getnGramNumber());
 
                     if (nGram != null) {
                         //System.out.println("nGram::::::::::::::::::::::::::::::;;" + nGram);
@@ -181,18 +182,23 @@ public class ProcessCsv implements  PredictionPatterns,LemonConstants {
 
                         }
                     }
-                   
+
                 } catch (Exception ex) {
                     // System.out.println("nGram::"+nGram);
                     continue;
                 }
 
             }
-            LemonCreator lexicon = new LemonCreator(outputDir,turtleLexicon,rankLimit);
-            lexicon.preparePropertyLexicon(prediction, outputDir, className, interestingness, lineLexicon);
+            LemonCreator lexicon = new LemonCreator(outputDir, turtleLexicon, rankLimit);
+            posTaggedLex = lexicon.preparePropertyLexicon(prediction, outputDir, className, interestingness, lineLexicon);
+            if (type.contains("createLemon")) {
+                lexicon.writeLemon(prediction, posTaggedLex);
+            } else if (type.contains("createQuestion")) {
+                lexicon.writeLemoninCsv(prediction, posTaggedLex);
+            }
 
         }
-               
+
     }
 
     private static String[] findParameter(String[] info) {

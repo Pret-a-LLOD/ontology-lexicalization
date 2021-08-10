@@ -67,6 +67,9 @@ public class CsvFile  implements PredictionPatterns {
     private Map<String, Integer> interestingnessIndexes = new HashMap<String, Integer>();
     private List<String[]> rows = new ArrayList<String[]>();
 
+     public CsvFile() {
+         
+     }
 
     public CsvFile(File filename) {
         this.csvFile = filename;

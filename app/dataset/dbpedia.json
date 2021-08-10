@@ -1,0 +1,9 @@
+{
+    "endpoint": "https://dbpedia.org/sparql",
+    "prefix": 
+            {
+                "dbo": "http://dbpedia.org/ontology/",
+                "owl": "http://www.w3.org/2002/07/owl/",
+                "xsd": "http://www.w3.org/2001/XMLSchema/"
+            }
+}

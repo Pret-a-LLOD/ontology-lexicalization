@@ -45,5 +45,11 @@ public class SchemaController {
     public String searchLemon(@RequestBody ConfigDownload conf) {
         return new ResponseTransfer().searchLemon(conf);
     }
+    
+    @RequestMapping(path = "/createQuestion", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String createLexicalEntry(@RequestBody ConfigLemon conf) {
+        return new ResponseTransfer().createLexicalEntry(conf);
+    }
   
 }

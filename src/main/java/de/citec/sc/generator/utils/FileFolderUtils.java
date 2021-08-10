@@ -61,7 +61,7 @@ public class FileFolderUtils {
     }
 
      public static BufferedReader getBufferedReaderForCompressedFile(File fileIn) throws FileNotFoundException, CompressorException {
-        FileInputStream fin = new FileInputStream(fileIn);
+         FileInputStream fin = new FileInputStream(fileIn);
         BufferedInputStream bis = new BufferedInputStream(fin);
         CompressorInputStream input = new CompressorStreamFactory().createCompressorInputStream(bis);
         BufferedReader br2 = new BufferedReader(new InputStreamReader(input));
@@ -78,6 +78,37 @@ public class FileFolderUtils {
            throw new Exception("file directory does not exist!!");
         }
 
+    }
+    
+    public static void listToFiles(List<String> list, String fileName) {
+        String str = "";
+        Integer number = -1, index = 0;
+        for (String element : list) {
+            String line = element + "\n";
+            str += line;
+        }
+
+        stringToFiles(str, fileName);
+
+    }
+
+    public static void stringToFiles(String str, String fileName) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            writer.write(str);
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(FileFolderUtils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public static void writeToTextFile(String str, String filename) {
+        if (str != null) {
+            stringToFiles(str, filename);
+        } else {
+            return;
+        }
     }
 
 }

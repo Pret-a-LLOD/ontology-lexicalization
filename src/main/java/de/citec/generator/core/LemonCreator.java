@@ -5,6 +5,8 @@
  */
 package de.citec.generator.core;
 
+import com.opencsv.CSVWriter;
+import static de.citec.generator.config.Constants.datasetDir;
 import de.citec.generator.config.LemonConstants;
 import de.citec.sc.generator.analyzer.TextAnalyzer;
 import static de.citec.sc.lemon.core.Language.EN;
@@ -20,7 +22,14 @@ import de.citec.sc.lemon.core.SyntacticBehaviour;
 import java.io.*;
 import java.util.*;
 import de.citec.generator.config.PredictionPatterns;
+import de.citec.sc.generator.utils.CsvFile;
+import de.citec.sc.generator.utils.FileFolderUtils;
+import de.citec.sc.generator.utils.GoogleXslSheet;
+import de.citec.sc.generator.utils.GoogleXslSheet.InTransitFrame;
+import de.citec.sc.generator.utils.LinkedData;
 import edu.stanford.nlp.util.Pair;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -40,7 +49,7 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
         this.rankLimit = rankLimit;
     }
 
-    public void preparePropertyLexicon(String prediction, String directory, String key, String interestingness, Map<String, List<LineInfo>> lineLexicon) throws IOException, Exception {
+    public Map<String, List<LexiconUnit>> preparePropertyLexicon(String prediction, String directory, String key, String interestingness, Map<String, List<LineInfo>> lineLexicon) throws IOException, Exception {
         Map<String, List<LexiconUnit>> posTaggedLex = new TreeMap<String, List<LexiconUnit>>();
         Integer count = 0, countJJ = 0, countVB = 0;
         for (String word : lineLexicon.keySet()) {
@@ -74,28 +83,30 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
             LexiconUnit LexiconUnit = new LexiconUnit(count, word, postagOfWord, kbList);
             posTaggedLex = this.setPartsOfSpeech(postagOfWord, LexiconUnit, posTaggedLex);
         }
-        this.writeFileLemon(prediction, posTaggedLex);
+        return posTaggedLex;
+        //this.writeFileLemon(prediction, posTaggedLex);
 
     }
+    
 
-    private void writeFileLemon(String prediction, Map<String, List<LexiconUnit>> posTaggedLex) {
+    public void writeLemon(String prediction, Map<String, List<LexiconUnit>> posTaggedLex) {
         String posLexInfo = null, givenPosTag = null;
         if (prediction.equals(predict_po_for_s_given_localized_l)
                 || prediction.equals(predict_po_for_s_given_l)) {
             //System.out.println("prediction::" + prediction);
             posLexInfo = lexinfo_adjective;
-            givenPosTag = ADJECTIVE;
+            givenPosTag = JJ;
         } else if (prediction.equals(PredictionPatterns.predict_p_for_o_given_localized_l)
                 || prediction.equals(PredictionPatterns.predict_p_for_o_given_l)
                 || prediction.equals(PredictionPatterns.predict_p_for_s_given_localized_l)
                 || prediction.equals(PredictionPatterns.predict_p_for_s_given_l)) {
             //System.out.println("prediction::" + prediction);
             posLexInfo = lexinfo_verb;
-            givenPosTag = TextAnalyzer.VERB;
+            givenPosTag = TextAnalyzer.VB;
         } else if (prediction.equals(PredictionPatterns.predict_o_for_s_given_l)) {
             //System.out.println("prediction::" + prediction);
             posLexInfo = lexinfo_noun;
-            givenPosTag = TextAnalyzer.NOUN;
+            givenPosTag = TextAnalyzer.NN;
         } else {
             return;
         }
@@ -182,18 +193,105 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
         }
 
     }
+    
+    public void writeLemoninCsv(String prediction, Map<String, List<LexiconUnit>> posTaggedLex) throws IOException, Exception {
+        String posLexInfo = null, givenPosTag = null, syntacticFileName = null, syntacticType = null;
+        Integer size = 0;
+        List<String> lines = new ArrayList<String>();
 
+        if (prediction.equals(predict_po_for_s_given_localized_l)
+                || prediction.equals(predict_po_for_s_given_l)) {
+            //System.out.println("prediction::" + prediction);
+            posLexInfo = lexinfo_adjective;
+            givenPosTag = JJ;
+            syntacticFileName = prediction + "_" + GoogleXslSheet.AttributiveAdjectiveFrame.csvFileName;
+            syntacticType = GoogleXslSheet.AttributiveAdjectiveFrameStr;
+            size = GoogleXslSheet.AttributiveAdjectiveFrame.rangeIndex + 1;
+        } else if (prediction.equals(PredictionPatterns.predict_p_for_o_given_localized_l)
+                || prediction.equals(PredictionPatterns.predict_p_for_s_given_localized_l)) {
+            //System.out.println("prediction::" + prediction);
+            posLexInfo = lexinfo_verb;
+            givenPosTag = TextAnalyzer.VB;
+            syntacticFileName = prediction + "_" + GoogleXslSheet.InTransitFrame.csvFileName;
+            syntacticType = GoogleXslSheet.IntransitivePPFrameStr;
+            size = GoogleXslSheet.InTransitFrame.rangeIndex + 1;
+        } else if (prediction.equals(PredictionPatterns.predict_o_for_s_given_l)) {
+            //System.out.println("prediction::" + prediction);
+            posLexInfo = lexinfo_noun;
+            givenPosTag = TextAnalyzer.NN;
+        } else {
+            return;
+        }
+
+        for (String postag : posTaggedLex.keySet()) {
+            if (!postag.contains(givenPosTag)) {
+                continue;
+            }
+            List<LexiconUnit> lexiconUnts = posTaggedLex.get(postag);
+            for (LexiconUnit lexiconUnit : lexiconUnts) {
+                LinkedHashMap<Integer, List<LineInfo>> ranks = lexiconUnit.getLineInfos();
+                String writtenForm = lexiconUnit.getWord();
+                if (!givenPosTag.equals(TextAnalyzer.JJ)) {
+                    continue;
+                }
+
+                if (!isValidWrittenForm(writtenForm)) {
+                    continue;
+                } else {
+                    writtenForm = this.modify(writtenForm);
+                }
+
+                Integer index = 0;
+                for (Integer rank : ranks.keySet()) {
+                    List<LineInfo> rankLineInfo = ranks.get(rank);
+                    index = index + 1;
+                    if (index > this.rankLimit) {
+                        break;
+                    }
+                    for (LineInfo lineInfo : rankLineInfo) {
+                         String row =null;
+                        if (syntacticType.contains(GoogleXslSheet.AttributiveAdjectiveFrameStr)) {
+                            /*System.out.println("prediction::" + prediction);
+                            System.out.println("writtenForm::" + writtenForm);
+                            System.out.println("givenPosTag::" + givenPosTag);
+                            System.out.println("pos tag::" + lineInfo.getPosTag());
+                            System.out.println("predicate::" + lineInfo.getPredicateOriginal());
+                            System.out.println("object::" + lineInfo.getObjectOriginal());*/
+                            if(index>1)
+                               row = GoogleXslSheet.AttributiveAdjectiveFrame.getRow("-", rank+1, lineInfo);
+                            else
+                               row = GoogleXslSheet.AttributiveAdjectiveFrame.getRow(writtenForm, rank+1, lineInfo);
+                                
+                            lines.add(row);
+                            //csvLexicalEntry.writeNext(row);
+                        } else if (syntacticType.contains(GoogleXslSheet.IntransitivePPFrameStr)) {
+                            //row = GoogleXslSheet.InTransitFrame.getRow(row, writtenForm, rank, lineInfo);
+                            //csvLexicalEntry.writeNext(row);
+                        }
+                    }
+
+                }
+
+            }
+        }
+        if (!lines.isEmpty()) {
+            FileFolderUtils.listToFiles(lines, datasetDir + syntacticFileName);
+
+        }
+    }
+
+   
     private Pair<Boolean, Sense> addSenseToEntry(String baseUri, String writtenForm, LineInfo lineInfo, String posTag) throws FileNotFoundException, IOException {
         Sense sense = new Sense();
         Boolean flag = false;
-        if (posTag.contains(ADJECTIVE)) {
+        if (posTag.contains(JJ)) {
             flag = this.isValidReference(lineInfo.getObjectOriginal());
 
             Reference ref = new Restriction(baseUri + "RestrictionClass" + "_" + writtenForm,
                     lineInfo.getObjectOriginal(),
                     lineInfo.getPredicateOriginal());
             sense.setReference(ref);
-        } else if (posTag.contains(NOUN) || posTag.contains(VERB)) {
+        } else if (posTag.contains(NN) || posTag.contains(VB)) {
             flag = this.isValidReference(lineInfo.getObjectOriginal());
             Reference ref = new SimpleReference(lineInfo.getObjectOriginal());
             sense.setReference(ref);
@@ -214,13 +312,13 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
     private SyntacticBehaviour addBehaviourToEntry(Sense sense, String writtenForm, String posTag, String preposition) throws FileNotFoundException, IOException {
         SyntacticBehaviour behaviour = new SyntacticBehaviour();
 
-        if (posTag.contains(ADJECTIVE)) {
+        if (posTag.contains(JJ)) {
             /*behaviour.setFrame(lexinfo + AdjectivePredicateFrame);
             behaviour.add(new SyntacticArgument(lexinfo + attributiveArg, writtenForm + "_" + AttrSynArg, null));
             behaviour.add(new SyntacticArgument(lexinfo + copulativeSubject, writtenForm + "_" + PredSynArg, null));
             sense.addSenseArg(new SenseArgument(lemon + attributiveArg, writtenForm + "_" + AttrSynArg));
             sense.addSenseArg(new SenseArgument(lemon + copulativeSubject, writtenForm + "_" + PredSynArg));*/
-        } else if (posTag.contains(VERB)) {
+        } else if (posTag.contains(VB)) {
             if (preposition != null) {
                 /*behaviour.setFrame(lexinfo + IntransitivePPFrame);
                 behaviour.add(new SyntacticArgument(lexinfo + prepositionalAdjunct, object, preposition));
@@ -235,7 +333,7 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
                 sense.addSenseArg(new SenseArgument(lemon + objOfProp, object));*/
             }
 
-        } else if (posTag.contains(NOUN)) {
+        } else if (posTag.contains(NN)) {
             /*behaviour.setFrame(lexinfo + NounPPFrame);
             behaviour.add(new SyntacticArgument(lexinfo + prepositionalAdjunct, object, preposition));
             behaviour.add(new SyntacticArgument(lexinfo + copulativeSubject, subject, null));
@@ -319,4 +417,10 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
         } 
         return writtenForm;
     }
+
+   
+    
+   
+
+   
 }

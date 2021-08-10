@@ -88,9 +88,9 @@ public class PosAnalyzer implements TextAnalyzer {
                 if(isStopWord(word)){
                     continue;
                 }
-                if (taggedWord.tag().startsWith(TextAnalyzer.ADJECTIVE) 
-                        || taggedWord.tag().startsWith(TextAnalyzer.NOUN)
-                        || taggedWord.tag().startsWith(TextAnalyzer.VERB)) {
+                if (taggedWord.tag().startsWith(TextAnalyzer.JJ) 
+                        || taggedWord.tag().startsWith(TextAnalyzer.NN)
+                        || taggedWord.tag().startsWith(TextAnalyzer.VB)) {
                     posTaggers = this.populateValues(taggedWord.tag(), word, posTaggers);
                 }
                 wordsofSentence.add(word);
@@ -163,13 +163,13 @@ public class PosAnalyzer implements TextAnalyzer {
             }
             for (String posTag : temp.keySet()) {
                  Set<String> set =temp.get(posTag);
-                if (posTag.contains(TextAnalyzer.NOUN)) {
+                if (posTag.contains(TextAnalyzer.NN)) {
                     nouns.addAll(set);
                 }
-                else if (posTag.contains(TextAnalyzer.ADJECTIVE)) {
+                else if (posTag.contains(TextAnalyzer.JJ)) {
                     adjectives.addAll(set);
                 }
-                else if (posTag.contains(TextAnalyzer.VERB)) {
+                else if (posTag.contains(TextAnalyzer.VB)) {
                     verbs.addAll(set);
                 }
                 else if (posTag.contains(TextAnalyzer.PRONOUN)) {

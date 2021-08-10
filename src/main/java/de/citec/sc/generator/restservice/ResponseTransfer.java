@@ -12,7 +12,7 @@ import de.citec.generator.config.ConfigLemon;
 import de.citec.generator.config.ConfigLex;
 import de.citec.generator.config.Constants;
 import de.citec.generator.core.PerlQuery;
-import de.citec.generator.core.ProcessCsv;
+import de.citec.generator.core.ProcessInterOutput;
 import de.citec.generator.results.ResultDownload;
 import de.citec.generator.results.ResultJsonLD;
 import de.citec.generator.results.ResultLex;
@@ -21,23 +21,19 @@ import de.citec.sc.generator.exceptions.PerlException;
 import de.citec.sc.generator.utils.FileFolderUtils;
 import de.citec.sc.lemon.core.Lexicon;
 import de.citec.sc.lemon.io.LexiconSerialization;
-import edu.stanford.nlp.util.Pair;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.FileAlreadyExistsException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.concurrent.TimeUnit;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Stream;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.riot.RDFDataMgr;
@@ -52,37 +48,37 @@ public class ResponseTransfer implements Constants {
     public ResponseTransfer() {
 
     }
-    
+
     public ResultLex lexicalization(ConfigLex config) {
-        String className = null;
+        String class_url = null;
         try {
             FileFolderUtils.delete(new File(interDir));
             FileFolderUtils.delete(new File(resultDir));
-            String class_url = config.getClass_url();
+            class_url = config.getClass_url();
             PerlQuery perlQuery = new PerlQuery(perlDir, scriptName, class_url);
             Boolean flag = perlQuery.getProcessSuccessFlag();
             System.out.println("Lexicalization process successfuly ended!!");
-            return new ResultLex(className, flag);
+            return new ResultLex(class_url, flag);
 
         } catch (ConfigException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println(ex.getMessage());
-            return new ResultLex(className, "Configuration file is correct.");
+            return new ResultLex(class_url, "Configuration file is correct.");
 
         } catch (PerlException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println(ex.getMessage());
-            return new ResultLex(className, false);
+            return new ResultLex(class_url, false);
 
         } catch (IOException ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("writing to file failed!!" + ex.getMessage());
-            return new ResultLex(className, false);
+            return new ResultLex(class_url, false);
 
         } catch (Exception ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("System output process does not work!!" + ex.getMessage());
-            return new ResultLex(className, false);
+            return new ResultLex(class_url, false);
         }
 
     }
@@ -90,7 +86,7 @@ public class ResponseTransfer implements Constants {
     public String createLemon(ConfigLemon config) {
         try {
             String resourceDir = resultDir + processData;
-            Lexicon turtleLexicon = new ProcessCsv(resultDir, resourceDir, config).getTurtleLexicon();
+            Lexicon turtleLexicon = new ProcessInterOutput(resultDir, resourceDir, config, "createLemon").getTurtleLexicon();
             LexiconSerialization serializer = new LexiconSerialization();
             Model model = ModelFactory.createDefaultModel();
             serializer.serialize(turtleLexicon, model);
@@ -115,9 +111,8 @@ public class ResponseTransfer implements Constants {
         }
 
     }
-    
-    
-    private ResultJsonLD makeClass(String jsonString) throws JsonProcessingException  {
+
+    private ResultJsonLD makeClass(String jsonString) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(jsonString, ResultJsonLD.class);
     }
@@ -127,7 +122,6 @@ public class ResponseTransfer implements Constants {
         String resourceDir = resultDir + processData;
         return new ProcessCsv(resultDir, resourceDir, config).getTurtleLexicon();
     }*/
-
     private void writeJsonLDToFile(Model model, String fileName, RDFFormat type) throws FileNotFoundException, IOException {
         FileOutputStream out = new FileOutputStream(new File(fileName));
         RDFDataMgr.write(out, model, type);
@@ -143,71 +137,141 @@ public class ResponseTransfer implements Constants {
         return jsonLDString;
     }
 
+    /* public ResultDownload downloadData(ConfigDownload conf) {
+  
+        Map<String, String> urlOutputPath = new HashMap<String, String>();
+        System.out.println(conf.toString());
+        urlOutputPath.put(conf.getUri_abstract(), abstractOutputPath);
+        urlOutputPath.put(conf.getUri_property(), propertyOutputPath);
+        urlOutputPath.put(conf.getUri_label(), semanticOutputPath);
+        urlOutputPath.put(conf.getUri_literal(), semanticOutputPath);
+        urlOutputPath.put(conf.getUri_instance(), semanticOutputPath);
+        urlOutputPath.put(conf.getUri_object(), semanticOutputPath);
+        urlOutputPath.put(conf.getUri_anchor_sorted(), semanticOutputPath);
+        urlOutputPath.put(conf.getUri_anchor(), semanticOutputPath);
 
+        for (String urlString : urlOutputPath.keySet()) {
+            String outputPath = null, filename = null;
+            outputPath = urlOutputPath.get(urlString);
+
+            URL url;
+            try {
+                url= new File(urlString).toURI().toURL();
+                filename = new File(url.getPath()).getName();
+                outputPath = outputPath + filename;
+
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
+                return new ResultDownload(filename, "failed to download turtle files!" + ex.getMessage());
+            }
+
+            try (
+                    InputStream inputStream = url.openStream();
+                    BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+                    FileOutputStream fileOutputStream = new FileOutputStream(outputPath);) {
+                byte[] bucket = new byte[2048];
+                int numBytesRead;
+
+                while ((numBytesRead = bufferedInputStream.read(bucket, 0, bucket.length)) != -1) {
+                    fileOutputStream.write(bucket, 0, numBytesRead);
+                }
+                System.out.println("downloding:" + url + "to the location:" + outputPath + " is completed!!");
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
+                return new ResultDownload(urlString, "failed to download turtle files!" + ex.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
+                return new ResultDownload(urlString, "failed to download turtle files!" + ex.getMessage());
+            }
+
+        }
+
+        return new ResultDownload("all innput files", "successfully downloaded");
+
+    }*/
     public ResultDownload downloadData(ConfigDownload conf) {
-        
-        /*long startTime = System.nanoTime();
-        Path file = Paths.get("/home/elahi/a-teanga/dockerTest/ontology-lexicalization/app/");
-        try {
-            //Java 8: Stream class
-            Stream<String> lines = Files.lines(file, StandardCharsets.UTF_8);
 
-            for (String line : (Iterable<String>) lines::iterator) {
-                //System.out.println(line);
+        Map<String, String> urlOutputPath = new HashMap<String, String>();
+        System.out.println(conf.toString());
+        urlOutputPath.put(conf.getUri_abstract(), abstractOutputPath);
+        urlOutputPath.put(conf.getUri_property(), propertyOutputPath);
+        /*urlOutputPath.put(conf.getUri_label(), semanticOutputPath);
+        urlOutputPath.put(conf.getUri_literal(), semanticOutputPath);
+        urlOutputPath.put(conf.getUri_instance(), semanticOutputPath);
+        urlOutputPath.put(conf.getUri_object(), semanticOutputPath);
+        urlOutputPath.put(conf.getUri_anchor_sorted(), semanticOutputPath);
+        urlOutputPath.put(conf.getUri_anchor(), semanticOutputPath);*/
+
+        for (String urlString : urlOutputPath.keySet()) {
+            String outputPath = null, filename = null;
+
+            outputPath = urlOutputPath.get(urlString);
+
+            URL url;
+            try {
+                url = new URL(urlString);
+                filename = new File(url.getPath()).getName();
+                outputPath = outputPath + filename;
+
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
+                return new ResultDownload(filename, "failed to download turtle files!" + ex.getMessage());
             }
 
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
+            try (
+                    InputStream inputStream = url.openStream();
+                    BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+                    FileOutputStream fileOutputStream = new FileOutputStream(outputPath);) {
+                byte[] bucket = new byte[2048];
+                int numBytesRead;
 
-        long endTime = System.nanoTime();
-        long elapsedTimeInMillis = TimeUnit.MILLISECONDS.convert((endTime - startTime), TimeUnit.NANOSECONDS);
-        System.out.println("Total elapsed time: " + elapsedTimeInMillis + " ms");*/
-        
-        
-        
-        URL url;
-         System.out.println(conf);
-        try {
-            url = new URL(conf.getUri_abstract());
-            Path path = Paths.get("/home/elahi/a-teanga/dockerTest/ontology-lexicalization/app/");
-            Files.copy(url.openStream(), path);
-            return new ResultDownload(conf.getUri_abstract(), "successfully download the file!");
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
-            System.err.println(ex.getMessage());
-            return new ResultDownload(conf.getUri_abstract(), "failed to download turtle files!");
-        }
-        catch (FileAlreadyExistsException ex) {
-            Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResultDownload(conf.getUri_abstract(), "File already exists!!");
-        }
-        catch (IOException ex) {
-            Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResultDownload(conf.getUri_abstract(), "failed to download turtle files!");
-        }
-        
-       /* try {
-            PerlQuery PerlQuery = new PerlQuery(conf.getUri_abstract());
-            if (PerlQuery.getProcessSuccessFlag()) {
-                return new ResultDownload(conf.getLinked_data(), "Successfull downloaded!!");
-            } else {
-                return new ResultDownload(conf.getLinked_data(), "downloaded failed!!");
+                while ((numBytesRead = bufferedInputStream.read(bucket, 0, bucket.length)) != -1) {
+                    fileOutputStream.write(bucket, 0, numBytesRead);
+                }
+                System.out.println("downloding:" + url + "to the location:" + outputPath + " is completed!!");
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
+                return new ResultDownload(urlString, "failed to download turtle files!" + ex.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
+                return new ResultDownload(urlString, "failed to download turtle files!" + ex.getMessage());
             }
 
-        } catch (PerlException ex) {
-            Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResultDownload(conf.getLinked_data(), "downloaded failed!!");
-        }*/
+        }
+
+        return new ResultDownload("all innput files", "successfully downloaded");
 
     }
 
-    String searchLemon(ConfigDownload conf) {
+    public String searchLemon(ConfigDownload conf) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-    
-    
+    public String createLexicalEntry(ConfigLemon config) {
+        try {
+            String resourceDir = resultDir + processData;
+            Lexicon turtleLexicon = new ProcessInterOutput(resultDir, resourceDir, config, "createQuestion").getTurtleLexicon();
+            System.out.println("lemon creating ends!! ");
+             return turtleLexicon.toString();
+        } catch (JsonProcessingException ex) {
+            Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Json creation fails!!" + ex.getMessage());
+            return defaultResult;
+
+        } catch (IOException ex) {
+            Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("writing to file failed!!" + ex.getMessage());
+            return defaultResult;
+
+        } catch (Exception ex) {
+            Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("System output process does not work!!" + ex.getMessage());
+            return defaultResult;
+        }
+    }
+
+    private String writeLexicalEntryCSV(Lexicon turtleLexicon) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

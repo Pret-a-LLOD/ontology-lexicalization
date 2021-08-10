@@ -14,7 +14,7 @@ import de.citec.sc.generator.analyzer.TextAnalyzer;
 public class ConfigSearch {
 
     private String term_to_search = "born";
-    private String parts_of_speech = TextAnalyzer.NOUN;
+    private String parts_of_speech = TextAnalyzer.NN;
 
     public String getTerms() {
         return term_to_search;

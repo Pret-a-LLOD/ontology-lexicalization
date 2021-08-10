@@ -48,12 +48,12 @@ public class Lemmatizer implements TextAnalyzer {
                 String key = lemmaPair.get(0) + "/" + posTag;
                 String value = lemmaPair.get(1);
 
-                if (posTag.contains(TextAnalyzer.VERB)) {
-                    posTag = TextAnalyzer.VERB;
-                } else if (posTag.contains(TextAnalyzer.NOUN)) {
-                    posTag = TextAnalyzer.NOUN;
-                } else if (posTag.contains(TextAnalyzer.ADJECTIVE)) {
-                    posTag = TextAnalyzer.ADJECTIVE;
+                if (posTag.contains(TextAnalyzer.VB)) {
+                    posTag = TextAnalyzer.VB;
+                } else if (posTag.contains(TextAnalyzer.NN)) {
+                    posTag = TextAnalyzer.NN;
+                } else if (posTag.contains(TextAnalyzer.JJ)) {
+                    posTag = TextAnalyzer.JJ;
                 }
                 key = lemmaPair.get(0) + "/" + posTag;
                 key = key.strip();
