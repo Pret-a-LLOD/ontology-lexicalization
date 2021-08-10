@@ -1,0 +1,43 @@
+@prefix :        <http://localhost:8080/lexicon#> .
+
+@prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#> .
+@prefix lemon:   <http://lemon-model.net/lemon#> .
+
+@base            <http://localhost:8080#> .
+
+:lexicon_en a    lemon:Lexicon ;
+  lemon:language "en" ;
+  lemon:entry    :LexicalEntry_1 ;
+  lemon:entry    :of .
+
+:LexicalEntry_1 a       lemon:LexicalEntry ;
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm  :LexicalEntry_1_form ;
+  lemon:synBehavior    :LexicalEntry_1_nounpp ;
+  lemon:sense          :LexicalEntry_1_sense_ontomap .
+
+:LexicalEntry_1_form a lemon:Form ;
+  lemon:writtenRep "capital"@en .
+
+:LexicalEntry_1_nounpp a        lexinfo:NounPPFrame ;
+  lexinfo:copulativeArg        :arg1 ;
+  lexinfo:prepositionalAdjunct :arg2 .
+
+:LexicalEntry_1_sense_ontomap a lemon:OntoMap, lemon:LexicalSense ;
+  lemon:ontoMapping         :LexicalEntry_1_sense_ontomap ;
+  lemon:reference           <http://www.wikidata.org/prop/direct/P36> ;
+  lemon:subjOfProp          :arg2 ;
+  lemon:objOfProp           :arg1 ;
+  lemon:condition           :LexicalEntry_1_condition .
+
+:LexicalEntry_1_condition a lemon:condition ;
+  lemon:propertyDomain  <http://www.wikidata.org/entity/Q6256> ;
+  lemon:propertyRange   <http://www.wikidata.org/entity/Q5119> .
+
+:arg2 lemon:marker :of .
+
+## Prepositions ##
+
+:of a                  lemon:SynRoleMarker ;
+  lemon:canonicalForm  [ lemon:writtenRep "of"@en ] ;
+  lexinfo:partOfSpeech lexinfo:preposition .

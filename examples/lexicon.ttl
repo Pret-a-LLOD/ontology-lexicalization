@@ -1,0 +1,1088 @@
+<http://localhost:8080/stage#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Stockholm> .
+
+<http://localhost:8080/director#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/France> .
+
+<http://localhost:8080/RestrictionClass_silent>
+        a       <http://www.w3.org/2002/07/owl#Restriction> ;
+        <http://www.w3.org/2002/07/owl#hasValue>
+                <http://dbpedia.org/resource/England> ;
+        <http://www.w3.org/2002/07/owl#onProperty>
+                <http://dbpedia.org/ontology/deathPlace> .
+
+<http://localhost:8080/british#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "british@en" .
+
+<http://localhost:8080/credits#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Actor> .
+
+<http://localhost:8080/roles#Sense5>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/london#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Actor> .
+
+<http://localhost:8080/appearances#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/west#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/english#Sense6>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_english> .
+
+<http://localhost:8080/series#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Stockholm_County> .
+
+<http://localhost:8080/since>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "since" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/since#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/since#Sense2> , <http://localhost:8080/since#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/RestrictionClass_french>
+        a       <http://www.w3.org/2002/07/owl#Restriction> ;
+        <http://www.w3.org/2002/07/owl#hasValue>
+                <http://dbpedia.org/resource/France> , <http://dbpedia.org/resource/Paris> ;
+        <http://www.w3.org/2002/07/owl#onProperty>
+                <http://dbpedia.org/property/deathPlace> , <http://dbpedia.org/property/birthPlace> .
+
+<http://localhost:8080/drama#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "drama@en" .
+
+<http://localhost:8080/theatre#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "theatre@en" .
+
+<http://localhost:8080/RestrictionClass_japanese>
+        a       <http://www.w3.org/2002/07/owl#Restriction> ;
+        <http://www.w3.org/2002/07/owl#hasValue>
+                <http://dbpedia.org/resource/Japan> , <http://dbpedia.org/resource/Voice_acting_in_Japan> , <http://dbpedia.org/resource/Actress> ;
+        <http://www.w3.org/2002/07/owl#onProperty>
+                <http://dbpedia.org/property/birthPlace> , <http://dbpedia.org/ontology/occupation> .
+
+<http://localhost:8080/film#Sense4>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Stockholm> .
+
+<http://localhost:8080/role#Sense5>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/television#Sense5>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/RestrictionClass_english>
+        a       <http://www.w3.org/2002/07/owl#Restriction> ;
+        <http://www.w3.org/2002/07/owl#hasValue>
+                <http://dbpedia.org/resource/London> , <http://dbpedia.org/resource/England> , <http://dbpedia.org/resource/United_Kingdom> , <http://dbpedia.org/resource/Actor> ;
+        <http://www.w3.org/2002/07/owl#onProperty>
+                <http://dbpedia.org/property/birthPlace> , <http://dbpedia.org/ontology/country> , <http://dbpedia.org/ontology/occupation> .
+
+<http://localhost:8080/singer#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/France> .
+
+<http://localhost:8080/actress#Sense4>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/London> .
+
+<http://localhost:8080/british#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_british> .
+
+<http://localhost:8080/films#Sense4>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/sweden#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Stockholm_County> .
+
+<http://localhost:8080/theatre>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "theatre" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/theatre#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/theatre#Sense4> , <http://localhost:8080/theatre#Sense3> , <http://localhost:8080/theatre#Sense2> , <http://localhost:8080/theatre#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/english#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_english> .
+
+<http://localhost:8080/actor#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Japan> .
+
+<http://localhost:8080/west#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "west@en" .
+
+<http://localhost:8080/director#Sense5>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/stage#Sense5>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/best#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/London> .
+
+<http://localhost:8080/japanese#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_japanese> .
+
+<http://localhost:8080/film>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "film" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/film#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/film#Sense4> , <http://localhost:8080/film#Sense1> , <http://localhost:8080/film#Sense2> , <http://localhost:8080/film#Sense5> , <http://localhost:8080/film#Sense6> , <http://localhost:8080/film#Sense7> , <http://localhost:8080/film#Sense3> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/series#Sense4>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/since#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Stockholm> .
+
+<http://localhost:8080/stage>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "stage" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/stage#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/stage#Sense7> , <http://localhost:8080/stage#Sense6> , <http://localhost:8080/stage#Sense5> , <http://localhost:8080/stage#Sense4> , <http://localhost:8080/stage#Sense1> , <http://localhost:8080/stage#Sense3> , <http://localhost:8080/stage#Sense2> , <http://localhost:8080/stage#Sense8> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/credits#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "credits@en" .
+
+<http://localhost:8080/career>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "career" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/career#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/career#Sense2> , <http://localhost:8080/career#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/french#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_french> .
+
+<http://localhost:8080/film#Sense7>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/city>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "city" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/city#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/city#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/silent>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "silent" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/silent#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/silent#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/adjective> .
+
+<http://localhost:8080/actress#Sense7>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/french>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "french" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/french#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/french#Sense2> , <http://localhost:8080/french#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/adjective> .
+
+<http://localhost:8080/drama>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "drama" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/drama#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/drama#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/roles#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/first#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "first@en" .
+
+<http://localhost:8080/london#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "london@en" .
+
+<http://localhost:8080/theatre#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/best#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "best@en" .
+
+<http://localhost:8080/english#Sense4>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Actor> .
+
+<http://localhost:8080/actor#Sense6>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Paris> .
+
+<http://localhost:8080/silent#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "silent@en" .
+
+<http://localhost:8080/stage#Sense8>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/best#Sense5>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/films>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "films" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/films#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/films#Sense5> , <http://localhost:8080/films#Sense2> , <http://localhost:8080/films#Sense6> , <http://localhost:8080/films#Sense3> , <http://localhost:8080/films#Sense1> , <http://localhost:8080/films#Sense4> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/film#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Actress> .
+
+<http://localhost:8080/role#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Actor> .
+
+<http://localhost:8080/television#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Actor> .
+
+<http://localhost:8080/english>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "english" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/english#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/english#Sense2> , <http://localhost:8080/english#Sense7> , <http://localhost:8080/english#Sense6> , <http://localhost:8080/english#Sense4> , <http://localhost:8080/english#Sense1> , <http://localhost:8080/english#Sense3> , <http://localhost:8080/english#Sense8> , <http://localhost:8080/english#Sense5> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/sweden>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "sweden" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/sweden#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/sweden#Sense2> , <http://localhost:8080/sweden#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/actress#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Japan> .
+
+<http://localhost:8080/british#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_british> .
+
+<http://localhost:8080/credits>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "credits" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/credits#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/credits#Sense2> , <http://localhost:8080/credits#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/films#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Stockholm> .
+
+<http://localhost:8080/RestrictionClass_several>
+        a       <http://www.w3.org/2002/07/owl#Restriction> ;
+        <http://www.w3.org/2002/07/owl#hasValue>
+                <http://dbpedia.org/resource/England> ;
+        <http://www.w3.org/2002/07/owl#onProperty>
+                <http://dbpedia.org/property/birthPlace> .
+
+<http://localhost:8080/actor#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Gothenburg> .
+
+<http://localhost:8080/role#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "role@en" .
+
+<http://localhost:8080/shows#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/first#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/stage#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/London> .
+
+<http://localhost:8080/director#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Actor> .
+
+<http://localhost:8080/japanese#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_japanese> .
+
+<http://localhost:8080/credits#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/london#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/RestrictionClass_british>
+        a       <http://www.w3.org/2002/07/owl#Restriction> ;
+        <http://www.w3.org/2002/07/owl#hasValue>
+                <http://dbpedia.org/resource/London> , <http://dbpedia.org/resource/England> , <http://dbpedia.org/resource/Actor> , <http://dbpedia.org/resource/United_Kingdom> ;
+        <http://www.w3.org/2002/07/owl#onProperty>
+                <http://dbpedia.org/ontology/occupation> , <http://dbpedia.org/property/birthPlace> .
+
+<http://localhost:8080/english#Sense7>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/series#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/London> .
+
+<http://localhost:8080/english#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "english@en" .
+
+<http://localhost:8080/appearances#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "appearances@en" .
+
+<http://localhost:8080/actor#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "actor@en" .
+
+<http://localhost:8080/city#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/london>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "london" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/london#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/london#Sense3> , <http://localhost:8080/london#Sense2> , <http://localhost:8080/london#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/actress#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "actress@en" .
+
+<http://localhost:8080/film#Sense5>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/London> .
+
+<http://localhost:8080/role#Sense6>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/comedian#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/France> .
+
+<http://localhost:8080/japanese>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "japanese" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/japanese#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/japanese#Sense3> , <http://localhost:8080/japanese#Sense2> , <http://localhost:8080/japanese#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/adjective> .
+
+<http://localhost:8080/singer#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/actress#Sense5>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Surrey> .
+
+<http://localhost:8080/career#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Actor> .
+
+<http://localhost:8080/british#Sense4>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_british> .
+
+<http://localhost:8080/films#Sense5>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/silent#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_silent> .
+
+<http://localhost:8080/sweden#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/roles#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/London> .
+
+<http://localhost:8080/actor>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "actor" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/actor#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/actor#Sense5> , <http://localhost:8080/actor#Sense6> , <http://localhost:8080/actor#Sense3> , <http://localhost:8080/actor#Sense4> , <http://localhost:8080/actor#Sense1> , <http://localhost:8080/actor#Sense7> , <http://localhost:8080/actor#Sense2> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/theatre#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/London> .
+
+<http://localhost:8080/actor#Sense4>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Stockholm> .
+
+<http://localhost:8080/english#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_english> .
+
+<http://localhost:8080/>
+        a       <http://lemon-model.net/lemon#Lexicon> ;
+        <http://lemon-model.net/lemon#entry>
+                <http://localhost:8080/since> , <http://localhost:8080/sweden> , <http://localhost:8080/film> , <http://localhost:8080/west> , <http://localhost:8080/drama> , <http://localhost:8080/role> , <http://localhost:8080/career> , <http://localhost:8080/best> , <http://localhost:8080/several> , <http://localhost:8080/theatre> , <http://localhost:8080/first> , <http://localhost:8080/credits> , <http://localhost:8080/actress> , <http://localhost:8080/city> , <http://localhost:8080/actor> , <http://localhost:8080/director> , <http://localhost:8080/singer> , <http://localhost:8080/years> , <http://localhost:8080/series> , <http://localhost:8080/london> , <http://localhost:8080/roles> , <http://localhost:8080/production> , <http://localhost:8080/french> , <http://localhost:8080/television> , <http://localhost:8080/appearances> , <http://localhost:8080/films> , <http://localhost:8080/japanese> , <http://localhost:8080/shows> , <http://localhost:8080/comedian> , <http://localhost:8080/dancer> , <http://localhost:8080/silent> , <http://localhost:8080/english> , <http://localhost:8080/british> , <http://localhost:8080/stage> .
+
+<http://localhost:8080/role>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "role" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/role#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/role#Sense1> , <http://localhost:8080/role#Sense3> , <http://localhost:8080/role#Sense4> , <http://localhost:8080/role#Sense6> , <http://localhost:8080/role#Sense5> , <http://localhost:8080/role#Sense2> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/stage#Sense6>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Paris> .
+
+<http://localhost:8080/best#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Actor> .
+
+<http://localhost:8080/french#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "french@en" .
+
+<http://localhost:8080/television#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "television@en" .
+
+<http://localhost:8080/role#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/France> .
+
+<http://localhost:8080/singer>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "singer" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/singer#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/singer#Sense2> , <http://localhost:8080/singer#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/television#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Stockholm> .
+
+<http://localhost:8080/series#Sense5>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/since#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/years#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/dancer>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "dancer" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/dancer#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/dancer#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/years>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "years" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/years#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/years#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/director>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "director" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/director#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/director#Sense5> , <http://localhost:8080/director#Sense3> , <http://localhost:8080/director#Sense1> , <http://localhost:8080/director#Sense4> , <http://localhost:8080/director#Sense2> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/several>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "several" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/several#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/several#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/adjective> .
+
+<http://localhost:8080/career#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "career@en" .
+
+<http://localhost:8080/dancer#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "dancer@en" .
+
+<http://localhost:8080/city#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "city@en" .
+
+<http://localhost:8080/stage#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/France> .
+
+<http://localhost:8080/director#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Film_director> .
+
+<http://localhost:8080/comedian#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "comedian@en" .
+
+<http://localhost:8080/british>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "british" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/british#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/british#Sense4> , <http://localhost:8080/british#Sense3> , <http://localhost:8080/british#Sense2> , <http://localhost:8080/british#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/adjective> .
+
+<http://localhost:8080/roles#Sense4>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/london#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/London> .
+
+<http://localhost:8080/west#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/London> .
+
+<http://localhost:8080/theatre#Sense4>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/first>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "first" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/first#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/first#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/english#Sense5>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_english> .
+
+<http://localhost:8080/actor#Sense7>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/best#Sense6>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/film#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Japan> .
+
+<http://localhost:8080/role#Sense4>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/television#Sense4>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/drama#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/actress#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Stockholm> .
+
+<http://localhost:8080/shows#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "shows@en" .
+
+<http://localhost:8080/british#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_british> .
+
+<http://localhost:8080/roles>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "roles" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/roles#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/roles#Sense3> , <http://localhost:8080/roles#Sense4> , <http://localhost:8080/roles#Sense2> , <http://localhost:8080/roles#Sense1> , <http://localhost:8080/roles#Sense5> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/films#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Actor> .
+
+<http://localhost:8080/years#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "years@en" .
+
+<http://localhost:8080/comedian>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "comedian" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/comedian#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/comedian#Sense2> , <http://localhost:8080/comedian#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/appearances>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "appearances" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/appearances#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/appearances#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/actor#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Voice_acting_in_Japan> .
+
+<http://localhost:8080/stage#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "stage@en" .
+
+<http://localhost:8080/production#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "production@en" .
+
+<http://localhost:8080/series#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "series@en" .
+
+<http://localhost:8080/stage#Sense4>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Actor> .
+
+<http://localhost:8080/best#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Actress> .
+
+<http://localhost:8080/director#Sense4>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/production#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/television>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "television" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/television#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/television#Sense3> , <http://localhost:8080/television#Sense4> , <http://localhost:8080/television#Sense1> , <http://localhost:8080/television#Sense5> , <http://localhost:8080/television#Sense2> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/japanese#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_japanese> .
+
+<http://localhost:8080/best>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "best" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/best#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/best#Sense1> , <http://localhost:8080/best#Sense6> , <http://localhost:8080/best#Sense4> , <http://localhost:8080/best#Sense5> , <http://localhost:8080/best#Sense2> , <http://localhost:8080/best#Sense3> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/japanese#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "japanese@en" .
+
+<http://localhost:8080/roles#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "roles@en" .
+
+<http://localhost:8080/english#Sense8>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/series#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/dancer#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/several#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_several> .
+
+<http://localhost:8080/production>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "production" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/production#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/production#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/french#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://localhost:8080/RestrictionClass_french> .
+
+<http://localhost:8080/film#Sense6>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Paris> .
+
+<http://localhost:8080/comedian#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/several#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "several@en" .
+
+<http://localhost:8080/actress#Sense6>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/career#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/singer#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "singer@en" .
+
+<http://localhost:8080/films#Sense6>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/United_Kingdom> .
+
+<http://localhost:8080/film#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "film@en" .
+
+<http://localhost:8080/actress>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "actress" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/actress#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/actress#Sense4> , <http://localhost:8080/actress#Sense3> , <http://localhost:8080/actress#Sense6> , <http://localhost:8080/actress#Sense5> , <http://localhost:8080/actress#Sense2> , <http://localhost:8080/actress#Sense1> , <http://localhost:8080/actress#Sense7> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/roles#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Actor> .
+
+<http://localhost:8080/shows>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "shows" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/shows#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/shows#Sense2> , <http://localhost:8080/shows#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/theatre#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/english#Sense3>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/London> .
+
+<http://localhost:8080/actor#Sense5>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/London> .
+
+<http://localhost:8080/director#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "director@en" .
+
+<http://localhost:8080/series>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "series" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/series#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/series#Sense1> , <http://localhost:8080/series#Sense3> , <http://localhost:8080/series#Sense5> , <http://localhost:8080/series#Sense2> , <http://localhost:8080/series#Sense4> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/stage#Sense7>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/England> .
+
+<http://localhost:8080/best#Sense4>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Sweden> .
+
+<http://localhost:8080/role#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/London> .
+
+<http://localhost:8080/film#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Film_director> .
+
+<http://localhost:8080/sweden#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "sweden@en" .
+
+<http://localhost:8080/television#Sense2>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/London> .
+
+<http://localhost:8080/west>
+        a       <http://lemon-model.net/lemon#LexicalEntry> ;
+        <http://www.w3.org/2000/01/rdf-schema#label>
+                "west" ;
+        <http://lemon-model.net/lemon#canonicalForm>
+                <http://localhost:8080/west#CanonicalForm> ;
+        <http://lemon-model.net/lemon#language>
+                "en" ;
+        <http://lemon-model.net/lemon#sense>
+                <http://localhost:8080/west#Sense2> , <http://localhost:8080/west#Sense1> ;
+        <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech>
+                <http://www.lexinfo.net/ontology/2.0/lexinfo#/noun> .
+
+<http://localhost:8080/actress#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Actress> .
+
+<http://localhost:8080/films#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/France> .
+
+<http://localhost:8080/since#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "since@en" .
+
+<http://localhost:8080/shows#Sense1>
+        <http://lemon-model.net/lemon#reference>
+                <http://dbpedia.org/resource/Stockholm> .
+
+<http://localhost:8080/films#CanonicalForm>
+        <http://lemon-model.net/lemon#writtenRep>
+                "films@en" .

@@ -1,0 +1,43 @@
+@prefix :        <http://localhost:8080/lexicon#> .
+
+@prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#> .
+@prefix lemon:   <http://lemon-model.net/lemon#> .
+
+@base            <http://localhost:8080#> .
+
+:lexicon_en a    lemon:Lexicon ;
+  lemon:language "en" ;
+  lemon:entry    :birthPlace_of ;
+  lemon:entry    :of .
+
+:birthPlace_of a       lemon:LexicalEntry ;
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm  :birthPlace_form ;
+  lemon:synBehavior    :birthPlace_of_nounpp ;
+  lemon:sense          :birthPlace_sense_ontomap .
+
+:birthPlace_form a lemon:Form ;
+  lemon:writtenRep "পিতা"@en .
+
+:birthPlace_of_nounpp a        lexinfo:NounPPFrame ;
+  lexinfo:copulativeArg        :arg1 ;
+  lexinfo:prepositionalAdjunct :arg2 .
+
+:birthPlace_sense_ontomap a lemon:OntoMap, lemon:LexicalSense ;
+  lemon:ontoMapping         :birthPlace_sense_ontomap ;
+  lemon:reference           <http://www.wikidata.org/prop/direct/P22> ;
+  lemon:subjOfProp          :arg2 ;
+  lemon:objOfProp           :arg1 ;
+  lemon:condition           :birthPlace_condition .
+
+:birthPlace_condition a lemon:condition ;
+  lemon:propertyDomain  <http://dbpedia.org/ontology/Q215627> ;
+  lemon:propertyRange   <http://dbpedia.org/ontology/Q215627> .
+
+:arg2 lemon:marker :of .
+
+## Prepositions ##
+
+:of a                  lemon:SynRoleMarker ;
+  lemon:canonicalForm  [ lemon:writtenRep "এর"@en ] ;
+  lexinfo:partOfSpeech lexinfo:preposition .

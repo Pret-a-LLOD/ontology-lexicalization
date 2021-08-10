@@ -1,0 +1,39 @@
+@prefix :        <http://localhost:8080/lexicon#> .
+
+@prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#> .
+@prefix lemon:   <http://lemon-model.net/lemon#> .
+
+@base            <http://localhost:8080#> .
+
+:lexicon a       lemon:Lexicon ;
+  lemon:language "de" ;
+  lemon:entry    :elternteil_of ;
+  lemon:entry    :of .
+
+:elternteil_of a       lemon:LexicalEntry ;
+  lemon:language       "de" ;
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm  :elternteil_form ;
+  lemon:synBehavior    :elternteil_of_nounpp ;
+  lemon:sense          :elternteil_sense_ontomap .
+
+:elternteil_form a lemon:Form ;
+  lemon:writtenRep "Elternteil"@de .
+
+:elternteil_of_nounpp a        lexinfo:NounPPFrame ;
+  lexinfo:copulativeArg        :arg1 ;
+  lexinfo:prepositionalAdjunct :arg2 .
+
+:elternteil_sense_ontomap a lemon:OntoMap, lemon:LexicalSense ;
+  lemon:ontoMapping         :elternteil_sense_ontomap ;
+  lemon:reference           <http://dbpedia.org/ontology/parent> ;
+  lemon:subjOfProp          :arg2 ;
+  lemon:objOfProp           :arg1 .
+
+:arg2 lemon:marker :of .
+
+## Prepositions ##
+
+:of a                  lemon:SynRoleMarker ;
+  lemon:canonicalForm  [ lemon:writtenRep "von"@de ] ;
+  lexinfo:partOfSpeech lexinfo:preposition .
