@@ -7,6 +7,8 @@ package de.citec.sc.generator.utils;
 
 import de.citec.generator.core.LineInfo;
 import de.citec.sc.generator.analyzer.TextAnalyzer;
+import static de.citec.sc.generator.analyzer.TextAnalyzer.adjective;
+import static de.citec.sc.generator.analyzer.TextAnalyzer.noun;
 
 /**
  *
@@ -29,10 +31,24 @@ public class GoogleXslSheet implements TextAnalyzer {
     public static String range = "range";
     public static String PredSynArg = "PredSynArg";
     public static String AttrSynArg = "AttrSynArg";
+    
+    private static String getLine(String[] row) {
+        String str = "";
+        for (Integer index = 0; index < row.length; index++) {
+            String line = null;
+            if (index == (row.length - 1)) {
+                line = row[index];
+            } else {
+                line = row[index] + ",";
+            }
+            str += line;
+        }
+        return str;
+    }
 
     public static class NounPPFrame {
-        //LemonEntry	partOfSpeech	writtenForm (singular)	writtenForm (plural)	preposition	SyntacticFrame	copulativeArg	prepositionalAdjunct	sense	reference	domain	range	GrammarRule1:question1	SPARQL	GrammarRule1: question2	SPARQL Question 2	GrammarRule 1: questions	SPARQL 	NP (Grammar Rule 2)		grammar rules	numberOfQuestions
-        //birthPlace_of	noun	birth place	-	of	NounPPFrame	range	domain	1	dbo:birthPlace	dbo:Person	dbo:Place	#NAME?	#NAME?	#NAME?	#NAME?	#NAME?	#NAME?	#NAME?		2	
+        //LemonEntry	   partOfSpeech	writtenForm(singular)	writtenForm (plural)	preposition	SyntacticFrame	copulativeArg	prepositionalAdjunct	sense	reference	domain	range	GrammarRule1:question1	SPARQL	GrammarRule1: question2	SPARQL Question 2	GrammarRule 1: questions	SPARQL 	NP (Grammar Rule 2)		grammar rules	numberOfQuestions
+        //birthPlace_of	   noun	        birth place	         -	                 of	        NounPPFrame	range	         domain	                1	dbo:birthPlace	dbo:Person	dbo:Place	#NAME?	#NAME?	#NAME?	#NAME?	#NAME?	#NAME?	#NAME?		2	
 
         public static Integer writtenFormPluralIndex = 3;
         public static Integer prepositionIndex = 4;
@@ -43,6 +59,27 @@ public class GoogleXslSheet implements TextAnalyzer {
         public static Integer referenceIndex = 9;
         public static Integer domainIndex = 10;
         public static Integer rangeIndex = 11;
+        public static String csvFileName = NounPPFrameStr + ".csv";
+
+
+        public static String getRow(String id, String writtenForm, Integer rank, LineInfo lineInfo) {
+            String[] row = new String[rangeIndex + 1];
+            String predicate = lineInfo.getPredicateOriginal();
+            String object = lineInfo.getObjectOriginal();
+            row[lemonEntryIndex] = id;
+            row[partOfSpeechIndex] = noun;
+            row[writtenFormInfinitive] = writtenForm;
+            row[writtenFormPluralIndex] = writtenForm;
+            row[prepositionIndex] = writtenForm;
+            row[syntacticFrameIndex] = NounPPFrameStr;
+            row[copulativeArgIndex] = range;
+            row[prepositionalAdjunctIndex] = domain;
+            row[senseIndex] = rank.toString();
+            row[referenceIndex] = predicate;
+            row[domainIndex] = DomainAndRange.getDomain(predicate);
+            row[rangeIndex] = DomainAndRange.getRange(predicate);
+            return getLine(row);
+        }
 
     }
 
@@ -59,6 +96,26 @@ public class GoogleXslSheet implements TextAnalyzer {
         public static Integer referenceIndex = 9;
         public static Integer domainIndex = 10;
         public static Integer rangeIndex = 11;
+        
+        public static String getRow(String id, String writtenForm, Integer rank, LineInfo lineInfo) {
+            String[] row = new String[rangeIndex + 1];
+            String predicate = lineInfo.getPredicateOriginal();
+            String object = lineInfo.getObjectOriginal();
+            row[lemonEntryIndex] = id;
+            row[writtenFormInfinitive] = writtenForm;
+            row[partOfSpeechIndex] = noun;
+            row[writtenForm3rdPerson] = writtenForm;
+            row[writtenFormPast] = writtenForm;
+            row[syntacticIndex] = NounPPFrameStr;
+            row[subjectIndex] = domain;
+            row[directObjectIndex] = range;
+            row[senseIndex] = rank.toString();
+            row[referenceIndex] = predicate;
+            row[domainIndex] = DomainAndRange.getDomain(predicate);
+            row[rangeIndex] = DomainAndRange.getRange(predicate);
+            return getLine(row);
+        }
+
 
     }
 
@@ -78,19 +135,25 @@ public class GoogleXslSheet implements TextAnalyzer {
         public static Integer rangeIndex = 12;
         public static String csvFileName = IntransitivePPFrameStr + ".csv";
 
-        public static String[] getRow(String[] row, String writtenForm, Integer rank, LineInfo lineInfo) {
+        public static String getRow(String id, String writtenForm, Integer rank, LineInfo lineInfo) {
+            String[] row = new String[rangeIndex + 1];
             String predicate = lineInfo.getPredicateOriginal();
+            String object = lineInfo.getObjectOriginal();
+            Integer senseNo=rank+1;
+            row[lemonEntryIndex] = id;
+            row[partOfSpeechIndex] = verb;
+            row[writtenFormInfinitive] = writtenForm;
             row[writtenForm3rdPerson] = writtenForm;
             row[writtenFormPast] = writtenForm;
             row[preposition] = lineInfo.getPreposition();
             row[SyntacticFrame] = IntransitivePPFrameStr;
             row[subject] = domain;
             row[prepositionalAdjunct] = range;
-            row[senseIndex] = rank.toString();
+            row[senseIndex] = senseNo.toString();
             row[referenceIndex] = predicate;
             row[domainIndex] = DomainAndRange.getDomain(predicate);
             row[rangeIndex] = DomainAndRange.getRange(predicate);
-            return row;
+            return getLine(row);
         }
 
         public static String getCsvFileName() {
@@ -130,18 +193,10 @@ public class GoogleXslSheet implements TextAnalyzer {
             row[referenceIndex] = owl_Restriction;
             row[domainIndex] = DomainAndRange.getDomain(predicate);
             row[rangeIndex] = DomainAndRange.getRange(predicate);
-            String str = "";
-            for (Integer index = 0; index < row.length; index++) {
-                String line = null;
-                if (index == (row.length - 1)) {
-                    line = row[index];
-                } else {
-                    line = row[index] + ",";
-                }
-                str += line;
-            }
-            return str;
+            return getLine(row);
         }
+
+      
 
         public static String getCsvFileName() {
             return csvFileName;
@@ -162,11 +217,11 @@ public class GoogleXslSheet implements TextAnalyzer {
     public static class DomainAndRange {
 
         public static String getDomain(String predicateOriginal) {
-            return "dbo:Person";
+            return "http://dbpedia.org/ontology/Person";
         }
 
         public static String getRange(String predicateOriginal) {
-            return "dbo:Artist";
+            return "https://www.w3.org/2001/XMLSchema#date";
         }
 
     }

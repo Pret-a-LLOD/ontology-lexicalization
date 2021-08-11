@@ -12,7 +12,7 @@ import de.citec.generator.config.ConfigLemon;
 import de.citec.generator.config.ConfigLex;
 import de.citec.generator.config.Constants;
 import de.citec.generator.core.CommandLine;
-import de.citec.generator.core.ProcessInterOutput;
+import de.citec.generator.core.ProcessOutput;
 import de.citec.generator.results.ResultDownload;
 import de.citec.generator.results.ResultJsonLD;
 import de.citec.generator.results.ResultLex;
@@ -86,7 +86,7 @@ public class ResponseTransfer implements Constants {
     public String createLemon(ConfigLemon config) {
         try {
             String resourceDir = resultDir + processData;
-            Lexicon turtleLexicon = new ProcessInterOutput(resultDir, resourceDir, config, "createLemon").getTurtleLexicon();
+            Lexicon turtleLexicon = new ProcessOutput(resultDir, resourceDir, config, "createLemon").getTurtleLexicon();
             LexiconSerialization serializer = new LexiconSerialization();
             Model model = ModelFactory.createDefaultModel();
             serializer.serialize(turtleLexicon, model);
@@ -251,14 +251,7 @@ public class ResponseTransfer implements Constants {
         String class_url = "test"; Boolean flag =false;
         try {
             String resourceDir = resultDir + processData;
-            Lexicon turtleLexicon = new ProcessInterOutput(resultDir, resourceDir, config, "createQuestion").getTurtleLexicon();
-            /*System.out.println("lemon creating ends!! ");
-            //String[] parameters=new String []{"java -jar",javaScriptName,resultDir,language,lexiconDir,numberOfentitiesToConsider.toString(),dataSetConfig};
-            String command="java -jar"+" "+javaScriptName+" "+resultDir+" "+language+" "+lexiconDir+" "+numberOfentitiesToConsider+" "+dataSetConfig;
-            command="java -jar question-grammar-generator/target/QuestionGrammarGenerator.jar EN question-grammar-generator/lexicon/en question-grammar-generator/output 10 csv question-grammar-generator/dataset/wikidata.json";
-            System.out.println("command:"+command);
-            CommandLine commandLine = new CommandLine(command);
-            flag = commandLine.getProcessSuccessFlag();*/
+            Lexicon turtleLexicon = new ProcessOutput(resultDir, resourceDir, config, ENDPOINT_QUESTION_ANSWER_LEX_ENTRY).getTurtleLexicon();
             System.out.println("Lexicalization process successfuly ended!!");
             return new ResultLex(class_url, flag);
         } catch (JsonProcessingException ex) {
@@ -271,6 +264,23 @@ public class ResponseTransfer implements Constants {
             System.err.println("writing to file failed!!" + ex.getMessage());
             return new ResultLex(class_url, "Configuration file is correct.");
 
+        } catch (Exception ex) {
+            Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("System output process does not work!!" + ex.getMessage());
+            return new ResultLex(class_url, "Configuration file is correct.");
+        }
+    }
+    
+    public ResultLex createQuestionAnswer(ConfigLemon config) {
+        String class_url = "test";
+        Boolean flag = false;
+        try {
+            String command = "java -jar " + questionGenScript + " " + language + " " + lexiconDir + " " + outputDir + " " + numberOfentitiesToConsider + " "+CSV + " " + datasetDir + datasetConfig;
+            System.out.println("command:" + command);
+            CommandLine commandLine = new CommandLine(command);
+            flag = commandLine.getProcessSuccessFlag();
+            System.out.println("Lexicalization process successfuly ended!!");
+            return new ResultLex(class_url, flag);
         } catch (Exception ex) {
             Logger.getLogger(ResponseTransfer.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("System output process does not work!!" + ex.getMessage());

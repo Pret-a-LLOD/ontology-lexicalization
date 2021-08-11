@@ -18,38 +18,44 @@ import org.springframework.web.bind.annotation.*;
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
-public class SchemaController {
+public class SchemaController implements Constants{
     
     
-    @RequestMapping(path = "/download", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path = ENDPOINT_DOWNLOAD, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResultDownload downloadData(@RequestBody ConfigDownload conf) {
         return new ResponseTransfer().downloadData(conf);
     }
 
-    @RequestMapping(path = "/lexicalization", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path =ENDPOINT_LEX, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResultLex lexicalization(@RequestBody ConfigLex conf) {
         return new ResponseTransfer().lexicalization(conf);
 
     }
 
-    @RequestMapping(path = "/createLemon", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path = ENDPOINT_CREATE_LEMON, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String createLemon(@RequestBody ConfigLemon conf) {
         return new ResponseTransfer().createLemon(conf);
     }
     
-    @RequestMapping(path = "/searchPattern", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path = ENDPOINT_SEARCH_PATTERN, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String searchLemon(@RequestBody ConfigDownload conf) {
         return new ResponseTransfer().searchLemon(conf);
     }
     
-    @RequestMapping(path = "/createQuestion", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path = ENDPOINT_QUESTION_ANSWER_LEX_ENTRY, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResultLex createLexicalEntry(@RequestBody ConfigLemon conf) {
         return new ResponseTransfer().createLexicalEntry(conf);
+    }
+    
+    @RequestMapping(path = ENDPOINT_QUESTION_ANSWER, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResultLex createQuestionAnswer(@RequestBody ConfigLemon conf) {
+        return new ResponseTransfer().createQuestionAnswer(conf);
     }
    
   

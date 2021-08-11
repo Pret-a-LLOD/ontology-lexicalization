@@ -24,7 +24,7 @@ import de.citec.sc.generator.analyzer.Lemmatizer;
 import de.citec.generator.config.ConfigDownload;
 import de.citec.generator.config.ConfigLemon;
 import de.citec.generator.config.ConfigLex;
-import static de.citec.generator.config.Constants.UNDERSCORE;
+import de.citec.generator.config.Constants;
 import java.io.File;
 import java.util.*;
 import de.citec.sc.lemon.core.Lexicon;
@@ -35,28 +35,24 @@ import de.citec.generator.config.PredictionPatterns;
  *
  * @author elahi
  */
-public class ProcessInterOutput implements  PredictionPatterns,LemonConstants {
+public class ProcessOutput implements  PredictionPatterns,LemonConstants,Constants {
 
     private Lexicon turtleLexicon = null;
     private Integer rankLimit = 0;
-    private Logger LOGGER = Logger.getLogger(ProcessInterOutput.class.getName());
+    private Logger LOGGER = Logger.getLogger(ProcessOutput.class.getName());
     private Lemmatizer lemmatizer = new Lemmatizer();
     private String type = null;
 
-    public  ProcessInterOutput(String baseDir,String resourceDir,ConfigLemon config,String type) throws Exception {
+    public ProcessOutput(String baseDir, String resourceDir, ConfigLemon config, String type) throws Exception {
         /*System.out.println("config::"+config);
         System.out.println("baseDir::"+baseDir);
         System.out.println("resourceDir::"+resourceDir);
         System.out.println("basic URI::"+config.getUri_basic());*/
-        this.turtleLexicon=new Lexicon(config.getUri_basic());
-        this.rankLimit=config.getRank_limit();
-        this.type=type;
-        Set<String> posTag = new HashSet<String>();
-        posTag.add("JJ");
-        posTag.add("NN");
-        posTag.add("VB");
+        this.turtleLexicon = new Lexicon(config.getUri_basic());
+        this.rankLimit = config.getRank_limit();
+        this.type = type;
         String outputDir = resourceDir;
-      
+
         List<String> predictKBGivenLInguistic = new ArrayList<String>(Arrays.asList(
                 predict_l_for_s_given_po,
                 predict_localized_l_for_s_given_po,
@@ -94,27 +90,32 @@ public class ProcessInterOutput implements  PredictionPatterns,LemonConstants {
             for (String inter : interestingness) {
                 outputDir = resourceDir + "/" + prediction + "/" + inter + "/";
                 FileFolderUtils.createDirectory(outputDir);
-                  this.generate(inputDir, outputDir, prediction, inter, LOGGER, ".csv",type);
+                List<File> files = FileFolderUtils.getSpecificFiles(inputDir, prediction + "-", ".csv");
+                if (!files.isEmpty()) {
+                    createLexicalUnit(outputDir, prediction, inter, files, type);
+                } else {
+                    throw new Exception("NO ontology lexicalization files are found for processing" + ". " + "Run lexicalization process first");
+                }
+                //this.generate(inputDir, outputDir, prediction, inter, LOGGER, type);
+
                 //System.out.println(outputDir);
                 //CreateTXT.resultStrTxt(posTag,outputDir,txtDir, prediction, lemmatizer, inter);
             }
         }
 
-        
-       
     }
 
-    public void generate(String rawFileDir, String outputDir, String prediction, String givenInterestingness, Logger givenLOGGER, String fileType,String type) throws Exception {
+    /*public void generate(String inputDir, String outputDir, String prediction, String inter, Logger LOGGER, String type) throws Exception {
         
-        List<File> files = FileFolderUtils.getSpecificFiles(rawFileDir, prediction + "-", ".csv");
+        List<File> files = FileFolderUtils.getSpecificFiles(inputDir, prediction + "-", ".csv");
         if (!files.isEmpty()) {
-            createExperimentLinesCsv(outputDir, prediction, givenInterestingness, files,type);
+            createExperimentLinesCsv(outputDir, prediction, inter, files,type);
         } else {
             throw new Exception("NO ontology lexicalization files are found for processing"+". "+"Run lexicalization process first");
         }
-    }
+    }*/
 
-    private void createExperimentLinesCsv(String outputDir, String prediction, String interestingness, List<File> classFiles, String type) throws Exception {
+    private void createLexicalUnit(String outputDir, String prediction, String interestingness, List<File> classFiles, String type) throws Exception {
         Map<String, List<LexiconUnit>> posTaggedLex = new TreeMap<String, List<LexiconUnit>>();
         List<String[]> rows = new ArrayList<String[]>();
         Integer numberOfClass = 0;
@@ -191,9 +192,11 @@ public class ProcessInterOutput implements  PredictionPatterns,LemonConstants {
             }
             LemonCreator lexicon = new LemonCreator(outputDir, turtleLexicon, rankLimit);
             posTaggedLex = lexicon.preparePropertyLexicon(prediction, outputDir, className, interestingness, lineLexicon);
-            if (type.contains("createLemon")) {
+            //System.out.println("prediction::"+prediction);
+            //System.out.println("posTaggedLex.keySet()::"+posTaggedLex.keySet());
+            if (type.contains(ENDPOINT_CREATE_LEMON)) {
                 lexicon.writeLemon(prediction, posTaggedLex);
-            } else if (type.contains("createQuestion")) {
+            } else if (type.contains(ENDPOINT_QUESTION_ANSWER_LEX_ENTRY)) {
                 lexicon.writeLemoninCsv(prediction, posTaggedLex,false);
             }
 

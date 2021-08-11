@@ -102,7 +102,11 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
             //System.out.println("prediction::" + prediction);
             posLexInfo = lexinfo_verb;
             givenPosTag = TextAnalyzer.VB;
-        } else if (prediction.equals(PredictionPatterns.predict_o_for_s_given_l)) {
+        } else if (prediction.equals(PredictionPatterns.predict_p_for_o_given_localized_l)
+                || prediction.equals(PredictionPatterns.predict_p_for_o_given_l)
+                || prediction.equals(PredictionPatterns.predict_p_for_s_given_localized_l)
+                || prediction.equals(PredictionPatterns.predict_p_for_s_given_l)
+                ||prediction.equals(PredictionPatterns.predict_o_for_s_given_l)) {
             //System.out.println("prediction::" + prediction);
             posLexInfo = lexinfo_noun;
             givenPosTag = TextAnalyzer.NN;
@@ -189,6 +193,8 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
                 }
             }
         }
+        
+        System.out.println(JJ);
 
     }
 
@@ -196,6 +202,7 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
         String posLexInfo = null, givenPosTag = null, syntacticFileName = null, syntacticType = null,outputDir=null;
         Integer size = 0;
         List<String> lines = new ArrayList<String>();
+        
 
         if (prediction.equals(predict_po_for_s_given_localized_l)
                 || prediction.equals(predict_po_for_s_given_l)) {
@@ -215,11 +222,15 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
             outputDir=Constants.lexiconDir+verb+"/";
             syntacticType = GoogleXslSheet.IntransitivePPFrameStr;
             size = GoogleXslSheet.InTransitFrame.rangeIndex + 1;
-        } else if (prediction.equals(PredictionPatterns.predict_o_for_s_given_l)) {
+        } else if (prediction.equals(PredictionPatterns.predict_p_for_o_given_localized_l)
+                || prediction.equals(PredictionPatterns.predict_p_for_s_given_localized_l)) {
             //System.out.println("prediction::" + prediction);
             posLexInfo = lexinfo_noun;
             givenPosTag = TextAnalyzer.NN;
+            syntacticFileName = prediction + "_" + GoogleXslSheet.NounPPFrame.csvFileName;
             outputDir=Constants.lexiconDir+noun+"/";
+            syntacticType = GoogleXslSheet.NounPPFrameStr;
+            size = GoogleXslSheet.NounPPFrame.rangeIndex + 1;
         } else {
             return;
         }
@@ -234,7 +245,8 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
                 id = id + 1;
                 LinkedHashMap<Integer, List<LineInfo>> ranks = lexiconUnit.getLineInfos();
                 String writtenForm = lexiconUnit.getWord();
-                if (!givenPosTag.equals(TextAnalyzer.JJ)) {
+                
+                if (!givenPosTag.equals(TextAnalyzer.VB)) {
                     continue;
                 }
 
@@ -243,45 +255,58 @@ public class LemonCreator implements PredictionPatterns, LemonConstants, TextAna
                 } else {
                     writtenForm = this.modify(writtenForm);
                 }
+                
+                
+                        System.out.println("writtenForm::" + writtenForm);
+                        System.out.println("givenPosTag::" + givenPosTag);
+                       
 
                 Integer index = 0;
                 for (Integer rank : ranks.keySet()) {
                     List<LineInfo> rankLineInfo = ranks.get(rank);
                     for (LineInfo lineInfo : rankLineInfo) {
                         String row = null;
-                        if (syntacticType.contains(GoogleXslSheet.AttributiveAdjectiveFrameStr)) {
-                            /*System.out.println("prediction::" + prediction);
-                            System.out.println("writtenForm::" + writtenForm);
-                            System.out.println("givenPosTag::" + givenPosTag);
-                            System.out.println("pos tag::" + lineInfo.getPosTag());
-                            System.out.println("predicate::" + lineInfo.getPredicateOriginal());
-                            System.out.println("object::" + lineInfo.getObjectOriginal());*/
-                            
-                            if (!labelConsiderFlag) {
-                                if (lineInfo.isLabel()) {
-                                    continue;
-                                }
+                        
+                        if (!labelConsiderFlag) {
+                            if (lineInfo.isLabel()) {
+                                continue;
                             }
-                            else
-                              index = index + 1;
+                        } else {
+                            index = index + 1;
+                        }
+                        
+                       System.out.println("pos tag::" + lineInfo.getPosTag());
+                        System.out.println("predicate::" + lineInfo.getPredicateOriginal());
+                        System.out.println("object::" + lineInfo.getObjectOriginal());
 
-                            
-
+                                               if (syntacticType.contains(GoogleXslSheet.AttributiveAdjectiveFrameStr)) {
                             if (index > 0) {
                                 row = GoogleXslSheet.AttributiveAdjectiveFrame.getRow("-", writtenForm, rank, lineInfo);
                             } else {
                                 row = GoogleXslSheet.AttributiveAdjectiveFrame.getRow(writtenForm + "_" + id.toString(), writtenForm, rank, lineInfo);
                             }
-                            if (row != null) {
-                                lines.add(row);
+
+                        } else if (syntacticType.contains(GoogleXslSheet.IntransitivePPFrameStr)) {
+
+                            if (index > 0) {
+                                row = GoogleXslSheet.InTransitFrame.getRow("-", writtenForm, rank, lineInfo);
+                            } else {
+                                row = GoogleXslSheet.InTransitFrame.getRow(writtenForm + "_" + id.toString(), writtenForm, rank, lineInfo);
+                            }
+                        } else if (syntacticType.contains(GoogleXslSheet.NounPPFrameStr)) {
+
+                            if (index > 0) {
+                                row = GoogleXslSheet.NounPPFrame.getRow("-", writtenForm, rank, lineInfo);
+                            } else {
+                                row = GoogleXslSheet.NounPPFrame.getRow(writtenForm + "_" + id.toString(), writtenForm, rank, lineInfo);
                             }
 
-                            //csvLexicalEntry.writeNext(row);
-                        } else if (syntacticType.contains(GoogleXslSheet.IntransitivePPFrameStr)) {
-                            //row = GoogleXslSheet.InTransitFrame.getRow(row, writtenForm, rank, lineInfo);
-                            //csvLexicalEntry.writeNext(row);
                         }
                         
+                        if (row != null) {
+                            lines.add(row);
+                        }
+
 
                         if (index > this.rankLimit) {
                             break;
