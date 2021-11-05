@@ -24,7 +24,7 @@ docker run -p 8001:8080 -t elahi/lex-cbl:1.0
 ### lexicalization
 Given a class, the program will provide class-specific lexicalization. That is, it links the linguistic patterns (a token/a sequence of tokens tagged with parts-of-speech) of the text (of DBpedia abstract) KB elements. <br/>
 
-List of DBpedia class can be found [link](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1) <br/>
+List of DBpedia class can be found [link](https://github.com/Pret-a-LLOD/ontology-lexicalization/blob/master/classes/classes.txt) <br/>
 
 - For simplicity run it for a single class (for example http://dbpedia.org/ontology/Actor). The input file contains class url and parameteres to run lexicalization process. The detail parameters can be found in [swagger document](https://app.swaggerhub.com/apis/melahi/lex-cbl/1.0.1)
 
