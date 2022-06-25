@@ -13,12 +13,12 @@ To run CBL on your machine, follow 6 instructions given below:
 
 1. Download the image of CBL (lex-cbl). 
 ```
-docker pull elahi/lex-cbl:1.0
+docker pull pretallod/lex-cbl
 
 ```
 2. Run the image as a container.
 ```
-docker run -p 8001:8080 -t elahi/lex-cbl:1.0
+docker run -p 8001:8080 -t pretallod/lex-cbl
 ```
 
 ### lexicalization
