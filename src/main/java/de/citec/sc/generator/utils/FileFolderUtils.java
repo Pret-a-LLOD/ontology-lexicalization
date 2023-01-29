@@ -15,10 +15,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -27,6 +29,7 @@ import java.util.logging.Logger;
 import org.apache.commons.compress.compressors.CompressorException;
 import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -110,5 +113,41 @@ public class FileFolderUtils {
             return;
         }
     }
+    
+     public static List<String> getSelectedFiles(String inputDir, String rulePattern) {
+        String[] list = new File(inputDir).list();
+        List<String> inputFiles = new ArrayList<String>();
+        for (String fileString : list) {
+            File file = new File(fileString);
+            if (fileString.contains(rulePattern)) {
+                inputFiles.add(file.getName());
+            }
+        }
+        return inputFiles;
+    }
+     
+    public static Map<String, String> fileList(String fileName, String value,Map<String, String> frameUris)  {
+        BufferedReader reader;
+        String line = "";
+        try {
+            reader = new BufferedReader(new FileReader(fileName));
+            while ((line = reader.readLine()) != null) {
+                line = reader.readLine();
+                line = line.strip().stripLeading().stripTrailing().trim();
+                frameUris.put(line, value);
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return frameUris;
+    }
+
+    public static String getRootDir() {
+        File currentDirFile = new File(".");
+        return currentDirFile.getAbsolutePath().replace(".", "");
+    }
+
+
 
 }

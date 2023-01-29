@@ -1,0 +1,9 @@
+dbo:elevation
+dbo:height
+dbo:height
+dbo:height
+dbo:areaTotal
+dbo:birthDate
+dbo:birthDate
+dbo:birthDate
+dbo:seatingCapacity

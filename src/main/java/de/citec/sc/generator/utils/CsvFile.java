@@ -66,10 +66,12 @@ public class CsvFile  implements PredictionPatterns {
     private Map<String, List<String[]>> wordRows = new TreeMap<String, List<String[]>>();
     private Map<String, Integer> interestingnessIndexes = new HashMap<String, Integer>();
     private List<String[]> rows = new ArrayList<String[]>();
+    private static Logger LOGGER = null;
 
      public CsvFile() {
          
      }
+ 
 
     public CsvFile(File filename) {
         this.csvFile = filename;
@@ -205,6 +207,256 @@ public class CsvFile  implements PredictionPatterns {
     public Map<String, List<String[]>> getRow() {
         return wordRows;
     }
+    
+     public void writeToCSV(List<String[]> csvData) {
+        if (csvData.isEmpty()) {
+            System.err.println("writing csv file failed!!!");
+            return;
+        }
+        try ( CSVWriter writer = new CSVWriter(new FileWriter(this.csvFile))) {
+            writer.writeAll(csvData);
+        } catch (IOException ex) {
+            System.err.println("writing csv file failed!!!" + ex.getMessage());
+        }
+    }
+
+    public void writeToCSV(File newQaldFile, List<String[]> csvData) {
+        if (csvData.isEmpty()) {
+            System.err.println("writing csv file failed!!!");
+            return;
+        }
+        try ( CSVWriter writer = new CSVWriter(new FileWriter(newQaldFile))) {
+            writer.writeAll(csvData);
+        } catch (IOException ex) {
+            System.err.println("writing csv file failed!!!" + ex.getMessage());
+        }
+    }
+
+   
+    public List<String[]> getManualRow(File qaldFile, Double limit, Integer lineLimit) {
+        List<String[]> rows = new ArrayList<String[]>();
+
+        Stack<String> stack = new Stack<String>();
+        CSVReader reader;
+        try {
+            rows = generateLinebyLine(qaldFile, lineLimit);
+        } catch (IOException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        /*try {
+            
+            if (FileFolderUtils.isFileBig(qaldFile, limit)) {
+                rows = generateLinebyLine(qaldFile,lineLimit);
+                //System.out.println("@@@@@@@@@@@@@@@@@@@@@@" + qaldFile.getName()+" size:"+rows.size());
+            } else {
+                reader = new CSVReader(new FileReader(qaldFile));
+                rows = reader.readAll();
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, "CSV File not found:!!!" + ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, "CSV File not found:!!!" + ex.getMessage());
+        }  catch (CsvException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, "CSV problems:!!!" + ex.getMessage());
+        }
+         catch (Exception ex) {
+            try {
+                rows = generateLinebyLine(qaldFile,lineLimit);
+            } catch (IOException ex1) {
+                Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }*/
+        return rows;
+    }
+
+    public List<String[]> getRows(File qaldFile) {
+        List<String[]> rows = new ArrayList<String[]>();
+
+        /*if (FileFolderUtils.isFileSizeManageable(qaldFile, 40.0)) {
+            //System.out.println("..........." + qaldFile.getName());
+            return rows;
+        }*/
+        Stack<String> stack = new Stack<String>();
+        CSVReader reader;
+        try {
+
+            reader = new CSVReader(new FileReader(qaldFile));
+            rows = reader.readAll();
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, "CSV File not found:!!!" + ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, "CSV File not found:!!!" + ex.getMessage());
+        } catch (CsvException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return rows;
+    }
+
+     public List<String[]> getRowsManual(File qaldFile) {
+        List<String[]> rows = new ArrayList<String[]>();
+
+        /*if (FileFolderUtils.isFileSizeManageable(qaldFile, 40.0)) {
+            //System.out.println("..........." + qaldFile.getName());
+            return rows;
+        }*/
+        Stack<String> stack = new Stack<String>();
+        CSVReader reader;
+        try {
+            //if (!FileFolderUtils.isFileBig(qaldFile, 100.0)) {
+                rows = generateLinebyLine(qaldFile,100000);
+                 //System.out.println("@@@@@@@@@@@@@@@@@@@@@@" + qaldFile.getName()+" size:"+rows.size());
+            /*} else {
+                reader = new CSVReader(new FileReader(qaldFile));
+                rows = reader.readAll();
+            }*/
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, "CSV File not found:!!!" + ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, "CSV File not found:!!!" + ex.getMessage());
+        } 
+
+        return rows;
+    }
+
+    public List<String[]> cvsModifier(File qaldFile) throws Exception {
+        List<String[]> modifyrows = new ArrayList<String[]>();
+        Map<String, List<String[]>> sort = new TreeMap<String, List<String[]>>();
+        List<String[]> rows = getRows(qaldFile);
+        String[] header = null;
+        Integer j = 0;
+        for (String[] row : rows) {
+            if (j == 0) {
+                header = row;
+
+                j = j + 1;
+                continue;
+            }
+
+            String key = null;
+            String[] newRow = new String[row.length];
+            for (Integer index = 0; index < row.length; index++) {
+                //String query = " \" " + row[index].replace("$", ",") + " \" ";
+                String query = row[index].replace("$", ",");
+                if (index == 0) {
+                    key = row[index];
+                    key = key.toLowerCase();
+                    key = key.replace(" ", "_").strip().trim();
+                    newRow[index] = query;
+                }
+                newRow[index] = query;
+
+            }
+            List<String[]> list = new ArrayList<String[]>();
+            if (sort.containsKey(key)) {
+                list = sort.get(key);
+            }
+
+            list.add(newRow);
+            sort.put(key, list);
+        }
+
+        modifyrows.add(header);
+        for (String key : sort.keySet()) {
+            List<String[]> list = sort.get(key);
+            for (String[] row : list) {
+                modifyrows.add(row);
+            }
+        }
+        return modifyrows;
+    }
+
+  
+
+    private List<String[]> generateLinebyLine(File pathToCsv, Integer lineLimit) throws FileNotFoundException, IOException {
+        List<String[]> rows = new ArrayList<String[]>();
+        BufferedReader csvReader = new BufferedReader(new FileReader(pathToCsv));
+        String line = null;
+        Integer index = 0;
+        while ((line = csvReader.readLine()) != null) {
+            try {
+                line = line.replace("\"", "");
+
+                String[] data = line.split(",");
+                
+                rows.add(data);
+
+            } catch (Exception ex) {
+                ;
+            }
+            index = index + 1;
+            if (index > lineLimit) {
+                break;
+            }
+            // do something with the data
+        }
+        csvReader.close();
+        return rows;
+    }
+    
+     private Map<String,String[]> generateLinebyLine(File pathToCsv, Integer lineLimit,Integer keyIndex) throws FileNotFoundException, IOException {
+        Map<String,String[]> map = new TreeMap<String,String[]>();
+        BufferedReader csvReader = new BufferedReader(new FileReader(pathToCsv));
+        String line = null;
+        Integer index = 0;
+        while ((line = csvReader.readLine()) != null) {
+            try {
+                String[] data = line.split(",");
+                String key=data[keyIndex];
+                map.put(key, data);
+
+            } catch (Exception ex) {
+                ;
+            }
+            index = index + 1;
+            if (index > lineLimit) {
+                break;
+            }
+            // do something with the data
+        }
+        csvReader.close();
+        return map;
+    }
+     
+    public Map<String, String[]> generateBindingMapL(Integer keyIndex, Integer classIindex, String givenClassName) throws FileNotFoundException, IOException {
+        Map<String, String[]> map = new TreeMap<String, String[]>();
+        String line = null;
+        Integer index = 0;
+        List<String[]> rows = this.getRows(this.csvFile);
+
+        for (String[] data : rows) {
+            String key = data[keyIndex];
+            String className = data[classIindex];
+            if (this.isClassMatched(className, givenClassName)) {
+                map.put(key, data);
+            }
+
+        }
+        return map;
+    }
+
+
+    private boolean isClassMatched(String className, String givenClassName) {
+        className = className.toLowerCase().trim().strip().stripLeading().stripTrailing().replace(" ", "_");
+        givenClassName = givenClassName.toLowerCase().trim().strip().stripLeading().stripTrailing().replace(" ", "_");
+        // System.out.println("givenClassName::"+givenClassName+" bindingClass::"+className);
+
+        if (className.contains(givenClassName)) {
+            return true;
+        }
+        return false;
+
+    }
+
 
 
 }
