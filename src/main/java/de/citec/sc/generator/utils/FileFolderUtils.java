@@ -126,9 +126,10 @@ public class FileFolderUtils {
         return inputFiles;
     }
      
-    public static Map<String, String> fileList(String fileName, String value,Map<String, String> frameUris)  {
+    public static Map<String, String> fileList(String fileName, String value)  {
         BufferedReader reader;
         String line = "";
+        Map<String, String> frameUris=new TreeMap<String, String>();
         try {
             reader = new BufferedReader(new FileReader(fileName));
             while ((line = reader.readLine()) != null) {
@@ -146,6 +147,16 @@ public class FileFolderUtils {
     public static String getRootDir() {
         File currentDirFile = new File(".");
         return currentDirFile.getAbsolutePath().replace(".", "");
+    }
+
+    public static void hashMapToFile(Map<Double, String> sortLexEntry,String fileName) {
+        String str="";
+        for(Double value:sortLexEntry.keySet()){
+            String line=value.toString()+sortLexEntry.get(value)+"\n";
+            str+=line;
+        }
+        
+        stringToFiles(str,fileName);
     }
 
 

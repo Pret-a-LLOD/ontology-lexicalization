@@ -22,26 +22,9 @@ public interface InduceConstants {
     public static String InTransitivePPFrame = "InTransitivePPFrame";
     public static String GradableFrame = "GradableFrame";
     public static String AttibutiveFrame = "AttibutiveFrame";
+    public static String GREP = "grep";
+    public static String shHeading = "#!/bin/sh" + "\n";
     public static Set<String> frames = new HashSet<String>(Arrays.asList(NounPPFrame, TransitiveFrame, InTransitivePPFrame));
     
-    // csv file column
-    public static Integer classI = 0;
-    public static Integer ruletypeLongnameI = 1;
-    public static Integer ruletypeShortnameI = 2;
-    public static Integer linguisticPatternI = 3;
-    public static Integer gramI = 5;
-    public static Integer propertyI = 7;
-    public static Integer condABI = 9;
-    public static Integer condBAI = 10;
-    public static Integer supAI = 11;
-    public static Integer supBI = 12;
-    public static Integer supABI = 13;
-    public static Integer AllConfI = 14;
-    public static Integer CoherenceI = 15;
-    public static Integer CosineI = 16;
-    public static Integer IRI = 17;
-    public static Integer KulczynskiI = 18;
-    public static Integer MaxConfI = 19;
-    public static Integer stringI = 20;
-
+   
 }

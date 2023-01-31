@@ -30,6 +30,7 @@ import static de.citec.generator.config.PredictionPatterns.predict_sp_for_o_give
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
+import com.opencsv.exceptions.CsvMalformedLineException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -229,6 +230,7 @@ public class CsvFile  implements PredictionPatterns {
             writer.writeAll(csvData);
         } catch (IOException ex) {
             System.err.println("writing csv file failed!!!" + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
@@ -285,6 +287,36 @@ public class CsvFile  implements PredictionPatterns {
         try {
 
             reader = new CSVReader(new FileReader(qaldFile));
+            rows = reader.readAll();
+
+        } catch (CsvMalformedLineException ex) {
+            System.out.println(qaldFile.getName()+"::"+ex.getMessage());
+            return new ArrayList<String[]>();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, "CSV File not found:!!!" + ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, "CSV File not found:!!!" + ex.getMessage());
+        } catch (CsvException ex) {
+            Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return rows;
+    }
+    
+     public List<String[]> getRows() {
+        List<String[]> rows = new ArrayList<String[]>();
+
+        /*if (FileFolderUtils.isFileSizeManageable(qaldFile, 40.0)) {
+            //System.out.println("..........." + qaldFile.getName());
+            return rows;
+        }*/
+        Stack<String> stack = new Stack<String>();
+        CSVReader reader;
+        try {
+
+            reader = new CSVReader(new FileReader(this.csvFile));
             rows = reader.readAll();
 
         } catch (FileNotFoundException ex) {
