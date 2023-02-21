@@ -61,7 +61,7 @@ public interface TextAnalyzer {
             "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than",
             "too", "very", "s", "t", "can", "will", "just", "don", "should", "now", "un", "ein", "und", "il", "est", "ist", " né", "à");
 
-    public static final List<String> ENGLISH_STOPWORDS = Arrays.asList("of", "i", "me", "my", "myself", "we", "our", "ours",
+    /*public static final List<String> ENGLISH_STOPWORDS = Arrays.asList("of", "i", "me", "my", "myself", "we", "our", "ours",
             "ourselves", "you", "your", "yours", "yourself",
             "yourselves", "he", "him", "his", "himself", "she",
             "her", "hers", "herself", "it", "its", "itself", "they",
@@ -73,6 +73,26 @@ public interface TextAnalyzer {
             "at", "by", "for", "with", "about", "against", "between", "into",
             "through", "during", "before", "after", "above", "below", "to", "from",
             "up", "down", "in", "out", "on", "off", "over", "under", "again",
+            "further", "then", "once", "here", "there", "when", "where", "why",
+            "how", "all", "any", "both", "each", "few", "more", "most", "other",
+            "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than",
+            "too", "very", "s", "t", "can", "will", "just", "don", "should", "now", "un", "ein", "und", "il", "est", "ist", " né", "à", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december");
+        */
+    
+    public static final List<String> PREPOSTION_LIST = Arrays.asList("of","if", "as", "until", 
+            "at", "by", "for", "with", "about", "against", "between", "into",
+            "through", "during", "before", "after", "above", "below", "to", "from",
+            "up", "down", "in", "out", "on", "off", "over", "under");
+    
+    public static final List<String> ENGLISH_STOPWORDS_WITHOUT_PREPOSITION = Arrays.asList("i", "me", "my", "myself", "we", "our", "ours",
+            "ourselves", "you", "your", "yours", "yourself",
+            "yourselves", "he", "him", "his", "himself", "she",
+            "her", "hers", "herself", "it", "its", "itself", "they",
+            "them", "their", "theirs", "themselves", "what", "which",
+            "who", "whom", "this", "that", "these", "those", "am",
+            "is", "are", "was", "were", "be", "been", "being", "have",
+            "has", "had", "having", "do", "does", "did", "doing", "a", "an",
+            "the", "and", "but", "if", "or", "because",  "again",
             "further", "then", "once", "here", "there", "when", "where", "why",
             "how", "all", "any", "both", "each", "few", "more", "most", "other",
             "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than",

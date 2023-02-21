@@ -78,7 +78,7 @@ public class FileFolderUtils {
                 file.delete();
             }
         } catch (Exception ex) {
-           throw new Exception("file directory does not exist!!");
+           //throw new Exception("file directory does not exist!!");
         }
 
     }
@@ -157,6 +157,31 @@ public class FileFolderUtils {
         }
         
         stringToFiles(str,fileName);
+    }
+
+    public static Map<String, List<PairValues>> filetoTabDelimiatedResult(String fileName) {
+        BufferedReader reader;
+        String line = "";
+        Map<String, List<PairValues>> map=new TreeMap<String, List<PairValues>>();
+        try {
+            reader = new BufferedReader(new FileReader(fileName));
+            while ((line = reader.readLine()) != null) {
+                line = line.strip().stripLeading().stripTrailing().trim();
+                List<PairValues> list=new ArrayList<PairValues>();
+                if(line.contains("\t")){
+                   //System.out.println("line:"+line);
+                   String []info=line.split("\t");
+                   String referene=info[0];
+                   PairValues pair=new PairValues(info[1],info[2]);
+                   list.add(pair);
+                   map.put(referene, list);
+                }
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
     }
 
 

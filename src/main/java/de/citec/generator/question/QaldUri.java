@@ -6,7 +6,6 @@
 package de.citec.generator.question;
 
 import static de.citec.generator.question.InduceConstants.GREP;
-import static de.citec.generator.question.InduceConstants.outputDir;
 import static de.citec.generator.question.InduceConstants.shHeading;
 import de.citec.sc.generator.utils.FileFolderUtils;
 import de.citec.sc.generator.utils.UriFilter;
@@ -18,8 +17,12 @@ import java.util.Map;
  * @author elahi
  */
 public class QaldUri {
+    private  static String inputDir = "src/main/resources/qald-lex/";
+    private  static String resDir = "../resources/";
+    private  static String outputDir = resDir + "qald-lex/";
 
     public static void qaldUrisExtract(String rulePattern, String rootDir, Map<String, Map<String, String>> frameUrisT) {
+        
 
         for (String givenFrame : frameUrisT.keySet()) {
             Map<String, String> frameUris = frameUrisT.get(givenFrame);

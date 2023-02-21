@@ -14,9 +14,6 @@ import java.util.Set;
  * @author elahi
  */
 public interface InduceConstants {
-    public static String inputDir = "src/main/resources/qald-lex/";
-    public static String resDir = "../resources/";
-    public static String outputDir = resDir + "qald-lex/";
     public static String NounPPFrame = "NounPPFrame";
     public static String TransitiveFrame = "TransitiveFrame";
     public static String InTransitivePPFrame = "InTransitivePPFrame";
@@ -25,6 +22,7 @@ public interface InduceConstants {
     public static String GREP = "grep";
     public static String shHeading = "#!/bin/sh" + "\n";
     public static Set<String> frames = new HashSet<String>(Arrays.asList(NounPPFrame, TransitiveFrame, InTransitivePPFrame));
-    
+    //public static Set<String> frames = new HashSet<String>(Arrays.asList(InTransitivePPFrame));
+
    
 }

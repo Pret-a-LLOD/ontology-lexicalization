@@ -27,32 +27,34 @@ import java.util.logging.Logger;
  * @author elahi
  */
 public class QuestionMain implements PredictionPatterns, InduceConstants {
+    private  static String inputDir = "src/main/resources/qald-lex/";
+    private  static String resDir = "../resources/";
+    private  static String outputDir = resDir + "ldk/";
 
     public static void main(String[] args) {
         Map<String, Map<String, String>> frameUris = new HashMap<String, Map<String, String>>();
+        String domainRangeFileName = "src/main/resources/qald-lex/DomainAndRange.txt";
 
         String rulePattern = "rules-predict_l_for_s_given_p-";
         String rootDir = FileFolderUtils.getRootDir();
         Set<String> set = new HashSet<String>(frames);
         for (String frame : frames) {
-            //if (frame.contains(InTransitivePPFrame)) {
-                Map<String, String> data = new TreeMap<String, String>();
-                data = FileFolderUtils.fileList(inputDir + frame + ".txt", frame);
-                //System.out.println(frame+"  data.keySet()::"+data.keySet());
-                frameUris.put(frame, data);
-            //}
-
+            Map<String, String> data = new TreeMap<String, String>();
+            data = FileFolderUtils.fileList(inputDir + frame + ".txt", frame);
+            frameUris.put(frame, data);
         }
 
         List<String> inputFiles = FileFolderUtils.getSelectedFiles(outputDir, rulePattern);
-
-        //QaldUri.qaldUrisExtract(rulePattern, rootDir, frameUris);
-
         try {
             Integer thresold = 10;
-            Integer limit = 50;
-            ProcessData processData = new ProcessData(outputDir, outputDir + "sort/", "raw", Cosine);
-            //LexiconCreation lexiconCreation = new LexiconCreation(outputDir + "sort/", "raw", thresold, limit);
+            Integer limit = 1000;
+            String givenPropoerty = "all";
+            LexicalEntryHelper lexicalEntryHelper = new LexicalEntryHelper(domainRangeFileName);
+            //ProcessData processData = new ProcessData(outputDir, outputDir + "sort/", "raw", Cosine, givenPropoerty, lexicalEntryHelper);
+            String inputDir="../resources/en/ldk/sort/";
+            String lexiconDir="../resources/en/ldk/lexicon/";
+            String fileType="raw";
+            LexiconCreation lexiconCreation = new LexiconCreation(inputDir, fileType, thresold, limit, lexicalEntryHelper,lexiconDir);
 
         } catch (Exception ex) {
             Logger.getLogger(QuestionMain.class.getName()).log(Level.SEVERE, null, ex);

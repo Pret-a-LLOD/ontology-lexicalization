@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.TreeMap;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 
 /**
  *
@@ -104,7 +105,7 @@ public class PosAnalyzer implements TextAnalyzer {
  
     private boolean isStopWord(String word) {
         word = word.trim().toLowerCase();
-        if (ENGLISH_STOPWORDS.contains(word)) {
+        if (ENGLISH_STOPWORDS_WITHOUT_PREPOSITION.contains(word)) {
             return true;
         }
         return false;
@@ -252,6 +253,26 @@ public class PosAnalyzer implements TextAnalyzer {
     private String modifyWord(String word) {
         return word.toLowerCase().trim().strip();
     }
+    
+    public String isNoun(String text) {
+        if (!this.nouns.isEmpty()) {
+            return nouns.iterator().next();
+        }
+        return null;
+    }
 
+    public String isVerb(String text) {
+        if (!this.verbs.isEmpty()) {
+            return verbs.iterator().next();
+        }
+        return null;
+    }
+
+    public String isAdjective(String text) {
+        if (!this.adjectives.isEmpty()) {
+            return adjectives.iterator().next();
+        }
+        return null;
+    }
    
 }

@@ -5,37 +5,36 @@
  */
 package de.citec.generator.question;
 
-import com.opencsv.exceptions.CsvMalformedLineException;
 import de.citec.generator.config.PredictionPatterns;
-import static de.citec.generator.question.InduceConstants.outputDir;
 import de.citec.sc.generator.analyzer.PosAnalyzer;
+import de.citec.sc.generator.analyzer.TextAnalyzer;
 import static de.citec.sc.generator.analyzer.TextAnalyzer.POS_TAGGER_WORDS;
 import de.citec.sc.generator.utils.CsvFile;
 import de.citec.sc.generator.utils.FileFolderUtils;
 import java.io.File;
-import static java.lang.System.exit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author elahi
  */
-public class ProcessData implements PredictionPatterns {
+public class ProcessData implements PredictionPatterns, InduceConstants {
 
-    public ProcessData(String inputDir, String outputDir, String pattern, String parameterAttribute) throws Exception {
-        sortData(inputDir, outputDir, pattern, parameterAttribute);
+    private LexicalEntryHelper lexicalEntryHelper = null;
+
+    public ProcessData(String inputDir, String outputDir, String pattern, String parameterAttribute, String givenProperty, LexicalEntryHelper lexicalEntryHelperT) throws Exception {
+        this.lexicalEntryHelper = lexicalEntryHelperT;
+        this.sortData(inputDir, outputDir, pattern, parameterAttribute, givenProperty,TextAnalyzer.ENGLISH_STOPWORDS_WITHOUT_PREPOSITION);
     }
 
-    public void sortData(String inputDir, String outputDir, String pattern, String parameterAttribute) throws Exception {
+    public void sortData(String inputDir, String outputDir, String pattern, String parameterAttribute, String givenProperty,List<String> filterList) throws Exception {
         List<String> propertyFiles = FileFolderUtils.getSelectedFiles(inputDir, pattern);
         Integer parameterIndex = this.findParameterIndex(parameterAttribute);
+        Integer nGramIndex = this.findParameterIndex(gram);
         Integer lingPatternIndex = this.findParameterIndex(linguisticPattern);
         if (parameterIndex != null) {
             ;
@@ -47,45 +46,83 @@ public class ProcessData implements PredictionPatterns {
             CsvFile inputCsvFile = new CsvFile();
             //System.out.println("fileName::"+fileName);
 
-            Map<Double, String> sortLexEntry = new TreeMap<Double, String>(Collections.reverseOrder());
-            if (fileName.contains("author")) {
-               
-                List<String[]> rows = inputCsvFile.getRows(new File(inputDir + fileName));
-                if(rows.isEmpty()){
+            Map<Double, String[]> sortLexEntry = new TreeMap<Double, String[]>(Collections.reverseOrder());
+
+            if (givenProperty.contains("all")) {
+                ;
+            } else {
+                if (fileName.contains(givenProperty))
+                ; else {
                     continue;
                 }
-               
-                for (String[] row : rows) {
-                    if (row.length > 9) {
-                        //System.out.println("linguisticPatternI kol[" + lingPatternIndex + "]:" + row[lingPatternIndex]);
-                        //System.out.println("CosineI kol[" + parameterIndex + "]:" + row[parameterIndex]);
 
-                        try {
-                            Double value = Double.parseDouble(row[parameterIndex]);
-                            String lexEntry = row[lingPatternIndex];
-                            sortLexEntry.put(value, lexEntry);
-                        } catch (Exception ex) {
-                            continue;
-                        }
+            }
 
+            List<String[]> rows = inputCsvFile.getRows(new File(inputDir + fileName));
+            if (rows.isEmpty()) {
+                continue;
+            }
+
+            for (String[] row : rows) {
+                if (row.length > 9) {
+                    //System.out.println("linguisticPatternI kol[" + lingPatternIndex + "]:" + row[lingPatternIndex]);
+                    //System.out.println("CosineI kol[" + parameterIndex + "]:" + row[parameterIndex]);
+
+                    try {
+                        Double value = Double.parseDouble(row[parameterIndex]);
+                        String lexEntry = row[lingPatternIndex];
+                        String nGram = row[nGramIndex];
+                        //System.out.println(value+" "+lexEntry+" "+nGram);
+                        sortLexEntry.put(value, new String[]{lexEntry, nGram});
+                    } catch (Exception ex) {
+                        continue;
                     }
-                }
-                CsvFile outputCsvFile = new CsvFile();
-                List<String[]> resultList = new ArrayList<String[]>();
-                for (Double doubleValue : sortLexEntry.keySet()) {
-                    String referenceForm = sortLexEntry.get(doubleValue);
-                    String posTag=this.findPosTag(referenceForm);
-                    System.out.println(referenceForm+" "+posTag);
-                    exit(1);
-                    resultList.add(new String[]{doubleValue.toString(), referenceForm,posTag});
 
                 }
-                outputCsvFile.writeToCSV(new File(outputDir + fileName), resultList);
+            }
+            CsvFile outputCsvFile = new CsvFile();
+            List<String[]> resultList = new ArrayList<String[]>();
+            for (Double doubleValue : sortLexEntry.keySet()) {
+                String[] info = sortLexEntry.get(doubleValue);
+                String orginalString = info[0];
+                String nGram = info[1];
+                String modifiedString = this.lexicalEntryHelper.deleteStopWord(orginalString,filterList);
+                String[] posTags = this.findPosTag(modifiedString);
+                String postag = posTags[0];
+                String frame = posTags[1];
+                //System.out.println(modifiedString);
+                //System.out.println(doubleValue + "," + modifiedString + "," + frame + "," + postag + "," + nGram + "," + orginalString);
+                resultList.add(new String[]{doubleValue.toString(), modifiedString, frame, postag, nGram, orginalString});
 
-           }
+            }
+            outputCsvFile.writeToCSV(new File(outputDir + fileName), resultList);
 
         }
 
+    }
+
+    private String[] findPosTag(String inputText) {
+        try {
+            PosAnalyzer posAnalyzer = new PosAnalyzer(inputText, POS_TAGGER_WORDS, 10);
+            String noun = posAnalyzer.isNoun(inputText);
+            String verb = posAnalyzer.isVerb(inputText);
+            String adj = posAnalyzer.isAdjective(inputText);
+            if (noun != null) {
+                return new String[]{TextAnalyzer.NN, this.findNounType(noun)};
+            } else if (verb != null) {
+                return new String[]{TextAnalyzer.VB, this.findVerbType(verb)};
+            } else if (adj != null) {
+                return new String[]{TextAnalyzer.JJ, this.findAdjType(adj)};
+            } else {
+                return new String[]{"unknown", "unknown"};
+            }
+            /*if(posAnalyzer.posTaggerText(inputText)){
+               return posAnalyzer.getFullPosTag();
+            }*/
+
+        } catch (Exception ex) {
+            return new String[]{"unknown", "unknown"};
+        }
     }
 
     private Integer findParameterIndex(String parameterAttribute) {
@@ -109,6 +146,8 @@ public class ProcessData implements PredictionPatterns {
             return PredictionPatterns.supBI;
         } else if (parameterAttribute.contains(PredictionPatterns.supAB)) {
             return PredictionPatterns.supABI;
+        } else if (parameterAttribute.contains(gram)) {
+            return gramI;
         } else if (parameterAttribute.contains(linguisticPattern)) {
             return linguisticPatternI;
         } else {
@@ -116,16 +155,16 @@ public class ProcessData implements PredictionPatterns {
         }
     }
 
-    private String findPosTag(String inputText) {
-        try {
-            PosAnalyzer posAnalyzer=new PosAnalyzer( inputText,POS_TAGGER_WORDS , 10) ;
-            if(posAnalyzer.posTaggerText(inputText)){
-               return posAnalyzer.getFullPosTag();
-            }
-        } catch (Exception ex) {
-            return "unknown";
-        }
-        return null;
+    private String findVerbType(String postag) {
+        return TransitiveFrame;
+    }
+
+    private String findAdjType(String adj) {
+        return GradableFrame;
+    }
+
+    private String findNounType(String noun) {
+        return NounPPFrame;
     }
 
 }

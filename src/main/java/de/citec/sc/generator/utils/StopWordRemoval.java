@@ -20,7 +20,7 @@ public class StopWordRemoval {
         if (nGramStr.contains("_")) {
             String[] tokens = nGramStr.split("_");
             for (String token : tokens) {
-                if (PosAnalyzer.ENGLISH_STOPWORDS.contains(token)) {
+                if (PosAnalyzer.ENGLISH_STOPWORDS_WITHOUT_PREPOSITION.contains(token)) {
                     continue;
                 } else {
                     String line = token;

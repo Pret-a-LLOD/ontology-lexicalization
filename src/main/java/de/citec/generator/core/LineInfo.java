@@ -8,7 +8,7 @@ package de.citec.generator.core;
 import de.citec.sc.generator.analyzer.PosAnalyzer;
 import de.citec.sc.generator.analyzer.TextAnalyzer;
 import static de.citec.sc.generator.analyzer.TextAnalyzer.POS_TAGGER_WORDS;
-import de.citec.sc.generator.utils.Pair;
+import de.citec.sc.generator.utils.PairValues;
 import de.citec.sc.generator.utils.PropertyCSV;
 import de.citec.sc.generator.utils.StopWordRemoval;
 import com.google.common.collect.Sets;
@@ -308,10 +308,10 @@ public class LineInfo implements PredictionPatterns{
     
   
 
-    private Pair setValue(String string) {
+    private PairValues setValue(String string) {
         String[] info = string.split("=");
         String key = info[0].trim().strip();
-        return new Pair(key, info[1]);
+        return new PairValues(key, info[1]);
     }
 
     private void setWord(String rightRule) {
@@ -518,7 +518,7 @@ public class LineInfo implements PredictionPatterns{
 
     private Boolean isStopWord(String tokenStr) {
         tokenStr = tokenStr.toLowerCase().trim().strip();
-        if (TextAnalyzer.ENGLISH_STOPWORDS.contains(tokenStr)) {
+        if (TextAnalyzer.ENGLISH_STOPWORDS_WITHOUT_PREPOSITION.contains(tokenStr)) {
             return true;
         }
         return false;
