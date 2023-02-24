@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,36 +28,47 @@ import java.util.logging.Logger;
  * @author elahi
  */
 public class QuestionMain implements PredictionPatterns, InduceConstants {
-    private  static String inputDir = "src/main/resources/qald-lex/";
-    private  static String resDir = "../resources/";
-    private  static String outputDir = resDir + "ldk/";
+
+    private static String qaldResourceDir = "src/main/resources/qald-lex/";
+    private static String resDir = "../resources/";
+    private static String ldkDir = resDir + "ldk/";
+    private static String RANK_PROPERTY_LEXICALIZATION = "RANK_PROPERTY_LEXICALIZATION";
+    private static String CREATE_LEXICON = "CREATE_LEXICON";
 
     public static void main(String[] args) {
         Map<String, Map<String, String>> frameUris = new HashMap<String, Map<String, String>>();
         String domainRangeFileName = "src/main/resources/qald-lex/DomainAndRange.txt";
-
         String rulePattern = "rules-predict_l_for_s_given_p-";
+        String parameterPattern = "100-10000-4-5-5-5-5";
+        String grammarInputDir = "/home/elahi/A-project/multilingual-grammar-generator/lexicon/";
+        List<Integer> rankThresolds = Arrays.asList(10, 20, 50, 100, 150, 200, 250, 300, 350, 400);
         String rootDir = FileFolderUtils.getRootDir();
-        Set<String> set = new HashSet<String>(frames);
-        for (String frame : frames) {
-            Map<String, String> data = new TreeMap<String, String>();
-            data = FileFolderUtils.fileList(inputDir + frame + ".txt", frame);
-            frameUris.put(frame, data);
-        }
+        List<String> menu = Arrays.asList(new String[]{RANK_PROPERTY_LEXICALIZATION, CREATE_LEXICON});
+        String inputDir = null, outputDir = null;
 
-        List<String> inputFiles = FileFolderUtils.getSelectedFiles(outputDir, rulePattern);
         try {
             Integer thresold = 10;
             Integer limit = 1000;
             String givenPropoerty = "all";
             LexicalEntryHelper lexicalEntryHelper = new LexicalEntryHelper(domainRangeFileName);
-            //ProcessData processData = new ProcessData(outputDir, outputDir + "sort/", "raw", Cosine, givenPropoerty, lexicalEntryHelper);
-            String inputDir="../resources/en/ldk/sort/";
-            String lexiconDir="../resources/en/ldk/lexicon/";
-            String fileType="raw";
-            LexiconCreation lexiconCreation = new LexiconCreation(inputDir, fileType, thresold, limit, lexicalEntryHelper,lexiconDir);
+            if (menu.contains(RANK_PROPERTY_LEXICALIZATION)) {
+                inputDir = ldkDir + "raw/";
+                outputDir = ldkDir + "sort/";
+                FileFolderUtils.deleteFiles(new String[]{ldkDir + "sort/"});
+                ProcessData processData = new ProcessData(ldkDir + "raw/", ldkDir + "sort/", rulePattern, Cosine, givenPropoerty, lexicalEntryHelper);
+            }
+            if (menu.contains(CREATE_LEXICON)) {
+                inputDir = resDir + "ldk/sort/";
+                outputDir = resDir + "ldk/lexicon/";
+                FileFolderUtils.deleteFiles(new String[]{ldkDir + "lexicon/nouns/", ldkDir + "lexicon/verbs/"});
+                //create lexicon 
+                LexiconCreation lexiconCreation = new LexiconCreation(inputDir, "-raw", rankThresolds, limit, lexicalEntryHelper, outputDir, rulePattern, parameterPattern);
+                // save lexicon names
+                lexiconCreation.writeLexiconName(grammarInputDir);
+            }
 
         } catch (Exception ex) {
+
             Logger.getLogger(QuestionMain.class.getName()).log(Level.SEVERE, null, ex);
         }
 

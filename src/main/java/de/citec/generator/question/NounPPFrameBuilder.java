@@ -20,16 +20,16 @@ public class NounPPFrameBuilder implements FrameConstants, TextAnalyzer {
     private Integer senseIndex = 1;
     private static String[] header = new String[]{"lemon", "partOfSpeech", "writtenForm(singular)", "writtenForm(plural)", "preposition", "SyntacticFrame", "copulativeArg", "prepositionalAdjunct", "sense", "reference", "domain", "range", "value", "filename", "gram"};
     private static String dir="nouns/";
+    private Boolean flag = false;
     
-    public NounPPFrameBuilder(String fileName, String linguisticPattern, String value, String frame, String nGram, Integer index, LexicalEntryHelper lexicalEntryHelper) {
+    public NounPPFrameBuilder(String reference, String linguisticPattern, String value, String frame, String nGram, Integer index, LexicalEntryHelper lexicalEntryHelper) {
         String preposition = null;
-        String reference = lexicalEntryHelper.makeReference(fileName);
         String id = lexicalEntryHelper.makeLinguistc(linguisticPattern, index) + "-" + reference;
         if (nGram.contains("2-gram")) {
             PairValues pairValues = lexicalEntryHelper.findPreposition(linguisticPattern, TextAnalyzer.ENGLISH_STOPWORDS_WITHOUT_PREPOSITION);
             if (pairValues.getFlag()) {
-
                 preposition = pairValues.getKey();
+               
             } else {
                 return;
             }
@@ -38,10 +38,11 @@ public class NounPPFrameBuilder implements FrameConstants, TextAnalyzer {
         List<PairValues> domainAndRanges = lexicalEntryHelper.findDomainRange(reference);
 
         if (!domainAndRanges.isEmpty()) {
-            PairValues pairValues = domainAndRanges.get(0);
-            String domain = pairValues.getKey();
-            String range = pairValues.getValue();
+            PairValues pairValuesT = domainAndRanges.get(0);
+            String domain = pairValuesT.getKey();
+            String range = pairValuesT.getValue();
             System.out.println(linguisticPattern + " " + reference + " " + domain + " " + range + " " + preposition);
+             this.flag=true;
             buildRow(id, linguisticPattern, reference, domain, range, preposition, value, frame, nGram);
         }
     }
@@ -75,6 +76,10 @@ public class NounPPFrameBuilder implements FrameConstants, TextAnalyzer {
 
     public static String getDir() {
         return dir;
+    }
+
+    public Boolean getFlag() {
+        return flag;
     }
 
 }

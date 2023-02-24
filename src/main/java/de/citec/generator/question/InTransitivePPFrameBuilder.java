@@ -24,9 +24,9 @@ public class InTransitivePPFrameBuilder {
     private Integer senseIndex = 1;
     private static String[] header = new String[]{"lemon", "partOfSpeech", "writtenFormInfinitive/2ndPerson", "writtenForm3rdPerson", "writtenFormPast", "writtenFormPerfect", "SyntacticFrame", "subject", "directObject", "sense", "reference", "domain", "range", "passivePreposition", "value", "filename", "gram"};
     private static String dir="verbs/";
+    private Boolean flag=false;
 
-    public InTransitivePPFrameBuilder(String fileName, String linguisticPattern, String value, String frame, String nGram, Integer index, LexicalEntryHelper lexicalEntryHelper) {
-        String reference = lexicalEntryHelper.makeReference(fileName);
+    public InTransitivePPFrameBuilder(String reference, String linguisticPattern, String value, String frame, String nGram, Integer index, LexicalEntryHelper lexicalEntryHelper) {
         String id = lexicalEntryHelper.makeLinguistc(linguisticPattern, index) + "-" + reference;
         String preposition=null;
 
@@ -44,10 +44,11 @@ public class InTransitivePPFrameBuilder {
         }
 
         if (!domainAndRanges.isEmpty()) {
-            PairValues pairValues = domainAndRanges.get(0);
-            String domain = pairValues.getKey();
-            String range = pairValues.getValue();
+            PairValues pairValuesT = domainAndRanges.get(0);
+            String domain = pairValuesT.getKey();
+            String range = pairValuesT.getValue();
             System.out.println(linguisticPattern + " " + reference + " " + domain + " " + range + " " + preposition);
+            this.flag=true;
             buildRow(id, linguisticPattern, reference, domain, range, preposition, value, frame, nGram);
         }
     }
@@ -81,6 +82,10 @@ public class InTransitivePPFrameBuilder {
 
     public static String getDir() {
         return dir;
+    }
+
+    public Boolean getFlag() {
+        return flag;
     }
 
    

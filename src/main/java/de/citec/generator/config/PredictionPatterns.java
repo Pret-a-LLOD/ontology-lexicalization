@@ -45,8 +45,11 @@ public interface PredictionPatterns {
     public static final String Kulczynski = "Kulczynski";
     public static final String Cosine = "Cosine";
     public static final String Coherence = "Coherence";
-    public static final String linguisticPattern = "linguisticPattern";
-    public static final String gram = "gram";
+    public static final String Linguistic_Pattern = "linguisticPattern";
+    public static final String ClassName = "ClassName";
+    public static final String Property="property";
+
+    public static final String N_Gram = "gram";
     public static final LinkedHashSet<String> interestingness = new LinkedHashSet(new ArrayList<String>(Arrays.asList(Cosine, Coherence, AllConf, MaxConf, IR, Kulczynski)));
 
      // csv file column

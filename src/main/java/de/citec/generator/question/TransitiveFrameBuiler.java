@@ -24,19 +24,19 @@ public class TransitiveFrameBuiler implements FrameConstants, TextAnalyzer {
     private Integer senseIndex = 1;
     private static String[] header = new String[]{"lemon", "partOfSpeech", "writtenFormInfinitive/2ndPerson", "writtenForm3rdPerson", "writtenFormPast", "writtenFormPerfect", "SyntacticFrame", "subject", "directObject", "sense", "reference", "domain", "range", "passivePreposition", "value", "filename", "gram"};
     private static String dir="verbs/";
+    private Boolean flag=false;
 
-    public TransitiveFrameBuiler(String fileName, String linguisticPattern, String value, String frame, String nGram, Integer index, LexicalEntryHelper lexicalEntryHelper) {
+    public TransitiveFrameBuiler(String reference, String linguisticPattern, String value, String frame, String nGram, Integer index, LexicalEntryHelper lexicalEntryHelper) {
         String preposition = "by";
-        String reference = lexicalEntryHelper.makeReference(fileName);
         String id = lexicalEntryHelper.makeLinguistc(linguisticPattern, index) + "-" + reference;
-
         List<PairValues> domainAndRanges = lexicalEntryHelper.findDomainRange(reference);
 
         if (!domainAndRanges.isEmpty()) {
             PairValues pairValues = domainAndRanges.get(0);
             String domain = pairValues.getKey();
             String range = pairValues.getValue();
-            System.out.println(linguisticPattern + " " + reference + " " + domain + " " + range + " " + preposition);
+            //System.out.println(linguisticPattern + " " + reference + " " + domain + " " + range + " " + preposition);
+            this.flag=true;
             this.buildRow(id, linguisticPattern, reference, domain, range, preposition, value, frame, nGram);
         }
     }
@@ -71,6 +71,10 @@ public class TransitiveFrameBuiler implements FrameConstants, TextAnalyzer {
 
     public static String getDir() {
         return dir;
+    }
+
+    public Boolean getFlag() {
+        return flag;
     }
 
     

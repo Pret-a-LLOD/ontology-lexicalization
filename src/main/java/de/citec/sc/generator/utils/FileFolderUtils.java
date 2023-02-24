@@ -23,7 +23,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.compress.compressors.CompressorException;
@@ -56,21 +58,21 @@ public class FileFolderUtils {
             }
 
         } catch (Exception exp) {
-            System.err.println("file not found!!"+exp.getMessage());
+            System.err.println("file not found!!" + exp.getMessage());
             return new ArrayList<File>();
         }
 
         return selectedFiles;
     }
 
-     public static BufferedReader getBufferedReaderForCompressedFile(File fileIn) throws FileNotFoundException, CompressorException {
-         FileInputStream fin = new FileInputStream(fileIn);
+    public static BufferedReader getBufferedReaderForCompressedFile(File fileIn) throws FileNotFoundException, CompressorException {
+        FileInputStream fin = new FileInputStream(fileIn);
         BufferedInputStream bis = new BufferedInputStream(fin);
         CompressorInputStream input = new CompressorStreamFactory().createCompressorInputStream(bis);
         BufferedReader br2 = new BufferedReader(new InputStreamReader(input));
         return br2;
     }
-  
+
     public static void delete(File dir) throws Exception {
         try {
             File[] files = dir.listFiles();
@@ -78,11 +80,11 @@ public class FileFolderUtils {
                 file.delete();
             }
         } catch (Exception ex) {
-           //throw new Exception("file directory does not exist!!");
+            //throw new Exception("file directory does not exist!!");
         }
 
     }
-    
+
     public static void listToFiles(List<String> list, String fileName) {
         String str = "";
         Integer number = -1, index = 0;
@@ -113,8 +115,8 @@ public class FileFolderUtils {
             return;
         }
     }
-    
-     public static List<String> getSelectedFiles(String inputDir, String rulePattern) {
+
+    public static List<String> getSelectedFiles(String inputDir, String rulePattern) {
         String[] list = new File(inputDir).list();
         List<String> inputFiles = new ArrayList<String>();
         for (String fileString : list) {
@@ -125,15 +127,27 @@ public class FileFolderUtils {
         }
         return inputFiles;
     }
-     
-    public static Map<String, String> fileList(String fileName, String value)  {
+
+    public static List<String> getSelectedFiles(String inputDir, String rulePattern, String extension) {
+        String[] list = new File(inputDir).list();
+        List<String> inputFiles = new ArrayList<String>();
+        for (String fileString : list) {
+            File file = new File(fileString);
+            if (fileString.contains(rulePattern) && fileString.contains(rulePattern)) {
+                inputFiles.add(file.getName());
+            }
+        }
+        return inputFiles;
+    }
+
+    public static Map<String, String> fileList(String fileName, String value) {
         BufferedReader reader;
         String line = "";
-        Map<String, String> frameUris=new TreeMap<String, String>();
+        Map<String, String> frameUris = new TreeMap<String, String>();
         try {
             reader = new BufferedReader(new FileReader(fileName));
             while ((line = reader.readLine()) != null) {
-                line = reader.readLine();
+                //line = reader.readLine();
                 line = line.strip().stripLeading().stripTrailing().trim();
                 frameUris.put(line, value);
             }
@@ -149,32 +163,32 @@ public class FileFolderUtils {
         return currentDirFile.getAbsolutePath().replace(".", "");
     }
 
-    public static void hashMapToFile(Map<Double, String> sortLexEntry,String fileName) {
-        String str="";
-        for(Double value:sortLexEntry.keySet()){
-            String line=value.toString()+sortLexEntry.get(value)+"\n";
-            str+=line;
+    public static void hashMapToFile(Map<Double, String> sortLexEntry, String fileName) {
+        String str = "";
+        for (Double value : sortLexEntry.keySet()) {
+            String line = value.toString() + sortLexEntry.get(value) + "\n";
+            str += line;
         }
-        
-        stringToFiles(str,fileName);
+
+        stringToFiles(str, fileName);
     }
 
     public static Map<String, List<PairValues>> filetoTabDelimiatedResult(String fileName) {
         BufferedReader reader;
         String line = "";
-        Map<String, List<PairValues>> map=new TreeMap<String, List<PairValues>>();
+        Map<String, List<PairValues>> map = new TreeMap<String, List<PairValues>>();
         try {
             reader = new BufferedReader(new FileReader(fileName));
             while ((line = reader.readLine()) != null) {
                 line = line.strip().stripLeading().stripTrailing().trim();
-                List<PairValues> list=new ArrayList<PairValues>();
-                if(line.contains("\t")){
-                   //System.out.println("line:"+line);
-                   String []info=line.split("\t");
-                   String referene=info[0];
-                   PairValues pair=new PairValues(info[1],info[2]);
-                   list.add(pair);
-                   map.put(referene, list);
+                List<PairValues> list = new ArrayList<PairValues>();
+                if (line.contains("\t")) {
+                    //System.out.println("line:"+line);
+                    String[] info = line.split("\t");
+                    String referene = info[0];
+                    PairValues pair = new PairValues(info[1], info[2]);
+                    list.add(pair);
+                    map.put(referene, list);
                 }
             }
             reader.close();
@@ -184,6 +198,21 @@ public class FileFolderUtils {
         return map;
     }
 
+    public static void deleteFiles(String[] dirs) {
+        for (String dir : dirs) {
+            File dirFile = new File(dir);
+            String[] files = dirFile.list();
+            for (String fileName : files) {
+                File file = new File(dir + fileName);
+                if (file.delete()) {
+                    System.out.println("Deleted the file: " + fileName);
+                } else {
+                    System.out.println("Failed to delete the file." + fileName);
+                }
+            }
 
+        }
+
+    }
 
 }

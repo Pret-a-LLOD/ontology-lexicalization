@@ -37,6 +37,8 @@ public class LexicalEntryHelper implements FrameConstants {
         linguisticPattern = linguisticPattern + "-" + index.toString();
         return linguisticPattern;
     }
+    
+    
 
     public String makeReference(String reference) {
         reference = reference.replace("raw-", "");
@@ -56,7 +58,7 @@ public class LexicalEntryHelper implements FrameConstants {
                 return new PairValues(Boolean.TRUE, token, referenceForm);
             }
         }
-        return new PairValues(Boolean.TRUE, null, referenceForm);
+        return new PairValues(Boolean.FALSE, null, referenceForm);
     }
 
     public List<PairValues> findDomainRange(String reference) {
@@ -100,6 +102,15 @@ public class LexicalEntryHelper implements FrameConstants {
         reference = reference.replace("dbp_", "dbp:");
         return reference;
     }
+    
+    public String formatPropertyLongToShort(String reference) {
+        reference = reference.replace("http://dbpedia.org/ontology/", "dbo:");
+        reference = reference.replace("http://dbpedia.org/property/", "dbp:");
+        if(reference.contains("dbo:")||reference.contains("dbp:"))
+           return reference;
+        return null;
+    }
+
 
     public static void main(String[] args) {
         String domainRangeFileName = "src/main/resources/qald-lex/DomainAndRange.txt";

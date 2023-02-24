@@ -54,6 +54,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.compress.compressors.CompressorException;
 import de.citec.generator.config.PredictionPatterns;
+import static edu.stanford.nlp.trees.international.pennchinese.CEDict.path;
+import java.io.FileInputStream;
+import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  *
@@ -278,14 +282,10 @@ public class CsvFile  implements PredictionPatterns {
     public List<String[]> getRows(File qaldFile) {
         List<String[]> rows = new ArrayList<String[]>();
 
-        /*if (FileFolderUtils.isFileSizeManageable(qaldFile, 40.0)) {
-            //System.out.println("..........." + qaldFile.getName());
-            return rows;
-        }*/
         Stack<String> stack = new Stack<String>();
         CSVReader reader;
         try {
-
+            System.out.println(qaldFile.getName());
             reader = new CSVReader(new FileReader(qaldFile));
             rows = reader.readAll();
 
@@ -332,23 +332,17 @@ public class CsvFile  implements PredictionPatterns {
         return rows;
     }
 
-     public List<String[]> getRowsManual(File qaldFile) {
+    /* public List<String[]> getRowsManual(File qaldFile) throws IOException, IOException, IOException, IOException, IOException, IOException {
         List<String[]> rows = new ArrayList<String[]>();
 
-        /*if (FileFolderUtils.isFileSizeManageable(qaldFile, 40.0)) {
-            //System.out.println("..........." + qaldFile.getName());
-            return rows;
-        }*/
+       
         Stack<String> stack = new Stack<String>();
         CSVReader reader;
         try {
             //if (!FileFolderUtils.isFileBig(qaldFile, 100.0)) {
                 rows = generateLinebyLine(qaldFile,100000);
                  //System.out.println("@@@@@@@@@@@@@@@@@@@@@@" + qaldFile.getName()+" size:"+rows.size());
-            /*} else {
-                reader = new CSVReader(new FileReader(qaldFile));
-                rows = reader.readAll();
-            }*/
+            
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CsvFile.class.getName()).log(Level.SEVERE, null, ex);
             LOGGER.log(Level.SEVERE, "CSV File not found:!!!" + ex.getMessage());
@@ -358,7 +352,45 @@ public class CsvFile  implements PredictionPatterns {
         } 
 
         return rows;
+    }*/
+     
+    public List<List<String>> getRowsManual(File qaldFile, Integer index, Double thresold) throws IOException {
+        List<List<String>> csvLines = new ArrayList<>();
+        FileInputStream inputStream = null;
+        Scanner sc = null;
+        try {
+            inputStream = new FileInputStream(qaldFile);
+            sc = new Scanner(inputStream, "UTF-8");
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                List<String> list = Arrays.asList(line.split(","));
+                try {
+                    Double value = Double.parseDouble(list.get(index));
+                    if (value > thresold) {
+                        //System.out.println("valid line::"+line);
+                        csvLines.add(Arrays.asList(line.split(",")));
+                    }
+                } catch (Exception ex) {
+                    //System.out.println("invalid line::"+line);
+                  continue;
+                }
+            }
+            // note that Scanner suppresses exceptions
+            if (sc.ioException() != null) {
+                throw sc.ioException();
+            }
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            if (sc != null) {
+                sc.close();
+            }
+        }
+        return csvLines;
     }
+
+    
 
     public List<String[]> cvsModifier(File qaldFile) throws Exception {
         List<String[]> modifyrows = new ArrayList<String[]>();
@@ -426,7 +458,9 @@ public class CsvFile  implements PredictionPatterns {
                 ;
             }
             index = index + 1;
-            if (index > lineLimit) {
+            if(lineLimit==-1)
+                ;
+            else if (index > lineLimit) {
                 break;
             }
             // do something with the data
