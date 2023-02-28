@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -26,12 +27,12 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
 
     private LexicalEntryHelper lexicalEntryHelper = null;
 
-    public ProcessData(String inputDir, String outputDir, String pattern, String parameterAttribute, String givenProperty, LexicalEntryHelper lexicalEntryHelperT) throws Exception {
+    public ProcessData(String inputDir, String outputDir, String pattern, String parameterAttribute, String givenProperty, LexicalEntryHelper lexicalEntryHelperT,Set<String>stopWords) throws Exception {
         this.lexicalEntryHelper = lexicalEntryHelperT;
-        this.organizeData(inputDir, outputDir, pattern, parameterAttribute, givenProperty, TextAnalyzer.ENGLISH_STOPWORDS_WITHOUT_PREPOSITION);
+        this.organizeData(inputDir, outputDir, pattern, parameterAttribute, givenProperty, stopWords);
     }
 
-    public void organizeData(String inputDir, String outputDir, String rulePattern, String parameterAttribute, String givenProperty, List<String> filterList) throws Exception {
+    public void organizeData(String inputDir, String outputDir, String rulePattern, String parameterAttribute, String givenProperty, Set<String> filterList) throws Exception {
         Integer parameterIndex = 17;
         List<String> rawFiles = FileFolderUtils.getSelectedFiles(inputDir, rulePattern);
         if(rawFiles.isEmpty())
@@ -109,7 +110,7 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
                 }
             }
         }
-        this.sortData(propertyMap, parameterAttribute,outputDir,filterList);
+        this.sortData(rulePattern,propertyMap, parameterAttribute,outputDir,filterList);
 
     }
     
@@ -138,7 +139,7 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
     //Max 20: 
     //string 21: "dbo:AcademicJournal in c_e and exists o : (e, dbp:eissn, o) in G => 'medical journal in the field' in l_e"
 
-    public void sortData(Map<String, List<List<String>>> propertyMap, String parameterAttribute,String outputDir,List<String> filterList) throws Exception {
+    public void sortData(String rulePattern,Map<String, List<List<String>>> propertyMap, String parameterAttribute,String outputDir,Set<String> filterList) throws Exception {
         /*Integer parameterIndex = this.findParameterIndex(parameterAttribute);
         Integer nGramIndex = this.findParameterIndex(N_Gram);
         Integer lingPatternIndex = this.findParameterIndex(Linguistic_Pattern);
@@ -173,14 +174,14 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
                 String orginalString = info[0];
                 String nGram = info[1];
                 String modifiedString = this.lexicalEntryHelper.deleteStopWord(orginalString, filterList);
-                String[] posTags = this.findPosTag(modifiedString);
+                String[] posTags = this.lexicalEntryHelper.findPosTag(modifiedString);
                 String postag = posTags[0];
                 String frame = posTags[1];
                 String className = info[2];
-                System.out.println(doubleValue + "," + modifiedString + "," + frame + "," + postag + "," + nGram + "," + orginalString + "," + className+","+property);
-                resultList.add(new String[]{doubleValue.toString(), modifiedString, frame, postag, nGram, orginalString, className,property});
+                System.out.println(doubleValue + "," + modifiedString + "," + frame + "," + postag + "," + nGram + "," + orginalString + "," + className+","+property+","+rulePattern);
+                resultList.add(new String[]{doubleValue.toString(), modifiedString, frame, postag, nGram, orginalString, className,property,rulePattern});
             }
-            outputCsvFile.writeToCSV(new File(outputDir + property + "-raw" + ".csv"), resultList);
+            outputCsvFile.writeToCSV(new File(outputDir + property + "-raw" +"-"+rulePattern+ ".csv"), resultList);
         }
 
         /*CsvFile outputCsvFile = new CsvFile();
@@ -221,29 +222,7 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
             outputCsvFile.writeToCSV(new File(outputDir + fileName), resultList);*/
     }
 
-    private String[] findPosTag(String inputText) {
-        try {
-            PosAnalyzer posAnalyzer = new PosAnalyzer(inputText, POS_TAGGER_WORDS, 10);
-            String noun = posAnalyzer.isNoun(inputText);
-            String verb = posAnalyzer.isVerb(inputText);
-            String adj = posAnalyzer.isAdjective(inputText);
-            if (noun != null) {
-                return new String[]{TextAnalyzer.NN, this.findNounType(noun)};
-            } else if (verb != null) {
-                return new String[]{TextAnalyzer.VB, this.findVerbType(verb)};
-            } else if (adj != null) {
-                return new String[]{TextAnalyzer.JJ, this.findAdjType(adj)};
-            } else {
-                return new String[]{"unknown", "unknown"};
-            }
-            /*if(posAnalyzer.posTaggerText(inputText)){
-               return posAnalyzer.getFullPosTag();
-            }*/
-
-        } catch (Exception ex) {
-            return new String[]{"unknown", "unknown"};
-        }
-    }
+   
 
     private Integer findParameterIndex(String parameterAttribute) {
         if (parameterAttribute.contains(PredictionPatterns.Cosine)) {
@@ -277,18 +256,6 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
         } else {
             return null;
         }
-    }
-
-    private String findVerbType(String postag) {
-        return TransitiveFrame;
-    }
-
-    private String findAdjType(String adj) {
-        return GradableFrame;
-    }
-
-    private String findNounType(String noun) {
-        return NounPPFrame;
     }
 
 }

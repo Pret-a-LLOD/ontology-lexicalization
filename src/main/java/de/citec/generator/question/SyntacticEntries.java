@@ -40,7 +40,7 @@ public class SyntacticEntries {
 
     }
 
-    public void split(List<String[]> rows) {
+    public Integer split(List<String[]> rows, Integer lexIndex) {
         List<String[]> nounPP = new ArrayList<String[]>();
         List<String[]> transitive = new ArrayList<String[]>();
         List<String[]> inTransitivePP = new ArrayList<String[]>();
@@ -48,7 +48,7 @@ public class SyntacticEntries {
         List<String[]> gradable = new ArrayList<String[]>();
         Integer index = 0;
         for (String[] row : rows) {
-
+            lexIndex = lexIndex + 1;
             try {
                 String doubleValue = row[0];
                 String modifiedLinguisticPattern = row[1];
@@ -57,17 +57,17 @@ public class SyntacticEntries {
                 String reference = row[7];
 
                 if (frame.contains(NounPPFrame)) {
-                    NounPPFrameBuilder nounPPFrame = new NounPPFrameBuilder(reference, modifiedLinguisticPattern, doubleValue, frame, nGram, index, lexicalEntryHelper);
+                    NounPPFrameBuilder nounPPFrame = new NounPPFrameBuilder(reference, modifiedLinguisticPattern, doubleValue, frame, nGram, lexIndex, lexicalEntryHelper);
                     if (nounPPFrame.getFlag()) {
                         nounPP.add(nounPPFrame.getRow());
                     }
                 } else if (frame.contains(TransitiveFrame)) {
-                    TransitiveFrameBuiler transitiveFrame = new TransitiveFrameBuiler(reference, modifiedLinguisticPattern, doubleValue, frame, nGram, index, lexicalEntryHelper);
+                    TransitiveFrameBuiler transitiveFrame = new TransitiveFrameBuiler(reference, modifiedLinguisticPattern, doubleValue, frame, nGram, lexIndex, lexicalEntryHelper);
                     if (transitiveFrame.getFlag()) {
                         transitive.add(transitiveFrame.getRow());
                     }
                 } else if (frame.contains(InTransitivePPFrame)) {
-                    InTransitivePPFrameBuilder inTransitiveFrame = new InTransitivePPFrameBuilder(reference, modifiedLinguisticPattern, doubleValue, frame, nGram, index, lexicalEntryHelper);
+                    InTransitivePPFrameBuilder inTransitiveFrame = new InTransitivePPFrameBuilder(reference, modifiedLinguisticPattern, doubleValue, frame, nGram, lexIndex, lexicalEntryHelper);
                     if (inTransitiveFrame.getFlag()) {
                         inTransitivePP.add(inTransitiveFrame.getRow());
                     }
@@ -88,6 +88,7 @@ public class SyntacticEntries {
                 System.out.println("lexicon creation failed!!!" + row[0]);
                 continue;
             }
+           
 
         }
         if (!nounPP.isEmpty()) {
@@ -102,19 +103,21 @@ public class SyntacticEntries {
             this.inTransitivePP.addAll(inTransitivePP);
 
         }
-
+        return lexIndex;
     }
 
     public void write(String outputDir, String rulePattern, String parameterPattern, Integer threshold) {
+        // for unknown reason noun folder it gets wrong
         CsvFile outputCsvFile = new CsvFile();
         if (this.nounPP.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir + NounPPFrameBuilder.getDir() + rulePattern + parameterPattern + parameter + "-" + "NounPPFrame" + ".csv"), this.nounPP);
+            outputCsvFile.writeToCSV(new File(outputDir +rulePattern +parameterPattern +"-" +parameter + "-" + "NounPPFrame" + ".csv"), this.nounPP);
+
         }
         if (this.transitive.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir + TransitiveFrameBuiler.getDir() + rulePattern + parameterPattern + parameter + "-" + "TransitiveFrame" + ".csv"), this.transitive);
+            outputCsvFile.writeToCSV(new File(outputDir +rulePattern + parameterPattern +"-" + parameter + "-" + "TransitiveFrame" + ".csv"), this.transitive);
         }
         if (this.inTransitivePP.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir + InTransitivePPFrameBuilder.getDir() + rulePattern + parameterPattern + "-" + parameter + "-" + "InTransitivePPFrame" + ".csv"), this.inTransitivePP);
+            outputCsvFile.writeToCSV(new File(outputDir +rulePattern + parameterPattern +"-" + parameter + "-" +  "InTransitivePPFrame" + ".csv"), this.inTransitivePP);
         }
     }
 

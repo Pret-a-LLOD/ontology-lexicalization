@@ -28,7 +28,9 @@ public class TransitiveFrameBuiler implements FrameConstants, TextAnalyzer {
 
     public TransitiveFrameBuiler(String reference, String linguisticPattern, String value, String frame, String nGram, Integer index, LexicalEntryHelper lexicalEntryHelper) {
         String preposition = "by";
-        String id = lexicalEntryHelper.makeLinguistc(linguisticPattern, index) + "-" + reference;
+        String id = lexicalEntryHelper.makeReference(index);
+        
+        
         List<PairValues> domainAndRanges = lexicalEntryHelper.findDomainRange(reference);
 
         if (!domainAndRanges.isEmpty()) {

@@ -27,13 +27,15 @@ public class InTransitivePPFrameBuilder {
     private Boolean flag=false;
 
     public InTransitivePPFrameBuilder(String reference, String linguisticPattern, String value, String frame, String nGram, Integer index, LexicalEntryHelper lexicalEntryHelper) {
-        String id = lexicalEntryHelper.makeLinguistc(linguisticPattern, index) + "-" + reference;
+        //String id = lexicalEntryHelper.makeLinguistc(linguisticPattern, index);
+        String id = lexicalEntryHelper.makeReference(index);
         String preposition=null;
+        
 
         List<PairValues> domainAndRanges = lexicalEntryHelper.findDomainRange(reference);
         
-        if (nGram.contains("2-gram")) {
-            PairValues pairValues = lexicalEntryHelper.findPreposition(linguisticPattern, TextAnalyzer.ENGLISH_STOPWORDS_WITHOUT_PREPOSITION);
+        /*//if (nGram.contains("2-gram")) {
+            PairValues pairValues = lexicalEntryHelper.findPreposition(linguisticPattern, lexicalEntryHelper.getPrepositions());
             if (pairValues.getFlag()) {
 
                 preposition = pairValues.getKey();
@@ -41,7 +43,7 @@ public class InTransitivePPFrameBuilder {
                 return;
             }
 
-        }
+        //}*/
 
         if (!domainAndRanges.isEmpty()) {
             PairValues pairValuesT = domainAndRanges.get(0);

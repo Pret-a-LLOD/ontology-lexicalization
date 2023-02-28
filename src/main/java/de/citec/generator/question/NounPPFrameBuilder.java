@@ -24,9 +24,9 @@ public class NounPPFrameBuilder implements FrameConstants, TextAnalyzer {
     
     public NounPPFrameBuilder(String reference, String linguisticPattern, String value, String frame, String nGram, Integer index, LexicalEntryHelper lexicalEntryHelper) {
         String preposition = null;
-        String id = lexicalEntryHelper.makeLinguistc(linguisticPattern, index) + "-" + reference;
-        if (nGram.contains("2-gram")) {
-            PairValues pairValues = lexicalEntryHelper.findPreposition(linguisticPattern, TextAnalyzer.ENGLISH_STOPWORDS_WITHOUT_PREPOSITION);
+        String id = lexicalEntryHelper.makeLinguistc(linguisticPattern, index) ;
+        /*//if (nGram.contains("2-gram")) {
+            PairValues pairValues = lexicalEntryHelper.findPreposition(linguisticPattern, lexicalEntryHelper.getPrepositions());
             if (pairValues.getFlag()) {
                 preposition = pairValues.getKey();
                
@@ -34,7 +34,7 @@ public class NounPPFrameBuilder implements FrameConstants, TextAnalyzer {
                 return;
             }
 
-        }
+        //}*/
         List<PairValues> domainAndRanges = lexicalEntryHelper.findDomainRange(reference);
 
         if (!domainAndRanges.isEmpty()) {

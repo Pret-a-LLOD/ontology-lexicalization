@@ -1,0 +1,266 @@
+Agree
+Appear
+Arrive
+Become
+Belong
+Collapse
+Consist
+Cost
+Cough
+Cry
+Depend
+Die
+Disappear
+Emerge
+Exist
+Explode
+Fade
+Fall
+Fast
+Float
+Fly
+Gallop
+Go
+Grow
+Happen
+Have
+Hiccup / hic-cough
+Inquire
+Jump
+Kneel
+Knock (sound)
+Last (endure)
+Laugh
+Lead
+Lean
+Leap
+Learn
+Left
+Lie (recline or tell an untruth)
+Limp
+Listen
+Live
+Look
+March
+Mourn
+Move
+Occur
+Panic
+Party
+Pause
+Peep
+Pose
+Pounce
+Pout
+Pray
+Preen
+Read
+Recline
+Relax
+Relent
+Remain
+Respond
+Result
+Revolt
+Rise
+Roll
+Run
+Rush
+Sail
+Scream
+Shake
+Shout
+Sigh
+Sit
+Skip
+Sleep
+Slide
+Smell
+Smile
+Snarl
+Sneeze
+Soak
+Spin
+Spit
+Sprint
+Squeak
+Stagger
+Stand
+Stay
+Swim
+Swing
+Twist
+Vanish
+Vomit
+Wade
+Wait
+Wake
+Walk
+Wander
+Wave
+Whirl
+Wiggle
+Work
+Yell
+end	ends	ended	ended
+end	ends	ended	ended
+end	ends	ended	ended
+end	ends	ended	ended
+end	ends	ended	ended
+end	ends	ended	ended
+come	comes	came	come
+flow	flows	flowed	flown
+grow	grows	grew	grown
+die	dies	died	died
+begin	begins	began	begun
+begin	begins	began	began
+born	-	born	born
+born	-	born	born
+born	-	born	born
+born	-	born	born
+born	-	born	born
+born	-	born	born
+born	-	born	born
+born	-	born	born
+dissolve	dissolves	dissolved	dissolved
+write	writes	wrote	written
+complete	completes	completed	completed
+complete	completes	completed	completed
+complete	completes	completed	completed
+complete	completes	completed	completed
+complete	completes	completed	completed
+participate	participates	participated	participated
+die	dies	died	died
+die	dies	died	died
+die	dies	died	died
+die	dies	died	died
+die	dies	died	died
+die	dies	died	died
+die	dies	died	died
+die	dies	died	died
+bury	buries	buried	buried
+bury	buries	buried	buried
+locate	locates	located	located
+locate	locates	located	located
+locate	locates	located	located
+locate	locates	located	located
+locate	locates	located	located
+found	found	founded	founded
+found	found	founded	founded
+find	finds	founded	founded
+found	founds	founded	founded
+found	founds	founded	founded
+commence	commences	commenced	commenced
+commence	commences	commenced	commenced
+call	calls	called	called
+known	known	known	known
+known	known	known	known
+locate	locates	located	located
+locate	locates	located	located
+locate	locates	located	located
+locate	locates	located	located
+locate	locates	located	located
+locate	locates	located	located
+locate	locates	located	located
+locate	locates	located	located
+locate	locates	located	located
+locate	locates	located	located
+locate	locates	located	located
+locate	locates	located	located
+live	lives	lived	lived
+live	lives	lived	lived
+People live	People lives	People lived	People lived
+People live	People lives	People lived	People lived
+grow	grows	grew	grown
+flow	flows	flowed	flown
+flow	flows	flowed	flown
+start	starts	started	started
+start	starts	started	started
+flow	flows	flowed	flown
+flow	flows	flowed	flown
+fight	fights	fought	fought
+produce	produces	produced	produced
+stand	stands	stood	stood
+operate	operates	operated	operated
+belong	belongs	belonged	belonged
+have	has	had	had
+star	stars	starred	starred
+draft	drafts	drafted	drafted
+build	builds	built	built
+build	builds	built	built
+build	builds	built	built
+inaugurate	inaugurates	inaugurated	inaugurated
+inaugurate	inaugurates	inaugurated	inaugurated
+inaugurate	inaugurates	inaugurated	inaugurated
+found	founds	founded	founded
+found	founds	founded	founded
+found	founds	founded	founded
+release	releases	released	released
+release	releases	released	released
+release	releases	released	released
+release	releases	released	released
+publish	publishes	published	published
+publish	publishes	published	published
+publish	publishes	published	published
+publish	publishes	published	published
+publish	publishes	published	published
+publish	publishes	published	published
+destroy	destroys	destroyed	destroyed
+destroy	destroys	destroyed	destroyed
+rebuild	rebuilds	rebuilt	rebuilt
+rebuild	rebuilds	rebuilt	rebuilt
+reopen	reopens	reopened	reopened
+reopen	reopens	reopened	reopened
+discontinue	discontinues	discontinued	discontinued
+discontinue	discontinues	discontinued	discontinued
+introduce	introduces	introduced	introduced
+introduce	introduces	introduced	introduced
+open	opens	opened	opened
+open	opens	opened	opened
+produce	produced	produced	produced
+produce	produced	produced	produced
+produce	produced	produced	produced
+establish	establishes	established	established
+form	forms	formed	formed
+compose	composes	composed	composed
+compose	composes	composed	composed
+compose	composes	composed	composed
+work	works	worked	worked
+work	works	worked	worked
+start acting	starts acting	started acting	started acting
+stop acting	stops acting	stopped acting	stopped acting
+fight	fights	fought	fought
+play	plays	played	played
+play	plays	played	played
+play	plays	played	played
+split 	splits 	splited	splited
+study	studies	studied	studied
+relate	is related	related	related
+record	records	recored	recored
+belong	belongs	belonged	belonged
+belong	belongs	belonged	belonged
+belong	belongs	belonged	belonged
+belong	belongs	belonged	belonged
+belong	belongs	belonged	belonged
+belong	belongs	belonged	belonged
+belong	belongs	belonged	belonged
+belong	belongs	belonged	belonged
+belong	belongs	belonged	belonged
+belong	belongs	belonged	belonged
+belong	belongs	belonged	belonged
+belong	belongs	belonged	belonged
+belong	belongs	belonged	belonged
+belong	belongs	belonged	belonged
+belong	belongs	belonged	belonged
+play	plays	played	played
+study	studies	studied	studied
+name	named	named	named
+associate	associated	associated	associated
+associate	associated	associated	associated
+associate	associated	associated	associated
+currently use	currently uses	currently used	currently used
+initially use	initially uses	initially used	initially used
+originate	originates	originated	originated
+end	ends	ended	ended
+end	ends	ended	ended
+border	borders	bordered	bordered

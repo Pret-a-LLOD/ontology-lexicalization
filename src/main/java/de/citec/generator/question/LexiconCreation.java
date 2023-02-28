@@ -74,7 +74,7 @@ public class LexiconCreation implements InduceConstants {
         //for (Integer parameter = 0; parameter <= limit;) {
             //parameter += threshold;
             //Integer rankThresold=10;
-            
+           Integer lexIndex=0; 
           for (Integer rankThresold : rankThresolds) {
             SyntacticEntries syntacticEntries = new SyntacticEntries(lexicalEntryHelper, rankThresold, rulePattern, parameterPattern);
             for (String fileName : files) {
@@ -84,13 +84,16 @@ public class LexiconCreation implements InduceConstants {
                 CsvFile inputCsvFile = new CsvFile();
                 //String reference = this.lexicalEntryHelper.makeReference(fileName);
                 List<String[]> rows = inputCsvFile.getRows(new File(inputDir + fileName));
-                syntacticEntries.split(rows);
+                lexIndex=syntacticEntries.split(rows,lexIndex);
                 System.out.println(fileName + " " + syntacticEntries.getNounPP().size());
 
             }
             syntacticEntries.write(outputDir, rulePattern, parameterPattern, rankThresold);
             this.lexiconNames.add(rulePattern + parameterPattern + "-" + rankThresold);
         }
+          
+          
+      
 
 
             
@@ -118,7 +121,7 @@ public class LexiconCreation implements InduceConstants {
         Integer index = 1;
         List<String[]> nounResult = new ArrayList<String[]>();
         String[] rowNoun = new String[14];
-        String reference = lexicalEntryHelper.makeReference(fileName);
+        String reference = lexicalEntryHelper.makeReference(index);
         String id = lexicalEntryHelper.makeLinguistc(linguisticPattern, index) + "-" + reference;
         rowNoun[0] = id;
         rowNoun[1] = "adjective";

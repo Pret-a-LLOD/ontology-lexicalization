@@ -1,0 +1,288 @@
+develop
+develop
+develop
+direct
+paint
+paint
+exhibit
+discover
+discover
+cross
+win
+win
+win
+create
+create
+create
+create
+starring in
+starring in
+star
+play
+play
+play
+publish
+publish
+publish
+publish
+direct
+serve
+design
+design
+design
+speak
+speak
+live
+cost
+write
+write
+write
+write
+write
+write
+write
+write
+express
+call
+found
+found
+found
+found
+develop
+develop
+inspire
+marry to
+marry to
+produce
+produce
+produce
+produce
+create
+compose the music for
+compose the soundtrack for
+compose
+operate
+operate
+present
+perform
+succeed
+distribute
+distribute
+air
+precede
+precede
+precede
+precede
+own
+own
+operate
+control
+illustrate
+support
+speak
+join
+leave
+program
+cover
+edit
+manage
+lead
+drain
+maintain
+rent
+breed
+train
+follow
+follow
+follow
+follow
+accept	 dazzle
+ acknowledge	 deceive
+ admit	 define
+ aggravate	 describe
+ answer	 destroy
+ ask	 discover
+ avoid	 distinguish
+ beat	 drag
+ bend	 dress
+ bless	 dunk
+ bother	 edify
+ break	 embarrass
+ brush	 embrace
+ build	 enable
+ cancel	 encourage
+ capture	 entertain
+ carry	 execute
+ catch	 enlist
+ change	 fascinate
+ chase	 finish
+ chastise	 follow
+ clean	 flick
+ collect	 forget
+ comfort	 freeze
+ contradict	 frighten
+ convert	 forgive
+ crack	 furnish
+gather	 keep
+ grab	 key
+ grasp	 kill
+ grip	 kiss
+ grease	 knock
+ handle	 lag
+ hang	 lay
+ head	 lead
+ highlight	 lean
+ honour	 leave
+ hurry	 lighten
+ hurt	 limit
+ help	 link
+ imitate	 load
+ impress	 love
+ indulge	 lower
+ insert	 maintain
+ interest	 marry
+ inspect	 massage
+ interrupt	 melt
+ intimidate	 mock
+ involve	 munch
+ irritate	 murder
+ join	 notice
+ judge	 number
+offend	 strike
+ order	 surprise
+ page	 swallow
+ paralyze	 switch
+ persuade	 teach
+ petrify	 taste
+ pierce	 tickle
+ place	 tighten
+ please	 toast
+ poison	 transform
+ possess	 tweak
+ prepare	 twist
+ promise	 turn
+ protect	 toss
+ purchase	 try
+ punch	 understimate
+ puzzle	 understand
+ question	 unlock
+ quit	 unload
+ raise	 use
+ reassure	 untie
+ recognise	 upgrade
+ refill	 vacate
+ remind	 vilify
+ remove	 viplate
+ repel	 videotape
+ research	 wake
+ retard	 want
+ ring	 warm
+ run	 wash
+ satisfy	 warn
+ scold	 watch
+ select	 widen
+ slap	 wear
+ smell	 win
+ soften	 wipe
+ specify	 wrack
+ spell	 wrap
+ spit	 wreck
+ spread	 weep
+develop	develops	developed	developed
+develop	develops	developed	developed
+develop	develops	developed	developed
+direct	directs	directed	directed
+paint	paints	painted	painted
+paint	paints	painted	painted
+exhibit	exhibits	exhibited	exhibited
+discover	discovers	discovered	discovered
+discover	discovers	discovered	discovered
+cross	crosses	crossed	crossed
+win	wins	won	won
+win	wins	won	won
+win	wins	won	won
+create	creates	created	created
+create	creates	created	created
+create	creates	created	created
+create	creates	created	created
+starring in	starring in	starred in	starred_in
+starring in	starring in	starred_in	starred_in
+star	stars	starred	starred
+play	playes	played	played
+play	plays	played	played
+play	playes	played	played
+publish	publishes	published	published
+publish	publishes	published	published
+publish	publishes	published	published
+publish	publishes	published	published
+direct	directs	directed	directed
+serve	serves	served	served
+design	designs	designed	designed
+design	designs	designed	designed
+design	designs	designed	designed
+speak	speaks	spoke	spoken
+speak	speaks	spoke	spoken
+live	lives	lived	lived
+cost	costs	costed	costed
+write	writes	wrote	written
+write	writes	wrote	written
+write	writes	wrote	written
+write	writes	wrote	wrote
+write	writes	wrote	wrote
+write	writes	wrote	wrote
+write	writes	wrote	wrote
+write	writes	wrote	wrote
+express	expresses	expressed	expressed
+call	calls	called	called
+found	found	founded	founded
+found	found	founded	founded
+found	founds	founded	founded
+found	founds	founded	founded
+develop	develops	developed	developed
+develop	develops	developed	developed
+inspire	inspires	inspired	inspired
+marry to	marries to	married to	married to
+marry to	produces	produced	produced
+produce	produces	produced	produced
+produce	produces	produced	produced
+produce	produces	produced	produced
+produce	produces	produced	produced
+create	creates	created	created
+compose the music for	compose the music for	compose the music for	compose the music for
+compose the soundtrack for	compose the soundtrack for	compose the soundtrack for	compose the soundtrack for
+compose	composes	composed	
+operate	designs	designed	designed
+operate	operates	operated	operated
+present	presents	presented	presented
+perform	performs	performed	performed
+succeed	succeeds	succeeded	succeeded
+distribute	distributes	distributed	distributed
+distribute	distributes	distributed	distributed
+air	airs	aired	aired
+precede	precedes	preceded	preceded
+precede	precedes	preceded	preceded
+precede	precedes	preceded	preceded
+precede	precedes	preceded	preceded
+own	owns	owned	owned
+own	owns	owned	owned
+operate	operates	operated	operated
+control	controls	controlled	controlled
+illustrate	illustrates	illustrated	illustrated
+support	supports	supported	supported
+speak	speaks	spoke	spoken
+join	joins	joined	joined
+leave	leaves	left	left
+program	programs	programmed	programmed
+cover	covers	covered	covered
+edit	edits	edited	edited
+manage	manages	managed	managed
+lead	leads	led	led
+drain	drains	drained	drained
+maintain	maintains	maintained	maintained
+rent	rents	rented	rented
+breed	breeds	bred	bred
+train	trains	trained	trained
+follow	follows	followed	followed
+follow	follows	followed	followed
+follow	follows	followed	followed
+follow	follows	followed	followed
