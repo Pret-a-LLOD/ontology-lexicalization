@@ -27,18 +27,17 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
 
     private LexicalEntryHelper lexicalEntryHelper = null;
 
-    public ProcessData(String inputDir, String outputDir, String pattern, String parameterAttribute, String givenProperty, LexicalEntryHelper lexicalEntryHelperT,Set<String>stopWords) throws Exception {
+    public ProcessData(String inputDir, String outputDir, String pattern,  String interestingnessType, String givenProperty, LexicalEntryHelper lexicalEntryHelperT, Set<String> stopWords) throws Exception {
         this.lexicalEntryHelper = lexicalEntryHelperT;
-        this.organizeData(inputDir, outputDir, pattern, parameterAttribute, givenProperty, stopWords);
+        this.organizeData(inputDir, outputDir, pattern,  interestingnessType, givenProperty, stopWords);
     }
 
-    public void organizeData(String inputDir, String outputDir, String rulePattern, String parameterAttribute, String givenProperty, Set<String> filterList) throws Exception {
+    public void organizeData(String inputDir, String outputDir, String rulePattern, String interestingnessType, String givenProperty, Set<String> filterList) throws Exception {
         Integer parameterIndex = 17;
         List<String> rawFiles = FileFolderUtils.getSelectedFiles(inputDir, rulePattern);
-        if(rawFiles.isEmpty())
-           throw new Exception("no raw files to process!!!");
-        //Integer parameterIndex = this.findParameterIndex(parameterAttribute);
-        Integer propertyIndex = this.findParameterIndex(Property);
+        if (rawFiles.isEmpty()) {
+            throw new Exception("no raw files to process!!!");
+        }
 
         if (parameterIndex != null) {
             ;
@@ -46,11 +45,14 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
             throw new Exception("parameter name is not corret");
         }
 
-        Map<String, List<List<String>>> propertyMap = new TreeMap<String, List<List<String>>>();
-        Integer index=0;
+        Map<String, List<String[]>> propertyMap = new TreeMap<String, List<String[]>>();
+        Integer index = 0;
         for (String fileName : rawFiles) {
+            if (fileName.contains(".~lock")) {
+                continue;
+            }
             CsvFile inputCsvFile = new CsvFile();
-            index=index+1;
+            index = index + 1;
 
             if (givenProperty.contains("all")) {
                 ;
@@ -61,16 +63,88 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
                 }
 
             }
-            
-            if(fileName.contains(".~lock"))
+
+            List<String[]> rows = inputCsvFile.getRowsManual(new File(inputDir + fileName), parameterIndex, 0.4);
+            System.out.println("total::" + rawFiles.size() + " index::" + index + " now reading files ::" + fileName + " number of lines::" + rows.size());
+
+            if (rows.isEmpty()) {
                 continue;
+            }
+
+            for (String[] row : rows) {
+                if (row.length > 9) {
+                    try {
+                        String property = row[8];
+                        property = this.lexicalEntryHelper.formatPropertyLongToShort(property);
+                        
+                        if (property != null)
+                            ; else {
+                            continue;
+                        }
+                        if(!lexicalEntryHelper.isPropertyQald(property)){
+                            continue;
+                        }
+                                
+                        List<String[]> list = new ArrayList<String[]>();
+                        if (propertyMap.containsKey(property)) {
+                            list = propertyMap.get(property);
+                            list.add(row);
+                            propertyMap.put(property, list);
+                        } else {
+
+                            list.add(row);
+                            propertyMap.put(property, list);
+                        }
+                    } catch (Exception ex) {
+                        continue;
+                    }
+
+                }
+            }
+        }
+         this.sortData(rulePattern, propertyMap, interestingnessType, outputDir, filterList);
+    }
+
+    /*public void organizeDataLast(String inputDir, String outputDir, String rulePattern, List<Parameters> parameterValues, String parameterAttribute, String givenProperty, Set<String> filterList) throws Exception {
+        Integer parameterIndex = 17;
+        List<String> rawFiles = FileFolderUtils.getSelectedFiles(inputDir, rulePattern);
+        if (rawFiles.isEmpty()) {
+            throw new Exception("no raw files to process!!!");
+        }
+        //Integer parameterIndex = this.findParameterIndex(parameterAttribute);
+        Integer propertyIndex = this.findParameterIndex(Property);
+
+        if (parameterIndex != null) {
+            ;
+        } else {
+            throw new Exception("parameter name is not corret");
+        }
+
+        Map<String, List<List<String>>> propertyMap = new TreeMap<String, List<List<String>>>();
+        Integer index = 0;
+        for (String fileName : rawFiles) {
+            CsvFile inputCsvFile = new CsvFile();
+            index = index + 1;
+
+            if (givenProperty.contains("all")) {
+                ;
+            } else {
+                if (fileName.contains(givenProperty))
+                ; else {
+                    continue;
+                }
+
+            }
+
+            if (fileName.contains(".~lock")) {
+                continue;
+            }
 
             //List<String[]> rows = inputCsvFile.getManualRow(new File(inputDir + fileName),0.0,-1);
             //List<String[]> rows = inputCsvFile.getRows(new File(inputDir + fileName));
-            
-            List<List<String>> rows=inputCsvFile.getRowsManual(new File(inputDir+fileName),parameterIndex,0.4);
+            List<List<String>> rows = inputCsvFile.getRowsManual(new File(inputDir + fileName), parameterIndex, 0.4);
 
-            System.out.println("total::"+rawFiles.size()+" index::"+index+" now reading files ::"+fileName+" number of lines::"+rows.size());
+            System.out.println("total::" + rawFiles.size() + " index::" + index + " now reading files ::" + fileName + " number of lines::" + rows.size());
 
             if (rows.isEmpty()) {
                 continue;
@@ -110,11 +184,10 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
                 }
             }
         }
-        this.sortData(rulePattern,propertyMap, parameterAttribute,outputDir,filterList);
+        this.sortData(rulePattern, propertyMap, parameterAttribute, outputDir, filterList);
 
-    }
-    
-  
+    }*/
+
     //using manual lines  
     //0: http://dbpedia.org/ontology/AcademicJournal,
     //1: predict_l_for_s_given_p,
@@ -138,8 +211,7 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
     //Kul 19: 0.875,
     //Max 20: 
     //string 21: "dbo:AcademicJournal in c_e and exists o : (e, dbp:eissn, o) in G => 'medical journal in the field' in l_e"
-
-    public void sortData(String rulePattern,Map<String, List<List<String>>> propertyMap, String parameterAttribute,String outputDir,Set<String> filterList) throws Exception {
+    public void sortData(String rulePattern, Map<String, List<String[]>> propertyMap, String interestingnessType, String outputDir, Set<String> filterList) throws Exception {
         /*Integer parameterIndex = this.findParameterIndex(parameterAttribute);
         Integer nGramIndex = this.findParameterIndex(N_Gram);
         Integer lingPatternIndex = this.findParameterIndex(Linguistic_Pattern);
@@ -150,38 +222,56 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
         Integer lingPatternIndex = 4;
         //Integer propertyIndex = 8;
         Integer classIndex = 0;
-        Integer number=0;
+        Integer number = 0;
         for (String property : propertyMap.keySet()) {
-            number=number+1;
-            Map<Double, String[]> sortLexEntry = new TreeMap<Double, String[]>(Collections.reverseOrder());
-            List<List<String>> list = propertyMap.get(property);
-            System.out.println("total::"+propertyMap.size()+" index::"+number+" now sorting properties ::"+property+" number of lines::"+list.size());
+            number = number + 1;
+            Map<Double, RowValue> sortLexEntry = new TreeMap<Double, RowValue>(Collections.reverseOrder());
+            List<String[]> list = propertyMap.get(property);
+            System.out.println("total::" + propertyMap.size() + " index::" + number + " now sorting properties ::" + property + " number of lines::" + list.size());
 
-            for (List<String> row : list) {
-                String lexEntry = row.get(lingPatternIndex);
-                Double value = Double.parseDouble(row.get(parameterIndex));
-                String className = row.get(classIndex);
+            for (String[] row : list) {
+                /*String lexEntry = row[lingPatternIndex];
+                Double value = Double.parseDouble(row[parameterIndex]);
+                String className = row[classIndex];
                 className = this.lexicalEntryHelper.formatPropertyLongToShort(className);
-                String nGram = row.get(nGramIndex);
-                //System.out.println("lexEntry:"+lexEntry+" value:"+value+" className:"+className);
-                sortLexEntry.put(value, new String[]{lexEntry,nGram,className});
-
+                String nGram = row[nGramIndex];*/
+                //sortLexEntry.put(value, new String[]{lexEntry, nGram, className});
+                RowValue rowValue=new RowValue(row, interestingnessType,  lexicalEntryHelper);
+                sortLexEntry.put(rowValue.getValue(),rowValue);
             }
             CsvFile outputCsvFile = new CsvFile();
             List<String[]> resultList = new ArrayList<String[]>();
             for (Double doubleValue : sortLexEntry.keySet()) {
-                String[] info = sortLexEntry.get(doubleValue);
+                RowValue rowValue=sortLexEntry.get(doubleValue);
+                String orginalString = rowValue.getLingPattern();
+                String nGram = rowValue.getnGram();
+                String modifiedString = this.lexicalEntryHelper.deleteStopWord(orginalString, filterList);
+                String[] posTags = this.lexicalEntryHelper.findPosTag(modifiedString);
+                String postag = posTags[0];
+                String frame = posTags[1];
+                String className = rowValue.getClassName();
+                
+                Parameters parameters=rowValue.getParameters();
+                
+                /*String[] info = sortLexEntry.get(doubleValue);
                 String orginalString = info[0];
                 String nGram = info[1];
                 String modifiedString = this.lexicalEntryHelper.deleteStopWord(orginalString, filterList);
                 String[] posTags = this.lexicalEntryHelper.findPosTag(modifiedString);
                 String postag = posTags[0];
                 String frame = posTags[1];
-                String className = info[2];
-                System.out.println(doubleValue + "," + modifiedString + "," + frame + "," + postag + "," + nGram + "," + orginalString + "," + className+","+property+","+rulePattern);
-                resultList.add(new String[]{doubleValue.toString(), modifiedString, frame, postag, nGram, orginalString, className,property,rulePattern});
+                String className = info[2];*/
+                
+                System.out.println(doubleValue + "," + modifiedString + "," + frame + "," + postag + "," + nGram + "," 
+                                   + orginalString + "," + className + "," + property + "," + rulePattern+","
+                                   + parameters.getSupA()+","+parameters.getSupB()+","+parameters.getSupAB()+","
+                                   +parameters.getConfAB()+","+parameters.getConfBA());
+                resultList.add(new String[]{doubleValue.toString(), modifiedString, frame, postag, nGram, 
+                                            orginalString, className, property, rulePattern,
+                                            parameters.getSupA().toString(),parameters.getSupB().toString(),parameters.getSupAB().toString(),
+                                            parameters.getConfAB().toString(),parameters.getConfBA().toString()});
             }
-            outputCsvFile.writeToCSV(new File(outputDir + property + "-raw" +"-"+rulePattern+ ".csv"), resultList);
+            outputCsvFile.writeToCSV(new File(outputDir + property + "-raw" + "-" + rulePattern + ".csv"), resultList);
         }
 
         /*CsvFile outputCsvFile = new CsvFile();
@@ -222,8 +312,6 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
             outputCsvFile.writeToCSV(new File(outputDir + fileName), resultList);*/
     }
 
-   
-
     private Integer findParameterIndex(String parameterAttribute) {
         if (parameterAttribute.contains(PredictionPatterns.Cosine)) {
             return PredictionPatterns.CosineI;
@@ -256,6 +344,10 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
         } else {
             return null;
         }
+    }
+
+    private boolean isPropertyQald(String property) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

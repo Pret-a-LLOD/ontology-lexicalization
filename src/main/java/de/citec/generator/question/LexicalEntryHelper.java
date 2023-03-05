@@ -85,6 +85,14 @@ public class LexicalEntryHelper implements FrameConstants {
         }
         return new ArrayList<PairValues>();
     }
+    
+     public boolean isPropertyQald(String reference) {
+        reference = this.formatPropertyToColon(reference);
+        if (referenceDomainRange.containsKey(reference)) {
+            return true;
+        }
+        return false;
+    }
 
     public String deleteStopWord(String referenceForm, Set<String> filterList) {
         StringTokenizer st = new StringTokenizer(referenceForm);

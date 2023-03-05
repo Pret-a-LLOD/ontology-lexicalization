@@ -168,9 +168,9 @@ public class FileFolderUtils {
                 line = line.strip().stripLeading().stripTrailing().trim();
                 String[]info=line.split(",");
                 Set<String> set=new TreeSet<String>();
-                String first=info[0].strip().stripLeading().stripTrailing().trim();
-                String second=info[1].strip().stripLeading().stripTrailing().trim();
-                String third=info[2].strip().stripLeading().stripTrailing().trim();
+                String first=filter(info[0]);
+                String second=filter(info[1]);
+                String third=filter(info[2]);
                 String parameter=first+"-"+second+"-"+third;
                 set.add(first);
                 set.add(second);
@@ -182,6 +182,10 @@ public class FileFolderUtils {
             e.printStackTrace();
         }
         return frameUris;
+    }
+    
+    public static String filter(String str) {
+        return str.strip().stripLeading().stripTrailing().trim().replace("[", "").replace("]", "");
     }
 
     public static String getRootDir() {

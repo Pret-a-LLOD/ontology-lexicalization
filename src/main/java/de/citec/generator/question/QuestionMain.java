@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -42,35 +43,58 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
     public static void main(String[] args) {
         Map<String, Map<String, String>> frameUris = new HashMap<String, Map<String, String>>();
         String domainRangeFileName = "src/main/resources/qald-lex/DomainAndRange.txt";
-        //Set<String> rulePatterns = new TreeSet<String>(Arrays.asList("rules-predict_l_for_s_given_p-","rules-predict_localized_l_for_s_given_p-"));
-        
-        List<String> rulePatterns = new ArrayList<String>(Arrays.asList("rules-predict_l_for_s_given_p-","rules-predict_localized_l_for_s_given_p-"));
+        Set<String> rulePatterns = new TreeSet<String>(Arrays.asList("rules-predict_l_for_s_given_p-","rules-predict_localized_l_for_s_given_p-"));
+
+        //List<String> rulePatterns = new ArrayList<String>(Arrays.asList("rules-predict_l_for_s_given_p-", "rules-predict_localized_l_for_s_given_p-"));
 
         String parameterPattern = "100-10000-4-5-5-5-5";
         String grammarInputDir = "/home/elahi/A-project/multilingual-grammar-generator/lexicon/";
         //List<Integer> rankThresolds = Arrays.asList(10, 20, 50, 100, 150, 200, 250, 300, 350, 400,450,500,700,800,1000);
         List<Integer> rankThresolds = Arrays.asList(10, 20, 50, 100, 150, 200);
-        String stopWordFile="src/main/resources/qald-lex/stopword.txt";
-        String prepositionFile="src/main/resources/qald-lex/preposition.txt";
-        Set<String> stopWords=getEnglishStopWords(stopWordFile,prepositionFile); 
-        
+        String stopWordFile = "src/main/resources/qald-lex/stopword.txt";
+        String prepositionFile = "src/main/resources/qald-lex/preposition.txt";
+        Set<String> stopWords = getEnglishStopWords(stopWordFile, prepositionFile);
+        LinkedHashMap<String, List<Parameters>> rulePatternsParmeters = new LinkedHashMap<String, List<Parameters>>();
+
 
         String rootDir = FileFolderUtils.getRootDir();
-        List<String> menu = Arrays.asList(new String[]{FIND_PARAMETERS});
+        List<String> menu = Arrays.asList(new String[]{FIND_PARAMETERS,RANK_PROPERTY_LEXICALIZATION});
         String inputDir = null, outputDir = null;
 
         try {
             Integer thresold = 10;
             Integer limit = 1000;
-            String givenPropoerty = "all";
-             //givenPropoerty = "dbo-Actor-";
+            String givenClass = "all";
+            givenClass = "dbo-Actor-";
             LexicalEntryHelper lexicalEntryHelper = new LexicalEntryHelper(domainRangeFileName);
+            if (menu.contains(FIND_PARAMETERS)) {
+                String parameterFile = "src/main/resources/parameter.txt";
+                String thresoldFile = "src/main/resources/thresold.txt";
+                Set<String> mergeParameters = GetAllPermutations.mergeParameters(parameterFile, thresoldFile);
+
+                for (String rulePattern : rulePatterns) {
+                    List<Parameters> rows = new ArrayList<Parameters>();
+                    for (String parameterString : mergeParameters) {
+                        Parameters parametersValue = new Parameters(rulePattern,parameterString, PredictionPatterns.Cosine,rankThresolds);
+                        rows.add(parametersValue);
+                    }
+                    rulePatternsParmeters.put(rulePattern, rows);
+                }
+            }
+            
             if (menu.contains(RANK_PROPERTY_LEXICALIZATION)) {
                 inputDir = ldkDir + "raw/";
                 outputDir = ldkDir + "sort/";
                 FileFolderUtils.deleteFiles(new String[]{ldkDir + "sort/"});
-                for(String rulePattern:rulePatterns){
-                 ProcessData processData = new ProcessData(ldkDir + "raw/", ldkDir + "sort/", rulePattern, Cosine, givenPropoerty, lexicalEntryHelper,stopWords);
+                if (rulePatternsParmeters.isEmpty()) {
+                    System.out.println("no rule pattern found!!");
+                }
+                if(rulePatternsParmeters.isEmpty()){
+                    System.out.println("no rule patterns to go, first run FIND_PARAMETERS!!");
+                }
+                for (String rulePattern : rulePatternsParmeters.keySet()) {
+                    List<Parameters> parameterValues=rulePatternsParmeters.get(rulePattern);
+                    ProcessData processData = new ProcessData(ldkDir + "raw/", ldkDir + "sort/", rulePattern, Cosine, givenClass, lexicalEntryHelper, stopWords);
                 }
             }
             if (menu.contains(CREATE_LEXICON)) {
@@ -78,10 +102,10 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
                 outputDir = resDir + "ldk/lexicon/";
                 //FileFolderUtils.deleteFiles(new String[]{ldkDir + "lexicon/nouns/", ldkDir + "lexicon/verbs/"});
                 //create lexicon 
-                for(String rulePattern:rulePatterns){
-                LexiconCreation lexiconCreation = new LexiconCreation(inputDir, "-raw", rankThresolds, limit, lexicalEntryHelper, outputDir, rulePattern, parameterPattern);
-                // save lexicon names
-                lexiconCreation.writeLexiconName(grammarInputDir);
+                for (String rulePattern : rulePatterns) {
+                    LexiconCreation lexiconCreation = new LexiconCreation(inputDir, "-raw", rankThresolds, limit, lexicalEntryHelper, outputDir, rulePattern, parameterPattern);
+                    // save lexicon names
+                    lexiconCreation.writeLexiconName(grammarInputDir);
                 }
             }
             if (menu.contains(PARAMETER_LEXICON)) {
@@ -91,15 +115,7 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
                 System.out.println(str);
                 FileUtils.stringToFiles(str, parameterDir + "parameter.txt");
             }
-            if (menu.contains(FIND_PARAMETERS)) {     
-                String fileName="src/main/resources/parameter.txt";
-                System.out.println(fileName);
-                Map<String, Set<String>> paramters=FileFolderUtils.findParameters(fileName);
-                System.out.println(paramters);
-            }
-            
-            
-            
+           
 
         } catch (Exception ex) {
 
@@ -107,10 +123,10 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
         }
 
     }
-    
-    private static Set<String> getEnglishStopWords(String stopWordFile,String prepositionFile) {
-        Set<String> stopWords= FileUtils.fileToSetString(stopWordFile);
-        Set<String> prepositions= FileUtils.fileToSetString(prepositionFile);
+
+    private static Set<String> getEnglishStopWords(String stopWordFile, String prepositionFile) {
+        Set<String> stopWords = FileUtils.fileToSetString(stopWordFile);
+        Set<String> prepositions = FileUtils.fileToSetString(prepositionFile);
         //if(stopWords.contains("of"))
         //    System.out.println("of");
         stopWords.removeAll(prepositions);
@@ -119,11 +135,9 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
         return stopWords;
 
     }
-    
+
 
     /*private static List<String> getEnglishStopWords() {
         return TextAnalyzer.ENGLISH_STOPWORDS_WITHOUT_PREPOSITION;
     }*/
-    
-
 }

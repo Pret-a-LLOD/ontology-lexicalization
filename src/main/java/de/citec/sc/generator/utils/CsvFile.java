@@ -354,8 +354,8 @@ public class CsvFile  implements PredictionPatterns {
         return rows;
     }*/
      
-    public List<List<String>> getRowsManual(File qaldFile, Integer index, Double thresold) throws IOException {
-        List<List<String>> csvLines = new ArrayList<>();
+    public List<String[]> getRowsManual(File qaldFile, Integer index, Double thresold) throws IOException {
+        List<String[]> csvLines = new ArrayList<String[]>();
         FileInputStream inputStream = null;
         Scanner sc = null;
         try {
@@ -368,7 +368,8 @@ public class CsvFile  implements PredictionPatterns {
                     Double value = Double.parseDouble(list.get(index));
                     if (value > thresold) {
                         //System.out.println("valid line::"+line);
-                        csvLines.add(Arrays.asList(line.split(",")));
+                        String[] row=line.split(",");
+                        csvLines.add(row);
                     }
                 } catch (Exception ex) {
                     //System.out.println("invalid line::"+line);
