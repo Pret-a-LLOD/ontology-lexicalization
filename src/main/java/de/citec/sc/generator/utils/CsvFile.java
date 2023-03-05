@@ -54,6 +54,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.compress.compressors.CompressorException;
 import de.citec.generator.config.PredictionPatterns;
+import de.citec.generator.question.Conversion;
 import static edu.stanford.nlp.trees.international.pennchinese.CEDict.path;
 import java.io.FileInputStream;
 import java.util.Arrays;
@@ -365,14 +366,15 @@ public class CsvFile  implements PredictionPatterns {
                 String line = sc.nextLine();
                 List<String> list = Arrays.asList(line.split(","));
                 try {
-                    Double value = Double.parseDouble(list.get(index));
+                     //System.out.println(" line::"+line+ " "+list.get(index));
+                     String string=list.get(index);
+                    Double value = Conversion.stringToDouble(string);
                     if (value > thresold) {
-                        //System.out.println("valid line::"+line);
                         String[] row=line.split(",");
                         csvLines.add(row);
                     }
                 } catch (Exception ex) {
-                    //System.out.println("invalid line::"+line);
+                   System.out.println(ex.getMessage());
                   continue;
                 }
             }

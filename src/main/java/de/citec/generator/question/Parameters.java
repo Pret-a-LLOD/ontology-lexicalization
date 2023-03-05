@@ -15,6 +15,8 @@ import java.util.List;
  */
 public class Parameters {
 
+  
+
     private Integer supA = 0;
     private Integer supB = 0;
     private Integer supAB = 0;
@@ -49,12 +51,12 @@ public class Parameters {
     //Max 20: 
     //
     
-    public Parameters(String[] row, String interestingnessType,Double interesitngnessValue) {
-        this.supA = Integer.parseInt(row[12]);
-        this.supB = Integer.parseInt(row[13]);
-        this.supAB = Integer.parseInt(row[14]);
-        this.confAB = Double.parseDouble(row[10]);
-        this.confBA = Double.parseDouble(row[11]);
+    public Parameters(String[] row, String interestingnessType,Double interesitngnessValue) throws Exception {
+        this.supA = Conversion.stringToInteger(row[12]);
+        this.supB = Conversion.stringToInteger(row[13]);
+        this.supAB = Conversion.stringToInteger(row[14]);
+        this.confAB = Conversion.stringToDouble(row[10]);
+        this.confBA = Conversion.stringToDouble(row[11]);
         this.interestingness = interesitngnessValue;
         this.interestingnessType = interestingnessType;
     }
@@ -82,6 +84,18 @@ public class Parameters {
         this.interestingnessType = interestingnessTypeT;
         this.rankThresolds.addAll(rankThresolds);
         this.searchString = rulePattern + parameterString;
+    }
+    
+    public  static Boolean checkParamter(Parameters givenParameter, Parameters rawParameter) {
+        if(rawParameter.supA>givenParameter.supA&&rawParameter.supB>givenParameter.supB&&rawParameter.supAB>givenParameter.supAB
+                &&rawParameter.confAB>givenParameter.confAB&&rawParameter.confBA>givenParameter.confBA
+                &&rawParameter.interestingness>givenParameter.interestingness){
+                  System.out.println(rawParameter.supA+ " "+givenParameter.supA+" "+rawParameter.supB+ " "+givenParameter.supB+" "+rawParameter.supAB+ " "+givenParameter.supAB);
+        System.out.println(rawParameter.confAB+ " "+givenParameter.confAB+" "+rawParameter.confBA+ " "+givenParameter.confBA);
+   
+            return true;
+        }
+        return false;
     }
 
     public Integer getSupA() {

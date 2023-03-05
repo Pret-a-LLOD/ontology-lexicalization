@@ -49,9 +49,9 @@ public class RowValue {
     private String nGram = null;
     private Parameters parameters = null;
 
-    public RowValue(String row[], String interestingnessType, LexicalEntryHelper lexicalEntryHelper) {
+    public RowValue(String row[], String interestingnessType, LexicalEntryHelper lexicalEntryHelper) throws Exception {
         this.lingPattern = row[lingPatternIndex];
-        this.interestingnessValue = Double.parseDouble(row[parameterIndex]);
+        this.interestingnessValue = Conversion.stringToDouble(row[parameterIndex]);
         this.className = lexicalEntryHelper.formatPropertyLongToShort(row[classIndex]);
         this.nGram = row[nGramIndex];
         this.property = row[propertyIndex];

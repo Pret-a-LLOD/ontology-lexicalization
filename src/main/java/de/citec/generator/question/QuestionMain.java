@@ -35,13 +35,13 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
     private static String qaldResourceDir = "src/main/resources/qald-lex/";
     private static String resDir = "../resources/";
     private static String ldkDir = resDir + "ldk/";
-    private static String RANK_PROPERTY_LEXICALIZATION = "RANK_PROPERTY_LEXICALIZATION";
+    private static String SEPERATE_PROPERTY_DATA = "SEPERATE_PROPERTY_DATA";
+     private static String FIND_PARAMETER_LEXICON = "FIND_PARAMETER_LEXICON";
     private static String CREATE_LEXICON = "CREATE_LEXICON";
     private static String PARAMETER_LEXICON = "PARAMETER_LEXICON";
     private static String FIND_PARAMETERS = "FIND_PARAMETERS";
 
     public static void main(String[] args) {
-        Map<String, Map<String, String>> frameUris = new HashMap<String, Map<String, String>>();
         String domainRangeFileName = "src/main/resources/qald-lex/DomainAndRange.txt";
         Set<String> rulePatterns = new TreeSet<String>(Arrays.asList("rules-predict_l_for_s_given_p-","rules-predict_localized_l_for_s_given_p-"));
 
@@ -58,7 +58,7 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
 
 
         String rootDir = FileFolderUtils.getRootDir();
-        List<String> menu = Arrays.asList(new String[]{FIND_PARAMETERS,RANK_PROPERTY_LEXICALIZATION});
+        List<String> menu = Arrays.asList(new String[]{FIND_PARAMETERS,FIND_PARAMETER_LEXICON});
         String inputDir = null, outputDir = null;
 
         try {
@@ -82,20 +82,32 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
                 }
             }
             
-            if (menu.contains(RANK_PROPERTY_LEXICALIZATION)) {
+            if (menu.contains(SEPERATE_PROPERTY_DATA)) {
                 inputDir = ldkDir + "raw/";
+                outputDir = ldkDir + "property/";
+                FileFolderUtils.deleteFiles(new String[]{ldkDir + "property/"});
+                if(rulePatterns.isEmpty()){
+                    System.out.println("no rule patterns to go, first run!!");
+                }
+                for (String rulePattern : rulePatterns) {
+                    ProcessData processData = new ProcessData(ldkDir + "raw/", ldkDir + "property/", rulePattern, givenClass, lexicalEntryHelper);
+                }
+            }
+             if (menu.contains(FIND_PARAMETER_LEXICON)) {
+                inputDir = ldkDir + "property/";
                 outputDir = ldkDir + "sort/";
                 FileFolderUtils.deleteFiles(new String[]{ldkDir + "sort/"});
-                if (rulePatternsParmeters.isEmpty()) {
-                    System.out.println("no rule pattern found!!");
-                }
                 if(rulePatternsParmeters.isEmpty()){
-                    System.out.println("no rule patterns to go, first run FIND_PARAMETERS!!");
+                    System.out.println("no rule patterns to go, first run!!");
                 }
-                for (String rulePattern : rulePatternsParmeters.keySet()) {
-                    List<Parameters> parameterValues=rulePatternsParmeters.get(rulePattern);
-                    ProcessData processData = new ProcessData(ldkDir + "raw/", ldkDir + "sort/", rulePattern, Cosine, givenClass, lexicalEntryHelper, stopWords);
-                }
+                String givenProperty="dbo:deathPlace";
+                 for (String rulePattern : rulePatternsParmeters.keySet()) {
+                     List<Parameters> paramters =rulePatternsParmeters.get(rulePattern);
+                     for (Parameters paramter : paramters) {
+                         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+paramter.getSearchString());
+                         ProcessData processData = new ProcessData(ldkDir + "property/", ldkDir + "sort/", rulePattern,paramter, Cosine, givenProperty, lexicalEntryHelper, stopWords);
+                     }
+                 }
             }
             if (menu.contains(CREATE_LEXICON)) {
                 inputDir = resDir + "ldk/sort/";
