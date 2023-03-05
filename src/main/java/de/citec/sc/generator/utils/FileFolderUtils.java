@@ -157,6 +157,32 @@ public class FileFolderUtils {
         }
         return frameUris;
     }
+    
+    public static Map<String, Set<String>> findParameters(String fileName) {
+        BufferedReader reader;
+        String line = "";
+        Map<String, Set<String>> frameUris = new TreeMap<String, Set<String>>();
+        try {
+            reader = new BufferedReader(new FileReader(fileName));
+            while ((line = reader.readLine()) != null) {
+                line = line.strip().stripLeading().stripTrailing().trim();
+                String[]info=line.split(",");
+                Set<String> set=new TreeSet<String>();
+                String first=info[0].strip().stripLeading().stripTrailing().trim();
+                String second=info[1].strip().stripLeading().stripTrailing().trim();
+                String third=info[2].strip().stripLeading().stripTrailing().trim();
+                String parameter=first+"-"+second+"-"+third;
+                set.add(first);
+                set.add(second);
+                set.add(third);
+                frameUris.put(parameter, set);
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return frameUris;
+    }
 
     public static String getRootDir() {
         File currentDirFile = new File(".");

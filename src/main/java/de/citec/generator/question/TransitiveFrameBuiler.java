@@ -51,8 +51,8 @@ public class TransitiveFrameBuiler implements FrameConstants, TextAnalyzer {
         row[4] = linguisticPattern;
         row[5] = linguisticPattern;
         row[6] = frame;
-        row[7] = domain;
-        row[8] = range;
+        row[7] = range;
+        row[8] = domain;
         row[9] = senseIndex.toString();
         row[10] = reference;
         row[11] = domainR;

@@ -54,8 +54,8 @@ public class NounPPFrameBuilder implements FrameConstants, TextAnalyzer {
         row[3] = linguisticPattern;
         row[4] = preposition;
         row[5] = frame;
-        row[6] = domain;
-        row[7] = range;
+        row[6] = range;
+        row[7] = domain;
         row[8] = senseIndex.toString();
         //rowNoun[9] = fileName.replace("raw-", "").replace(".csv", "").replace("_", ":");
         row[9] = reference;

@@ -37,6 +37,7 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
     private static String RANK_PROPERTY_LEXICALIZATION = "RANK_PROPERTY_LEXICALIZATION";
     private static String CREATE_LEXICON = "CREATE_LEXICON";
     private static String PARAMETER_LEXICON = "PARAMETER_LEXICON";
+    private static String FIND_PARAMETERS = "FIND_PARAMETERS";
 
     public static void main(String[] args) {
         Map<String, Map<String, String>> frameUris = new HashMap<String, Map<String, String>>();
@@ -48,14 +49,14 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
         String parameterPattern = "100-10000-4-5-5-5-5";
         String grammarInputDir = "/home/elahi/A-project/multilingual-grammar-generator/lexicon/";
         //List<Integer> rankThresolds = Arrays.asList(10, 20, 50, 100, 150, 200, 250, 300, 350, 400,450,500,700,800,1000);
-        List<Integer> rankThresolds = Arrays.asList(10, 20, 50, 100, 150, 200, 250,300, 350,400,500);
+        List<Integer> rankThresolds = Arrays.asList(10, 20, 50, 100, 150, 200);
         String stopWordFile="src/main/resources/qald-lex/stopword.txt";
         String prepositionFile="src/main/resources/qald-lex/preposition.txt";
         Set<String> stopWords=getEnglishStopWords(stopWordFile,prepositionFile); 
         
 
         String rootDir = FileFolderUtils.getRootDir();
-        List<String> menu = Arrays.asList(new String[]{RANK_PROPERTY_LEXICALIZATION,CREATE_LEXICON});
+        List<String> menu = Arrays.asList(new String[]{FIND_PARAMETERS});
         String inputDir = null, outputDir = null;
 
         try {
@@ -84,11 +85,19 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
                 }
             }
             if (menu.contains(PARAMETER_LEXICON)) {
-                String parameterDir = "/media/elahi/Elements/A-project/resources/ldk/parameter/";
+                String parameterDir = "/media/elahi/Elements/A-project/resources/ldk/lexicon/";
                 List<File> selectedFiles = FileUtils.getSpecificFiles(parameterDir, ".csv");
                 String str = FileUtils.findParameterLexEntries(selectedFiles);
+                System.out.println(str);
                 FileUtils.stringToFiles(str, parameterDir + "parameter.txt");
             }
+            if (menu.contains(FIND_PARAMETERS)) {     
+                String fileName="src/main/resources/parameter.txt";
+                System.out.println(fileName);
+                Map<String, Set<String>> paramters=FileFolderUtils.findParameters(fileName);
+                System.out.println(paramters);
+            }
+            
             
             
 

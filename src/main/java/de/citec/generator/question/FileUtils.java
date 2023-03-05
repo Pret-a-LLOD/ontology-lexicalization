@@ -406,7 +406,11 @@ public class FileUtils  {
             for (String[] row : rows) {
                  String lexEntry=row[0].replace("\"", "").strip().stripLeading().stripTrailing().trim();
                  //String line=lexEntry+"="+ parameterFile.getName()+"\n";
-                 String line= parameterFile.getName()+"="+lexEntry+"\n";
+                 String parameter=parameterFile.getName();
+                 parameter=parameter.replace("-NounPPFrame.csv","");
+                 parameter=parameter.replace("-InTransitivePPFrame","");
+                 parameter=parameter.replace("-TransitiveFrame","");
+                 String line= parameter+"="+lexEntry+"\n";
                  System.out.println(line);
                  str+=line;
             }
