@@ -263,6 +263,10 @@ public class LexicalEntryHelper implements FrameConstants {
         }
         return false;
     }
+    
+    public String cleanString(String string) {
+        return string.replace("\"", "");
+    }
 
 
     private String findAdjType(String adj) {

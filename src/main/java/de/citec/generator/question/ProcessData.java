@@ -156,17 +156,18 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
 
             }
 
-            List<String[]> rows = inputCsvFile.getRowsManual(new File(inputDir + fileName), parameterIndex, 0.0);
+            List<String[]> rows = inputCsvFile.getRowsManual(new File(inputDir + fileName), parameterIndex, 0.03);
 
             if (rows.isEmpty()) {
                 continue;
             }
             List<String[]> result = new ArrayList<String[]>();
-            String property =null,parameterStr=null;
+            String property =null,parameterStr=givenParameter.getSearchString();
+            
             for (String[] row : rows) {
                 if (row.length > 9) {
                     try {
-                        property = row[8];
+                        property = this.lexicalEntryHelper.cleanString(row[8]);
                         if (property != null)
                             ; else {
                             continue;
@@ -184,7 +185,6 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
 
                     } catch (Exception ex) {
                         System.out.println(ex.getMessage());
-                        exit(1);
                         continue;
                     }
 
@@ -219,15 +219,15 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
             Parameters parameters = rowValue.getParameters();
 
             System.out.println(doubleValue + "," + modifiedString + "," + frame + "," + postag + "," + nGram + ","
-                    + orginalString + "," + className + "," + property + "," + rulePattern + ","
+                    + orginalString + "," + className + "," + property + "," + parameterStr + ","
                     + parameters.getSupA() + "," + parameters.getSupB() + "," + parameters.getSupAB() + ","
                     + parameters.getConfAB() + "," + parameters.getConfBA());
             resultList.add(new String[]{doubleValue.toString(), modifiedString, frame, postag, nGram,
-                orginalString, className, property, rulePattern,
+                orginalString, className, property, parameterStr,
                 parameters.getSupA().toString(), parameters.getSupB().toString(), parameters.getSupAB().toString(),
                 parameters.getConfAB().toString(), parameters.getConfBA().toString()});
         }
-        outputCsvFile.writeToCSV(new File(outputDir + property + "-raw" + "-" + rulePattern + "-" + parameterStr + ".csv"), resultList);
+        outputCsvFile.writeToCSV(new File(outputDir + property + "-raw" + "-" + parameterStr + ".csv"), resultList);
 
     }
 

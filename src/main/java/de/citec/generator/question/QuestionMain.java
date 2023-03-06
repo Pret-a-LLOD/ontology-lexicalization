@@ -100,7 +100,7 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
                 if(rulePatternsParmeters.isEmpty()){
                     System.out.println("no rule patterns to go, first run!!");
                 }
-                String givenProperty="dbo:deathPlace";
+                String givenProperty="dbo:birthPlace";
                  for (String rulePattern : rulePatternsParmeters.keySet()) {
                      List<Parameters> paramters =rulePatternsParmeters.get(rulePattern);
                      for (Parameters paramter : paramters) {
