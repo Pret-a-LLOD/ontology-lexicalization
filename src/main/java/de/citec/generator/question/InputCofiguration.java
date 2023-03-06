@@ -22,71 +22,90 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InputCofiguration {
-
-    //java -jar target/QuestionGrammarGenerator.jar DE lexicon/de output/de 10 all dataset/dbpedia.json 80.0  
     @JsonProperty("languageCode")
     private String languageCode = "en";
     @JsonProperty("inputDir")
-    private String inputDir = "lexicon";
-    @JsonProperty("parameters")
-    private List<String> parameters = new ArrayList<String>();
+    private String inputDir = "../resources/en/lexicons";
     @JsonProperty("outputDir")
-    private String outputDir = "../resources/";
+    private String outputDir = "../resources/en/lexicons";
+    @JsonProperty("parameter")
+    private String parameter = null;
     @JsonProperty("entityDir")
     private String entityDir = "../resources/en/property/";
     @JsonProperty("questionDir")
-    private String questionDir = "../resources/en/questions/";
+    private String questionDir = "../resources/en/lexicons";
+    @JsonProperty("domainAndRangeDir")
+    private String domainAndRangeDir = "../resources/en/lexicons/domainOrRange/";
     @JsonProperty("classDir")
     private String classDir = "../resources/en/entity/";
     @JsonProperty("wikiFile")
     private String wikiFile = "../resources/en/turtle/wikipedia_links_en_filter.ttl";
     @JsonProperty("abstractFile")
     private String abstractFile = "../resources/en/turtle/short_abstracts_sorted_en_filter.ttl";
-    @JsonProperty("qaldDir")
     private String qaldDir = "qald7Modified/";
     @JsonProperty("numberOfEntities")
-    private Integer numberOfEntities = 100;
+    private Integer numberOfEntities=100;
     @JsonProperty("similarityThresold")
-    private Double similarityThresold = 0.7;
+    private Double similarityThresold=0.7;
     @JsonProperty("csvToTurtle")
     private Boolean csvToTurtle = true;
     @JsonProperty("turtleToProtoType")
     private Boolean turtleToProtoType = true;
     @JsonProperty("protoTypeToQuestion")
     private Boolean protoTypeToQuestion = true;
+    @JsonProperty("inductive")
+    private Boolean inductive = true;
     @JsonProperty("evalution")
-    private Boolean evalution = false;
+    private Boolean evalution=false;
     @JsonProperty("composite")
-    private Boolean compositeFlag = false;
+    private Boolean compositeFlag=false;
     @JsonProperty("single")
-    private Boolean singleFlag = true;
+    private Boolean singleFlag=true;
     @JsonProperty("online")
-    private Boolean online = false;
+    private Boolean online=false;
     @JsonProperty("externalEntittyList")
-    private Boolean externalEntittyList = false;
+    private Boolean externalEntittyList=false;
     @JsonProperty("evalutionQuestion")
     private Boolean evalutionQuestion = false;
     @JsonProperty("offlineQuestion")
     private Boolean offlineQuestion = true;
     @JsonProperty("evalutionBindingFile")
-    private String evalutionBindingFile = "src/main/resources/en/LcQuad/lcquad1_test_en_de.csv";
+    private String evalutionBindingFile="src/main/resources/en/LcQuad/lcquad1_test_en_de.csv";
     @JsonProperty("batchFile")
-    private String batchFile = "../resources/en/batch.prop";
+    private String batchFile="../resources/en/batch.prop";
 
-    public InputCofiguration(List<String> parameters) {
-        this.parameters = parameters;
+
+    public InputCofiguration() {
+
+    }
+
+    public InputCofiguration(String lexiconName) {
+        this.parameter=lexiconName;
     }
 
     public String getLanguageCode() {
         return languageCode;
     }
 
+    public Language getLanguage() {
+        if (languageCode.contains("de")) {
+            return Language.DE;
+        } else if (languageCode.contains("en")) {
+            return Language.EN;
+        } else if (languageCode.contains("es")) {
+            return Language.ES;
+        } else if (languageCode.contains("it")) {
+            return Language.IT;
+        }
+        return Language.EN;
+    }
+
     public String getInputDir() {
-        return inputDir + File.separator + this.languageCode;
+        return inputDir + File.separator + this.parameter;
     }
 
     public String getOutputDir() {
-        return outputDir + File.separator + this.languageCode;
+        return outputDir + File.separator + this.parameter;
     }
 
     public Integer getNumberOfEntities() {
@@ -146,7 +165,7 @@ public class InputCofiguration {
     }
 
     public String getQuestionDir() {
-        return questionDir;
+        return questionDir + File.separator + parameter + File.separator + "questions/";
     }
 
     public String getClassDir() {
@@ -181,38 +200,23 @@ public class InputCofiguration {
         return batchFile;
     }
 
+    public String getParameter() {
+        return parameter;
+    }
+
+    public String getDomainAndRangeDir() {
+        return domainAndRangeDir;
+    }
+
+    public Boolean getInductive() {
+        return inductive;
+    }
+    
+  
+
     @Override
     public String toString() {
         return "InputCofiguration{" + "language=" + languageCode + ", inputDir=" + getInputDir() + ", outputDir=" + getOutputDir() + ", numberOfEntities=" + numberOfEntities + ", similarityThresold=" + similarityThresold + ", csvToTurtle=" + csvToTurtle + ", turtleToProtoType=" + turtleToProtoType + ", protoTypeToQuestion=" + protoTypeToQuestion + ", evalution=" + evalution + '}';
     }
 
-    public List<String> getParameters() {
-        return parameters;
-    }
-
-    /*  {
-  "qaldDir" : null,
-  "languageCode" : null,
-  "inputDir" : "",
-  "outputDir" : "null/null",
-  "entityDir" : null,
-  "questionDir" : null,
-  "classDir" : null,
-  "wikiFile" : null,
-  "abstractFile" : null,
-  "numberOfEntities" : null,
-  "similarityThresold" : null,
-  "csvToTurtle" : false,
-  "turtleToProtoType" : false,
-  "protoTypeToQuestion" : false,
-  "evalution" : null,
-  "composite" : null,
-  "single" : null,
-  "online" : null,
-  "externalEntittyList" : null,
-  "evalutionQuestion" : false,
-  "offlineQuestion" : false,
-  "evalutionBindingFile" : null,
-  "batchFile" : null
-}*/
 }

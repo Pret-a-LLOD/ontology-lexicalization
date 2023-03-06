@@ -5,10 +5,18 @@
  */
 package de.citec.generator.question;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.citec.sc.generator.utils.CsvFile;
 import de.citec.sc.generator.utils.FileFolderUtils;
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  *
@@ -17,15 +25,16 @@ import java.util.*;
 public class LexiconCreation implements InduceConstants {
 
     private LexicalEntryHelper lexicalEntryHelper = null;
-    private List<String> lexiconNames = new ArrayList<String>();
+    private static List<String> lexiconNames = new ArrayList<String>();
 
-    public LexiconCreation(String inputDir, String pattern, List<Integer> rankThresolds, Integer limit, LexicalEntryHelper lexicalEntryHelperT, String outputDir,  String parameterPattern) throws Exception {
+
+    public LexiconCreation(String inputDir, String pattern, List<Integer> rankThresolds, Integer limit, LexicalEntryHelper lexicalEntryHelperT, String outputDir,String parameterPattern) throws Exception {
         this.lexicalEntryHelper = lexicalEntryHelperT;
         List<String> files = FileFolderUtils.getSelectedFiles(inputDir, pattern);
 
-        Integer lexIndex = 0;
-        for (Integer rankThresold : rankThresolds) {
-            SyntacticEntries syntacticEntries = new SyntacticEntries(lexicalEntryHelper, rankThresold);
+           Integer lexIndex=0; 
+          for (Integer rankThresold : rankThresolds) {
+            SyntacticEntries syntacticEntries = new SyntacticEntries(lexicalEntryHelper, parameterPattern,rankThresold);
             for (String fileName : files) {
                 if (fileName.contains("#")) {
                     continue;
@@ -33,25 +42,58 @@ public class LexiconCreation implements InduceConstants {
                 CsvFile inputCsvFile = new CsvFile();
                 //String reference = this.lexicalEntryHelper.makeReference(fileName);
                 List<String[]> rows = inputCsvFile.getRows(new File(inputDir + fileName));
-                lexIndex = syntacticEntries.split(rows, lexIndex);
-                System.out.println(fileName + " " + syntacticEntries.getNounPP().size());
-
+                lexIndex=syntacticEntries.split(rows,lexIndex);
             }
-            syntacticEntries.write(outputDir, parameterPattern, rankThresold);
-            this.lexiconNames.add(parameterPattern + "-" + rankThresold);
-            break;
+            syntacticEntries.write(outputDir);
+            this.lexiconNames.add(syntacticEntries.getParameterString());
         }
-
     }
 
-    public void writeLexiconName(String dir, Integer index) {
-        for (String parameter : lexiconNames) {
-            String fileName = dir + parameter + "inputConf_en.json";
-            InputCofiguration inputCofiguration = new InputCofiguration(lexiconNames);
-            JsonWriter.writeClassToJson(inputCofiguration, dir + "inputConf_en" + "_" + index + ".json");
+    public static void writeLexiconName(String inputDir, String outputDir,String grammarDir) {
+        String header="#!/bin/sh"+"\n";
+        String str="";
+        String bashFileName="lexiconMove.sh";
+        String run_lexicon="run-lexicon.sh";
+        Integer index=1;
+        String lexicon="lexicon_";
+        
+        String run="";
+       
+        Map<Integer,String> lexicons=new HashMap<Integer,String>();
+        for (String lexiconName : lexiconNames) {
+            String lexiconT="lexicon_"+index.toString();
+            String mkdirNoun="mkdir -p "+outputDir+File.separator+lexiconT+"/nouns"+"\n";
+            String mkdirverbs="mkdir -p "+outputDir+File.separator+lexiconT+"/verbs"+"\n";
+            String mkdirquestions="mkdir -p "+outputDir+File.separator+lexiconT+"/questions"+"\n";
+            String line=mkdirNoun+mkdirverbs+mkdirquestions;
+            String comNoun= "cp -r "+inputDir+lexiconName+"-NounPPFrame.csv"+" "+outputDir+lexiconT+"/nouns/"+"\n";
+            String comTran= "cp -r "+inputDir+lexiconName+"-TransitiveFrame.csv"+" "+outputDir+lexiconT+"/verbs/"+"\n";
+            String comInTran= "cp -r "+inputDir+lexiconName+"-InTransitivePPFrame.csv"+" "+outputDir+lexiconT+"/verbs/"+"\n";
+            String comAll=comNoun+comTran+comInTran;
+            String content=line+comAll+"\n"+"\n";
+            str+=content;            lexicons.put(index, lexiconName);
+            index=index+1;
+            String fileName ="conf/"+"inputConf_"+lexiconT+"_en"+".json";
+            InputCofiguration inputCofiguration = new InputCofiguration(lexiconT);
+            JsonWriter.writeClassToJson(inputCofiguration, grammarDir+fileName);
+            String runcom="java -jar target/QuestionGrammarGenerator.jar "+fileName+" dataset/dbpedia_en.json"+"\n";
+            run+=runcom;
         }
-
+        
+        FileFolderUtils.writeToTextFile(header+str, outputDir+bashFileName);
+        FileFolderUtils.writeToTextFile(header+run, grammarDir+run_lexicon);
+    
     }
+    
+     
+    public LexicalEntryHelper getLexicalEntryHelper() {
+        return lexicalEntryHelper;
+    }
+
+    public static List<String> getLexiconNames() {
+        return lexiconNames;
+    }
+   
 
     private String[] gradableCsvRow(String fileName, String linguisticPattern, String value, String frame) {
 

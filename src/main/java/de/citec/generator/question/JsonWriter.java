@@ -29,5 +29,17 @@ public class JsonWriter {
         }
 
     }
+    
+    public static void writeStringToJson(String str, String fileName) {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        try {
+            mapper.writeValue(new File(fileName), str);
+        } catch (IOException ex) {
+            Logger.getLogger(JsonWriter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
 }

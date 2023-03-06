@@ -33,14 +33,16 @@ public class SyntacticEntries {
     private List<String[]> attibutive = new ArrayList<String[]>();
     private List<String[]> gradable = new ArrayList<String[]>();
     private LexicalEntryHelper lexicalEntryHelper = null;
-    private Integer parameter = 0;
+    private String parameterString = null;
+    private Integer rankThresold=0;
 
-    public SyntacticEntries(LexicalEntryHelper lexicalEntryHelper, Integer rankThresold) throws Exception {
+    public SyntacticEntries(LexicalEntryHelper lexicalEntryHelper, String parameterPattern,Integer rankThresold) throws Exception {
         this.lexicalEntryHelper = lexicalEntryHelper;
         this.nounPP.add(NounPPFrameBuilder.getHeader());
         this.inTransitivePP.add(TransitiveFrameBuiler.getHeader());
         this.transitive.add(InTransitivePPFrameBuilder.getHeader());
-        this.parameter = rankThresold;
+        this.parameterString = parameterPattern+"-"+rankThresold;
+        this.rankThresold=rankThresold;
        
 
     }
@@ -97,7 +99,7 @@ public class SyntacticEntries {
                 resultGradableFrame.add(nounRow);
             }*/
 
-                if (index >= parameter) {
+                if (index >= this.rankThresold) {
                     break;
                 }
                 index = index + 1;
@@ -123,21 +125,21 @@ public class SyntacticEntries {
         return lexIndex;
     }
 
-    public void write(String outputDir, String parameterPattern, Integer threshold) {
+    public void write(String outputDir) {
         // for unknown reason noun folder it gets wrong
         CsvFile outputCsvFile = new CsvFile();
         this.nounPP=filterDuplicate(this.nounPP,2);
         this.transitive=filterDuplicate(this.transitive,2);
         this.inTransitivePP=filterDuplicate(this.inTransitivePP,2);
         if (this.nounPP.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir +parameterPattern +"-" +parameter + "-" + "NounPPFrame" + ".csv"), this.nounPP);
+            outputCsvFile.writeToCSV(new File(outputDir +parameterString + "-" + "NounPPFrame" + ".csv"), this.nounPP);
 
         }
         if (this.transitive.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir +parameterPattern +"-" + parameter + "-" + "TransitiveFrame" + ".csv"), this.transitive);
+            outputCsvFile.writeToCSV(new File(outputDir + parameterString + "-" + "TransitiveFrame" + ".csv"), this.transitive);
         }
         if (this.inTransitivePP.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir + parameterPattern +"-" + parameter + "-" +  "InTransitivePPFrame" + ".csv"), this.inTransitivePP);
+            outputCsvFile.writeToCSV(new File(outputDir +  parameterString + "-" +  "InTransitivePPFrame" + ".csv"), this.inTransitivePP);
         }
     }
  
@@ -180,6 +182,18 @@ public class SyntacticEntries {
 
     public List<String[]> getGradable() {
         return gradable;
+    }
+
+    public LexicalEntryHelper getLexicalEntryHelper() {
+        return lexicalEntryHelper;
+    }
+
+    public String getParameterString() {
+        return parameterString;
+    }
+
+    public Integer getRankThresold() {
+        return rankThresold;
     }
 
     @Override

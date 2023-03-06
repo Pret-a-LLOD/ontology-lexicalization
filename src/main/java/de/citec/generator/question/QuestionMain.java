@@ -112,26 +112,33 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
             if (menu.contains(CREATE_LEXICON)) {
                 inputDir = resDir + "ldk/sort/";
                 outputDir = resDir + "ldk/lexicon/";
+                String finalDir=resDir +"/en/lexicons";
                 //FileFolderUtils.deleteFiles(new String[]{ldkDir + "lexicon/nouns/", ldkDir + "lexicon/verbs/"});
                 //create lexicon 
                 Integer index=0;
                 FileFolderUtils.delete(new File(outputDir),".csv");
-
+                
                 for (String rulePattern : rulePatternsParmeters.keySet()) {
                     List<Parameters> paramters = rulePatternsParmeters.get(rulePattern);
                     for (Parameters paramter : paramters) {
                         String parameterPattern=paramter.getSearchString();
                         LexiconCreation lexiconCreation = new LexiconCreation(inputDir, "-raw", rankThresolds, limit, lexicalEntryHelper, outputDir,parameterPattern);
                         // save lexicon names
-                        lexiconCreation.writeLexiconName(grammarInputDir,index);
-                        index=index+1;
+                        //lexiconCreation.writeLexiconName(outputDir,finalDir,index);
+                       index=index+1;
                         break;
                     }
                 }
+                //LexiconCreation.writeLexiconName(inputDir, outputDir);
+                System.out.println(LexiconCreation.getLexiconNames());
+                inputDir = "/media/elahi/Elements/A-project/LDK2023/resources/ldk/lexicon/";
+                outputDir = "/media/elahi/Elements/A-project/LDK2023/resources/en/lexicons/";
+                String confDir = "/media/elahi/Elements/A-project/LDK2023/multilingual-grammar-generator/";
                
+               LexiconCreation.writeLexiconName(inputDir, outputDir,confDir);
             }
             if (menu.contains(PARAMETER_LEXICON)) {
-                String parameterDir = "/media/elahi/Elements/A-project/resources/ldk/lexicon/";
+                String parameterDir = "../resources/ldk/lexicon/";
                 List<File> selectedFiles = FileUtils.getSpecificFiles(parameterDir, ".csv");
                 String str = FileUtils.findParameterLexEntries(selectedFiles);
                 System.out.println(str);
