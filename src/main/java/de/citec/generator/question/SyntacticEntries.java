@@ -5,14 +5,19 @@
  */
 package de.citec.generator.question;
 
+import com.opencsv.CSVWriter;
 import static de.citec.generator.question.InduceConstants.InTransitivePPFrame;
 import static de.citec.generator.question.InduceConstants.NounPPFrame;
 import static de.citec.generator.question.InduceConstants.TransitiveFrame;
 import de.citec.sc.generator.utils.CsvFile;
 import de.citec.sc.generator.utils.FileFolderUtils;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -30,7 +35,7 @@ public class SyntacticEntries {
     private LexicalEntryHelper lexicalEntryHelper = null;
     private Integer parameter = 0;
 
-    public SyntacticEntries(LexicalEntryHelper lexicalEntryHelper, Integer rankThresold,String rulePattern, String parameterPattern) throws Exception {
+    public SyntacticEntries(LexicalEntryHelper lexicalEntryHelper, Integer rankThresold) throws Exception {
         this.lexicalEntryHelper = lexicalEntryHelper;
         this.nounPP.add(NounPPFrameBuilder.getHeader());
         this.inTransitivePP.add(TransitiveFrameBuiler.getHeader());
@@ -47,27 +52,39 @@ public class SyntacticEntries {
         List<String[]> attibutive = new ArrayList<String[]>();
         List<String[]> gradable = new ArrayList<String[]>();
         Integer index = 0;
+        Set<String>duplicates=new HashSet<String>();
         for (String[] row : rows) {
             lexIndex = lexIndex + 1;
             try {
-                String doubleValue = row[0];
+                String doubleValueString = row[0];
                 String modifiedLinguisticPattern = row[1];
                 String frame = row[2];
                 String nGram = row[4];
                 String reference = row[7];
+                /*Double doubleValue=Conversion.stringToDouble(doubleValueString);
+                DecimalFormat df = new DecimalFormat("#.00000");
+                String doubleValueStr2=df.format(doubleValue);
+                String repeatID=modifiedLinguisticPattern+"-"+doubleValueStr2;
+
+                if(duplicates.contains(repeatID)){
+                   continue; 
+                }
+                else
+                    duplicates.add(repeatID);*/
+                
 
                 if (frame.contains(NounPPFrame)) {
-                    NounPPFrameBuilder nounPPFrame = new NounPPFrameBuilder(reference, modifiedLinguisticPattern, doubleValue, frame, nGram, lexIndex, lexicalEntryHelper);
+                    NounPPFrameBuilder nounPPFrame = new NounPPFrameBuilder(reference, modifiedLinguisticPattern, doubleValueString, frame, nGram, lexIndex, lexicalEntryHelper);
                     if (nounPPFrame.getFlag()) {
                         nounPP.add(nounPPFrame.getRow());
                     }
                 } else if (frame.contains(TransitiveFrame)) {
-                    TransitiveFrameBuiler transitiveFrame = new TransitiveFrameBuiler(reference, modifiedLinguisticPattern, doubleValue, frame, nGram, lexIndex, lexicalEntryHelper);
+                    TransitiveFrameBuiler transitiveFrame = new TransitiveFrameBuiler(reference, modifiedLinguisticPattern, doubleValueString, frame, nGram, lexIndex, lexicalEntryHelper);
                     if (transitiveFrame.getFlag()) {
                         transitive.add(transitiveFrame.getRow());
                     }
                 } else if (frame.contains(InTransitivePPFrame)) {
-                    InTransitivePPFrameBuilder inTransitiveFrame = new InTransitivePPFrameBuilder(reference, modifiedLinguisticPattern, doubleValue, frame, nGram, lexIndex, lexicalEntryHelper);
+                    InTransitivePPFrameBuilder inTransitiveFrame = new InTransitivePPFrameBuilder(reference, modifiedLinguisticPattern, doubleValueString, frame, nGram, lexIndex, lexicalEntryHelper);
                     if (inTransitiveFrame.getFlag()) {
                         inTransitivePP.add(inTransitiveFrame.getRow());
                     }
@@ -106,19 +123,43 @@ public class SyntacticEntries {
         return lexIndex;
     }
 
-    public void write(String outputDir, String rulePattern, String parameterPattern, Integer threshold) {
+    public void write(String outputDir, String parameterPattern, Integer threshold) {
         // for unknown reason noun folder it gets wrong
         CsvFile outputCsvFile = new CsvFile();
+        this.nounPP=filterDuplicate(this.nounPP,2);
+        this.transitive=filterDuplicate(this.transitive,2);
+        this.inTransitivePP=filterDuplicate(this.inTransitivePP,2);
         if (this.nounPP.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir +rulePattern +parameterPattern +"-" +parameter + "-" + "NounPPFrame" + ".csv"), this.nounPP);
+            outputCsvFile.writeToCSV(new File(outputDir +parameterPattern +"-" +parameter + "-" + "NounPPFrame" + ".csv"), this.nounPP);
 
         }
         if (this.transitive.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir +rulePattern + parameterPattern +"-" + parameter + "-" + "TransitiveFrame" + ".csv"), this.transitive);
+            outputCsvFile.writeToCSV(new File(outputDir +parameterPattern +"-" + parameter + "-" + "TransitiveFrame" + ".csv"), this.transitive);
         }
         if (this.inTransitivePP.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir +rulePattern + parameterPattern +"-" + parameter + "-" +  "InTransitivePPFrame" + ".csv"), this.inTransitivePP);
+            outputCsvFile.writeToCSV(new File(outputDir + parameterPattern +"-" + parameter + "-" +  "InTransitivePPFrame" + ".csv"), this.inTransitivePP);
         }
+    }
+ 
+    public List<String[]> filterDuplicate(List<String[]> csvData, Integer index) {
+        if (csvData.isEmpty()) {
+            System.err.println("writing csv file failed!!!");
+            return new ArrayList<String[]>();
+        }
+        List<String[]> csvNewData = new ArrayList<String[]>();
+        Set<String> lexEntries = new HashSet<String>();
+
+        for (String[] row : csvData) {
+            String lexEntry = row[index];
+            if (lexEntries.contains(lexEntry)) {
+                continue;
+            } else {
+                lexEntries.add(lexEntry);
+                csvNewData.add(row);
+            }
+
+        }
+        return csvNewData;
     }
 
     public List<String[]> getNounPP() {
@@ -145,5 +186,7 @@ public class SyntacticEntries {
     public String toString() {
         return "SyntacticEntries{" + "NounPPFrameResult=" + nounPP + ", TransitiveFrameResult=" + transitive + ", TransitivePPFrameResult=" + inTransitivePP + ", resultAttibutiveFrame=" + attibutive + ", resultGradableFrame=" + gradable + '}';
     }
+
+   
 
 }

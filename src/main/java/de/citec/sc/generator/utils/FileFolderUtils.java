@@ -84,6 +84,18 @@ public class FileFolderUtils {
         }
 
     }
+     public static void delete(File dir,String extension) throws Exception {
+        try {
+            File[] files = dir.listFiles();
+            for (File file : files) {
+                if(file.getName().contains(extension))
+                   file.delete();
+            }
+        } catch (Exception ex) {
+            //throw new Exception("file directory does not exist!!");
+        }
+
+    }
 
     public static void listToFiles(List<String> list, String fileName) {
         String str = "";

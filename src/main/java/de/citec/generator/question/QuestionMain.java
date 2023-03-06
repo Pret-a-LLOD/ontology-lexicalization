@@ -39,7 +39,7 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
      private static String FIND_PARAMETER_LEXICON = "FIND_PARAMETER_LEXICON";
     private static String CREATE_LEXICON = "CREATE_LEXICON";
     private static String PARAMETER_LEXICON = "PARAMETER_LEXICON";
-    private static String FIND_PARAMETERS = "FIND_PARAMETERS";
+    private static String GENERATE_PARAMETERS = "FIND_PARAMETERS";
 
     public static void main(String[] args) {
         String domainRangeFileName = "src/main/resources/qald-lex/DomainAndRange.txt";
@@ -47,8 +47,8 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
 
         //List<String> rulePatterns = new ArrayList<String>(Arrays.asList("rules-predict_l_for_s_given_p-", "rules-predict_localized_l_for_s_given_p-"));
 
-        String parameterPattern = "100-10000-4-5-5-5-5";
-        String grammarInputDir = "/home/elahi/A-project/multilingual-grammar-generator/lexicon/";
+        //String parameterPattern = "100-10000-4-5-5-5-5";
+        String grammarInputDir = "/media/elahi/Elements/A-project/LDK2023/multilingual-grammar-generator/conf/";
         //List<Integer> rankThresolds = Arrays.asList(10, 20, 50, 100, 150, 200, 250, 300, 350, 400,450,500,700,800,1000);
         List<Integer> rankThresolds = Arrays.asList(10, 20, 50, 100, 150, 200);
         String stopWordFile = "src/main/resources/qald-lex/stopword.txt";
@@ -58,7 +58,7 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
 
 
         String rootDir = FileFolderUtils.getRootDir();
-        List<String> menu = Arrays.asList(new String[]{FIND_PARAMETERS,FIND_PARAMETER_LEXICON});
+        List<String> menu = Arrays.asList(new String[]{GENERATE_PARAMETERS,CREATE_LEXICON});
         String inputDir = null, outputDir = null;
 
         try {
@@ -67,7 +67,7 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
             String givenClass = "all";
             givenClass = "dbo-Actor-";
             LexicalEntryHelper lexicalEntryHelper = new LexicalEntryHelper(domainRangeFileName);
-            if (menu.contains(FIND_PARAMETERS)) {
+            if (menu.contains(GENERATE_PARAMETERS)) {
                 String parameterFile = "src/main/resources/parameter.txt";
                 String thresoldFile = "src/main/resources/thresold.txt";
                 Set<String> mergeParameters = GetAllPermutations.mergeParameters(parameterFile, thresoldFile);
@@ -114,11 +114,21 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
                 outputDir = resDir + "ldk/lexicon/";
                 //FileFolderUtils.deleteFiles(new String[]{ldkDir + "lexicon/nouns/", ldkDir + "lexicon/verbs/"});
                 //create lexicon 
-                for (String rulePattern : rulePatterns) {
-                    LexiconCreation lexiconCreation = new LexiconCreation(inputDir, "-raw", rankThresolds, limit, lexicalEntryHelper, outputDir, rulePattern, parameterPattern);
-                    // save lexicon names
-                    lexiconCreation.writeLexiconName(grammarInputDir);
+                Integer index=0;
+                FileFolderUtils.delete(new File(outputDir),".csv");
+
+                for (String rulePattern : rulePatternsParmeters.keySet()) {
+                    List<Parameters> paramters = rulePatternsParmeters.get(rulePattern);
+                    for (Parameters paramter : paramters) {
+                        String parameterPattern=paramter.getSearchString();
+                        LexiconCreation lexiconCreation = new LexiconCreation(inputDir, "-raw", rankThresolds, limit, lexicalEntryHelper, outputDir,parameterPattern);
+                        // save lexicon names
+                        lexiconCreation.writeLexiconName(grammarInputDir,index);
+                        index=index+1;
+                        break;
+                    }
                 }
+               
             }
             if (menu.contains(PARAMETER_LEXICON)) {
                 String parameterDir = "/media/elahi/Elements/A-project/resources/ldk/lexicon/";

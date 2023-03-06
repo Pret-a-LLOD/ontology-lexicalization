@@ -58,6 +58,7 @@ import de.citec.generator.question.Conversion;
 import static edu.stanford.nlp.trees.international.pennchinese.CEDict.path;
 import java.io.FileInputStream;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
 
 /**
@@ -238,6 +239,20 @@ public class CsvFile  implements PredictionPatterns {
             ex.printStackTrace();
         }
     }
+    
+     /*public void writeToCSV(File newQaldFile, LinkedHashSet<String[]> csvData) {
+        if (csvData.isEmpty()) {
+            System.err.println("writing csv file failed!!!");
+            return;
+        }
+        try ( CSVWriter writer = new CSVWriter(new FileWriter(newQaldFile))) {
+            writer.writeAll(csvData);
+        } catch (IOException ex) {
+            System.err.println("writing csv file failed!!!" + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }*/
+     
 
    
     public List<String[]> getManualRow(File qaldFile, Double limit, Integer lineLimit) {
