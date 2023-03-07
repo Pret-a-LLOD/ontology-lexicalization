@@ -91,9 +91,9 @@ public class GetAllPermutations {
     }
      
      public static void main(String args[]) {
-        Integer[] numbers1 = {5, 50, 100,250,500};
+        Integer[] numbers1 = {5, 5,50,50,250,500};
         getPermutations(numbers1);
-        Double[] numbers2 = {0.1, 0.45, 0.6,0.9};
+        Double[] numbers2 = {0.1, 0.6, 0.9};
         getPermutations(numbers2);
        
 

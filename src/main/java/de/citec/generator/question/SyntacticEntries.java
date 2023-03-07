@@ -125,21 +125,21 @@ public class SyntacticEntries {
         return lexIndex;
     }
 
-    public void write(String outputDir) {
+    public void write(String outputDir,String parameterPattern, Integer rankThresold) {
         // for unknown reason noun folder it gets wrong
         CsvFile outputCsvFile = new CsvFile();
         this.nounPP=filterDuplicate(this.nounPP,2);
         this.transitive=filterDuplicate(this.transitive,2);
         this.inTransitivePP=filterDuplicate(this.inTransitivePP,2);
         if (this.nounPP.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir +parameterString + "-" + "NounPPFrame" + ".csv"), this.nounPP);
+            outputCsvFile.writeToCSV(new File(outputDir +parameterPattern+"-"+rankThresold + "-" + "NounPPFrame" + ".csv"), this.nounPP);
 
         }
         if (this.transitive.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir + parameterString + "-" + "TransitiveFrame" + ".csv"), this.transitive);
+            outputCsvFile.writeToCSV(new File(outputDir + parameterPattern+"-"+rankThresold + "-" + "TransitiveFrame" + ".csv"), this.transitive);
         }
         if (this.inTransitivePP.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir +  parameterString + "-" +  "InTransitivePPFrame" + ".csv"), this.inTransitivePP);
+            outputCsvFile.writeToCSV(new File(outputDir +  parameterPattern+"-"+rankThresold + "-" +  "InTransitivePPFrame" + ".csv"), this.inTransitivePP);
         }
     }
  

@@ -35,16 +35,19 @@ public class LexiconCreation implements InduceConstants {
            Integer lexIndex=0; 
           for (Integer rankThresold : rankThresolds) {
             SyntacticEntries syntacticEntries = new SyntacticEntries(lexicalEntryHelper, parameterPattern,rankThresold);
+             System.out.println(parameterPattern+" "+rankThresold);
             for (String fileName : files) {
+               
                 if (fileName.contains("#")) {
                     continue;
                 }
+                System.out.println(fileName);
                 CsvFile inputCsvFile = new CsvFile();
                 //String reference = this.lexicalEntryHelper.makeReference(fileName);
                 List<String[]> rows = inputCsvFile.getRows(new File(inputDir + fileName));
                 lexIndex=syntacticEntries.split(rows,lexIndex);
             }
-            syntacticEntries.write(outputDir);
+            syntacticEntries.write(outputDir,parameterPattern,rankThresold);
             this.lexiconNames.add(syntacticEntries.getParameterString());
         }
     }

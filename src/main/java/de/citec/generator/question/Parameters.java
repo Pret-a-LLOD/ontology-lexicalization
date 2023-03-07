@@ -90,8 +90,8 @@ public class Parameters {
         if(rawParameter.supA>givenParameter.supA&&rawParameter.supB>givenParameter.supB&&rawParameter.supAB>givenParameter.supAB
                 &&rawParameter.confAB>givenParameter.confAB&&rawParameter.confBA>givenParameter.confBA
                 &&rawParameter.interestingness>givenParameter.interestingness){
-                  System.out.println(rawParameter.supA+ " "+givenParameter.supA+" "+rawParameter.supB+ " "+givenParameter.supB+" "+rawParameter.supAB+ " "+givenParameter.supAB);
-        System.out.println(rawParameter.confAB+ " "+givenParameter.confAB+" "+rawParameter.confBA+ " "+givenParameter.confBA);
+        //System.out.println(rawParameter.supA+ " "+givenParameter.supA+" "+rawParameter.supB+ " "+givenParameter.supB+" "+rawParameter.supAB+ " "+givenParameter.supAB);
+        //System.out.println(rawParameter.confAB+ " "+givenParameter.confAB+" "+rawParameter.confBA+ " "+givenParameter.confBA);
    
             return true;
         }

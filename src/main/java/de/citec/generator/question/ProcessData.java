@@ -34,9 +34,9 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
         this.organizeData(inputDir, outputDir, pattern, givenClass);
     }
 
-    public ProcessData(String inputDir, String outputDir, String rulePattern, Parameters parameter, String interestingnessType, String givenProperty, LexicalEntryHelper lexicalEntryHelperT, Set<String> stopWords) throws Exception {
+    public ProcessData(String inputDir, String outputDir, String rulePattern, Parameters parameter, String interestingnessType, String givenProperty, LexicalEntryHelper lexicalEntryHelperT, Set<String> stopWords, Integer totalParameter,Integer parameterNumber) throws Exception {
         this.lexicalEntryHelper = lexicalEntryHelperT;
-        this.paramterData(inputDir, outputDir, rulePattern, parameter, interestingnessType, givenProperty, stopWords);
+        this.paramterData(inputDir, outputDir, rulePattern, parameter, interestingnessType, givenProperty, stopWords,totalParameter,parameterNumber);
     }
 
     public void organizeData(String inputDir, String outputDir, String rulePattern, String givenClass) throws Exception {
@@ -71,7 +71,7 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
 
             }
 
-            List<String[]> rows = inputCsvFile.getRowsManual(new File(inputDir + fileName), parameterIndex, 0.0);
+            List<String[]> rows = inputCsvFile.getRowsManual(new File(inputDir + fileName), parameterIndex, 0.1);
             System.out.println("total::" + rawFiles.size() + " index::" + index + " now reading files ::" + fileName + " number of lines::" + rows.size());
 
             if (rows.isEmpty()) {
@@ -124,7 +124,9 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
         }
     }
 
-    public void paramterData(String inputDir, String outputDir, String rulePattern, Parameters givenParameter, String interestingnessType, String givenProperty, Set<String> filterList) throws Exception {
+    public void paramterData(String inputDir, String outputDir, String rulePattern, Parameters givenParameter, 
+            String interestingnessType, String givenProperty, 
+            Set<String> filterList,Integer totalParameter,Integer parameterNumber) throws Exception {
         Integer parameterIndex = 17;
         List<String> rawFiles = FileFolderUtils.getSelectedFiles(inputDir, rulePattern);
         Map<String, List<String[]>> propertyMap = new HashMap<String, List<String[]>>();
@@ -139,6 +141,8 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
         }
 
         Integer index = 0;
+        Integer numberOfFile=0;
+        Integer totalRawFiles=rawFiles.size();
         for (String fileName : rawFiles) {
             if (fileName.contains(".~lock")) {
                 continue;
@@ -156,13 +160,15 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
 
             }
 
-            List<String[]> rows = inputCsvFile.getRowsManual(new File(inputDir + fileName), parameterIndex, 0.03);
+            List<String[]> rows = inputCsvFile.getRowsManual(new File(inputDir + fileName), parameterIndex, 0.6);
 
             if (rows.isEmpty()) {
                 continue;
             }
             List<String[]> result = new ArrayList<String[]>();
             String property =null,parameterStr=givenParameter.getSearchString();
+            
+            numberOfFile=numberOfFile+1;
             
             for (String[] row : rows) {
                 if (row.length > 9) {
@@ -184,20 +190,22 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
                         }
 
                     } catch (Exception ex) {
-                        System.out.println(ex.getMessage());
+                        System.out.println("Error!!!!!:"+ex.getMessage());
                         continue;
                     }
 
                 }
             }
-           this.sortData(rulePattern, parameterStr, property,result,interestingnessType, outputDir, filterList);
+           this.sortData(rulePattern, parameterStr, property,result,interestingnessType, outputDir, filterList,totalRawFiles,numberOfFile,totalParameter,parameterNumber);
         }
         //this.sortData(rulePattern, propertyMap, interestingnessType, outputDir, filterList);
     }
 
    
     
-    public void sortData(String rulePattern, String parameterStr, String property, List<String[]> list, String interestingnessType, String outputDir, Set<String> filterList) throws Exception {
+    public void sortData(String rulePattern, String parameterStr, String property, List<String[]> list, String interestingnessType, String outputDir, 
+            Set<String> filterList,Integer totalRawFiles,Integer numberOfFile,
+            Integer totalParameter,Integer parameterNumber) throws Exception {
         Map<Double, RowValue> sortLexEntry = new TreeMap<Double, RowValue>(Collections.reverseOrder());
 
         for (String[] row : list) {
@@ -218,15 +226,16 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
 
             Parameters parameters = rowValue.getParameters();
 
-            System.out.println(doubleValue + "," + modifiedString + "," + frame + "," + postag + "," + nGram + ","
+            /*System.out.println(doubleValue + "," + modifiedString + "," + frame + "," + postag + "," + nGram + ","
                     + orginalString + "," + className + "," + property + "," + parameterStr + ","
                     + parameters.getSupA() + "," + parameters.getSupB() + "," + parameters.getSupAB() + ","
-                    + parameters.getConfAB() + "," + parameters.getConfBA());
+                    + parameters.getConfAB() + "," + parameters.getConfBA());*/
             resultList.add(new String[]{doubleValue.toString(), modifiedString, frame, postag, nGram,
                 orginalString, className, property, parameterStr,
                 parameters.getSupA().toString(), parameters.getSupB().toString(), parameters.getSupAB().toString(),
                 parameters.getConfAB().toString(), parameters.getConfBA().toString()});
         }
+        System.out.println("totalParameter::"+totalParameter+" parameterNumber::"+parameterNumber+" totalRawFiles::"+totalRawFiles+" numberOfFile::" + numberOfFile+ "  parameterStr::"+parameterStr+"  now property:"+property+" resultList::"+resultList.size());
         outputCsvFile.writeToCSV(new File(outputDir + property + "-raw" + "-" + parameterStr + ".csv"), resultList);
 
     }

@@ -107,7 +107,7 @@ public class FileUtils  {
             BufferedReader buf = new BufferedReader(new InputStreamReader(is));
             String line=null;
             while ((line = buf.readLine()) != null) {
-                System.out.println(line);
+                //System.out.println(line);
                 String id = line.replace(" ", "").strip().stripLeading().stripTrailing().trim();
                 ids.add(id);
             }

@@ -256,7 +256,7 @@ public class LexicalEntryHelper implements FrameConstants {
         reference = reference.toLowerCase().trim().strip().stripLeading().stripTrailing();
         for (String verb : this.inTransitiveVerbs) {
             verb = verb.toLowerCase().trim().strip().stripLeading().stripTrailing();
-            System.out.println(reference+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+verb);
+            //System.out.println(reference+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+verb);
             if (reference.contains(verb)) {
                 return true;
             }
