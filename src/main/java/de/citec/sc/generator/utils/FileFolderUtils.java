@@ -171,28 +171,43 @@ public class FileFolderUtils {
         return frameUris;
     }
     
-    public static LinkedHashMap<String, String> fileToHash(String fileName,String divide) {
+    public static LinkedHashMap<String, List<String>> fileToHash(String fileName, String divide) {
         BufferedReader reader;
         String line = "";
-        LinkedHashMap<String, String> frameUris = new LinkedHashMap<String, String>();
+         Integer index = 0, grammarNumber=1;
+            List<String> lexs = new ArrayList<String>();
+        LinkedHashMap<String, List<String>> frameUris = new LinkedHashMap<String, List<String>>();
         try {
+           
             reader = new BufferedReader(new FileReader(fileName));
             while ((line = reader.readLine()) != null) {
-                //line = reader.readLine();
-                if(line.contains(divide)){
-                    String info[]=line.split(divide);
-                   String key = info[0].strip().stripLeading().stripTrailing().trim();
-                   String value = info[1].strip().stripLeading().stripTrailing().trim();
-                   frameUris.put(line, value);
+                if (line.contains(divide)) {
+                    String info[] = line.split(divide);
+                    String key = info[0].strip().stripLeading().stripTrailing().trim();
+                    lexs.add(key);
+                    if (index >= 40) {
+                        String grammarDir = "multilingual-grammar-generator" + grammarNumber + "/";
+                        frameUris.put(grammarDir, lexs);
+                        index = 0;
+                        lexs = new ArrayList<String>();
+                        grammarNumber=grammarNumber+1;
+                    } else {
+                        index = index + 1;
+                    }
                 }
-               
+
             }
             reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if(!lexs.isEmpty()){
+            String grammarDir = "multilingual-grammar-generator" + grammarNumber + "/";
+            frameUris.put(grammarDir, lexs);
+        }
         return frameUris;
     }
+    
     
     public static Map<String, Set<String>> findParameters(String fileName) {
         BufferedReader reader;

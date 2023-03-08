@@ -301,7 +301,6 @@ public class CsvFile  implements PredictionPatterns {
         Stack<String> stack = new Stack<String>();
         CSVReader reader;
         try {
-            System.out.println(qaldFile.getName());
             reader = new CSVReader(new FileReader(qaldFile));
             rows = reader.readAll();
 

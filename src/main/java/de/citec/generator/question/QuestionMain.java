@@ -54,7 +54,7 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
         //String parameterPattern = "100-10000-4-5-5-5-5";
         String grammarInputDir = "/media/elahi/Elements/A-project/LDK2023/multilingual-grammar-generator/conf/";
         //List<Integer> rankThresolds = Arrays.asList(10, 20, 50, 100, 150, 200, 250, 300, 350, 400,450,500,700,800,1000);
-        List<Integer> rankThresolds = Arrays.asList(10,50,200,400);
+        List<Integer> rankThresolds = Arrays.asList(3);
         String stopWordFile = "src/main/resources/qald-lex/stopword.txt";
         String prepositionFile = "src/main/resources/qald-lex/preposition.txt";
         Set<String> stopWords = getEnglishStopWords(stopWordFile, prepositionFile);
@@ -62,7 +62,7 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
 
 
         String rootDir = FileFolderUtils.getRootDir();
-        List<String> menu = Arrays.asList(new String[]{GENERATE_PARAMETERS,DIVIDE_PARAMETER});
+        List<String> menu = Arrays.asList(new String[]{GENERATE_PARAMETERS,CREATE_LEXICON});
         String inputDir = null, outputDir = null;
 
         try {
@@ -175,13 +175,26 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
                 //retrive the grammar geenration konf file and run kommend when it is lost and paramter.txt exists
                 
                 outputDir = "../resources/en/lexicons/parameter.txt";
-                LinkedHashMap<String, String> lexicon=FileFolderUtils.fileToHash(outputDir, "=");
-                String grammarDir = "/media/elahi/Elements/A-project/LDK2023Test/multilingual-grammar-generator/";
-                LexiconCreation.writeLexiconName(lexicon,grammarDir);
+                String baseDir="/media/elahi/Elements/A-project/LDK2023/";
+                 String header="#!/bin/sh"+"\n";
+                 String kreate_grammarFolder="kreate_grammarFolder.sh";
+                 String str="";
                 
+                LinkedHashMap<String, List<String>> lexicon = FileFolderUtils.fileToHash(outputDir, "=");
+                System.out.println(lexicon.keySet());
                 
-              
+                for (String grammarDirT:lexicon.keySet()) {
+                    String line="cp -r "+"multilingual-grammar-generator"+" "+grammarDirT+"\n";
+                    str+=line;
+                }
+                FileFolderUtils.writeToTextFile(header+str, baseDir+kreate_grammarFolder);
 
+                 //After that run .sh file to kreate all those folders
+                for (String grammarDirT : lexicon.keySet()) {
+                    List<String> lexs= lexicon.get(grammarDirT);
+                    grammarDirT= baseDir+grammarDirT;
+                    LexiconCreation.writeLexiconName(lexs, grammarDirT);
+                }
             }
             /*if (menu.contains(PARAMETER_LEXICON)) {
                 String parameterDir = "../resources/ldk/lexicon/";

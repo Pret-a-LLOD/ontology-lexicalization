@@ -48,11 +48,11 @@ public class SyntacticEntries {
     }
 
     public Integer split(List<String[]> rows, Integer lexIndex) {
-        List<String[]> nounPP = new ArrayList<String[]>();
+        /*List<String[]> nounPP = new ArrayList<String[]>();
         List<String[]> transitive = new ArrayList<String[]>();
         List<String[]> inTransitivePP = new ArrayList<String[]>();
         List<String[]> attibutive = new ArrayList<String[]>();
-        List<String[]> gradable = new ArrayList<String[]>();
+        List<String[]> gradable = new ArrayList<String[]>();*/
         Integer index = 0;
         Set<String>duplicates=new HashSet<String>();
         for (String[] row : rows) {
@@ -110,7 +110,7 @@ public class SyntacticEntries {
            
 
         }
-        if (!nounPP.isEmpty()) {
+        /*if (!nounPP.isEmpty()) {
             this.nounPP.addAll(nounPP);
 
         }
@@ -121,7 +121,7 @@ public class SyntacticEntries {
         if (!inTransitivePP.isEmpty()) {
             this.inTransitivePP.addAll(inTransitivePP);
 
-        }
+        }*/
         return lexIndex;
     }
 
