@@ -9,6 +9,7 @@ import de.citec.generator.config.PredictionPatterns;
 import de.citec.sc.generator.analyzer.TextAnalyzer;
 import de.citec.sc.generator.utils.CsvFile;
 import de.citec.sc.generator.utils.FileFolderUtils;
+import de.citec.sc.generator.utils.PairValues;
 import de.citec.sc.generator.utils.UriFilter;
 import static edu.stanford.nlp.patterns.ConstantsAndVariables.getStopWords;
 import java.io.File;
@@ -41,6 +42,8 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
     private static String CREATE_LEXICON = "CREATE_LEXICON";
     private static String PARAMETER_LEXICON = "PARAMETER_LEXICON";
     private static String GENERATE_PARAMETERS = "FIND_PARAMETERS";
+    private static String ANALYZE_PARAMETERS = "ANALYZE_PARAMETERS";
+    private static String DIVIDE_PARAMETER = "DIVIDE_PARAMETER";
 
     public static void main(String[] args) {
         String domainRangeFileName = "src/main/resources/qald-lex/DomainAndRange.txt";
@@ -51,7 +54,7 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
         //String parameterPattern = "100-10000-4-5-5-5-5";
         String grammarInputDir = "/media/elahi/Elements/A-project/LDK2023/multilingual-grammar-generator/conf/";
         //List<Integer> rankThresolds = Arrays.asList(10, 20, 50, 100, 150, 200, 250, 300, 350, 400,450,500,700,800,1000);
-        List<Integer> rankThresolds = Arrays.asList(10, 50, 200,500);
+        List<Integer> rankThresolds = Arrays.asList(10,50,200,400);
         String stopWordFile = "src/main/resources/qald-lex/stopword.txt";
         String prepositionFile = "src/main/resources/qald-lex/preposition.txt";
         Set<String> stopWords = getEnglishStopWords(stopWordFile, prepositionFile);
@@ -59,7 +62,7 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
 
 
         String rootDir = FileFolderUtils.getRootDir();
-        List<String> menu = Arrays.asList(new String[]{GENERATE_PARAMETERS,FIND_PARAMETER_LEXICON});
+        List<String> menu = Arrays.asList(new String[]{GENERATE_PARAMETERS,DIVIDE_PARAMETER});
         String inputDir = null, outputDir = null;
 
         try {
@@ -67,6 +70,14 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
             Integer limit = 1000;
             
             LexicalEntryHelper lexicalEntryHelper = new LexicalEntryHelper(domainRangeFileName);
+            /*if (menu.contains(ANALYZE_PARAMETERS)) {
+                System.out.println(ANALYZE_PARAMETERS);
+                String fileName="src/main/resources/a-nounPP.txt";
+                Map<String, List<PairValues>> nounPpParameters=FileFolderUtils.filetoTabDelimiatedResult(fileName);
+                for(String key:nounPpParameters.keySet()){
+                    nounPpParameters.get(key);
+                }
+            }*/
             if (menu.contains(GENERATE_PARAMETERS)) {
                 String parameterFile = "src/main/resources/parameter.txt";
                 String thresoldFile = "src/main/resources/thresold.txt";
@@ -133,11 +144,10 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
                 
                 for (String rulePattern : rulePatternsParmeters.keySet()) {
                     List<Parameters> paramters = rulePatternsParmeters.get(rulePattern);
+                    Integer parameterNumber=0;Integer totalParameter=paramters.size();
                     for (Parameters paramter : paramters) {
                         String parameterPattern=paramter.getSearchString();
-                        LexiconCreation lexiconCreation = new LexiconCreation(inputDir, "-raw", rankThresolds, limit, lexicalEntryHelper, outputDir,parameterPattern);
-                        // save lexicon names
-                        //lexiconCreation.writeLexiconName(outputDir,finalDir,index);
+                        LexiconCreation lexiconCreation = new LexiconCreation(inputDir, "-raw", rankThresolds, limit, lexicalEntryHelper, outputDir,parameterPattern,totalParameter,parameterNumber);
                        index=index+1;
                     }
                 }
@@ -145,9 +155,33 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
                 //System.out.println(LexiconCreation.getLexiconNames());
                 inputDir = "/media/elahi/Elements/A-project/LDK2023/resources/ldk/lexicon/";
                 outputDir = "/media/elahi/Elements/A-project/LDK2023/resources/en/lexicons/";
-                String confDir = "/media/elahi/Elements/A-project/LDK2023/multilingual-grammar-generator/";
+                String grammarDir = "/media/elahi/Elements/A-project/LDK2023/multilingual-grammar-generator/";
                
-               LexiconCreation.writeLexiconName(inputDir, outputDir,confDir);
+               LexiconCreation.writeLexiconName(inputDir, outputDir,grammarDir);
+            }
+             if (menu.contains(DIVIDE_PARAMETER)) {
+                
+                //when paramter file does not exist.
+                /*for (String rulePattern : rulePatternsParmeters.keySet()) {
+                    List<Parameters> paramters = rulePatternsParmeters.get(rulePattern);
+                    for (Parameters paramter : paramters) {
+                        String parameterPattern = paramter.getSearchString();
+                        for (Integer rankThresold : rankThresolds) {
+                            String parameterString = parameterPattern + "-" + rankThresold;
+                            lexiNames.add(parameterString);
+                        }
+                    }
+                }*/
+                //retrive the grammar geenration konf file and run kommend when it is lost and paramter.txt exists
+                
+                outputDir = "../resources/en/lexicons/parameter.txt";
+                LinkedHashMap<String, String> lexicon=FileFolderUtils.fileToHash(outputDir, "=");
+                String grammarDir = "/media/elahi/Elements/A-project/LDK2023Test/multilingual-grammar-generator/";
+                LexiconCreation.writeLexiconName(lexicon,grammarDir);
+                
+                
+              
+
             }
             /*if (menu.contains(PARAMETER_LEXICON)) {
                 String parameterDir = "../resources/ldk/lexicon/";

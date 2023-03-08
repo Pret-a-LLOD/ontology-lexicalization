@@ -41,7 +41,7 @@ public class NounPPFrameBuilder implements FrameConstants, TextAnalyzer {
             PairValues pairValuesT = domainAndRanges.get(0);
             String domain = pairValuesT.getKey();
             String range = pairValuesT.getValue();
-            System.out.println(linguisticPattern + " " + reference + " " + domain + " " + range + " " + preposition);
+            //System.out.println(linguisticPattern + " " + reference + " " + domain + " " + range + " " + preposition);
              this.flag=true;
             buildRow(id, linguisticPattern, reference, domain, range, preposition, value, frame, nGram);
         }

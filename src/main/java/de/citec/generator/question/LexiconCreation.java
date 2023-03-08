@@ -12,6 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -28,39 +29,67 @@ public class LexiconCreation implements InduceConstants {
     private static List<String> lexiconNames = new ArrayList<String>();
 
 
-    public LexiconCreation(String inputDir, String pattern, List<Integer> rankThresolds, Integer limit, LexicalEntryHelper lexicalEntryHelperT, String outputDir,String parameterPattern) throws Exception {
+    public LexiconCreation(String inputDir, String pattern, List<Integer> rankThresolds, Integer limit, LexicalEntryHelper lexicalEntryHelperT
+            , String outputDir,String parameterPattern,
+            Integer totalParameter,Integer parameterNumber) throws Exception {
         this.lexicalEntryHelper = lexicalEntryHelperT;
         List<String> files = FileFolderUtils.getSelectedFiles(inputDir, pattern);
 
            Integer lexIndex=0; 
           for (Integer rankThresold : rankThresolds) {
             SyntacticEntries syntacticEntries = new SyntacticEntries(lexicalEntryHelper, parameterPattern,rankThresold);
-             System.out.println(parameterPattern+" "+rankThresold);
+             //System.out.println(parameterPattern+" "+rankThresold);
             for (String fileName : files) {
-               
+                
+                /*if(!fileName.contains("dbo:capital"))
+                    continue;
+                */
                 if (fileName.contains("#")) {
                     continue;
                 }
-                System.out.println(fileName);
+                //System.out.println(fileName);
                 CsvFile inputCsvFile = new CsvFile();
                 //String reference = this.lexicalEntryHelper.makeReference(fileName);
                 List<String[]> rows = inputCsvFile.getRows(new File(inputDir + fileName));
                 lexIndex=syntacticEntries.split(rows,lexIndex);
+                lexIndex=lexIndex+1;
             }
+            System.out.println("totalParameter::"+totalParameter+" parameterNumber::"+parameterNumber+" parameterPattern::"+parameterPattern+" rankThresolds::"+rankThresolds);
             syntacticEntries.write(outputDir,parameterPattern,rankThresold);
             this.lexiconNames.add(syntacticEntries.getParameterString());
         }
     }
 
-    public static void writeLexiconName(String inputDir, String outputDir,String grammarDir) {
+     public static void writeLexiconName(LinkedHashMap<String,String> lexiconNames,String grammarDir) {
+        String header="#!/bin/sh"+"\n";
+        String run_lexicon="run-lexicon.sh";
+        String run="";
+       
+        for (String lexiconT : lexiconNames.keySet()) {
+            String fileName ="conf/"+"inputConf_"+lexiconT+"_en"+".json";
+            InputCofiguration inputCofiguration = new InputCofiguration(lexiconT);
+            JsonWriter.writeClassToJson(inputCofiguration, grammarDir+fileName);
+            String runcom="java -jar target/QuestionGrammarGenerator.jar "+fileName+" dataset/dbpedia_en.json"+"\n";
+            run+=runcom;
+        }
+       
+        //sekond run this
+        //"/media/elahi/Elements/A-project/LDK2023/multilingual-grammar-generator/";
+        FileFolderUtils.writeToTextFile(header+run, grammarDir+run_lexicon);
+    
+    }
+    
+     public static void writeLexiconName(String inputDir, String outputDir,String grammarDir) {
         String header="#!/bin/sh"+"\n";
         String str="";
         String bashFileName="lexiconMove.sh";
         String run_lexicon="run-lexicon.sh";
+        String paramterFile="parameter.txt";
         Integer index=1;
         String lexicon="lexicon_";
         
         String run="";
+        String parameterAll="";
        
         Map<Integer,String> lexicons=new HashMap<Integer,String>();
         for (String lexiconName : lexiconNames) {
@@ -81,10 +110,16 @@ public class LexiconCreation implements InduceConstants {
             JsonWriter.writeClassToJson(inputCofiguration, grammarDir+fileName);
             String runcom="java -jar target/QuestionGrammarGenerator.jar "+fileName+" dataset/dbpedia_en.json"+"\n";
             run+=runcom;
+            String parameter=lexiconT+"="+lexiconName+"\n";
+            parameterAll+=parameter;
         }
-        
+        //First run this
+        //outputDir = "/media/elahi/Elements/A-project/LDK2023/resources/en/lexicons/";
         FileFolderUtils.writeToTextFile(header+str, outputDir+bashFileName);
+        //sekond run this
+        //"/media/elahi/Elements/A-project/LDK2023/multilingual-grammar-generator/";
         FileFolderUtils.writeToTextFile(header+run, grammarDir+run_lexicon);
+        FileFolderUtils.writeToTextFile(parameterAll, outputDir+paramterFile);
     
     }
     

@@ -160,6 +160,7 @@ dbo:deathCause	dbo:Person	owl:Thing
 dbo:birthYear	dbo:Person	xsd:date
 dbo:birthPlace	dbo:Person	dbo:Place
 dbo:birthPlace	dbo:Person	dbo:City
+dbo:birthPlace	dbo:Person	dbo:Country
 dbo:dissolutionDate	dbo:Place	xsd:date
 dbo:programmingLanguage	dbo:Work	dbo:Language
 dbo:completionDate	dbo:Ship	xsd:date

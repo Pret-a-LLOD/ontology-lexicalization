@@ -1,0 +1,90 @@
+height_of	height	dbo:height
+cost-of	cost	dbo:budget
+Creator-of	creator	dbo:creator
+population-of	population	dbo:populationTotal
+causeOfDeath_of	cause of death	dbo:deathCause
+birthYear_of	birth year	dbo:birthYear
+ingredient_of	ingredient	dbo:ingredient
+dissolutionDate_of	dissolution date	dbo:dissolutionDate
+firstSeason_of	first season	dbo:seasonNumber
+number_of	number of locations	dbo:numberOfLocations
+DeathDate-of	death date	dbo:deathDate
+recordLabel_of	record label	dbo:RecordLabel
+completionDate-of	completion date	dbo:completionDate
+numberOfPages-of	number of pages	dbo:numberOfPages
+timeZone-of	time zone	dbo:timeZone
+areaCode_of	area code	dbo:areaCode
+nickname_of	nickname	dbp:nickname
+party-of	party	dbo:party
+President-of	president	dbo:office
+elevation-of	elevation	dbo:elevation
+foundingYear_of	founding year	dbo:foundingYear
+restingPlace-of	resting place	dbo:restingPlace
+artisticMovement_of	artistic movement	dbo:movement
+first_to_climb	first to climb	dbo:firstAscentPerson
+music_by	music	dbo:musicBy
+wife-of	wife	dbo:spouse
+host_of	host	dbo:presenter
+largest_country_in	largest country	dbo:areaTotal
+mayor_of_1	mayor	dbo:mayor
+mayor_of_2	mayor	dbo:leaderName
+coach_of	coach	dbo:coach
+birthPlace_of	birth place	dbo:birthPlace
+Location-of_1	location	dbo:location
+Location-of_2	location	dbo:locatedInArea
+officialLanguage-of	official language	dbo:officialLanguage
+ingredient_of	ingredient	dbo:ingredient
+largestCity_of	largest city	dbo:largestCity
+programmingLanguage_of	programming language	dbo:programmingLanguage
+editor_of	editor	dbo:editor
+capital-of	capital	dbo:capital
+child_of	child	dbo:child
+nationality_of	nationality	dbo:nationality
+AlterEgo-of	alter ego	dbp:alterEgo
+formOfGovernment-of	form of government	dbo:governmentType
+wine_region_of	wine region	dbo:wineRegion
+loyalty	loyalty	dbo:connotation
+Leader-of-1	leader	dbo:leader
+vice_president_of	vice president	dbo:vicePresident
+musicComposer-of	music composer	dbo:musicComposer
+currency_of	currency	dbo:currency
+developer_of	developer	dbo:developer
+deathPlace	death place	dbo:deathPlace
+father_of	father	dbp:father
+producer-of	producer	dbo:producer
+foundationPlace_of	foundation place	dbo:foundationPlace
+influencer_of	influencer	dbo:influenced
+doctoralSupervisor_of	doctoral supervisor	dbo:doctoralAdvisor
+residence-of	residence	dbo:residence
+currency_of	currency	dbo:currency
+son_of	son	dbo:child
+headquarter_of	headquarter	dbo:headquarter
+Founder-of_1	founder	dbo:founder
+Founder-of_2	founder	dbo:foundedBy
+autobiography-of	autobiography	dbo:literaryGenre
+parent-of	parent	dbo:parent
+artisticMovement_of	artistic movement	dbo:movement
+author_of	author	dbo:author
+foundation_series_of	foundation series	dbo:series
+city-of	city	dbo:isPartOf
+founder_of	founder	dbo:foundedBy
+wine_production-of	wine production	dbo:wineProduced
+residence_of	residence	dbo:residence
+resting_place_of	resting place	dbo:restingPlace
+Composer-of	music composer	dbo:composer
+timeZone-of	time zone	dbo:timeZone
+Borough-of	borough	dbo:governmentType
+membership-of	member	dbo:bandMember
+Book-in	book	dbo:series
+book_by	book	dbo:author
+king-of	king	dbo:leader
+successor_of	successor	dbo:successor
+game_by	game	dbo:publisher
+city-in	city	dbo:isPartOf
+headquarter_of	headquarter	dbo:location
+party-of	party	dbo:party
+son_of	son	dbo:child
+daughter_of	daughter	dbo:child
+coach_of	coach	dbo:coach
+team_of	team	dbo:league
+home_stadium_of	home stadium	dbo:ground

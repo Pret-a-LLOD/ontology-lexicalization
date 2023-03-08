@@ -160,7 +160,7 @@ public class ProcessData implements PredictionPatterns, InduceConstants {
 
             }
 
-            List<String[]> rows = inputCsvFile.getRowsManual(new File(inputDir + fileName), parameterIndex, 0.6);
+            List<String[]> rows = inputCsvFile.getRowsManual(new File(inputDir + fileName), parameterIndex, 0.0);
 
             if (rows.isEmpty()) {
                 continue;

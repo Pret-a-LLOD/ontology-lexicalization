@@ -1,0 +1,40 @@
+Develop_1	develop	dbo:product
+Develop_2	develop	dbo:developer
+Develop_3	develop	dbo:product
+paint	paint	dbp:artist
+exhibit	exhibit	dbo:museum
+discover	discover	dbo:discoverer
+cross	cross	dbo:crosses
+win	win	dbo:award
+create_1	create	dbo:creator
+create_2	create	dbo:author
+starr_in_1	starring in	dbo:starring
+starr_in_2	starring in	dbo:starring
+play_1	play	dbp:portrayer
+play_2	play	dbo:portrayer
+Play_3	play	dbo:starring
+publish_1	publish	dbo:publisher
+publish_2	publish	dbo:publisher
+Publish_3	publish	dbo:publisher
+direct_1	direct	dbo:director
+serve_1	serve	dbo:targetAirport
+design_1	design	dbo:architect
+design_2	design	dbo:designer
+speak_1	speak	dbo:language
+live_1	live	dbo:ethnicGroup
+cost	cost	dbo:budget
+write_1	write	dbo:writer
+write_2	write	dbo:composer
+write_3	write	dbo:author
+express	express	dbo:connotation
+call_1	call	dbp:nickname
+found_1	found	dbo:foundedBy
+found_2	found	dbo:foundedBy
+Develop_3	develop	dbo:developer
+Develop_1	develop	dbo:product
+inspire	inspire	dbo:influenced
+marry	marry	dbo:spouse
+produce	produce	dbo:product
+create_1	create	dbo:author
+compose_for_1	compose the music for	dbo:musicComposer
+Compose_for_2	compose the soundtrack for	dbo:musicComposer

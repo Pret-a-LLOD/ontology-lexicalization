@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -170,6 +171,29 @@ public class FileFolderUtils {
         return frameUris;
     }
     
+    public static LinkedHashMap<String, String> fileToHash(String fileName,String divide) {
+        BufferedReader reader;
+        String line = "";
+        LinkedHashMap<String, String> frameUris = new LinkedHashMap<String, String>();
+        try {
+            reader = new BufferedReader(new FileReader(fileName));
+            while ((line = reader.readLine()) != null) {
+                //line = reader.readLine();
+                if(line.contains(divide)){
+                    String info[]=line.split(divide);
+                   String key = info[0].strip().stripLeading().stripTrailing().trim();
+                   String value = info[1].strip().stripLeading().stripTrailing().trim();
+                   frameUris.put(line, value);
+                }
+               
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return frameUris;
+    }
+    
     public static Map<String, Set<String>> findParameters(String fileName) {
         BufferedReader reader;
         String line = "";
@@ -239,6 +263,8 @@ public class FileFolderUtils {
         }
         return map;
     }
+    
+    
 
     public static void deleteFiles(String[] dirs) {
         for (String dir : dirs) {
@@ -256,5 +282,82 @@ public class FileFolderUtils {
         }
 
     }
+    
+    public static void main(String[] args) {
+        String fileName = "src/main/resources/a-nounPP.txt";
+        String outputFile = null;
+        Map<String, String> map = new TreeMap<String, String>();
+        map.put("NounPPFrame", "src/main/resources/a-nounPP.txt");
+        map.put("TransitiveFrame", "src/main/resources/a-transitive.txt");
+        map.put("InTransitivePPFrame", "src/main/resources/a-intransitivePP.txt");
+        String str = "";
+        String header = "#!/bin/sh" + "\n";
+        /*for (String key : map.keySet()) {
+            fileName = map.get(key);
+            List<String[]> nounPpParameters = FileFolderUtils.filetoTabDelimiatedStringArray(fileName, key);
+            for (String[] row : nounPpParameters) {
+                String grepKommend = "grep '" + row[1] + "' " + row[2] + "*.csv >>" + "lexEntries/" + row[0] + "-" +row[2]+ "-"+key + ".csv" + "\n";
+                str += grepKommend;
+            }
+            outputFile = "/media/elahi/Elements/A-project/LDK2023/resources/ldk/propertyQaldLex/" + key + ".sh";
+            stringToFiles(header + str, outputFile);
+        }
 
+        System.out.println(header + str);
+        System.out.println(outputFile);*/
+        
+         for (String key : map.keySet()) {
+            fileName = map.get(key);
+            List<String[]> nounPpParameters = FileFolderUtils.filetoTabDelimiatedStringArray(fileName, key);
+            for (String[] row : nounPpParameters) {
+                String grepKommend = "grep '" + row[1] + "' " + "*.csv >>" + "lexEntries/" + row[0] + "-" +row[2]+ "-"+key + ".csv" + "\n";
+                str += grepKommend;
+            }
+            outputFile = "/media/elahi/Elements/A-project/LDK2023/resources/ldk/lexicon_last_4/" + key + ".sh";
+            stringToFiles(header + str, outputFile);
+        }
+
+        System.out.println(header + str);
+        System.out.println(outputFile);
+
+    }
+    
+    public static List<String[]> filetoTabDelimiatedStringArray(String fileName, String type) {
+        BufferedReader reader;
+        String line = "";
+        List<String[]> rows = new ArrayList<String[]>();
+        try {
+            reader = new BufferedReader(new FileReader(fileName));
+            while ((line = reader.readLine()) != null) {
+                line = line.strip().stripLeading().stripTrailing().trim();
+                if (line.contains("\t")) {
+                    String[] info = line.split("\t");
+
+                    if (info.length > 2) {
+                        System.out.println(line+" "+info.length+" "+type);
+
+                        if (type.contains("NounPPFrame")) {
+                            rows.add(new String[]{info[0], info[1], info[2]});
+                        }
+                        else if (type.contains("TransitiveFrame")) {
+                            System.out.println(line);
+                            rows.add(new String[]{info[0], info[1], info[2]});
+                        }
+                         else if (type.contains("InTransitivePPFrame")) {
+                            System.out.println(line);
+                            rows.add(new String[]{info[0], info[1], info[2]});
+                        }
+                    }
+
+                }
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rows;
+    }
+    
+    
+   
 }
