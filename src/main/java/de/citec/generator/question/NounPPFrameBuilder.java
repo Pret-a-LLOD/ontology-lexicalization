@@ -16,15 +16,20 @@ import java.util.List;
 public class NounPPFrameBuilder implements FrameConstants, TextAnalyzer {
 
     private Integer length = 15;
-    private String[] row = new String[length];
+    private String[] objRow = new String[length];
+    private String[] subjRow = new String[length];
     private Integer senseIndex = 1;
+    private String idObj=null;
+    private String idSubj=null;
     private static String[] header = new String[]{"lemon", "partOfSpeech", "writtenForm(singular)", "writtenForm(plural)", "preposition", "SyntacticFrame", "copulativeArg", "prepositionalAdjunct", "sense", "reference", "domain", "range", "value", "filename", "gram"};
     private static String dir="nouns/";
     private Boolean flag = false;
     
-    public NounPPFrameBuilder(String reference, String linguisticPattern, String value, String frame, String nGram, Integer index, LexicalEntryHelper lexicalEntryHelper) {
+    public NounPPFrameBuilder(String reference, String linguisticPattern, String value, String frame, String nGram, Integer lexIndex,String [] parameterValues,LexicalEntryHelper lexicalEntryHelper) {
         String preposition = null;
-        String id = lexicalEntryHelper.makeLinguistc(linguisticPattern, index) ;
+        this.idObj = lexicalEntryHelper.makeReference(lexIndex+1);
+        this.idSubj=lexicalEntryHelper.makeReference(lexIndex+2);
+
         /*//if (nGram.contains("2-gram")) {
             PairValues pairValues = lexicalEntryHelper.findPreposition(linguisticPattern, lexicalEntryHelper.getPrepositions());
             if (pairValues.getFlag()) {
@@ -43,32 +48,58 @@ public class NounPPFrameBuilder implements FrameConstants, TextAnalyzer {
             String range = pairValuesT.getValue();
             //System.out.println(linguisticPattern + " " + reference + " " + domain + " " + range + " " + preposition);
              this.flag=true;
-            buildRow(id, linguisticPattern, reference, domain, range, preposition, value, frame, nGram);
+            buildRow(linguisticPattern, reference, domain, range, preposition, value, frame, nGram,parameterValues);
         }
     }
 
-    private void buildRow(String id, String linguisticPattern, String reference, String domainR, String rangeR, String preposition, String value, String frame, String nGram) {
-        row[0] = id;
-        row[1] = noun;
-        row[2] = linguisticPattern;
-        row[3] = linguisticPattern;
-        row[4] = preposition;
-        row[5] = frame;
-        row[6] = range;
-        row[7] = domain;
-        row[8] = senseIndex.toString();
-        //rowNoun[9] = fileName.replace("raw-", "").replace(".csv", "").replace("_", ":");
-        row[9] = reference;
-        row[10] = domainR;
-        row[11] = rangeR;
-        row[12] = value;
-        row[13] = reference;
-        row[14] = nGram;
+    private void buildRow(String linguisticPattern, String reference, String domainR, String rangeR, String preposition, String value, String frame, String nGram,String []parameterValues) {         
+        objRow[0] = idObj;
+        objRow[1] = noun;
+        objRow[2] = linguisticPattern;
+        objRow[3] = linguisticPattern;
+        objRow[4] = preposition;
+        objRow[5] = frame;
+        objRow[6] = range;
+        objRow[7] = domain;
+        objRow[8] = senseIndex.toString();
+        objRow[9] = reference;
+        objRow[10] = domainR;
+        objRow[11] = rangeR;
+        objRow[12] = value;
+        objRow[13] = reference;
+        objRow[14] = nGram;     
+        
+        subjRow[0] = idSubj;
+        subjRow[1] = noun;
+        subjRow[2] = linguisticPattern;
+        subjRow[3] = linguisticPattern;
+        subjRow[4] = preposition;
+        subjRow[5] = frame;
+        subjRow[6] = domain;
+        subjRow[7] = range;
+        subjRow[8] = senseIndex.toString();
+        subjRow[9] = reference;
+        subjRow[10] = domainR;
+        subjRow[11] = rangeR;
+        subjRow[12] = value;
+        subjRow[13] = reference;
+        subjRow[14] = nGram;
+        /*subjRow[17] = parameterValues[0];
+        subjRow[18] = parameterValues[1];
+        subjRow[19] = parameterValues[2];
+        subjRow[20] = parameterValues[3];
+        subjRow[21] = parameterValues[4];*/
     }
 
-    public String[] getRow() {
-        return row;
+    public String[] getObjRow() {
+        return objRow;
     }
+
+    public String[] getSubjRow() {
+        return subjRow;
+    }
+
+   
 
     public static String[] getHeader() {
         return header;

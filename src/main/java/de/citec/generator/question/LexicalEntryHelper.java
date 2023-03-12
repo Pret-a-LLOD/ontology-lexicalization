@@ -22,6 +22,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import static de.citec.generator.question.InduceConstants.IntransitivePPFrame;
 import static de.citec.generator.question.InduceConstants.AdjectiveSuperlativeFrame;
+import java.util.HashMap;
 
 /**
  *
@@ -39,7 +40,8 @@ public class LexicalEntryHelper implements FrameConstants {
     private String transitiveVerbsFile = "src/main/resources/qald-lex/TransitiveVerbs.txt";
     private String inTransitiveVerbsFile = "src/main/resources/qald-lex/InTransitiveVerbs.txt";
     private String verbFormsFile = "src/main/resources/qald-lex/verbForms.txt";
-    private VerbForms verbForms=null;
+    private VerbForm verbForms=null;
+    private Map<String,String>  selektedProperties=new HashMap<String,String>();
 
     public LexicalEntryHelper() {
 
@@ -50,7 +52,9 @@ public class LexicalEntryHelper implements FrameConstants {
         getEnglishStopWords(stopWordFile, prepositionFile);
         this.transitiveVerbs = getTransitiveVerbs(transitiveVerbsFile);
         this.inTransitiveVerbs = getTransitiveVerbs(inTransitiveVerbsFile);
-        this.verbForms=new VerbForms(verbFormsFile);
+        this.verbForms=new VerbForm(verbFormsFile);
+        String selektedPropertiesTestFile = "src/main/resources/qald-lex/tunning.txt";
+        this.selektedProperties=FileFolderUtils.findPropertyTripleQald7(selektedPropertiesTestFile);
         //System.out.println(this.transitiveVerbs.toString());
         //System.out.println(this.inTransitiveVerbs.toString());
 
@@ -93,6 +97,15 @@ public class LexicalEntryHelper implements FrameConstants {
         reference = this.formatPropertyToColon(reference);
         if (referenceDomainRange.containsKey(reference)) {
             return true;
+        }
+        return false;
+    }
+   
+    public Boolean iSelectedProperty(String fileName) {
+        for (String property : this.selektedProperties.keySet()) {
+            if (fileName.contains(property)) {
+                return true;
+            }
         }
         return false;
     }
@@ -269,8 +282,12 @@ public class LexicalEntryHelper implements FrameConstants {
         return verbFormsFile;
     }
 
-    public VerbForms getVerbForms() {
+    public VerbForm getVerbForms() {
         return verbForms;
+    }
+
+    public Map<String, String> getSelektedProperties() {
+        return selektedProperties;
     }
     
     
@@ -326,11 +343,15 @@ public class LexicalEntryHelper implements FrameConstants {
         LexicalEntryHelper lexicalEntryHelper = new LexicalEntryHelper(domainRangeFileName, verbFormsFile);
         String verb = "developed";
         if (lexicalEntryHelper.getVerbForms().getForm().containsKey(verb)) {
-            VerbForms verbForms = lexicalEntryHelper.getVerbForms().getForm().get(verb);
+            VerbForm verbForms = lexicalEntryHelper.getVerbForms().getForm().get(verb);
             System.out.println(verbForms.getForm2ndPerson() + " " + verbForms.getForm3rdPerson()
                     + " " + verbForms.getFormPast() + " " + verbForms.getFormPerfect());
         }
+        String selektedProperties = "src/main/resources/qald-lex/tunning.txt";
+        Map<String,String>  properties=FileFolderUtils.findPropertyTripleQald7(selektedProperties);
+        
 
     }
+
 
 }

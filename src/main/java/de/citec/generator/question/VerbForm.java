@@ -14,16 +14,16 @@ import java.util.Map;
  *
  * @author elahi
  */
-public class VerbForms {
+public class VerbForm {
 
     private String form2ndPerson = null;
     private String form3rdPerson = null;
     private String formPast = null;
     private String formPerfect = null;
 
-    private Map<String, VerbForms> forms = new HashMap<String, VerbForms>();
+    private Map<String, VerbForm> forms = new HashMap<String, VerbForm>();
    
-    public VerbForms(String fileName) {
+    public VerbForm(String fileName) {
         BufferedReader reader;
         String line = "";
         try {
@@ -33,7 +33,7 @@ public class VerbForms {
                 line = line.replace("  ", " ");
                 line = line.replace("\t", " ");
                 String[] lines = line.split(" ");
-                VerbForms verbForms = new VerbForms(lines[0], lines[1], lines[2], lines[3]);
+                VerbForm verbForms = new VerbForm(lines[0], lines[1], lines[2], lines[3]);
                 forms.put(lines[0], verbForms);
                 forms.put(lines[1], verbForms);;
                 forms.put(lines[2], verbForms);;
@@ -46,7 +46,7 @@ public class VerbForms {
 
     }
 
-    public VerbForms(String writtenFormInfinitive_2ndPerson, String writtenForm3rdPerson, String writtenFormPast, String writtenFormPerfect) {
+    public VerbForm(String writtenFormInfinitive_2ndPerson, String writtenForm3rdPerson, String writtenFormPast, String writtenFormPerfect) {
         this.form2ndPerson = writtenFormInfinitive_2ndPerson;
         this.form3rdPerson = writtenForm3rdPerson;
         this.formPast = writtenFormPast;
@@ -70,8 +70,13 @@ public class VerbForms {
         return formPerfect;
     }
 
-    public Map<String, VerbForms> getForm() {
+    public Map<String, VerbForm> getForm() {
         return forms;
+    }
+
+    @Override
+    public String toString() {
+        return "VerbForm{" + "form2ndPerson=" + form2ndPerson + ", form3rdPerson=" + form3rdPerson + ", formPast=" + formPast + ", formPerfect=" + formPerfect + '}';
     }
 
    

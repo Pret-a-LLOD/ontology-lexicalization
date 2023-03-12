@@ -300,44 +300,7 @@ public class FileFolderUtils {
 
     }
     
-    public static void main(String[] args) {
-        String fileName = "src/main/resources/a-nounPP.txt";
-        String outputFile = null;
-        Map<String, String> map = new TreeMap<String, String>();
-        map.put("NounPPFrame", "src/main/resources/a-nounPP.txt");
-        map.put("TransitiveFrame", "src/main/resources/a-transitive.txt");
-        map.put("InTransitivePPFrame", "src/main/resources/a-intransitivePP.txt");
-        String str = "";
-        String header = "#!/bin/sh" + "\n";
-        /*for (String key : map.keySet()) {
-            fileName = map.get(key);
-            List<String[]> nounPpParameters = FileFolderUtils.filetoTabDelimiatedStringArray(fileName, key);
-            for (String[] row : nounPpParameters) {
-                String grepKommend = "grep '" + row[1] + "' " + row[2] + "*.csv >>" + "lexEntries/" + row[0] + "-" +row[2]+ "-"+key + ".csv" + "\n";
-                str += grepKommend;
-            }
-            outputFile = "/media/elahi/Elements/A-project/LDK2023/resources/ldk/propertyQaldLex/" + key + ".sh";
-            stringToFiles(header + str, outputFile);
-        }
-
-        System.out.println(header + str);
-        System.out.println(outputFile);*/
-        
-         for (String key : map.keySet()) {
-            fileName = map.get(key);
-            List<String[]> nounPpParameters = FileFolderUtils.filetoTabDelimiatedStringArray(fileName, key);
-            for (String[] row : nounPpParameters) {
-                String grepKommend = "grep '" + row[1] + "' " + "*.csv >>" + "lexEntries/" + row[0] + "-" +row[2]+ "-"+key + ".csv" + "\n";
-                str += grepKommend;
-            }
-            outputFile = "/media/elahi/Elements/A-project/LDK2023/resources/ldk/lexicon_last_4/" + key + ".sh";
-            stringToFiles(header + str, outputFile);
-        }
-
-        System.out.println(header + str);
-        System.out.println(outputFile);
-
-    }
+  
     
     public static List<String[]> filetoTabDelimiatedStringArray(String fileName, String type) {
         BufferedReader reader;
@@ -375,7 +338,7 @@ public class FileFolderUtils {
         return rows;
     }
     
-    public static Map<String,String> fileSet(String fileName) {
+    public static Map<String,String> findPropertyTripleQald7(String fileName) {
         BufferedReader reader;
         String line = "";
         Map<String,String> map = new HashMap<String,String>();
@@ -424,7 +387,44 @@ public class FileFolderUtils {
         return map;
     }
     
-    
+      public static void main(String[] args) {
+        String fileName = "src/main/resources/a-nounPP.txt";
+        String outputFile = null;
+        Map<String, String> map = new TreeMap<String, String>();
+        map.put("NounPPFrame", "src/main/resources/a-nounPP.txt");
+        map.put("TransitiveFrame", "src/main/resources/a-transitive.txt");
+        map.put("InTransitivePPFrame", "src/main/resources/a-intransitivePP.txt");
+        String str = "";
+        String header = "#!/bin/sh" + "\n";
+        /*for (String key : map.keySet()) {
+            fileName = map.get(key);
+            List<String[]> nounPpParameters = FileFolderUtils.filetoTabDelimiatedStringArray(fileName, key);
+            for (String[] row : nounPpParameters) {
+                String grepKommend = "grep '" + row[1] + "' " + row[2] + "*.csv >>" + "lexEntries/" + row[0] + "-" +row[2]+ "-"+key + ".csv" + "\n";
+                str += grepKommend;
+            }
+            outputFile = "/media/elahi/Elements/A-project/LDK2023/resources/ldk/propertyQaldLex/" + key + ".sh";
+            stringToFiles(header + str, outputFile);
+        }
+
+        System.out.println(header + str);
+        System.out.println(outputFile);*/
+        
+         for (String key : map.keySet()) {
+            fileName = map.get(key);
+            List<String[]> nounPpParameters = FileFolderUtils.filetoTabDelimiatedStringArray(fileName, key);
+            for (String[] row : nounPpParameters) {
+                String grepKommend = "grep '" + row[1] + "' " + "*.csv >>" + "lexEntries/" + row[0] + "-" +row[2]+ "-"+key + ".csv" + "\n";
+                str += grepKommend;
+            }
+            outputFile = "/media/elahi/Elements/A-project/LDK2023/resources/ldk/lexicon_last_4/" + key + ".sh";
+            stringToFiles(header + str, outputFile);
+        }
+
+        System.out.println(header + str);
+        System.out.println(outputFile);
+
+    }
 
 
 }

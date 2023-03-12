@@ -1,0 +1,6 @@
+1. run ontology lexikalization and kreate lexikon
+2. kreate the folder for grammar generation (.sh file),for this go to 
+../resources/en/lexicons and then run lexiconMove.sh
+3. go to grammar generation by going to  multilingual-grammar-generator
+4. run run-lexicon.sh
+5. After that go to Client.Java and run main.java with first similarity and then answer and komparision

@@ -47,23 +47,47 @@ public class SyntacticEntries {
        
 
     }
+    
+     //AB 10: 0.0024330900243309,
+    //BA 11: 0.875,5754,
+    //supA 12: 16,
+    //supB 13: 14,
+    //supAB 14: 0.0024330900243309,
+    //Al 15: 0.0024263431542461,
+    //coher 16: 0.0461405870280119,
+    //cos 17: 0.996872828353023,
+    //IR 18: 0.438716545012165,
+    //Kul 19: 0.875,
+    //Max 20: 
 
     public Integer split(List<String[]> rows, Integer lexIndex) {
-        List<String[]> nounPP = new ArrayList<String[]>();
-        List<String[]> transitive = new ArrayList<String[]>();
-        List<String[]> inTransitivePP = new ArrayList<String[]>();
-        List<String[]> attibutive = new ArrayList<String[]>();
-        List<String[]> gradable = new ArrayList<String[]>();
+        List<String[]> nounPPT = new ArrayList<String[]>();
+        List<String[]> transitiveT = new ArrayList<String[]>();
+        List<String[]> inTransitivePPT = new ArrayList<String[]>();
+        List<String[]> attibutiveT = new ArrayList<String[]>();
+        List<String[]> gradableT = new ArrayList<String[]>();
         Integer index = 0;
         Set<String>duplicates=new HashSet<String>();
         for (String[] row : rows) {
-            lexIndex = lexIndex + 1;
+            lexIndex=lexIndex+2;
             try {
                 String doubleValueString = row[0];
                 String modifiedLinguisticPattern = row[1].toLowerCase();
                 String frame = row[2];
                 String nGram = row[4];
                 String reference = row[7];
+                String[]values=new String[5];
+                
+                if(!modifiedLinguisticPattern.contains("music by")){
+                   continue; 
+                }
+                /*String confAB=row[10];
+                String confBA=row[11];
+                String supA=row[12];
+                String supB=row[13];
+                String supAB=row[14];
+                String[]values=new String[]{confAB,confBA,supA,supB,supAB};*/
+               
                 /*Double doubleValue=Conversion.stringToDouble(doubleValueString);
                 DecimalFormat df = new DecimalFormat("#.00000");
                 String doubleValueStr2=df.format(doubleValue);
@@ -77,19 +101,24 @@ public class SyntacticEntries {
                 
 
                 if (frame.contains(NounPPFrame)) {
-                    NounPPFrameBuilder nounPPFrame = new NounPPFrameBuilder(reference, modifiedLinguisticPattern, doubleValueString, frame, nGram, lexIndex, lexicalEntryHelper);
+                    NounPPFrameBuilder nounPPFrame = new NounPPFrameBuilder(reference, modifiedLinguisticPattern, doubleValueString, frame, nGram, lexIndex, values,lexicalEntryHelper);
                     if (nounPPFrame.getFlag()) {
-                        nounPP.add(nounPPFrame.getRow());
+                        nounPPT.add(nounPPFrame.getObjRow());
+                        nounPPT.add(nounPPFrame.getSubjRow());
+                        System.out.println(nounPPFrame.getObjRow()[0]+" "+nounPPFrame.getObjRow()[2]);
+                         System.out.println(nounPPFrame.getSubjRow()[0]+" "+nounPPFrame.getSubjRow()[2]);
                     }
                 } else if (frame.contains(TransitiveFrame)) {
-                    TransitiveFrameBuiler transitiveFrame = new TransitiveFrameBuiler(reference, modifiedLinguisticPattern, doubleValueString, frame, nGram, lexIndex, lexicalEntryHelper);
+                    TransitiveFrameBuiler transitiveFrame = new TransitiveFrameBuiler(reference, modifiedLinguisticPattern, doubleValueString, frame, nGram, lexIndex, values,lexicalEntryHelper);
                     if (transitiveFrame.getFlag()) {
-                        transitive.add(transitiveFrame.getRow());
+                        transitiveT.add(transitiveFrame.getObjektRow());
+                        transitiveT.add(transitiveFrame.getSubjtRow());
                     }
                 } else if (frame.equals(IntransitivePPFrame)||frame.equals("InTransitivePPFrame")) {
-                    InTransitivePPFrameBuilder inTransitiveFrame = new InTransitivePPFrameBuilder(reference, modifiedLinguisticPattern, doubleValueString, frame, nGram, lexIndex, lexicalEntryHelper);
+                    InTransitivePPFrameBuilder inTransitiveFrame = new InTransitivePPFrameBuilder(reference, modifiedLinguisticPattern, doubleValueString, frame, nGram, lexIndex, values,lexicalEntryHelper);
                     if (inTransitiveFrame.getFlag()) {
-                        inTransitivePP.add(inTransitiveFrame.getRow());
+                        inTransitivePPT.add(inTransitiveFrame.getObjRow());
+                        inTransitivePPT.add(inTransitiveFrame.getSubjRow());
                     }
                 }
                 /*else if (frame.contains(AttibutiveFrame)) {
@@ -108,27 +137,29 @@ public class SyntacticEntries {
            
 
         }
-        if (!nounPP.isEmpty()) {
-            this.nounPP.addAll(nounPP);
+        if (!nounPPT.isEmpty()) {
+            this.nounPP.addAll(nounPPT);
 
         }
-        if (!transitive.isEmpty()) {
-            this.transitive.addAll(transitive);
+        if (!transitiveT.isEmpty()) {
+            this.transitive.addAll(transitiveT);
 
         }
-        if (!inTransitivePP.isEmpty()) {
-            this.inTransitivePP.addAll(inTransitivePP);
+        if (!inTransitivePPT.isEmpty()) {
+            this.inTransitivePP.addAll(inTransitivePPT);
 
         }
+                System.out.println("nounPPT.size()::"+nounPPT.size()+" "+"nounPP.size()::"+nounPP.size());
+
         return lexIndex;
     }
 
     public void write(String outputDir,String parameterPattern, Integer rankThresold) {
         // for unknown reason noun folder it gets wrong
         CsvFile outputCsvFile = new CsvFile();
-        this.nounPP=filterDuplicate(this.nounPP,2);
+        /*this.nounPP=filterDuplicate(this.nounPP,2);
         this.transitive=filterDuplicate(this.transitive,2);
-        this.inTransitivePP=filterDuplicate(this.inTransitivePP,2);
+        this.inTransitivePP=filterDuplicate(this.inTransitivePP,2);*/
         if (this.nounPP.size() > 1) {
             outputCsvFile.writeToCSV(new File(outputDir +parameterPattern+"-"+rankThresold + "-" + NounPPFrame + ".csv"), this.nounPP);
 

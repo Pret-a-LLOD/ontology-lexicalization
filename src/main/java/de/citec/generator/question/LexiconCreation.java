@@ -39,7 +39,11 @@ public class LexiconCreation implements InduceConstants {
         
 
         for (String fileName : files) {
-            if (!fileName.contains("dbo:director")) {
+            
+            /*if(!this.lexicalEntryHelper.iSelectedProperty(fileName)){
+                continue;
+            }*/
+            if (!fileName.contains("dbo:musicBy")) {
                 continue;
             }
             SyntacticEntries syntacticEntries = new SyntacticEntries(lexicalEntryHelper, parameterPattern, rankThresold);
@@ -201,5 +205,7 @@ public class LexiconCreation implements InduceConstants {
         rowNoun[13] = reference;
         return rowNoun;
     }
+
+   
 
 }
