@@ -47,6 +47,8 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
 
     public static void main(String[] args) {
         String domainRangeFileName = "src/main/resources/qald-lex/DomainAndRange.txt";
+        String verbFormsFile = "src/main/resources/qald-lex/verbForms.txt";
+
         Set<String> rulePatterns = new TreeSet<String>(Arrays.asList("rules-predict_l_for_s_given_p-","rules-predict_localized_l_for_s_given_p-"));
 
         //List<String> rulePatterns = new ArrayList<String>(Arrays.asList("rules-predict_l_for_s_given_p-", "rules-predict_localized_l_for_s_given_p-"));
@@ -54,7 +56,8 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
         //String parameterPattern = "100-10000-4-5-5-5-5";
         String grammarInputDir = "/media/elahi/Elements/A-project/LDK2023/multilingual-grammar-generator/conf/";
         //List<Integer> rankThresolds = Arrays.asList(10, 20, 50, 100, 150, 200, 250, 300, 350, 400,450,500,700,800,1000);
-        List<Integer> rankThresolds = Arrays.asList(3);
+        //List<Integer> rankThresolds = Arrays.asList(10,50,100,150, 200, 250);
+        List<Integer> rankThresolds = Arrays.asList(1000);
         String stopWordFile = "src/main/resources/qald-lex/stopword.txt";
         String prepositionFile = "src/main/resources/qald-lex/preposition.txt";
         Set<String> stopWords = getEnglishStopWords(stopWordFile, prepositionFile);
@@ -66,10 +69,9 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
         String inputDir = null, outputDir = null;
 
         try {
-            Integer thresold = 10;
             Integer limit = 1000;
             
-            LexicalEntryHelper lexicalEntryHelper = new LexicalEntryHelper(domainRangeFileName);
+            LexicalEntryHelper lexicalEntryHelper = new LexicalEntryHelper(domainRangeFileName,verbFormsFile);
             /*if (menu.contains(ANALYZE_PARAMETERS)) {
                 System.out.println(ANALYZE_PARAMETERS);
                 String fileName="src/main/resources/a-nounPP.txt";
@@ -91,6 +93,16 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
                     }
                 }*/
 
+                for (String rulePattern : rulePatterns) {
+                    List<Parameters> rows = new ArrayList<Parameters>();
+                    for (String parameterString : mergeParameters) {
+                        Parameters parametersValue = new Parameters(rulePattern,parameterString, PredictionPatterns.Cosine,rankThresolds);
+                        rows.add(parametersValue);
+                    }
+                    System.out.println("rulePattern::"+rulePattern+" size:"+rows.size());
+                    rulePatternsParmeters.put(rulePattern, rows);
+                }
+                
                 for (String rulePattern : rulePatterns) {
                     List<Parameters> rows = new ArrayList<Parameters>();
                     for (String parameterString : mergeParameters) {
@@ -147,7 +159,10 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
                     Integer parameterNumber=0;Integer totalParameter=paramters.size();
                     for (Parameters paramter : paramters) {
                         String parameterPattern=paramter.getSearchString();
-                        LexiconCreation lexiconCreation = new LexiconCreation(inputDir, "-raw", rankThresolds, limit, lexicalEntryHelper, outputDir,parameterPattern,totalParameter,parameterNumber);
+                        for(Integer rankThresold:rankThresolds){
+                         LexiconCreation lexiconCreation = new LexiconCreation(inputDir, "-raw", rankThresold, limit, lexicalEntryHelper, outputDir,parameterPattern,totalParameter,parameterNumber);
+   
+                        }
                        index=index+1;
                     }
                 }
@@ -161,18 +176,22 @@ public class QuestionMain implements PredictionPatterns, InduceConstants {
             }
              if (menu.contains(DIVIDE_PARAMETER)) {
                 
-                //when paramter file does not exist.
-                /*for (String rulePattern : rulePatternsParmeters.keySet()) {
+               Integer index=1;
+                String strT="";
+                for (String rulePattern : rulePatternsParmeters.keySet()) {
                     List<Parameters> paramters = rulePatternsParmeters.get(rulePattern);
                     for (Parameters paramter : paramters) {
                         String parameterPattern = paramter.getSearchString();
                         for (Integer rankThresold : rankThresolds) {
                             String parameterString = parameterPattern + "-" + rankThresold;
-                            lexiNames.add(parameterString);
+                            String line="lexicon_"+index+"="+parameterString+"\n";
+                            index=index+1;
+                            strT+=line;
                         }
                     }
-                }*/
-                //retrive the grammar geenration konf file and run kommend when it is lost and paramter.txt exists
+                }
+                FileFolderUtils.stringToFiles(strT, "/media/elahi/Elements/A-project/LDK2023/resources/en/lexicons/parameter.txt");
+                
                 
                 outputDir = "../resources/en/lexicons/parameter.txt";
                 String baseDir="/media/elahi/Elements/A-project/LDK2023/";

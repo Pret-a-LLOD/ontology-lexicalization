@@ -540,6 +540,40 @@ public class CsvFile  implements PredictionPatterns {
 
     }
 
+    public List<String[]> getRowsManual(File qaldFile) throws IOException {
+        List<String[]> csvLines = new ArrayList<String[]>();
+        FileInputStream inputStream = null;
+        Scanner sc = null;
+        try {
+            inputStream = new FileInputStream(qaldFile);
+            sc = new Scanner(inputStream, "UTF-8");
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                List<String> list = Arrays.asList(line.split(","));
+                try {
+                    //System.out.println(" line::"+line+ " "+list.get(index));
 
+                    String[] row = line.split(",");
+                    csvLines.add(row);
+
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    continue;
+                }
+            }
+            // note that Scanner suppresses exceptions
+            if (sc.ioException() != null) {
+                throw sc.ioException();
+            }
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            if (sc != null) {
+                sc.close();
+            }
+        }
+        return csvLines;
+    }
 
 }

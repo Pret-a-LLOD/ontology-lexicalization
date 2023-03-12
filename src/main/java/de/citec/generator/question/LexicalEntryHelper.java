@@ -5,8 +5,6 @@
  */
 package de.citec.generator.question;
 
-import static de.citec.generator.question.InduceConstants.GradableFrame;
-import static de.citec.generator.question.InduceConstants.InTransitivePPFrame;
 import static de.citec.generator.question.InduceConstants.NounPPFrame;
 import static de.citec.generator.question.InduceConstants.TransitiveFrame;
 import de.citec.sc.generator.analyzer.PosAnalyzer;
@@ -22,6 +20,8 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import static de.citec.generator.question.InduceConstants.IntransitivePPFrame;
+import static de.citec.generator.question.InduceConstants.AdjectiveSuperlativeFrame;
 
 /**
  *
@@ -38,16 +38,19 @@ public class LexicalEntryHelper implements FrameConstants {
     private String prepositionFile = "src/main/resources/qald-lex/preposition.txt";
     private String transitiveVerbsFile = "src/main/resources/qald-lex/TransitiveVerbs.txt";
     private String inTransitiveVerbsFile = "src/main/resources/qald-lex/InTransitiveVerbs.txt";
+    private String verbFormsFile = "src/main/resources/qald-lex/verbForms.txt";
+    private VerbForms verbForms=null;
 
     public LexicalEntryHelper() {
 
     }
 
-    public LexicalEntryHelper(String fileName) {
+    public LexicalEntryHelper(String fileName,String verbFormsFile) {
         referenceDomainRange = FileFolderUtils.filetoTabDelimiatedResult(fileName);
         getEnglishStopWords(stopWordFile, prepositionFile);
         this.transitiveVerbs = getTransitiveVerbs(transitiveVerbsFile);
         this.inTransitiveVerbs = getTransitiveVerbs(inTransitiveVerbsFile);
+        this.verbForms=new VerbForms(verbFormsFile);
         //System.out.println(this.transitiveVerbs.toString());
         //System.out.println(this.inTransitiveVerbs.toString());
 
@@ -160,37 +163,6 @@ public class LexicalEntryHelper implements FrameConstants {
         return prepositionFile;
     }
 
-    public static void main(String[] args) {
-        String domainRangeFileName = "src/main/resources/qald-lex/DomainAndRange.txt";
-        LexicalEntryHelper lexicalEntryHelper = new LexicalEntryHelper(domainRangeFileName);
-        //Map<String, List<PairValues>> referenceDomainRange = new TreeMap<String, List<PairValues>>();
-        //referenceDomainRange = FileFolderUtils.fileToMap(domainRangeFileName);
-        System.out.println(lexicalEntryHelper.referenceDomainRange);
-        String nGram = "2-gram";
-        String linguisticPattern = "book by";
-        String preposition = null;
-        if (nGram.contains("2-gram")) {
-            PairValues pairValues = lexicalEntryHelper.findPreposition(linguisticPattern, lexicalEntryHelper.getPrepositions());
-            if (pairValues.getFlag()) {
-
-                preposition = pairValues.getKey();
-            }
-            System.out.println(" preposition::" + preposition);
-
-            System.out.println(" lexicalEntryHelper.referenceDomainRange::" + lexicalEntryHelper.referenceDomainRange);
-            List<PairValues> domainAndRanges = lexicalEntryHelper.findDomainRange("dbo_areaCode");
-            System.out.println("domainAndRanges::" + domainAndRanges);
-            if (!domainAndRanges.isEmpty()) {
-                pairValues = domainAndRanges.get(0);
-                String domain = pairValues.getKey();
-                String range = pairValues.getValue();
-                System.out.println(domain + " " + range);
-            }
-
-        }
-
-    }
-
     private Set<String> getTransitiveVerbs(String transitiveVerbsFile) {
         String str = FileUtils.fileToString(transitiveVerbsFile);
         Set<String> verbs = new TreeSet<String>();
@@ -231,7 +203,7 @@ public class LexicalEntryHelper implements FrameConstants {
         /*if (isTransitiveVerb(reference)) {
             return TransitiveFrame;
         } else*/ if (isInTransitiveVerb(reference)) {
-            return InTransitivePPFrame;
+            return IntransitivePPFrame;
         }
         else{
             System.out.println(reference);
@@ -270,11 +242,95 @@ public class LexicalEntryHelper implements FrameConstants {
 
 
     private String findAdjType(String adj) {
-        return GradableFrame;
+        return AdjectiveSuperlativeFrame;
     }
 
     private String findNounType(String noun) {
         return NounPPFrame;
+    }
+
+    public Set<String> getTransitiveVerbs() {
+        return transitiveVerbs;
+    }
+
+    public Set<String> getInTransitiveVerbs() {
+        return inTransitiveVerbs;
+    }
+
+    public String getTransitiveVerbsFile() {
+        return transitiveVerbsFile;
+    }
+
+    public String getInTransitiveVerbsFile() {
+        return inTransitiveVerbsFile;
+    }
+
+    public String getVerbFormsFile() {
+        return verbFormsFile;
+    }
+
+    public VerbForms getVerbForms() {
+        return verbForms;
+    }
+    
+    
+    public static void mainLast(String[] args) {
+        String domainRangeFileName = "src/main/resources/qald-lex/DomainAndRange.txt";
+        String verbFormsFile = "src/main/resources/qald-lex/verbForms.txt";
+
+        LexicalEntryHelper lexicalEntryHelper = new LexicalEntryHelper(domainRangeFileName,verbFormsFile);
+        //Map<String, List<PairValues>> referenceDomainRange = new TreeMap<String, List<PairValues>>();
+        //referenceDomainRange = FileFolderUtils.fileToMap(domainRangeFileName);
+        System.out.println(lexicalEntryHelper.referenceDomainRange);
+        String nGram = "2-gram";
+        String linguisticPattern = "book by";
+        String preposition = null;
+        if (nGram.contains("2-gram")) {
+            PairValues pairValues = lexicalEntryHelper.findPreposition(linguisticPattern, lexicalEntryHelper.getPrepositions());
+            if (pairValues.getFlag()) {
+
+                preposition = pairValues.getKey();
+            }
+            System.out.println(" preposition::" + preposition);
+
+            System.out.println(" lexicalEntryHelper.referenceDomainRange::" + lexicalEntryHelper.referenceDomainRange);
+            List<PairValues> domainAndRanges = lexicalEntryHelper.findDomainRange("dbo_areaCode");
+            System.out.println("domainAndRanges::" + domainAndRanges);
+            if (!domainAndRanges.isEmpty()) {
+                pairValues = domainAndRanges.get(0);
+                String domain = pairValues.getKey();
+                String range = pairValues.getValue();
+                System.out.println(domain + " " + range);
+            }
+
+        }
+
+    }
+
+    public static void main(String[] args) {
+        /*String domainRangeFileName = "src/main/resources/qald-lex/DomainAndRange.txt";
+        String qald7AssignedProperties = "src/main/resources/qald-lex/properties.txt";
+        LexicalEntryHelper lexicalEntryHelper = new LexicalEntryHelper(domainRangeFileName);
+        //Map<String, List<PairValues>> referenceDomainRange = new TreeMap<String, List<PairValues>>();
+        //referenceDomainRange = FileFolderUtils.fileToMap(domainRangeFileName);
+        System.out.println(lexicalEntryHelper.referenceDomainRange);
+       for(String property:lexicalEntryHelper.referenceDomainRange.keySet()){
+           System.out.println(property);
+       }
+
+       Map<String, List<PairValues>> referenceDomainRange = new TreeMap<String, List<PairValues>>();
+       referenceDomainRange=FileFolderUtils.filetoTabDelimiatedResult(qald7AssignedProperties,"\t");
+       System.out.println(referenceDomainRange.keySet());*/
+        String domainRangeFileName = "src/main/resources/qald-lex/DomainAndRange.txt";
+        String verbFormsFile = "src/main/resources/qald-lex/verbForms.txt";
+        LexicalEntryHelper lexicalEntryHelper = new LexicalEntryHelper(domainRangeFileName, verbFormsFile);
+        String verb = "developed";
+        if (lexicalEntryHelper.getVerbForms().getForm().containsKey(verb)) {
+            VerbForms verbForms = lexicalEntryHelper.getVerbForms().getForm().get(verb);
+            System.out.println(verbForms.getForm2ndPerson() + " " + verbForms.getForm3rdPerson()
+                    + " " + verbForms.getFormPast() + " " + verbForms.getFormPerfect());
+        }
+
     }
 
 }

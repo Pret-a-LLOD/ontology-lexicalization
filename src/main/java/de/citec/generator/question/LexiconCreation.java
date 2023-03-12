@@ -27,9 +27,52 @@ public class LexiconCreation implements InduceConstants {
 
     private LexicalEntryHelper lexicalEntryHelper = null;
     private static List<String> lexiconNames = new ArrayList<String>();
+    
+    public LexiconCreation(String inputDir, String pattern, Integer rankThresold, Integer limit, LexicalEntryHelper lexicalEntryHelperT,
+             String outputDir, String parameterPattern,
+            Integer totalParameter, Integer parameterNumber) throws Exception {
+        this.lexicalEntryHelper = lexicalEntryHelperT;
+        List<String> files = FileFolderUtils.getSelectedFiles(inputDir, pattern);
+
+        Integer lexIndex = 0;
+        //System.out.println(parameterPattern+" "+rankThresold);
+        
+
+        for (String fileName : files) {
+            if (!fileName.contains("dbo:director")) {
+                continue;
+            }
+            SyntacticEntries syntacticEntries = new SyntacticEntries(lexicalEntryHelper, parameterPattern, rankThresold);
 
 
-    public LexiconCreation(String inputDir, String pattern, List<Integer> rankThresolds, Integer limit, LexicalEntryHelper lexicalEntryHelperT
+            if (fileName.contains("#")) {
+                continue;
+            }
+            CsvFile inputCsvFile = new CsvFile();
+            List<String[]> rows = inputCsvFile.getRows(new File(inputDir + fileName));
+            List<String[]> thresoldRows = new ArrayList<String[]>();
+            Integer index = 0;
+            for (String[] row : rows) {
+                //System.out.println(row[0] + " " + row[1] + " " + row[2]);
+                thresoldRows.add(row);
+                if (index >= rankThresold) {
+                    break;
+                } else {
+                    index = index + 1;
+                }
+            }
+            lexIndex = syntacticEntries.split(thresoldRows, lexIndex);
+            lexIndex = lexIndex + 1;
+            //System.out.println(fileName + " " + thresoldRows.size());
+            syntacticEntries.write(outputDir, fileName.replace(".csv", ""), rankThresold);
+        }
+            this.lexiconNames.add(parameterPattern + "-" + rankThresold);
+
+    }
+
+
+
+    /*public LexiconCreation(String inputDir, String pattern, List<Integer> rankThresolds, Integer limit, LexicalEntryHelper lexicalEntryHelperT
             , String outputDir,String parameterPattern,
             Integer totalParameter,Integer parameterNumber) throws Exception {
         this.lexicalEntryHelper = lexicalEntryHelperT;
@@ -41,9 +84,9 @@ public class LexiconCreation implements InduceConstants {
              //System.out.println(parameterPattern+" "+rankThresold);
             for (String fileName : files) {
                 
-                /*if(!fileName.contains("dbo:birthPlace"))
-                    continue;
-                */
+                //if(!fileName.contains("dbo:birthPlace"))
+                //    continue;
+               
                 if (fileName.contains("#")) {
                     continue;
                 }
@@ -61,7 +104,7 @@ public class LexiconCreation implements InduceConstants {
             //syntacticEntries.write(outputDir,parameterPattern,rankThresold);
             this.lexiconNames.add(syntacticEntries.getParameterString());
         }
-    }
+    }*/
 
     
     
@@ -77,19 +120,18 @@ public class LexiconCreation implements InduceConstants {
         String run="";
         String parameterAll="";
        
-        Map<Integer,String> lexicons=new HashMap<Integer,String>();
         for (String lexiconName : lexiconNames) {
             String lexiconT="lexicon_"+index.toString();
             String mkdirNoun="mkdir -p "+outputDir+File.separator+lexiconT+"/nouns"+"\n";
             String mkdirverbs="mkdir -p "+outputDir+File.separator+lexiconT+"/verbs"+"\n";
             String mkdirquestions="mkdir -p "+outputDir+File.separator+lexiconT+"/questions"+"\n";
             String line=mkdirNoun+mkdirverbs+mkdirquestions;
-            String comNoun= "cp -r "+inputDir+lexiconName+"-NounPPFrame.csv"+" "+outputDir+lexiconT+"/nouns/"+"\n";
-            String comTran= "cp -r "+inputDir+lexiconName+"-TransitiveFrame.csv"+" "+outputDir+lexiconT+"/verbs/"+"\n";
-            String comInTran= "cp -r "+inputDir+lexiconName+"-InTransitivePPFrame.csv"+" "+outputDir+lexiconT+"/verbs/"+"\n";
+            String comNoun= "cp -r "+inputDir+"*"+lexiconName+"-"+NounPPFrame+".csv"+" "+outputDir+lexiconT+"/nouns/"+"\n";
+            String comTran= "cp -r "+inputDir+"*"+lexiconName+"-"+TransitiveFrame+".csv"+" "+outputDir+lexiconT+"/verbs/"+"\n";
+            String comInTran= "cp -r "+inputDir+"*"+lexiconName+"-"+IntransitivePPFrame+".csv"+" "+outputDir+lexiconT+"/verbs/"+"\n";
             String comAll=comNoun+comTran+comInTran;
             String content=line+comAll+"\n"+"\n";
-            str+=content;            lexicons.put(index, lexiconName);
+            str+=content;            
             index=index+1;
             String fileName ="conf/"+"inputConf_"+lexiconT+"_en"+".json";
             InputCofiguration inputCofiguration = new InputCofiguration(lexiconT);

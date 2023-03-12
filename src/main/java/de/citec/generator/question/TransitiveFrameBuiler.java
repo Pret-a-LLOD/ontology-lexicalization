@@ -7,6 +7,7 @@ package de.citec.generator.question;
 
 import static de.citec.generator.question.FrameConstants.domain;
 import static de.citec.generator.question.FrameConstants.range;
+import static de.citec.generator.question.InduceConstants.TransitiveFrame;
 import de.citec.sc.generator.analyzer.TextAnalyzer;
 import static de.citec.sc.generator.analyzer.TextAnalyzer.noun;
 import de.citec.sc.generator.utils.PairValues;
@@ -22,7 +23,7 @@ public class TransitiveFrameBuiler implements FrameConstants, TextAnalyzer {
     private Integer length = 17;
     private String[] row = new String[length];
     private Integer senseIndex = 1;
-    private static String[] header = new String[]{"lemon", "partOfSpeech", "writtenFormInfinitive/2ndPerson", "writtenForm3rdPerson", "writtenFormPast", "writtenFormPerfect", "SyntacticFrame", "subject", "directObject", "sense", "reference", "domain", "range", "passivePreposition", "value", "filename", "gram"};
+    private static String[] header = new String[]{"lemon", "partOfSpeech", "writtenFormInfinitive/2ndPerson", "writtenForm3rdPerson", "writtenFormPast", "writtenFormPerfect","preposition", "SyntacticFrame", "subject", "prepositionalAdjuct", "sense", "reference", "domain", "range", "value", "filename", "gram"};
     private static String dir="verbs/";
     private Boolean flag=false;
 
@@ -43,6 +44,7 @@ public class TransitiveFrameBuiler implements FrameConstants, TextAnalyzer {
         }
     }
 
+    //Develop_3	verb	develop	develops	developed	developed	TransitiveFrame	domain	range	1	dbo:product	dbo:Company	dbo:Software	by
     private void buildRow(String id, String linguisticPattern, String reference, String domainR, String rangeR, String preposition, String value, String frame, String nGram) {
         row[0] = id;
         row[1] = verb;
@@ -50,7 +52,7 @@ public class TransitiveFrameBuiler implements FrameConstants, TextAnalyzer {
         row[3] = linguisticPattern;
         row[4] = linguisticPattern;
         row[5] = linguisticPattern;
-        row[6] = frame;
+        row[6] = TransitiveFrame;
         row[7] = range;
         row[8] = domain;
         row[9] = senseIndex.toString();

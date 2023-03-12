@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,7 @@ import org.apache.commons.compress.compressors.CompressorException;
 import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -373,6 +375,56 @@ public class FileFolderUtils {
         return rows;
     }
     
+    public static Map<String,String> fileSet(String fileName) {
+        BufferedReader reader;
+        String line = "";
+        Map<String,String> map = new HashMap<String,String>();
+        String str = "";
+        try {
+            reader = new BufferedReader(new FileReader(fileName));
+            while ((line = reader.readLine()) != null) {
+                line = line.replace("PREFIX", "\nPREFIX");
+                line = line.replace("nSELECT", "\nSELECT");
+                line = line.replace("{", "\n" + "[");
+                line = line.replace("}", "]" + "\n");
+                line = line.replace(">", "");
+                line = line.replace("<", "");
+                line = line.replace("http://dbpedia.org/resource/", "res:");
+                line = line.replace("http://dbpedia.org/ontology/", "dbo:");
+                line = line.replace("http://dbpedia.org/property/", "dbp:");
+                line = line.replace(".", "." + "\n");
+                line = line.strip().stripLeading().stripTrailing().trim();
+                line = StringUtils.substringBetween(line, "[", "]");
+                String[] lines = line.split("\n");
+                for (String lineT : lines) {
+                    if (lineT.contains(".")) {
+                        lineT = lineT.strip().stripLeading().stripTrailing().trim();
+                        try {
+                            String[] triple = lineT.split(" ");
+                            if (triple[1].startsWith("dbo:") || triple[1].startsWith("dbp:")) {
+                                String property=triple[1];
+                                property=property.strip().stripLeading().stripTrailing().trim();
+                                map.put(property, lineT);
+                            }
+
+                        } catch (ArrayIndexOutOfBoundsException ex) {
+                            System.out.println("failled:::" + lineT);
+
+                        }
+
+                    }
+                }
+
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return map;
+    }
     
-   
+    
+
+
 }

@@ -7,6 +7,7 @@ package de.citec.generator.question;
 
 import static de.citec.generator.question.FrameConstants.domain;
 import static de.citec.generator.question.FrameConstants.range;
+import static de.citec.generator.question.InduceConstants.IntransitivePPFrame;
 import de.citec.sc.generator.analyzer.TextAnalyzer;
 import static de.citec.sc.generator.analyzer.TextAnalyzer.verb;
 import de.citec.sc.generator.utils.PairValues;
@@ -34,13 +35,13 @@ public class InTransitivePPFrameBuilder {
 
         List<PairValues> domainAndRanges = lexicalEntryHelper.findDomainRange(reference);
         
-        /*//if (nGram.contains("2-gram")) {
+         //if (nGram.contains("2-gram")) {
             PairValues pairValues = lexicalEntryHelper.findPreposition(linguisticPattern, lexicalEntryHelper.getPrepositions());
             if (pairValues.getFlag()) {
 
                 preposition = pairValues.getKey();
             } else {
-                return;
+                preposition="in";
             }
 
         //}*/
@@ -55,6 +56,7 @@ public class InTransitivePPFrameBuilder {
         }
     }
 
+    //born_in_1	verb	born	-	born	born	in	IntransitivePPFrame	range	domain	1	dbo:birthYear	dbo:Person	xsd:date
       private void buildRow(String id, String linguisticPattern, String reference, String domainR, String rangeR, String preposition, String value, String frame, String nGram) {
         row[0] = id;
         row[1] = verb;
@@ -62,16 +64,17 @@ public class InTransitivePPFrameBuilder {
         row[3] = linguisticPattern;
         row[4] = linguisticPattern;
         row[5] = linguisticPattern;
-        row[6] = frame;
-        row[7] = domain;
-        row[8] = range;
-        row[9] = senseIndex.toString();
-        row[10] = reference;
-        row[11] = domainR;
-        row[12] = rangeR;
-        row[13] = value;
-        row[14] = reference;
-        row[15] = nGram;
+        row[6] = preposition;
+        row[7] = IntransitivePPFrame;
+        row[8] = domain;
+        row[9] = range;
+        row[10] = senseIndex.toString();
+        row[11] = reference;
+        row[12] = domainR;
+        row[13] = rangeR;
+        row[14] = value;
+        row[15] = reference;
+        row[16] = nGram;
     }
 
     public String[] getRow() {

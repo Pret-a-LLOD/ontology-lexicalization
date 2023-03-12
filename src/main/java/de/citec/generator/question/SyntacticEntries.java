@@ -6,9 +6,9 @@
 package de.citec.generator.question;
 
 import com.opencsv.CSVWriter;
-import static de.citec.generator.question.InduceConstants.InTransitivePPFrame;
 import static de.citec.generator.question.InduceConstants.NounPPFrame;
 import static de.citec.generator.question.InduceConstants.TransitiveFrame;
+import static de.citec.sc.generator.analyzer.TextAnalyzer.ENGLISH_STOPWORDS_WITHOUT_PREPOSITION;
 import de.citec.sc.generator.utils.CsvFile;
 import de.citec.sc.generator.utils.FileFolderUtils;
 import java.io.File;
@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import static de.citec.generator.question.InduceConstants.IntransitivePPFrame;
 
 /**
  *
@@ -48,18 +49,18 @@ public class SyntacticEntries {
     }
 
     public Integer split(List<String[]> rows, Integer lexIndex) {
-        /*List<String[]> nounPP = new ArrayList<String[]>();
+        List<String[]> nounPP = new ArrayList<String[]>();
         List<String[]> transitive = new ArrayList<String[]>();
         List<String[]> inTransitivePP = new ArrayList<String[]>();
         List<String[]> attibutive = new ArrayList<String[]>();
-        List<String[]> gradable = new ArrayList<String[]>();*/
+        List<String[]> gradable = new ArrayList<String[]>();
         Integer index = 0;
         Set<String>duplicates=new HashSet<String>();
         for (String[] row : rows) {
             lexIndex = lexIndex + 1;
             try {
                 String doubleValueString = row[0];
-                String modifiedLinguisticPattern = row[1];
+                String modifiedLinguisticPattern = row[1].toLowerCase();
                 String frame = row[2];
                 String nGram = row[4];
                 String reference = row[7];
@@ -85,7 +86,7 @@ public class SyntacticEntries {
                     if (transitiveFrame.getFlag()) {
                         transitive.add(transitiveFrame.getRow());
                     }
-                } else if (frame.contains(InTransitivePPFrame)) {
+                } else if (frame.equals(IntransitivePPFrame)||frame.equals("InTransitivePPFrame")) {
                     InTransitivePPFrameBuilder inTransitiveFrame = new InTransitivePPFrameBuilder(reference, modifiedLinguisticPattern, doubleValueString, frame, nGram, lexIndex, lexicalEntryHelper);
                     if (inTransitiveFrame.getFlag()) {
                         inTransitivePP.add(inTransitiveFrame.getRow());
@@ -99,10 +100,7 @@ public class SyntacticEntries {
                 resultGradableFrame.add(nounRow);
             }*/
 
-                if (index >= this.rankThresold) {
-                    break;
-                }
-                index = index + 1;
+                
             } catch (Exception ex) {
                 System.out.println("lexicon creation failed!!!" + row[0]);
                 continue;
@@ -110,7 +108,7 @@ public class SyntacticEntries {
            
 
         }
-        /*if (!nounPP.isEmpty()) {
+        if (!nounPP.isEmpty()) {
             this.nounPP.addAll(nounPP);
 
         }
@@ -121,7 +119,7 @@ public class SyntacticEntries {
         if (!inTransitivePP.isEmpty()) {
             this.inTransitivePP.addAll(inTransitivePP);
 
-        }*/
+        }
         return lexIndex;
     }
 
@@ -132,14 +130,14 @@ public class SyntacticEntries {
         this.transitive=filterDuplicate(this.transitive,2);
         this.inTransitivePP=filterDuplicate(this.inTransitivePP,2);
         if (this.nounPP.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir +parameterPattern+"-"+rankThresold + "-" + "NounPPFrame" + ".csv"), this.nounPP);
+            outputCsvFile.writeToCSV(new File(outputDir +parameterPattern+"-"+rankThresold + "-" + NounPPFrame + ".csv"), this.nounPP);
 
         }
         if (this.transitive.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir + parameterPattern+"-"+rankThresold + "-" + "TransitiveFrame" + ".csv"), this.transitive);
+            outputCsvFile.writeToCSV(new File(outputDir + parameterPattern+"-"+rankThresold + "-" + TransitiveFrame + ".csv"), this.transitive);
         }
         if (this.inTransitivePP.size() > 1) {
-            outputCsvFile.writeToCSV(new File(outputDir +  parameterPattern+"-"+rankThresold + "-" +  "InTransitivePPFrame" + ".csv"), this.inTransitivePP);
+            outputCsvFile.writeToCSV(new File(outputDir +  parameterPattern+"-"+rankThresold + "-" +  IntransitivePPFrame + ".csv"), this.inTransitivePP);
         }
     }
  
